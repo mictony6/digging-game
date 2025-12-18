@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RockData" load_steps=2 format=3 uid="uid://dfhyy6e317hqw"]
+
+[ext_resource type="Script" uid="uid://ctf3qjah02bo1" path="res://data/rocks/RockData.gd" id="1_1cngn"]
+
+[resource]
+script = ExtResource("1_1cngn")
+metadata/_custom_type_script = "uid://ctf3qjah02bo1"

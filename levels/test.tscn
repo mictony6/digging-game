@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2rwq3anfdsn8"]
+
+[ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/Rock.gd" id="2_lkjt4"]
+[ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/Head.gd" id="2_pnvjf"]
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="3_6g8e2"]
+[ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="3_ny0t1"]
+[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="3_pnvjf"]
+[ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="3_u45fp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lkjt4"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ny0t1"]
+sky_material = SubResource("ProceduralSkyMaterial_lkjt4")
+
+[sub_resource type="Environment" id="Environment_r4e4k"]
+background_mode = 2
+sky = SubResource("Sky_ny0t1")
+tonemap_mode = 4
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_density = 0.025
+volumetric_fog_albedo = Color(0.531387, 0.6638772, 0.7073545, 1)
+volumetric_fog_sky_affect = 0.225
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny0t1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g8e2"]
+shading_mode = 0
+albedo_color = Color(0.21365821, 0.38320878, 0.66288316, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u45fp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u45fp"]
+albedo_texture = ExtResource("3_6g8e2")
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lkjt4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_72lju"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 3.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r4e4k")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_pnvjf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_lkjt4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_ny0t1")
+
+[node name="Head" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("2_pnvjf")
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+current = true
+
+[node name="ToolManager" type="Node3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Tool" parent="Player/Head/ToolManager" instance=ExtResource("3_u45fp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -5)
+
+[node name="AOE" type="MeshInstance3D" parent="Player/Head"]
+visible = false
+material_override = SubResource("StandardMaterial3D_6g8e2")
+transparency = 0.51
+cast_shadow = 0
+mesh = SubResource("SphereMesh_u45fp")
+skeleton = NodePath("../ToolManager/Tool")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+material_override = SubResource("StandardMaterial3D_u45fp")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5719604, 3.2096252, 0.14849854)
+use_collision = true
+size = Vector3(17.984009, 7.8285522, 22.138794)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7390137, 4.150772, -4.4830627)
+operation = 2
+use_collision = true
+size = Vector3(16.106934, 8.801544, 11.569885)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7288208, 3.2987747, 6.3955917)
+operation = 2
+use_collision = true
+size = Vector3(16.12732, 7.0975494, 8.081284)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.236389, 4.150772, 5.455348)
+operation = 2
+use_collision = true
+size = Vector3(5.929077, 8.801544, 10.276884)
+
+[node name="Rock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1920929e-07, -3.9944308)
+script = ExtResource("2_lkjt4")
+rock_data = ExtResource("3_ny0t1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock"]
+mesh = SubResource("SphereMesh_lkjt4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock/StaticBody3D"]
+shape = SubResource("SphereShape3D_72lju")
+
+[node name="Rock2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1920929e-07, -5.0978413)
+script = ExtResource("2_lkjt4")
+rock_data = ExtResource("3_ny0t1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock2"]
+mesh = SubResource("SphereMesh_lkjt4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock2/StaticBody3D"]
+shape = SubResource("SphereShape3D_72lju")
+
+[node name="Rock3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8122343, -4.7073164)
+script = ExtResource("2_lkjt4")
+rock_data = ExtResource("3_ny0t1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock3"]
+mesh = SubResource("SphereMesh_lkjt4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock3/StaticBody3D"]
+shape = SubResource("SphereShape3D_72lju")
+
+[node name="Rock4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2321444, -5.9604645e-08, -4.7073164)
+script = ExtResource("2_lkjt4")
+rock_data = ExtResource("3_ny0t1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock4"]
+mesh = SubResource("SphereMesh_lkjt4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock4/StaticBody3D"]
+shape = SubResource("SphereShape3D_72lju")
