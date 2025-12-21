@@ -9,6 +9,7 @@ var can_rotate = true
 # Target rotation for smoothing
 var target_rotation: Vector3 = Vector3.ZERO
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_rotate:
 		var x_rot = event.relative.y * (MOUSE_SENSITIVITY * MOUSE_X_SENSITIVITY)
@@ -26,13 +27,3 @@ func _physics_process(delta: float) -> void:
 	rotation_degrees.x = lerpf(rotation_degrees.x, target_rotation.x, smoothing_factor)
 
 	rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation.y, smoothing_factor)
-
-func _process(delta: float) -> void:
-	if $RayCast3D.is_colliding():
-		$AOE.visible = true
-		var collider = $RayCast3D.get_collider()
-		var collision_point = $RayCast3D.get_collision_point()
-		$AOE.global_position = collision_point
-		$ToolManager.look_at(collision_point)
-	else:
-		$AOE.visible = false

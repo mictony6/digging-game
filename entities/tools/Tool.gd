@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name Tool
 
 @export var tool_data: ToolData:
 	set(value):
@@ -12,8 +13,12 @@ extends Node3D
 @export var animation_player: AnimationPlayer
 @export var debug_mode: bool = false
 var mouse_movement: Vector2
+
+# Velocity for sway calculations
 var velocity: Vector3 = Vector3.ZERO
 var last_position: Vector3 = Vector3.ZERO
+
+# tool state variables
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,7 +34,8 @@ func _process(delta: float) -> void:
 		rotation_degrees = tool_data.rotation
 	if Engine.is_editor_hint():
 		return
-
+	if Input.is_action_pressed("action"):
+		use_tool()
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -53,11 +59,11 @@ func sway_tool(delta: float) -> void:
 	mouse_movement = mouse_movement.lerp(Vector2.ZERO, 5 * delta)
 
 	#lerp position
-	position.x = lerpf(position.x, tool_data.position.x - (mouse_movement.x * tool_data.sway_amount_position) * delta, tool_data.sway_speed_position)
+	position.x = lerpf(position.x, tool_data.position.x + (mouse_movement.x * tool_data.sway_amount_position) * delta, tool_data.sway_speed_position)
 	position.y = lerpf(position.y, tool_data.position.y + ((mouse_movement.y - velocity.y * 2) * tool_data.sway_amount_position) * delta, tool_data.sway_speed_position)
 
 	#lerp rotation
-	rotation_degrees.y = lerpf(rotation_degrees.y, tool_data.rotation.y - (mouse_movement.x * tool_data.sway_amount_rotation) * delta, tool_data.sway_speed_rotation)
+	rotation_degrees.y = lerpf(rotation_degrees.y, tool_data.rotation.y + (mouse_movement.x * tool_data.sway_amount_rotation) * delta, tool_data.sway_speed_rotation)
 	rotation_degrees.x = lerpf(rotation_degrees.x, tool_data.rotation.x + ((mouse_movement.y - velocity.y * 2) * tool_data.sway_amount_rotation) * delta, tool_data.sway_speed_rotation)
 
 func use_tool() -> void:

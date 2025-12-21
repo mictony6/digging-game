@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnsi80dh14xy6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2grjb"]
+albedo_color = Color(0.062625274, 0.6629528, 0.7663443, 1)
+emission_enabled = true
+emission = Color(0.9999996, 0.3888855, 0.18224904, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u45fp"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2grjb"]
+radius = 0.032
+height = 0.063
+
+[node name="hitparticleseffect" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_2grjb")
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u45fp")
+draw_pass_1 = SubResource("SphereMesh_2grjb")
