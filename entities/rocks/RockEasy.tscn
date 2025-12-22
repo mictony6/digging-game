@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/Rock.gd" id="1_1o8al"]
 [ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="2_hxsg1"]
 [ext_resource type="ArrayMesh" uid="uid://bibsa41esbcv2" path="res://assets/meshes/rock1_mesh.res" id="3_hxsg1"]
-[ext_resource type="ArrayMesh" uid="uid://0jsn82awelfg" path="res://assets/meshes/rock2_mesh.res" id="4_xuhvl"]
+[ext_resource type="ArrayMesh" uid="uid://b4tchty7ialvo" path="res://assets/meshes/rock2_mesh.res" id="4_xuhvl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xuhvl"]
-radius = 0.61618775
+radius = 0.7319765
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xuhvl"]
 
@@ -23,7 +23,7 @@ roughness = 0.76
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_171nb")
 rim_enabled = true
-rim = 0.06
+rim = 0.02
 uv1_triplanar = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hxsg1"]
@@ -41,7 +41,7 @@ roughness = 0.85
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_xuhvl")
 rim_enabled = true
-rim = 0.06
+rim = 0.02
 uv1_offset = Vector3(0.5, 0.5, 0)
 uv1_triplanar = true
 
@@ -51,7 +51,6 @@ script = ExtResource("1_1o8al")
 rock_data = ExtResource("2_hxsg1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024383545, 0.010513306, 0.014312744)
 shape = SubResource("SphereShape3D_xuhvl")
 
 [node name="MeshTypes" type="Node3D" parent="."]

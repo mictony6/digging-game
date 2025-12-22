@@ -1,26 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnsi80dh14xy6"]
+[gd_scene load_steps=6 format=3 uid="uid://cnsi80dh14xy6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2grjb"]
-albedo_color = Color(0.062625274, 0.6629528, 0.7663443, 1)
+shading_mode = 2
+disable_ambient_light = true
+disable_specular_occlusion = true
+albedo_color = Color(0.963631, 0.6037255, 0.47564435, 1)
 emission_enabled = true
 emission = Color(0.9999996, 0.3888855, 0.18224904, 1)
 emission_energy_multiplier = 5.0
+disable_receive_shadows = true
+proximity_fade_enabled = true
+proximity_fade_distance = 0.25
+
+[sub_resource type="Curve" id="Curve_op0e0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6682693, 0.64044946), -0.863703, -0.863703, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0tsex"]
+curve = SubResource("Curve_op0e0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u45fp"]
+particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_0tsex")
 
 [sub_resource type="SphereMesh" id="SphereMesh_2grjb"]
-radius = 0.032
-height = 0.063
+radius = 0.016
+height = 0.252
 
 [node name="hitparticleseffect" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_2grjb")
 emitting = false
 amount = 12
-lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_u45fp")
 draw_pass_1 = SubResource("SphereMesh_2grjb")

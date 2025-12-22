@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://buxr6qhn67k7e"]
+
+[ext_resource type="ArrayMesh" uid="uid://wr878vpm7wej" path="res://assets/meshes/fractures/rock_cells_rock_cell_004.res" id="1_84mxu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_84mxu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_46fpe"]
+noise = SubResource("FastNoiseLite_84mxu")
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd21k"]
+albedo_color = Color(0.55216837, 0.5738994, 0.5353507, 1)
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_46fpe")
+rim = 0.06
+uv1_triplanar = true
+proximity_fade_distance = 0.25
+
+[sub_resource type="Curve" id="Curve_46fpe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cd21k"]
+curve = SubResource("Curve_46fpe")
+
+[sub_resource type="Curve" id="Curve_bs83e"]
+_data = [Vector2(0, 1), 0.0, 0.14382029, 0, 0, Vector2(0.53846157, 0.97752815), -0.20322415, -0.20322415, 0, 0, Vector2(1, 0), -3.3653939, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m1cx"]
+curve = SubResource("Curve_bs83e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rr41v"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.25
+angle_min = -89.99999
+angle_max = 90.000015
+angular_velocity_min = -90.000015
+angular_velocity_max = 179.99998
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 4.9999776
+radial_velocity_curve = SubResource("CurveTexture_cd21k")
+scale_min = 0.25
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_3m1cx")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_cd21k")
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rr41v")
+draw_pass_1 = ExtResource("1_84mxu")

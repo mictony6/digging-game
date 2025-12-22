@@ -25,6 +25,12 @@ func _ready() -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func _input(event: InputEvent) -> void:
+	#full screen toggle
+	if event is InputEventKey:
+		if event.pressed and event.keycode == Key.KEY_F11:
+			get_window().mode = Window.MODE_FULLSCREEN if get_window().mode != Window.MODE_FULLSCREEN else Window.MODE_WINDOWED
+
 func _process(delta: float) -> void:
 	var h_movement = Input.get_axis("move_left", "move_right");
 	var z_movement = Input.get_axis("move_backward", "move_forward");

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=18 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/Head.gd" id="2_pnvjf"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_2grjb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="3_pnvjf"]
 [ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="3_u45fp"]
 [ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_2grjb"]
+[ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_qhvcx"]
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_qhvcx"]
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="8_2grjb"]
 
@@ -32,12 +33,6 @@ volumetric_fog_sky_affect = 0.225
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny0t1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g8e2"]
-shading_mode = 0
-albedo_color = Color(0.21365821, 0.38320878, 0.66288316, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_u45fp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
 
@@ -96,9 +91,10 @@ current = true
 script = ExtResource("3_2grjb")
 tool = NodePath("Tool")
 tool_raycast = NodePath("RayCast3D")
-tool_aoe_mesh = NodePath("AOE")
+tool_aoe_mesh = NodePath("")
 tool_area3d = NodePath("ToolAreaCollision")
 hit_particles = ExtResource("4_2grjb")
+break_particles = ExtResource("5_qhvcx")
 tool_max_cooldown = 0.25
 
 [node name="Tool" parent="Player/Head/ToolManager" instance=ExtResource("3_u45fp")]
@@ -109,14 +105,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
 target_position = Vector3(0, 0, -2)
 collision_mask = 2
 
-[node name="AOE" type="MeshInstance3D" parent="Player/Head/ToolManager"]
-visible = false
-material_override = SubResource("StandardMaterial3D_6g8e2")
-transparency = 0.51
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u45fp")
-skeleton = NodePath("../Tool")
-
 [node name="ToolAreaCollision" type="Area3D" parent="Player/Head/ToolManager"]
 collision_layer = 0
 collision_mask = 2
@@ -126,6 +114,7 @@ shape = SubResource("SphereShape3D_u45fp")
 
 [node name="Beam" type="MeshInstance3D" parent="Player/Head/ToolManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1719015)
+visible = false
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_kqvnf")
 

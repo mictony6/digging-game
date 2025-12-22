@@ -5,6 +5,7 @@ class_name Rock
 var current_health: int
 signal destroyed(body: Rock)
 
+
 func _ready():
 	current_health = rock_data.max_health
 	#assign a random rotation for variety
@@ -20,6 +21,7 @@ func _ready():
 		i.visible = false
 	var mesh_index = randi() % $MeshTypes.get_child_count()
 	$MeshTypes.get_child(mesh_index).visible = true
+
 
 func take_damage(damage: int):
 	if not rock_data.is_destructible:

@@ -7,6 +7,7 @@ class_name ToolManager
 @export var tool_aoe_mesh: MeshInstance3D
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
+@export var break_particles: PackedScene
 
 var particle_instances: Array[GPUParticles3D] = []
 
@@ -33,24 +34,27 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("action") and tool_current_cooldown <= 0.0:
 			for body in bodies_in_aoe:
 				if body.rock_data.tier <= tool.tool_data.tier:
-					body.take_damage(tool.tool_data.strength)
+					if body == tool_raycast.get_collider():
+						body.take_damage(tool.tool_data.strength)
+					else:
+						body.take_damage(tool.tool_data.strength / 2) # half damage to neighboring rocks
 					tool_current_cooldown = tool_max_cooldown
-					#spawn hit particles
-					var particles_instance: GPUParticles3D = hit_particles.instantiate()
-					get_tree().current_scene.add_child(particles_instance)
-					particle_instances.append(particles_instance)
-					particles_instance.global_position = collision_point
-					particles_instance.emitting = true
-					particles_instance.finished.connect(particles_instance.queue_free)
-					
-					if particle_instances.size() > 5:
-						var oldest_particle = particle_instances.pop_front()
-						if oldest_particle != null:
-							oldest_particle.queue_free()
+			#spawn hit particles
+			var particles_instance: GPUParticles3D = hit_particles.instantiate()
+			get_tree().current_scene.add_child(particles_instance)
+			particle_instances.append(particles_instance)
+			particles_instance.global_position = collision_point
+			particles_instance.emitting = true
+			particles_instance.finished.connect(particles_instance.queue_free)
+			
+			if particle_instances.size() > 5:
+				var oldest_particle = particle_instances.pop_front()
+				if oldest_particle != null:
+					oldest_particle.queue_free()
 
-					#align particles to surface normal
-					var collision_normal = tool_raycast.get_collision_normal()
-					particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+			#align particles to surface normal
+			var collision_normal = tool_raycast.get_collision_normal()
+			particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
 	else:
 		# tool_aoe_mesh.visible = false
 		tool_area3d.monitoring = false
@@ -67,6 +71,13 @@ func _on_body_exited(body: Node) -> void:
 		body.destroyed.disconnect(_on_rock_destroyed)
 
 func _on_rock_destroyed(body: Rock) -> void:
+	#spawn break particles
+	var particles_instance: GPUParticles3D = break_particles.instantiate()
+	get_tree().current_scene.add_child(particles_instance)
+	particle_instances.append(particles_instance)
+	particles_instance.global_position = body.global_position
+	particles_instance.emitting = true
+	particles_instance.finished.connect(particles_instance.queue_free)
 	if body in bodies_in_aoe:
 		bodies_in_aoe.erase(body)
 		body.destroyed.disconnect(_on_rock_destroyed)
