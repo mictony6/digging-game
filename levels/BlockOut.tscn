@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://mcfdyr2dl68s"]
+
+[ext_resource type="Shader" uid="uid://bou3ss72b7lg" path="res://shaders/mix.tres" id="1_76j6b"]
+[ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="6_d4o56"]
+[ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_ssmx2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p718k"]
+render_priority = 0
+shader = ExtResource("1_76j6b")
+shader_parameter/Uv_Scale2 = Vector2(5, 5)
+
+[node name="Level" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.429657, -0.1017952, -6.0048027)
+material_override = SubResource("ShaderMaterial_p718k")
+use_collision = true
+size = Vector3(100, 0.5, 100)
+
+[node name="Player" parent="." instance=ExtResource("6_d4o56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5341018, 0)
+
+[node name="Rock" parent="." instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.3607821)
+
+[node name="Rock2" parent="." instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8701072, 0, 3.3607821)
+
+[node name="Rock3" parent="." instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.842257, 0, 3.3607821)
+
+[node name="Rock4" parent="." instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6745121, 0, 3.3607821)
+
+[node name="Rock5" parent="." instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2883675, 0, 3.3607821)

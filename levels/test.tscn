@@ -1,21 +1,21 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=20 format=3 uid="uid://d2rwq3anfdsn8"]
 
-[ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/Head.gd" id="2_pnvjf"]
-[ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_2grjb"]
-[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="3_6g8e2"]
-[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="3_pnvjf"]
-[ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="3_u45fp"]
-[ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_2grjb"]
-[ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_qhvcx"]
+[ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
+[ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="4_2grjb"]
+[ext_resource type="Shader" uid="uid://bou3ss72b7lg" path="res://shaders/mix.tres" id="4_pnvjf"]
+[ext_resource type="Texture2D" uid="uid://btwwenj77v122" path="res://assets/textures/gravel/gravel_arm_2k.png" id="6_u45fp"]
+[ext_resource type="Texture2D" uid="uid://b3adsvjmvukf6" path="res://assets/textures/gravel/gravel_nor_gl_2k.png" id="7_2grjb"]
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_qhvcx"]
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="8_2grjb"]
+[ext_resource type="Texture2D" uid="uid://cgmy2tsg5xgmm" path="res://assets/textures/trail/rocky_trail_02_nor_dx_2k.png" id="8_kqvnf"]
+[ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="8_qhvcx"]
+[ext_resource type="Texture2D" uid="uid://mt1tt4li5wqi" path="res://assets/textures/trail/rocky_trail_02_diff_2k.png" id="9_kqvnf"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lkjt4"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2grjb"]
+ground_bottom_color = Color(0.42384496, 0.36781618, 0.30491248, 1)
 
 [sub_resource type="Sky" id="Sky_ny0t1"]
-sky_material = SubResource("ProceduralSkyMaterial_lkjt4")
+sky_material = SubResource("ProceduralSkyMaterial_2grjb")
 
 [sub_resource type="Environment" id="Environment_r4e4k"]
 background_mode = 2
@@ -29,35 +29,39 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.025
 volumetric_fog_albedo = Color(0.531387, 0.6638772, 0.7073545, 1)
 volumetric_fog_sky_affect = 0.225
+adjustment_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
+[sub_resource type="Gradient" id="Gradient_kqvnf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.16935484, 0.46774194)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny0t1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eudka"]
+noise_type = 3
+frequency = 0.0077
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtvpr"]
+noise = SubResource("FastNoiseLite_eudka")
+color_ramp = SubResource("Gradient_kqvnf")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kqvnf"]
-_surfaces = [{
-"aabb": AABB(-0.5, 0, 0, 1, 1, 1e-05),
-"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/"),
-"format": 34359738391,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAvwAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAPwAAgD8AAAAAAAAAPwAAgD8AAAAAAAAAvwAAgD8AAAAAAAAAvwAAAAAAAAAA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
-}, {
-"aabb": AABB(-2.1855694e-08, 0, -0.5, 1e-05, 1, 1),
-"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/"),
-"format": 34359738391,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("Lr27MgAAAAAAAAA/Lr27sgAAAAAAAAC/Lr27sgAAgD8AAAC/Lr27sgAAgD8AAAC/Lr27MgAAgD8AAAA/Lr27MgAAAAAAAAA/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/")
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6g8e2"]
+render_priority = 0
+shader = ExtResource("4_pnvjf")
+shader_parameter/Uv_Scale1 = Vector2(5, 5)
+shader_parameter/Main_Texture = ExtResource("4_2grjb")
+shader_parameter/UV_Scale_2 = Vector2(5, 5)
+shader_parameter/Secondary_Texture = ExtResource("9_kqvnf")
+shader_parameter/Noise_Texture = SubResource("NoiseTexture2D_qtvpr")
+shader_parameter/O_R_M = ExtResource("6_u45fp")
+shader_parameter/Secondary_O_R_M = ExtResource("8_qhvcx")
+shader_parameter/Normal_Map = ExtResource("7_2grjb")
+shader_parameter/Secondary_Normal_Map = ExtResource("8_kqvnf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u45fp"]
-albedo_texture = ExtResource("3_6g8e2")
-uv1_triplanar = true
+[sub_resource type="PlaneMesh" id="PlaneMesh_u45fp"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnvjf"]
+size = Vector3(100, 0.5, 100)
 
 [node name="Level" type="Node3D"]
 
@@ -69,84 +73,11 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r4e4k")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5000005, -0.4890418)
-collision_mask = 3
-script = ExtResource("3_pnvjf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_lkjt4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_ny0t1")
-
-[node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("2_pnvjf")
-
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
-current = true
-
-[node name="ToolManager" type="Node3D" parent="Player/Head" node_paths=PackedStringArray("tool", "tool_raycast", "tool_aoe_mesh", "tool_area3d")]
-script = ExtResource("3_2grjb")
-tool = NodePath("Tool")
-tool_raycast = NodePath("RayCast3D")
-tool_aoe_mesh = NodePath("")
-tool_area3d = NodePath("ToolAreaCollision")
-hit_particles = ExtResource("4_2grjb")
-break_particles = ExtResource("5_qhvcx")
-tool_max_cooldown = 0.25
-
-[node name="Tool" parent="Player/Head/ToolManager" instance=ExtResource("3_u45fp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.5, -0.75)
-
-[node name="RayCast3D" type="RayCast3D" parent="Player/Head/ToolManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
-target_position = Vector3(0, 0, -2)
-collision_mask = 2
-
-[node name="ToolAreaCollision" type="Area3D" parent="Player/Head/ToolManager"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Head/ToolManager/ToolAreaCollision"]
-shape = SubResource("SphereShape3D_u45fp")
-
-[node name="Beam" type="MeshInstance3D" parent="Player/Head/ToolManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1719015)
-visible = false
-cast_shadow = 0
-mesh = SubResource("ArrayMesh_kqvnf")
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-material_override = SubResource("StandardMaterial3D_u45fp")
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5719604, 3.2096252, 0.14849854)
-use_collision = true
-size = Vector3(17.984009, 7.8285522, 22.138794)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2839012, 4.150772, -3.8667698)
-operation = 2
-use_collision = true
-size = Vector3(16.567589, 8.801544, 11.436253)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7288208, 3.2987747, 6.3955917)
-operation = 2
-use_collision = true
-size = Vector3(16.12732, 7.0975494, 8.081284)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.236389, 4.150772, 5.455348)
-operation = 2
-use_collision = true
-size = Vector3(5.929077, 8.801544, 10.276884)
+[node name="Player" parent="." instance=ExtResource("1_r4e4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1482043, -0.4890418)
 
 [node name="Rocks" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8801813, 0)
 
 [node name="Rock" parent="Rocks" instance=ExtResource("7_qhvcx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1920929e-07, -3.9944308)
@@ -404,7 +335,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3310933, 3.4647512, -3.994
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3310933, 3.4647512, -5.111923)
 
 [node name="Rock91" parent="Rocks" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3310933, 3.4647512, -6.367304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8538275, 0.7306763, -3.3800163)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -461,3 +392,14 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="HUD/CenterContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_6g8e2")
+mesh = SubResource("PlaneMesh_u45fp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+shape = SubResource("BoxShape3D_pnvjf")

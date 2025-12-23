@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://b4s08eyg2bw3c"]
+
+[ext_resource type="Shader" uid="uid://7lkclcg3l0i5" path="res://shaders/crack.tres" id="1_5ne07"]
+
+[sub_resource type="Gradient" id="Gradient_5ne07"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.06048387, 0.15725806)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oamob"]
+noise_type = 2
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c83ie"]
+noise = SubResource("FastNoiseLite_oamob")
+color_ramp = SubResource("Gradient_5ne07")
+seamless = true
+as_normal_map = true
+bump_strength = 1.0
+
+[sub_resource type="Gradient" id="Gradient_r8uvd"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.15322581, 0.2782258)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cxmus"]
+noise_type = 2
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rr552"]
+noise = SubResource("FastNoiseLite_cxmus")
+color_ramp = SubResource("Gradient_r8uvd")
+seamless = true
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_5ne07")
+shader_parameter/Crack_Color = Color(0.33400288, 0.30198342, 0.25932893, 1)
+shader_parameter/ratio = 0.0
+shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
+shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
+shader_parameter/triplanar_scale = Vector3(1, 1, 1)
+shader_parameter/triplanar_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 10.0

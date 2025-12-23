@@ -22,9 +22,10 @@ curve = SubResource("Curve_op0e0")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u45fp"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
-initial_velocity_min = 1.0
 initial_velocity_max = 3.0
-scale_min = 0.5
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 1.9999776
+scale_min = 0.25
 scale_max = 0.75
 scale_curve = SubResource("CurveTexture_0tsex")
 
@@ -37,7 +38,8 @@ material_override = SubResource("StandardMaterial3D_2grjb")
 emitting = false
 amount = 12
 one_shot = true
-explosiveness = 1.0
+preprocess = 0.05
+explosiveness = 0.85
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_u45fp")
 draw_pass_1 = SubResource("SphereMesh_2grjb")
