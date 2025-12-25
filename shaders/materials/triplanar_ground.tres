@@ -1,0 +1,46 @@
+[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://b2ksgj830wn2e"]
+
+[ext_resource type="Shader" uid="uid://banurgygw2w5" path="res://shaders/triplanar_mix.tres" id="1_jejbx"]
+[ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="2_dxh0l"]
+[ext_resource type="Texture2D" uid="uid://mt1tt4li5wqi" path="res://assets/textures/trail/rocky_trail_02_diff_2k.png" id="3_dury2"]
+[ext_resource type="Texture2D" uid="uid://b3adsvjmvukf6" path="res://assets/textures/gravel/gravel_nor_gl_2k.png" id="4_pavjo"]
+[ext_resource type="Texture2D" uid="uid://cgmy2tsg5xgmm" path="res://assets/textures/trail/rocky_trail_02_nor_dx_2k.png" id="5_bpi1l"]
+[ext_resource type="Texture2D" uid="uid://btwwenj77v122" path="res://assets/textures/gravel/gravel_arm_2k.png" id="6_m5jeh"]
+[ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="7_ql7u6"]
+[ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="8_pavjo"]
+[ext_resource type="Texture2D" uid="uid://d1tokg018su56" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_nor_gl_2k.png" id="9_bpi1l"]
+[ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="10_m5jeh"]
+
+[sub_resource type="Gradient" id="Gradient_eudka"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.3846154, 0.5923077)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qtvpr"]
+noise_type = 2
+frequency = 0.0138
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drwxn"]
+noise = SubResource("FastNoiseLite_qtvpr")
+color_ramp = SubResource("Gradient_eudka")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jejbx")
+shader_parameter/Side_Albedo = ExtResource("8_pavjo")
+shader_parameter/Albedo1 = ExtResource("2_dxh0l")
+shader_parameter/Albedo2 = ExtResource("3_dury2")
+shader_parameter/Noise_Scale = 0.01
+shader_parameter/Noise = SubResource("NoiseTexture2D_drwxn")
+shader_parameter/Separation = 0.145
+shader_parameter/Transition_Softness = 0.155
+shader_parameter/Side_ORM = ExtResource("10_m5jeh")
+shader_parameter/ORM1 = ExtResource("6_m5jeh")
+shader_parameter/ORM2 = ExtResource("7_ql7u6")
+shader_parameter/Side_Normal_Map = ExtResource("9_bpi1l")
+shader_parameter/Normal_Map1 = ExtResource("4_pavjo")
+shader_parameter/Normal_Map2 = ExtResource("5_bpi1l")
+shader_parameter/triplanar_scale = Vector3(0.1, 0.1, 0.1)
+shader_parameter/triplanar_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 5.0

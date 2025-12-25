@@ -1,15 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=10 format=3 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
-[ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="4_2grjb"]
-[ext_resource type="Shader" uid="uid://bou3ss72b7lg" path="res://shaders/mix.tres" id="4_pnvjf"]
-[ext_resource type="Texture2D" uid="uid://btwwenj77v122" path="res://assets/textures/gravel/gravel_arm_2k.png" id="6_u45fp"]
-[ext_resource type="Texture2D" uid="uid://b3adsvjmvukf6" path="res://assets/textures/gravel/gravel_nor_gl_2k.png" id="7_2grjb"]
+[ext_resource type="Material" uid="uid://b2ksgj830wn2e" path="res://shaders/materials/triplanar_ground.tres" id="4_r4e4k"]
+[ext_resource type="Texture2D" uid="uid://bstbcvk7gr7ne" path="res://GreyboxTextures/greybox_yellow_grid.png" id="5_pnvjf"]
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_qhvcx"]
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="8_2grjb"]
-[ext_resource type="Texture2D" uid="uid://cgmy2tsg5xgmm" path="res://assets/textures/trail/rocky_trail_02_nor_dx_2k.png" id="8_kqvnf"]
-[ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="8_qhvcx"]
-[ext_resource type="Texture2D" uid="uid://mt1tt4li5wqi" path="res://assets/textures/trail/rocky_trail_02_diff_2k.png" id="9_kqvnf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2grjb"]
 ground_bottom_color = Color(0.42384496, 0.36781618, 0.30491248, 1)
@@ -25,56 +20,25 @@ ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
-volumetric_fog_enabled = true
+fog_sky_affect = 0.373
 volumetric_fog_density = 0.025
 volumetric_fog_albedo = Color(0.531387, 0.6638772, 0.7073545, 1)
 volumetric_fog_sky_affect = 0.225
-adjustment_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_kqvnf"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.16935484, 0.46774194)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_eudka"]
-noise_type = 3
-frequency = 0.0077
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtvpr"]
-noise = SubResource("FastNoiseLite_eudka")
-color_ramp = SubResource("Gradient_kqvnf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6g8e2"]
-render_priority = 0
-shader = ExtResource("4_pnvjf")
-shader_parameter/Uv_Scale1 = Vector2(5, 5)
-shader_parameter/Main_Texture = ExtResource("4_2grjb")
-shader_parameter/UV_Scale_2 = Vector2(5, 5)
-shader_parameter/Secondary_Texture = ExtResource("9_kqvnf")
-shader_parameter/Noise_Texture = SubResource("NoiseTexture2D_qtvpr")
-shader_parameter/O_R_M = ExtResource("6_u45fp")
-shader_parameter/Secondary_O_R_M = ExtResource("8_qhvcx")
-shader_parameter/Normal_Map = ExtResource("7_2grjb")
-shader_parameter/Secondary_Normal_Map = ExtResource("8_kqvnf")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_u45fp"]
-size = Vector2(100, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pnvjf"]
-size = Vector3(100, 0.5, 100)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g8e2"]
+albedo_texture = ExtResource("5_pnvjf")
 
 [node name="Level" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 3.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r4e4k")
 
 [node name="Player" parent="." instance=ExtResource("1_r4e4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1482043, -0.4890418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2497026, 0.6751498)
 
 [node name="Rocks" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8801813, 0)
@@ -393,13 +357,27 @@ grow_vertical = 2
 layout_mode = 2
 text = "+"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("ShaderMaterial_6g8e2")
-mesh = SubResource("PlaneMesh_u45fp")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.213379, 0)
+use_collision = true
+collision_layer = 4
+size = Vector3(100, 4.926758, 100)
+material = ExtResource("4_r4e4k")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="Shop" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.390625, 2.1957397, 0)
+material_override = SubResource("StandardMaterial3D_6g8e2")
+use_collision = true
+collision_layer = 4
+size = Vector3(4.21875, 3.8914795, 7.3046875)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-visible = false
-shape = SubResource("BoxShape3D_pnvjf")
+[node name="Interior" type="CSGBox3D" parent="Shop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040298462, 0)
+operation = 2
+use_collision = true
+size = Vector3(3.7861328, 3.4753723, 6.7717285)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Shop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469517, -0.567629, -0.9685445)
+operation = 2
+size = Vector3(0.699, 2.3906045, 1.5)

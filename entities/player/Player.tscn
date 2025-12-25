@@ -1,40 +1,30 @@
-[gd_scene load_steps=11 format=4 uid="uid://dmujhjwc5ylgy"]
+[gd_scene load_steps=15 format=3 uid="uid://dmujhjwc5ylgy"]
 
-[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_4pwj0"]
-[ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/Head.gd" id="2_fmb3c"]
+[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/player.gd" id="1_ak4un"]
+[ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_rl6fg"]
 [ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_q57vx"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_ak4un"]
 [ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="6_1ms0h"]
+[ext_resource type="Script" uid="uid://cp5a0y857k43q" path="res://systems/state machine/StateMachine.gd" id="7_rl6fg"]
+[ext_resource type="Script" uid="uid://b5atrdqqi0omw" path="res://entities/player/states/move.gd" id="8_q57vx"]
+[ext_resource type="Script" uid="uid://c2svr5hwaqbpu" path="res://entities/player/states/idle.gd" id="8_rl6fg"]
+[ext_resource type="Script" uid="uid://dfdivswxvjssr" path="res://entities/player/states/sprint.gd" id="10_ak4un"]
+[ext_resource type="Script" uid="uid://bkvj6rlc6m5h8" path="res://entities/player/states/jump.gd" id="11_1ms0h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
+radius = 0.52
+height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny0t1"]
+height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kqvnf"]
-_surfaces = [{
-"aabb": AABB(-0.5, 0, 0, 1, 1, 1e-05),
-"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/"),
-"format": 34359738391,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAvwAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAPwAAgD8AAAAAAAAAPwAAgD8AAAAAAAAAvwAAgD8AAAAAAAAAvwAAAAAAAAAA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
-}, {
-"aabb": AABB(-2.1855694e-08, 0, -0.5, 1e-05, 1, 1),
-"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/"),
-"format": 34359738391,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("Lr27MgAAAAAAAAA/Lr27sgAAAAAAAAC/Lr27sgAAgD8AAAC/Lr27sgAAgD8AAAC/Lr27MgAAgD8AAAA/Lr27MgAAAAAAAAA/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/")
-}]
-
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 3
-script = ExtResource("1_4pwj0")
+collision_mask = 7
+script = ExtResource("1_ak4un")
+SPRINT_SPEED = 3.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_lkjt4")
@@ -70,10 +60,26 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision"]
+visible = false
 shape = SubResource("SphereShape3D_u45fp")
 
 [node name="Beam" type="MeshInstance3D" parent="Head/ToolManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1719015)
-visible = false
 cast_shadow = 0
-mesh = SubResource("ArrayMesh_kqvnf")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_rl6fg")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://cp5a0y857k43q"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("8_rl6fg")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("8_q57vx")
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("10_ak4un")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("11_1ms0h")

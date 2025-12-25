@@ -1,6 +1,7 @@
 extends StaticBody3D
 class_name Rock
 
+
 @export var rock_data: RockData
 var current_health: int
 signal destroyed(body: Rock)
@@ -15,13 +16,9 @@ func _ready():
 	var scale_variation = randf_range(0.9, 1.1)
 	scale = Vector3.ONE * scale_variation
 
+	# #select a random mesh
+	randomize_mesh()
 
-	#select a random mesh
-	for i in $MeshTypes.get_children():
-		i.visible = false
-	var mesh_index = randi() % $MeshTypes.get_child_count()
-	$MeshTypes.get_child(mesh_index).visible = true
-	crack_material = $MeshTypes.get_child(mesh_index).material_overlay
 
 func take_damage(damage: int):
 	if current_health <= 0:
@@ -45,3 +42,11 @@ func _process(delta: float) -> void:
 		var current_ratio = crack_material.get_shader_parameter("ratio")
 		health_ratio = lerpf(current_ratio, health_ratio, 0.1)
 		crack_material.set_shader_parameter("ratio", health_ratio)
+
+func randomize_mesh():
+	#select a random mesh
+	for i in $MeshTypes.get_children():
+		i.visible = false
+	var mesh_index = randi() % $MeshTypes.get_child_count()
+	$MeshTypes.get_child(mesh_index).visible = true
+	crack_material = $MeshTypes.get_child(mesh_index).material_overlay
