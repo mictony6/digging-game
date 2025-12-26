@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmujhjwc5ylgy"]
+[gd_scene load_steps=18 format=3 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
+[ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_rl6fg"]
+[ext_resource type="PackedScene" uid="uid://djhlwhtnyh1j6" path="res://entities/bomb/Bomb.tscn" id="4_kwk8g"]
+[ext_resource type="ArrayMesh" uid="uid://hp64p4qgnxq1" path="res://assets/meshes/bomb.tres" id="4_mq27t"]
 [ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_q57vx"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_ak4un"]
 [ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="6_1ms0h"]
@@ -39,6 +42,15 @@ script = ExtResource("2_fmb3c")
 [node name="Camera3D" type="Camera3D" parent="Head"]
 current = true
 
+[node name="BombManager" type="Node3D" parent="Head"]
+script = ExtResource("3_mq27t")
+bomb_scene = ExtResource("4_kwk8g")
+
+[node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager"]
+transform = Transform3D(0.09552654, -0.014453307, 0.025802767, 0.023032174, 0.091085605, -0.034248095, -0.018552622, 0.038658958, 0.09033983, -0.5, -0.1960786, -0.6)
+cast_shadow = 0
+mesh = ExtResource("4_mq27t")
+
 [node name="ToolManager" type="Node3D" parent="Head" node_paths=PackedStringArray("tool", "tool_raycast", "tool_area3d")]
 script = ExtResource("3_rl6fg")
 tool = NodePath("Tool")
@@ -60,7 +72,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision"]
-visible = false
 shape = SubResource("SphereShape3D_u45fp")
 
 [node name="Beam" type="MeshInstance3D" parent="Head/ToolManager"]
@@ -83,3 +94,24 @@ script = ExtResource("10_ak4un")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("11_1ms0h")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="StateLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 2

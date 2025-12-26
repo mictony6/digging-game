@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=16 format=3 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
+[ext_resource type="Script" uid="uid://b608we0ij00bo" path="res://game/coordinates.gd" id="4_6g8e2"]
 [ext_resource type="Material" uid="uid://b2ksgj830wn2e" path="res://shaders/materials/triplanar_ground.tres" id="4_r4e4k"]
 [ext_resource type="Texture2D" uid="uid://bstbcvk7gr7ne" path="res://GreyboxTextures/greybox_yellow_grid.png" id="5_pnvjf"]
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_qhvcx"]
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="7_u45fp"]
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="8_2grjb"]
+[ext_resource type="PackedScene" uid="uid://djhlwhtnyh1j6" path="res://entities/bomb/Bomb.tscn" id="8_qhvcx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2grjb"]
 ground_bottom_color = Color(0.42384496, 0.36781618, 0.30491248, 1)
@@ -16,9 +19,7 @@ sky_material = SubResource("ProceduralSkyMaterial_2grjb")
 background_mode = 2
 sky = SubResource("Sky_ny0t1")
 tonemap_mode = 4
-ssr_enabled = true
 ssao_enabled = true
-ssil_enabled = true
 glow_enabled = true
 fog_sky_affect = 0.373
 volumetric_fog_density = 0.025
@@ -27,6 +28,17 @@ volumetric_fog_sky_affect = 0.225
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g8e2"]
 albedo_texture = ExtResource("5_pnvjf")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2grjb"]
+albedo_texture = ExtResource("7_u45fp")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qhvcx"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_u45fp"]
+data = PackedVector3Array(-0.5, 0.25, 0.5, 0.5, 0.25, 0.5, -0.5, -0.25, 0.5, 0.5, 0.25, 0.5, 0.5, -0.25, 0.5, -0.5, -0.25, 0.5, 0.5, 0.25, -0.5, -0.5, 0.25, -0.5, 0.5, -0.25, -0.5, -0.5, 0.25, -0.5, -0.5, -0.25, -0.5, 0.5, -0.25, -0.5, 0.5, 0.25, 0.5, 0.5, 0.25, -0.5, 0.5, -0.25, 0.5, 0.5, 0.25, -0.5, 0.5, -0.25, -0.5, 0.5, -0.25, 0.5, -0.5, 0.25, -0.5, -0.5, 0.25, 0.5, -0.5, -0.25, -0.5, -0.5, 0.25, 0.5, -0.5, -0.25, 0.5, -0.5, -0.25, -0.5, 0.5, 0.25, 0.5, -0.5, 0.25, 0.5, 0.5, 0.25, -0.5, -0.5, 0.25, 0.5, -0.5, 0.25, -0.5, 0.5, 0.25, -0.5, -0.5, -0.25, 0.5, 0.5, -0.25, 0.5, -0.5, -0.25, -0.5, 0.5, -0.25, 0.5, 0.5, -0.25, -0.5, -0.5, -0.25, -0.5)
 
 [node name="Level" type="Node3D"]
 
@@ -357,6 +369,26 @@ grow_vertical = 2
 layout_mode = 2
 text = "+"
 
+[node name="Coordinates" type="VBoxContainer" parent="HUD" node_paths=PackedStringArray("player")]
+layout_mode = 1
+offset_right = 10.0
+offset_bottom = 77.0
+mouse_filter = 2
+script = ExtResource("4_6g8e2")
+player = NodePath("../../Player")
+
+[node name="X" type="Label" parent="HUD/Coordinates"]
+layout_mode = 2
+text = "X"
+
+[node name="Y" type="Label" parent="HUD/Coordinates"]
+layout_mode = 2
+text = "Y"
+
+[node name="Z" type="Label" parent="HUD/Coordinates"]
+layout_mode = 2
+text = "Z"
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.213379, 0)
 use_collision = true
@@ -381,3 +413,26 @@ size = Vector3(3.7861328, 3.4753723, 6.7717285)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469517, -0.567629, -0.9685445)
 operation = 2
 size = Vector3(0.699, 2.3906045, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.583698, 0.5, 0.20838845)
+material_override = SubResource("StandardMaterial3D_2grjb")
+mesh = SubResource("BoxMesh_qhvcx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_u45fp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.583698, 1, -0.79161155)
+material_override = SubResource("StandardMaterial3D_2grjb")
+mesh = SubResource("BoxMesh_qhvcx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_u45fp")
+
+[node name="Bomb" parent="." instance=ExtResource("8_qhvcx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.591748, 0.0034880638, -2.1757498)

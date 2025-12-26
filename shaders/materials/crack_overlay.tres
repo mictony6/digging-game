@@ -16,11 +16,10 @@ noise = SubResource("FastNoiseLite_oamob")
 color_ramp = SubResource("Gradient_5ne07")
 seamless = true
 as_normal_map = true
-bump_strength = 1.0
 
 [sub_resource type="Gradient" id="Gradient_r8uvd"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.15322581, 0.2782258)
+offsets = PackedFloat32Array(0.05645161, 0.36290324)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cxmus"]
 noise_type = 2
@@ -35,10 +34,11 @@ seamless = true
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_5ne07")
-shader_parameter/Crack_Color = Color(0.33400288, 0.30198342, 0.25932893, 1)
-shader_parameter/ratio = 0.0
+shader_parameter/Crack_Color = Color(0.35186478, 0.38144532, 0.38107687, 1)
+shader_parameter/ratio = 1.0
 shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
 shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
+shader_parameter/Edge = 1.2
 shader_parameter/triplanar_scale = Vector3(1, 1, 1)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 10.0

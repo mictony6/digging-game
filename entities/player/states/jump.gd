@@ -11,6 +11,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func physics_update(delta):
 	player.velocity.y -= (player.gravity * delta)
+	player.velocity.x = move_toward(player.velocity.x, player.direction.x * player.SPEED, player.acceleration * delta)
+	player.velocity.z = move_toward(player.velocity.z, player.direction.z * player.SPEED, player.acceleration * delta)
 	player.move_and_slide()
 
 	if player.is_on_floor():

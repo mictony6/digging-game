@@ -22,6 +22,8 @@ func physics_update(delta: float) -> void:
 			finished.emit(JUMP)
 		elif Input.is_action_pressed("sprint"):
 			finished.emit(SPRINT)
+		if player.velocity.is_equal_approx(Vector3.ZERO):
+			finished.emit(IDLE)
 
 
 func enter(previous_state_path: String, data := {}) -> void:

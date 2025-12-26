@@ -18,6 +18,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var buffered_jump_timer: float = 0.0
 var buffered_jump_time: float = 0.05
 
+@onready var state_machine: StateMachine = $StateMachine
+
 
 func _ready() -> void:
 	if head == null:
@@ -32,6 +34,7 @@ func _input(event: InputEvent) -> void:
 			get_window().mode = Window.MODE_FULLSCREEN if get_window().mode != Window.MODE_FULLSCREEN else Window.MODE_WINDOWED
 
 func _process(delta: float) -> void:
+	$Control/StateLabel.text = state_machine.state.name
 	var h_movement = Input.get_axis("move_left", "move_right");
 	var z_movement = Input.get_axis("move_backward", "move_forward");
 	direction.x = h_movement;

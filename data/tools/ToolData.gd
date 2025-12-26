@@ -3,7 +3,7 @@ class_name ToolData
 
 @export var name: String = "New Tool"
 @export var tier: int = 1
-@export var strength: int = 1
+@export var strength: float = 1.0
 
 @export_category("Visuals")
 @export var mesh: Mesh
