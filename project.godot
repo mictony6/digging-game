@@ -77,7 +77,9 @@ throw={
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Rocks"
 3d_physics/layer_3="Environment"
+3d_physics/layer_4="Bomb"
+3d_physics/layer_5="Selectable"
 
 [rendering]
 
-textures/default_filters/anisotropic_filtering_level=3
+textures/default_filters/anisotropic_filtering_level=4

@@ -11,10 +11,10 @@ bounce = 0.25
 radius = 0.15
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na0ft"]
-radius = 1.5
+radius = 2.0
 
 [sub_resource type="Gradient" id="Gradient_na0ft"]
-offsets = PackedFloat32Array(0.5564516, 0.6814516)
+offsets = PackedFloat32Array(0.25179857, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sn2dq"]
 noise_type = 3
@@ -33,6 +33,7 @@ shader_parameter/near = 0.3
 shader_parameter/far = 0.15
 shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_7j5nf")
 shader_parameter/Noise_Blend = 0.63600002892938
+shader_parameter/Transparency = 1.0
 shader_parameter/triplanar_scale = Vector3(1, 1, 1)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 10.0
@@ -42,83 +43,6 @@ radius = 1.5
 height = 3.0
 radial_segments = 32
 rings = 16
-
-[sub_resource type="Animation" id="Animation_na0ft"]
-resource_name = "explode"
-length = 0.41666806
-step = 0.013888889
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RadiusFX:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.2777778, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RadiusFX:material_override:shader_parameter/Fresnet_Power")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2361111, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.6, 1.575]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RadiusFX:material_override:shader_parameter/Noise_Blend")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.041666668, 0.1388889),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.02099999971688, 0.49700002232688, 1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OmniLight3D:light_energy")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.041666668, 0.2777778, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 10.0, 3.0, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("GPUParticles3D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.027777778, 0.083333336),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("TinyBits:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.055555556, 0.11111111),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
 
 [sub_resource type="Animation" id="Animation_sn2dq"]
 length = 0.001
@@ -194,6 +118,107 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RadiusFX:material_override:shader_parameter/Transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_na0ft"]
+resource_name = "explode"
+length = 0.41666806
+step = 0.013888889
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RadiusFX:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.097222224, 0.3472222, 0.41666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5, 1.5, 1.5), Vector3(1.1, 1.1, 1.1), Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RadiusFX:material_override:shader_parameter/Fresnet_Power")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2361111),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RadiusFX:material_override:shader_parameter/Noise_Blend")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.2361111, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.02099999971688, 0.49700002232688, 1.0, 0.02099999971688]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.041666668, 0.2777778, 0.30555555),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 3.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles3D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.027777778, 0.083333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TinyBits:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.055555556, 0.11111111),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RadiusFX:material_override:shader_parameter/Transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3472222, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7j5nf"]
 _data = {
@@ -205,6 +230,7 @@ _data = {
 emission_enabled = true
 emission = Color(0.71000004, 1, 1, 1)
 emission_energy_multiplier = 2.0
+fov_override = 50.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_na0ft"]
 particle_flag_align_y = true
@@ -223,18 +249,22 @@ rings = 4
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sn2dq"]
 particle_flag_align_y = true
-emission_shape = 2
-emission_sphere_radius = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.5
 radial_velocity_min = 1.9999776
 radial_velocity_max = 9.999977
-gravity = Vector3(0, -0.935, 0)
+gravity = Vector3(0, -1, 0)
+scale_min = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na0ft"]
-shading_mode = 0
+emission_enabled = true
+emission = Color(0.36, 0.9573332, 1, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_7j5nf"]
 material = SubResource("StandardMaterial3D_na0ft")
 radius = 0.01
+height = 0.5
 radial_segments = 8
 rings = 4
 is_hemisphere = true
@@ -244,6 +274,7 @@ collision_layer = 8
 collision_mask = 6
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_b0f4v")
+continuous_cd = true
 angular_damp = 20.0
 script = ExtResource("1_vteb3")
 
@@ -279,6 +310,7 @@ omni_attenuation = 2.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_sn2dq")
+cast_shadow = 0
 emitting = false
 lifetime = 0.15000000000000002
 one_shot = true
@@ -287,8 +319,9 @@ process_material = SubResource("ParticleProcessMaterial_na0ft")
 draw_pass_1 = SubResource("CapsuleMesh_7j5nf")
 
 [node name="TinyBits" type="GPUParticles3D" parent="."]
+cast_shadow = 0
 emitting = false
-amount = 24
+amount = 32
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0

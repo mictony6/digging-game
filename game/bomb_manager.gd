@@ -8,13 +8,14 @@ class_name BombManager
 var throw_force: float = 10
 var can_throw: bool = true
 var cooldown_timer: float = 3.0
+var exploded: bool = false
 
 
 func _ready():
 	aiming_preview.visible = false
 
 func _process(delta: float) -> void:
-	if !can_throw:
+	if !can_throw and exploded:
 		cooldown_timer -= delta
 	if cooldown_timer <= 0:
 		can_throw = true
@@ -39,3 +40,4 @@ func release():
 	get_tree().root.add_child(bomb)
 	bomb.global_position = global_position + (-global_transform.basis.z)
 	bomb.apply_impulse(-global_transform.basis.z * throw_force)
+	bomb.exploded.connect(func(): exploded = true)

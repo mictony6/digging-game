@@ -13,11 +13,11 @@
 
 [sub_resource type="Gradient" id="Gradient_eudka"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.3846154, 0.5923077)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.14814815, 0.5923077, 0.7962963)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.57700837, 0.5770084, 0.57700825, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qtvpr"]
-noise_type = 2
+noise_type = 3
 frequency = 0.0138
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drwxn"]

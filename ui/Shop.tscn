@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://r53fi4l5llgb"]
+
+[ext_resource type="PackedScene" uid="uid://bng6fg8mckdjt" path="res://ui/UpgradeCard.tscn" id="1_7abev"]
+[ext_resource type="Script" uid="uid://dqe6sfruy5p44" path="res://systems/shop/shopui.gd" id="1_lmy5d"]
+
+[sub_resource type="SystemFont" id="SystemFont_lmy5d"]
+font_names = PackedStringArray("Arial")
+font_weight = 800
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6eahv"]
+font = SubResource("SystemFont_lmy5d")
+font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_nmlbb"]
+font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hevaj"]
+font = SubResource("SystemFont_nmlbb")
+font_size = 24
+
+[sub_resource type="SystemFont" id="SystemFont_7abev"]
+font_names = PackedStringArray("Cascadia Mono")
+font_weight = 999
+subpixel_positioning = 0
+
+[sub_resource type="InputEventKey" id="InputEventKey_7abev"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_lmy5d"]
+events = [SubResource("InputEventKey_7abev")]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lmy5d")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.99
+anchor_bottom = 0.98
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mining Shop"
+label_settings = SubResource("LabelSettings_6eahv")
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Upgrade your mining equipment and boost your earnings"
+label_settings = SubResource("LabelSettings_hevaj")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Upgrades" type="Control" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/TabContainer/Upgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.03
+anchor_right = 0.98
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
+
+[node name="Card" parent="VBoxContainer/TabContainer/Upgrades/GridContainer" instance=ExtResource("1_7abev")]
+layout_mode = 2
+
+[node name="Card2" parent="VBoxContainer/TabContainer/Upgrades/GridContainer" instance=ExtResource("1_7abev")]
+layout_mode = 2
+
+[node name="Card3" parent="VBoxContainer/TabContainer/Upgrades/GridContainer" instance=ExtResource("1_7abev")]
+layout_mode = 2
+
+[node name="Sell" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.87632716, 0.5666987, 0.23673484, 1)
+theme_override_fonts/font = SubResource("SystemFont_7abev")
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_lmy5d")
+text = "X"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

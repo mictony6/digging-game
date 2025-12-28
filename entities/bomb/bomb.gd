@@ -15,4 +15,5 @@ func explode():
         if body is Rock:
             body.destroy()
     await $AnimationPlayer.animation_finished
+    exploded.emit()
     queue_free()

@@ -7,6 +7,7 @@ const SPRINT = "Sprint";
 const JUMP = "Jump";
 const CROUCH = "Crouch";
 
+
 var player: Player;
 
 func _ready() -> void:

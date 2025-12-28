@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://wf6ij42xq2w2"]
+[gd_scene load_steps=8 format=3 uid="uid://wf6ij42xq2w2"]
 
 [ext_resource type="Script" uid="uid://c6fgwgulxpbym" path="res://entities/tools/tool.gd" id="1_ubxhq"]
 [ext_resource type="Resource" uid="uid://cmcmmofhy52j6" path="res://data/tools/PickaxeToolData.tres" id="2_7klon"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7klon"]
+no_depth_test = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tlcfd"]
 top_radius = 0.15
@@ -12,7 +13,11 @@ height = 0.75
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubxhq"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubxhq"]
+no_depth_test = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_ubxhq"]
+material = SubResource("StandardMaterial3D_ubxhq")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="Tool" type="Node3D" node_paths=PackedStringArray("tool_mesh_instance", "animation_player")]

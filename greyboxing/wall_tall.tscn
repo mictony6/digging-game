@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bifk01itcyh02"]
+
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_eei5u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eudka"]
+albedo_texture = ExtResource("1_eei5u")
+roughness = 0.5
+uv1_triplanar = true
+
+[node name="WallTall" type="CSGBox3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+size = Vector3(4, 4, 0.5)
+material = SubResource("StandardMaterial3D_eudka")

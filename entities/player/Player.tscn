@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmujhjwc5ylgy"]
+[gd_scene load_steps=19 format=3 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
+[ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
 [ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_rl6fg"]
 [ext_resource type="PackedScene" uid="uid://djhlwhtnyh1j6" path="res://entities/bomb/Bomb.tscn" id="4_kwk8g"]
@@ -16,10 +17,11 @@
 [ext_resource type="Script" uid="uid://bkvj6rlc6m5h8" path="res://entities/player/states/jump.gd" id="11_1ms0h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
-radius = 0.52
+radius = 0.25
 height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny0t1"]
+radius = 0.25
 height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
@@ -41,6 +43,9 @@ script = ExtResource("2_fmb3c")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 current = true
+
+[node name="ObjectSelector" parent="Head/Camera3D" instance=ExtResource("3_2a181")]
+hit_from_inside = true
 
 [node name="BombManager" type="Node3D" parent="Head"]
 script = ExtResource("3_mq27t")

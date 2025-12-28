@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv4hkfg623wvp"]
+
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_hdt2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eudka"]
+albedo_texture = ExtResource("1_hdt2v")
+roughness = 0.5
+uv1_triplanar = true
+
+[node name="Column" type="CSGBox3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+size = Vector3(1, 4, 1)
+material = SubResource("StandardMaterial3D_eudka")
+
+[node name="Vrect3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.99998015, 0, -3.1619152e-13, 0, 1, 0, 3.1619152e-13, 0, 0.99998015, 0, 2.2499998, 0)
+use_collision = true
+size = Vector3(2, 0.5, 2)
+material = SubResource("StandardMaterial3D_eudka")
