@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 QuotaManager="*res://game/quota_manager.gd"
+PlayerData="*res://game/player_data.gd"
 
 [input]
 

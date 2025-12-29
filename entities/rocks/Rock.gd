@@ -4,7 +4,6 @@ class_name Rock
 
 @export var rock_data: RockData
 var current_health: float
-signal destroyed(body: Rock)
 var crack_material: ShaderMaterial
 @export var break_particles: PackedScene
 
@@ -32,7 +31,6 @@ func take_damage(damage: float):
 
 func destroy():
 	QuotaManager.add_to_quota(rock_data.value)
-	destroyed.emit(self)
 	var particles_instance: GPUParticles3D = break_particles.instantiate()
 	get_tree().current_scene.add_child(particles_instance)
 	particles_instance.global_position = global_position

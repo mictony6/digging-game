@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://datvju0l021sd"]
+
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_wkr3q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eudka"]
+albedo_texture = ExtResource("1_wkr3q")
+roughness = 0.5
+uv1_triplanar = true
+
+[node name="4WayTunnel" type="CSGBox3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 0, 0, 0)
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+size = Vector3(10, 5, 10)
+material = SubResource("StandardMaterial3D_eudka")
+
+[node name="Box2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.9999999, -7.3513704e-08, 7.35137e-08, 7.3513704e-08, -4.371139e-08, -0.99999994, 7.3513704e-08, 0.99999994, -4.3711374e-08, 0, -1, 0)
+operation = 2
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+radius = 3.0
+height = 11.0
+sides = 12
+material = SubResource("StandardMaterial3D_eudka")
+
+[node name="Box3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(2.9802319e-08, 0.99999994, -4.3711378e-08, 7.3513704e-08, -4.371138e-08, -0.9999999, -0.9999998, 2.9802319e-08, -7.351369e-08, 0, -1, 0)
+operation = 2
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+radius = 3.0
+height = 11.0
+sides = 12
+material = SubResource("StandardMaterial3D_eudka")

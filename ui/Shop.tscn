@@ -33,6 +33,7 @@ keycode = 4194305
 events = [SubResource("InputEventKey_7abev")]
 
 [node name="ShopUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,6 +110,21 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
+[node name="Add100Coins" type="Button" parent="VBoxContainer/TabContainer/Sell"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -15.5
+offset_right = 44.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+100 coins"
+
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -123,4 +139,5 @@ theme_override_font_sizes/font_size = 32
 shortcut = SubResource("Shortcut_lmy5d")
 text = "X"
 
+[connection signal="pressed" from="VBoxContainer/TabContainer/Sell/Add100Coins" to="." method="_on_add_100_coins_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

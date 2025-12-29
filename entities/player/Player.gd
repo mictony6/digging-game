@@ -49,18 +49,3 @@ func _process(delta: float) -> void:
 		buffered_jump_timer = buffered_jump_time
 	buffered_jump_timer -= delta
 	buffered_jump_timer = max(buffered_jump_timer, 0.0)
-
-# func _physics_process(delta: float) -> void:
-# 	velocity.y -= (gravity * delta);
-# 	if is_on_floor():
-# 		acceleration = ground_acceleration
-# 		if Input.is_action_just_pressed("jump"):
-# 			jump()
-# 		elif buffered_jump_timer > 0.0:
-# 			jump()
-# 	else:
-# 		acceleration = air_acceleration
-
-# 	velocity.x = move_toward(velocity.x, direction.x * SPEED, acceleration * delta)
-# 	velocity.z = move_toward(velocity.z, direction.z * SPEED, acceleration * delta)
-# 	move_and_slide()

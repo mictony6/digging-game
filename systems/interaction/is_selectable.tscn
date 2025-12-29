@@ -29,6 +29,7 @@ secondary_interaction_name = "Open"
 outline_material = SubResource("ShaderMaterial_5k8kf")
 
 [node name="Prompt" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2

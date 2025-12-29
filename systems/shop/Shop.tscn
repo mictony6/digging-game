@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb8q5e8g11qb6"]
+[gd_scene load_steps=11 format=3 uid="uid://bb8q5e8g11qb6"]
 
 [ext_resource type="Texture2D" uid="uid://dxlgeyl0jycv1" path="res://GreyboxTextures/greybox_orange_grid.png" id="1_evkoi"]
 [ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="2_w4jjq"]
 [ext_resource type="PackedScene" uid="uid://r53fi4l5llgb" path="res://ui/Shop.tscn" id="3_5k8kf"]
-[ext_resource type="Script" uid="uid://dqe6sfruy5p44" path="res://systems/shop/shopui.gd" id="4_v733u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w4jjq"]
 size = Vector3(2, 3.1678467, 1)
@@ -65,7 +64,8 @@ target_mesh = NodePath("../MeshInstance3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_5k8kf")
 
-[node name="ShopUI" parent="." instance=ExtResource("3_5k8kf")]
-script = ExtResource("4_v733u")
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[connection signal="selected" from="IsSelectable" to="ShopUI" method="_on_is_selectable_selected"]
+[node name="ShopUI" parent="HUD" instance=ExtResource("3_5k8kf")]
+
+[connection signal="selected" from="IsSelectable" to="HUD/ShopUI" method="_on_is_selectable_selected"]

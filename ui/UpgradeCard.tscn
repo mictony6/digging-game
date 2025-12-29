@@ -22,6 +22,8 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="Card" type="BoxContainer"]
+offset_right = 178.0
+offset_bottom = 279.0
 
 [node name="Panel" type="PanelContainer" parent="."]
 clip_contents = true
@@ -36,20 +38,23 @@ size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="ToolIcon" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 texture = ExtResource("1_qm8wc")
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="ToolName" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "Laser"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Level: 0"
@@ -71,11 +76,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Current Bonus"
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="UpgradeDescription" type="Label" parent="Panel/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "+0 Mining Power"
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+[node name="PurchaseButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "100 Coins"
 icon = ExtResource("2_7xyeg")

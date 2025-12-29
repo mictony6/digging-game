@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=23 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
@@ -10,9 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://26bbwmyvb8hh" path="res://greyboxing/corner_tall.tscn" id="8_qhvcx"]
 [ext_resource type="PackedScene" uid="uid://bifk01itcyh02" path="res://greyboxing/wall_tall.tscn" id="8_uy2g7"]
 [ext_resource type="PackedScene" uid="uid://su0i3kmdim4v" path="res://greyboxing/platform_box.tscn" id="10_1w0m8"]
-[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="12_qtvpr"]
+[ext_resource type="PackedScene" uid="uid://cedtd2f606ui6" path="res://greyboxing/room.tscn" id="11_fivcu"]
+[ext_resource type="PackedScene" uid="uid://7qj54fhr3era" path="res://greyboxing/tunnel.tscn" id="11_rmkky"]
+[ext_resource type="PackedScene" uid="uid://datvju0l021sd" path="res://greyboxing/4_way_tunnel.tscn" id="12_epu3l"]
+[ext_resource type="PackedScene" uid="uid://4dfn4tlg7n4o" path="res://greyboxing/3_way_tunnel.tscn" id="13_08uri"]
 [ext_resource type="PackedScene" uid="uid://bb8q5e8g11qb6" path="res://systems/shop/Shop.tscn" id="13_drwxn"]
+[ext_resource type="PackedScene" uid="uid://b2t6lvcd4qx0f" path="res://greyboxing/dead_end.tscn" id="14_08uri"]
 [ext_resource type="PackedScene" uid="uid://bxmma1j1t8188" path="res://greyboxing/h_rect.tscn" id="14_70x8p"]
+[ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
 
 [sub_resource type="Environment" id="Environment_r4e4k"]
 background_mode = 2
@@ -39,15 +44,14 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kqvnf"]
 data = PackedVector3Array(-50, -0.25, 50, -50, -0.25, -50, -50, 0.25, -50, 50, -0.25, -50, -50, -0.25, -50, -50, -0.25, 50, -50, 0.25, -50, -50, -0.25, -50, 50, -0.25, -50, -50, 0.25, -50, -50, 0.25, 50, -50, -0.25, 50, -50, -0.25, 50, -50, 0.25, 50, 50, 0.25, 50, 50, 0.25, 50, -50, 0.25, 50, -50, 0.25, -50, -50, -0.25, 50, 50, -0.25, 50, 50, -0.25, -50, 50, 0.25, 50, 50, -0.25, 50, -50, -0.25, 50, 50, -0.25, -50, 50, -0.25, 50, 50, 0.25, 50, 50, -0.25, -50, 50, 0.25, -50, -50, 0.25, -50, -50, 0.25, -50, 50, 0.25, -50, 50, 0.25, 50, 50, 0.25, 50, 50, 0.25, -50, 50, -0.25, -50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eudka"]
-albedo_texture = ExtResource("12_qtvpr")
-roughness = 0.5
-uv1_triplanar = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
+size = Vector3(10, 5, 10)
 
 [node name="Level" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 7.5, 0)
+light_color = Color(0.77525723, 0.6606558, 0.5471344, 1)
 light_energy = 3.0
 shadow_enabled = true
 
@@ -57,7 +61,9 @@ environment = SubResource("Environment_r4e4k")
 [node name="Player" parent="." instance=ExtResource("1_r4e4k")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9, 1.2497026, 0.6751498)
 
-[node name="HUD" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,8 +73,9 @@ grow_vertical = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 script = ExtResource("8_2grjb")
+metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -80,28 +87,28 @@ grow_vertical = 0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 allow_greater = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="QuotaLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="QuotaLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Score:"
 
-[node name="QuotaValueLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="QuotaValueLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
 
-[node name="CenterContainer" type="CenterContainer" parent="HUD"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,29 +116,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="HUD/CenterContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/CenterContainer"]
 layout_mode = 2
 text = "+"
 
-[node name="Coordinates" type="VBoxContainer" parent="HUD" node_paths=PackedStringArray("player")]
+[node name="Coordinates" type="VBoxContainer" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player")]
 layout_mode = 1
-offset_right = 10.0
-offset_bottom = 77.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = 46.0
+offset_bottom = 123.0
+grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("4_6g8e2")
-player = NodePath("../../Player")
+player = NodePath("../../../Player")
 
-[node name="X" type="Label" parent="HUD/Coordinates"]
+[node name="X" type="Label" parent="CanvasLayer/HUD/Coordinates"]
 layout_mode = 2
 text = "X"
 
-[node name="Y" type="Label" parent="HUD/Coordinates"]
+[node name="Y" type="Label" parent="CanvasLayer/HUD/Coordinates"]
 layout_mode = 2
 text = "Y"
 
-[node name="Z" type="Label" parent="HUD/Coordinates"]
+[node name="Z" type="Label" parent="CanvasLayer/HUD/Coordinates"]
 layout_mode = 2
 text = "Z"
+
+[node name="CoinAmountLabel" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+offset_left = 33.0
+offset_top = 12.0
+offset_right = 94.0
+offset_bottom = 35.0
+text = "Coins: 0"
+
+[node name="OxygenLevel" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -356.0
+offset_right = 57.0
+offset_bottom = -138.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 3
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -261,99 +294,20 @@ omni_attenuation = 2.0
 [node name="Node3D3" type="Node3D" parent="."]
 transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, 0, -20)
 
-[node name="Tunnel" type="CSGBox3D" parent="Node3D3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.5, 2.75, 3.8334346)
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10, 5, 10)
-material = SubResource("StandardMaterial3D_eudka")
+[node name="Room" parent="Node3D3" instance=ExtResource("11_fivcu")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 11.500001, 2.75, -16.166565)
 
-[node name="Box2" type="CSGBox3D" parent="Node3D3/Tunnel"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(5, 4, 12)
-material = SubResource("StandardMaterial3D_eudka")
+[node name="Tunnel4" parent="Node3D3" instance=ExtResource("11_rmkky")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 11.5, 2.75, -6.1665654)
 
-[node name="Tunnel5" type="CSGBox3D" parent="Node3D3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.5, 2.75, 13.833435)
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10, 5, 10)
-material = SubResource("StandardMaterial3D_eudka")
+[node name="4WayTunnel" parent="Node3D3" instance=ExtResource("12_epu3l")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -6.166566)
 
-[node name="Box2" type="CSGBox3D" parent="Node3D3/Tunnel5"]
-transform = Transform3D(0.99999857, 0, 0, 0, 1, 0, 0, 0, 0.99999857, 0, 0, -1.5)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(5, 4, 9)
-material = SubResource("StandardMaterial3D_eudka")
+[node name="3WayTunnel" parent="Node3D3" instance=ExtResource("13_08uri")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -16.166565)
 
-[node name="Tunnel4" type="CSGBox3D" parent="Node3D3"]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 11.5, 2.75, -6.1665654)
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10, 5, 10)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Box2" type="CSGBox3D" parent="Node3D3/Tunnel4"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(5, 4, 12)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Tunnel2" type="CSGBox3D" parent="Node3D3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.5, 2.75, -6.1665654)
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10, 5, 10)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Box2" type="CSGBox3D" parent="Node3D3/Tunnel2"]
-transform = Transform3D(0.9999937, 0, 0, 0, 1, 0, 0, 0, 0.9999937, 0, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(5, 4, 12)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Box3" type="CSGBox3D" parent="Node3D3/Tunnel2"]
-transform = Transform3D(0.9999701, 0, 0, 0, 1, 0, 0, 0, 0.9999701, 2.7499294, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10.5, 4, 5)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Tunnel3" type="CSGBox3D" parent="Node3D3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.5, 2.75, -17.416565)
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(10, 5, 12.5)
-material = SubResource("StandardMaterial3D_eudka")
-
-[node name="Box2" type="CSGBox3D" parent="Node3D3/Tunnel3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 4
-collision_mask = 9
-size = Vector3(5, 4, 12)
-material = SubResource("StandardMaterial3D_eudka")
+[node name="DeadEnd" parent="Node3D3" instance=ExtResource("14_08uri")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -8.5, 2.75, -16.166565)
 
 [node name="Shop" parent="." instance=ExtResource("13_drwxn")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -9, 0.75, 5)
@@ -374,3 +328,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, -3.5)
 
 [node name="Rock5" parent="Node3D2" instance=ExtResource("7_qhvcx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -2.5)
+
+[node name="LowOxygenArea" type="Area3D" parent="."]
+collision_layer = 0
+script = ExtResource("14_rmkky")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowOxygenArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -21)
+shape = SubResource("BoxShape3D_drwxn")
+
+[connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]

@@ -1,5 +1,5 @@
 extends Control
-
+class_name ShopUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,3 +25,7 @@ func hide_and_exit():
 func show_ui():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	visible = true
+
+
+func _on_add_100_coins_pressed() -> void:
+	PlayerData.add_coins(100)
