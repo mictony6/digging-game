@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5k8kf"]
 render_priority = 0
 shader = ExtResource("2_tsyar")
-shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_color = Color(0.60821205, 0.77693224, 0.49231988, 1)
 shader_parameter/outline_width = 4.0
 
 [sub_resource type="SystemFont" id="SystemFont_v733u"]

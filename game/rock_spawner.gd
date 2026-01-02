@@ -30,7 +30,6 @@ func generate():
 		
 		if ray.is_colliding():
 			var point = ray.get_collision_point()
-			print("collided")
 
 			var instance: Rock = rock_scene.instantiate()
 			add_child(instance)

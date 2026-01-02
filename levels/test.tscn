@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=27 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bxmma1j1t8188" path="res://greyboxing/h_rect.tscn" id="14_70x8p"]
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
 [ext_resource type="Script" uid="uid://dkhl3ppui7enn" path="res://game/rock_spawner.gd" id="19_uy2g7"]
+[ext_resource type="PackedScene" uid="uid://uiig5ud3kjxl" path="res://greyboxing/exchange.tscn" id="20_u1nm5"]
 
 [sub_resource type="Environment" id="Environment_r4e4k"]
 background_mode = 2
@@ -57,7 +58,7 @@ size = Vector3(10, 5, 10)
 
 [sub_resource type="Curve3D" id="Curve3D_uy2g7"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.85966706, 1.3844771, 0.62079763, 0, 0, 0, 0, 0, 0, -3.9323084, 1.3483262, -0.41097927, 0, 0, 0, 0, 0, 0, -14.628239, 0.8464322, -1.6839628, 0, 0, 0, 0, 0, 0, -14.745325, 0.43244362, -8.165945, 0, 0, 0, 0, 0, 0, -19.393501, 0.27316523, -8.485559),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.85966706, 1.3844771, 0.62079763, 0, 0, 0, 0, 0, 0, -3.9323084, 1.3483262, -0.41097927, 0, 0, 0, 0, 0, 0, -14.628239, 0.8464322, -1.6839628, 0, 0, 0, 0, 0, 0, -14.745325, 0.43244362, -8.165945, 0, 0, 0, 0, 0, 0, -43.8935, 0.27316523, -9.485559),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -196,6 +197,18 @@ skeleton = NodePath("../..")
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kqvnf")
 
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("ArrayMesh_qhvcx")
+skeleton = NodePath("../..")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_kqvnf")
+
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881907, -12.5, 1.25, 0)
 
@@ -319,6 +332,12 @@ transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4
 [node name="Tunnel4" parent="Node3D3" instance=ExtResource("11_rmkky")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 11.5, 2.75, -6.1665654)
 
+[node name="Tunnel5" parent="Node3D3" instance=ExtResource("11_rmkky")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -8.5, 2.75, -16.166565)
+
+[node name="Tunnel6" parent="Node3D3" instance=ExtResource("11_rmkky")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -18.5, 2.75, -16.166567)
+
 [node name="4WayTunnel" parent="Node3D3" instance=ExtResource("12_epu3l")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -6.166566)
 
@@ -326,7 +345,7 @@ transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -16.166565)
 
 [node name="DeadEnd" parent="Node3D3" instance=ExtResource("14_08uri")]
-transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -8.5, 2.75, -16.166565)
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -28.5, 2.75, -16.166569)
 
 [node name="Shop" parent="." instance=ExtResource("13_drwxn")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -9, 0.75, 5)
@@ -343,12 +362,12 @@ shape = SubResource("BoxShape3D_drwxn")
 transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 6.5, 1, -4)
 curve = SubResource("Curve3D_uy2g7")
 script = ExtResource("19_uy2g7")
-count = 100
+count = 250
 rock_scene = ExtResource("7_qhvcx")
 
 [node name="RayCast3D" type="RayCast3D" parent="RockSpawner"]
-transform = Transform3D(0.08001094, 0.30646008, 0.9485149, 0, 0.9515656, -0.30744576, -0.996794, 0.024599025, 0.076135665, -19.140852, 0.28182268, -8.468186)
-target_position = Vector3(2.659772, 3.0733528, -2.9120636)
+transform = Transform3D(0.08001094, 0.30646008, 0.9485149, 0, 0.9515656, -0.30744576, -0.996794, 0.024599025, 0.076135665, -43.696457, 0.27424192, -9.476638)
+target_position = Vector3(3.5849376, 2.4300745, 2.4985924)
 collision_mask = 5
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -361,6 +380,14 @@ omni_range = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.25, 2.25, -13.25)
 size = Vector3(19.5, 5.5, 19.5)
 material = SubResource("FogMaterial_uy2g7")
+
+[node name="FogVolume2" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.25, 2.25, -38.5)
+size = Vector3(9.5, 5.5, 30)
+material = SubResource("FogMaterial_uy2g7")
+
+[node name="Node3D2" parent="." instance=ExtResource("20_u1nm5")]
+transform = Transform3D(-0.8660254, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.8660254, -13.991181, 1, 4.467087)
 
 [connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]

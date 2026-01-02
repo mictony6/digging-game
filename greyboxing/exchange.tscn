@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://uiig5ud3kjxl"]
+
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_4wnub"]
+[ext_resource type="Script" uid="uid://dpjbs6jxb2p3t" path="res://game/exchange.gd" id="1_tqr2y"]
+[ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="2_5whdh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5whdh"]
+albedo_texture = ExtResource("1_4wnub")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tqr2y"]
+material = SubResource("StandardMaterial3D_5whdh")
+size = Vector3(5, 5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wnub"]
+albedo_color = Color(0.7490645, 0.1469484, 0.17655623, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2noy1"]
+material = SubResource("StandardMaterial3D_4wnub")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.25
+radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqr2y"]
+albedo_color = Color(0.98314697, 0.8181939, 0.77533466, 1)
+roughness = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_arsk0"]
+material = SubResource("StandardMaterial3D_tqr2y")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.25
+radial_segments = 12
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wnub"]
+size = Vector3(5, 5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tqr2y"]
+
+[node name="Exchange" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_tqr2y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tqr2y")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.4)
+pixel_size = 0.001
+text = "Exchange"
+font_size = 240
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.25)
+mesh = SubResource("CylinderMesh_2noy1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.3)
+mesh = SubResource("CylinderMesh_arsk0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4wnub")
+
+[node name="IsSelectable" parent="." node_paths=PackedStringArray("target_mesh") instance=ExtResource("2_5whdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+interaction_name = "Use"
+secondary_interaction_name = "Use"
+target_mesh = NodePath("../MeshInstance3D2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IsSelectable"]
+shape = SubResource("SphereShape3D_tqr2y")
+
+[connection signal="selected" from="IsSelectable" to="." method="_on_is_selectable_selected"]
