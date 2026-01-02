@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=26 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
@@ -18,16 +18,24 @@
 [ext_resource type="PackedScene" uid="uid://b2t6lvcd4qx0f" path="res://greyboxing/dead_end.tscn" id="14_08uri"]
 [ext_resource type="PackedScene" uid="uid://bxmma1j1t8188" path="res://greyboxing/h_rect.tscn" id="14_70x8p"]
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
+[ext_resource type="Script" uid="uid://dkhl3ppui7enn" path="res://game/rock_spawner.gd" id="19_uy2g7"]
 
 [sub_resource type="Environment" id="Environment_r4e4k"]
 background_mode = 2
 sky = ExtResource("1_2grjb")
+ambient_light_color = Color(0.2094936, 0.13913381, 0.050264053, 1)
+ambient_light_sky_contribution = 0.28
 tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
-fog_sky_affect = 0.373
+fog_light_color = Color(0.473885, 0.48978043, 0.33769453, 1)
+fog_sky_affect = 0.168
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.025
-volumetric_fog_albedo = Color(0.531387, 0.6638772, 0.7073545, 1)
-volumetric_fog_sky_affect = 0.225
+volumetric_fog_albedo = Color(0.22496, 0.69789004, 0.8396508, 1)
+volumetric_fog_sky_affect = 0.607
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qhvcx"]
 _surfaces = [{
@@ -46,6 +54,17 @@ data = PackedVector3Array(-50, -0.25, 50, -50, -0.25, -50, -50, 0.25, -50, 50, -
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
 size = Vector3(10, 5, 10)
+
+[sub_resource type="Curve3D" id="Curve3D_uy2g7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.85966706, 1.3844771, 0.62079763, 0, 0, 0, 0, 0, 0, -3.9323084, 1.3483262, -0.41097927, 0, 0, 0, 0, 0, 0, -14.628239, 0.8464322, -1.6839628, 0, 0, 0, 0, 0, 0, -14.745325, 0.43244362, -8.165945, 0, 0, 0, 0, 0, 0, -19.393501, 0.27316523, -8.485559),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="FogMaterial" id="FogMaterial_uy2g7"]
+density = 0.15
+emission = Color(0.19831046, 0.20931405, 0.07698644, 1)
 
 [node name="Level" type="Node3D"]
 
@@ -312,23 +331,6 @@ transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4
 [node name="Shop" parent="." instance=ExtResource("13_drwxn")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -9, 0.75, 5)
 
-[node name="Node3D2" type="Node3D" parent="."]
-
-[node name="Rock" parent="Node3D2" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
-
-[node name="Rock2" parent="Node3D2" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -1)
-
-[node name="Rock3" parent="Node3D2" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.98197675, -9)
-
-[node name="Rock4" parent="Node3D2" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, -3.5)
-
-[node name="Rock5" parent="Node3D2" instance=ExtResource("7_qhvcx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -2.5)
-
 [node name="LowOxygenArea" type="Area3D" parent="."]
 collision_layer = 0
 script = ExtResource("14_rmkky")
@@ -336,6 +338,29 @@ script = ExtResource("14_rmkky")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowOxygenArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -21)
 shape = SubResource("BoxShape3D_drwxn")
+
+[node name="RockSpawner" type="Path3D" parent="."]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 6.5, 1, -4)
+curve = SubResource("Curve3D_uy2g7")
+script = ExtResource("19_uy2g7")
+count = 100
+rock_scene = ExtResource("7_qhvcx")
+
+[node name="RayCast3D" type="RayCast3D" parent="RockSpawner"]
+transform = Transform3D(0.08001094, 0.30646008, 0.9485149, 0, 0.9515656, -0.30744576, -0.996794, 0.024599025, 0.076135665, -19.140852, 0.28182268, -8.468186)
+target_position = Vector3(2.659772, 3.0733528, -2.9120636)
+collision_mask = 5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.25, 3.75, -19.25)
+light_color = Color(0.96656257, 0.78816503, 0.47723514, 1)
+shadow_enabled = true
+omni_range = 20.0
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.25, 2.25, -13.25)
+size = Vector3(19.5, 5.5, 19.5)
+material = SubResource("FogMaterial_uy2g7")
 
 [connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]

@@ -33,7 +33,6 @@ keycode = 4194305
 events = [SubResource("InputEventKey_7abev")]
 
 [node name="ShopUI" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
