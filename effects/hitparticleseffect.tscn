@@ -36,10 +36,10 @@ height = 0.252
 [node name="hitparticleseffect" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_2grjb")
 emitting = false
-amount = 12
+amount = 16
 one_shot = true
 preprocess = 0.05
-explosiveness = 0.9
+explosiveness = 0.88
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_u45fp")
 draw_pass_1 = SubResource("SphereMesh_2grjb")

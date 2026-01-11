@@ -67,5 +67,6 @@ shape = SubResource("BoxShape3D_5k8kf")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="ShopUI" parent="HUD" instance=ExtResource("3_5k8kf")]
+visible = false
 
 [connection signal="selected" from="IsSelectable" to="HUD/ShopUI" method="_on_is_selectable_selected"]

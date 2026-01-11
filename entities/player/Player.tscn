@@ -69,6 +69,7 @@ tool_max_cooldown = 0.25
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
+enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 2
 

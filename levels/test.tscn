@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=30 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
@@ -30,6 +30,8 @@ tonemap_mode = 4
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
 glow_enabled = true
 fog_light_color = Color(0.473885, 0.48978043, 0.33769453, 1)
 fog_sky_affect = 0.168
@@ -37,6 +39,18 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.025
 volumetric_fog_albedo = Color(0.22496, 0.69789004, 0.8396508, 1)
 volumetric_fog_sky_affect = 0.607
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nm5"]
+bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_1w0m8"]
+font_names = PackedStringArray("Bahnschrift")
+font_weight = 800
+
+[sub_resource type="LabelSettings" id="LabelSettings_8a51t"]
+font = SubResource("SystemFont_1w0m8")
+font_size = 45
+font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qhvcx"]
 _surfaces = [{
@@ -83,7 +97,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9, 
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("death_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +107,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 script = ExtResource("8_2grjb")
+death_screen = NodePath("../DeathScreen")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
@@ -185,6 +200,60 @@ offset_bottom = -138.0
 grow_vertical = 0
 value = 100.0
 fill_mode = 3
+
+[node name="HealthDisplay" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = -356.0
+offset_right = 108.0
+offset_bottom = -138.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 3
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u1nm5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreen/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "You DIED!"
+label_settings = SubResource("LabelSettings_8a51t")
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/DeathScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Retry"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/DeathScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Title Screen"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -335,11 +404,11 @@ transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4
 [node name="Tunnel5" parent="Node3D3" instance=ExtResource("11_rmkky")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -8.5, 2.75, -16.166565)
 
-[node name="Tunnel6" parent="Node3D3" instance=ExtResource("11_rmkky")]
-transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -18.5, 2.75, -16.166567)
-
 [node name="4WayTunnel" parent="Node3D3" instance=ExtResource("12_epu3l")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -6.166566)
+
+[node name="4WayTunnel2" parent="Node3D3" instance=ExtResource("12_epu3l")]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -18.499998, 2.75, -16.166565)
 
 [node name="3WayTunnel" parent="Node3D3" instance=ExtResource("13_08uri")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 1.5, 2.75, -16.166565)
@@ -347,12 +416,25 @@ transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4
 [node name="DeadEnd" parent="Node3D3" instance=ExtResource("14_08uri")]
 transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -28.5, 2.75, -16.166569)
 
+[node name="DeadEnd3" parent="Node3D3" instance=ExtResource("14_08uri")]
+transform = Transform3D(-0.9999999, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.9999999, 1.4999958, 2.75, 3.8334274)
+
+[node name="DeadEnd2" parent="Node3D3" instance=ExtResource("14_08uri")]
+transform = Transform3D(2.9802319e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 2.9802319e-08, -8.5, 2.75, -6.1500006)
+
+[node name="DeadEnd4" parent="Node3D3" instance=ExtResource("14_08uri")]
+transform = Transform3D(-0.9999999, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -0.9999999, -18.499998, 2.75, -6.150001)
+
+[node name="DeadEnd5" parent="Node3D3" instance=ExtResource("14_08uri")]
+transform = Transform3D(0.9999999, 0, -7.3513704e-08, 0, 1, 0, 7.3513704e-08, 0, 0.9999999, -18.499998, 2.75, -26.15)
+
 [node name="Shop" parent="." instance=ExtResource("13_drwxn")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -9, 0.75, 5)
 
 [node name="LowOxygenArea" type="Area3D" parent="."]
 collision_layer = 0
 script = ExtResource("14_rmkky")
+difficulty = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowOxygenArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -21)
@@ -388,6 +470,132 @@ material = SubResource("FogMaterial_uy2g7")
 
 [node name="Node3D2" parent="." instance=ExtResource("20_u1nm5")]
 transform = Transform3D(-0.8660254, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.8660254, -13.991181, 1, 4.467087)
+
+[node name="wall" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.25, 37)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -16.5, 7.25, 32.669872)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall2"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall6" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.258819, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.258819, -26.915607, 7.25, 20.124445)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall6"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall7" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-4.4703484e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.4703484e-08, -29.33111, 7.25, 2.0564008)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall7"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall3" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.5, 10.784609, 7.25, 30.169872)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall3"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall4" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-0.258819, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.258819, 17.490383, 7.25, 13.984315)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall4"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="wall5" type="CSGCombiner3D" parent="."]
+transform = Transform3D(5.9604645e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 5.9604645e-08, 19.649126, 7.25, -3.402352)
+material_override = ExtResource("4_r4e4k")
+use_collision = true
+collision_layer = 4
+collision_mask = 9
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall5"]
+size = Vector3(1, 14, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+size = Vector3(9, 14, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+size = Vector3(9, 14, 1)
 
 [connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]

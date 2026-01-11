@@ -19,13 +19,17 @@ func _ready() -> void:
 	
 var bodies_in_aoe: Array[Rock] = []
 
-@export var tool_max_cooldown: float = 0.5
+@export var tool_max_cooldown: float = 0.75
 var tool_current_cooldown: float = 0.0
 
-func _process(delta: float) -> void:
-	tool_raycast.enabled = Input.is_action_pressed("action")
+var _pressing: bool = false
+func _process(_delta: float) -> void:
+	_pressing = Input.is_action_pressed("action")
+func _physics_process(delta: float) -> void:
+	if _pressing:
+		tool_raycast.force_raycast_update()
 	tool_current_cooldown = max(tool_current_cooldown - delta, 0.0)
-	if tool_raycast.enabled and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
+	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
 		# tool_aoe_mesh.visible = true
 		var collision_point = tool_raycast.get_collision_point()
 
@@ -39,7 +43,7 @@ func _process(delta: float) -> void:
 					if body == tool_raycast.get_collider():
 						body.take_damage(tool.tool_data.strength)
 					else:
-						body.take_damage(tool.tool_data.strength / 4.0) # half damage to neighboring rocks
+						body.take_damage(tool.tool_data.strength / 4.0) # quarter damage to neighboring rocks
 					tool_current_cooldown = tool_max_cooldown
 			#spawn hit particles
 			var particles_instance: GPUParticles3D = hit_particles.instantiate()
@@ -57,9 +61,6 @@ func _process(delta: float) -> void:
 			#align particles to surface normal
 			var collision_normal = tool_raycast.get_collision_normal()
 			particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
-	else:
-		# tool_aoe_mesh.visible = false
-		tool_area3d.monitoring = false
 
 
 func _on_body_entered(body: Node) -> void:

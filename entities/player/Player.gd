@@ -49,3 +49,7 @@ func _process(delta: float) -> void:
 		buffered_jump_timer = buffered_jump_time
 	buffered_jump_timer -= delta
 	buffered_jump_timer = max(buffered_jump_timer, 0.0)
+
+
+	if !PlayerData.has_oxygen():
+		PlayerData.remove_health(PlayerData.depletion_rate * 5 * delta)
