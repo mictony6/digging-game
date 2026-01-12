@@ -19,48 +19,57 @@ func _ready() -> void:
 	
 var bodies_in_aoe: Array[Rock] = []
 
-@export var tool_max_cooldown: float = 0.75
+var tool_max_cooldown: float = 0.25
 var tool_current_cooldown: float = 0.0
 
 var _pressing: bool = false
+
 func _process(_delta: float) -> void:
 	_pressing = Input.is_action_pressed("action")
+
 func _physics_process(delta: float) -> void:
+	tool_current_cooldown = max(tool_current_cooldown - delta, 0.0)
+	if tool_current_cooldown > 0:
+		return
 	if _pressing:
 		tool_raycast.force_raycast_update()
-	tool_current_cooldown = max(tool_current_cooldown - delta, 0.0)
 	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
-		# tool_aoe_mesh.visible = true
 		var collision_point = tool_raycast.get_collision_point()
 
-		# tool_aoe_mesh.global_position = collision_point
 		tool_area3d.global_position = tool_raycast.get_collider().global_position
 		tool_area3d.monitoring = true
 
-		if tool_current_cooldown <= 0.0:
-			for body in bodies_in_aoe:
-				if body.rock_data.tier <= tool.tool_data.tier:
-					if body == tool_raycast.get_collider():
-						body.take_damage(tool.tool_data.strength)
-					else:
-						body.take_damage(tool.tool_data.strength / 4.0) # quarter damage to neighboring rocks
-					tool_current_cooldown = tool_max_cooldown
-			#spawn hit particles
-			var particles_instance: GPUParticles3D = hit_particles.instantiate()
-			get_tree().current_scene.add_child(particles_instance)
-			particle_instances.append(particles_instance)
-			particles_instance.global_position = collision_point
-			particles_instance.emitting = true
-			particles_instance.finished.connect(particles_instance.queue_free)
-			
-			if particle_instances.size() > 5:
-				var oldest_particle = particle_instances.pop_front()
-				if oldest_particle != null:
-					oldest_particle.queue_free()
+		for body in bodies_in_aoe:
+			if body.rock_data.tier <= tool.tool_data.tier:
+				if body == tool_raycast.get_collider():
+					body.take_damage(tool.tool_data.strength)
+				else:
+					body.take_damage(tool.tool_data.strength / 4.0) # quarter damage to neighboring rocks
 
-			#align particles to surface normal
-			var collision_normal = tool_raycast.get_collision_normal()
-			particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+		
+		#spawn hit particles
+		var particles_instance: GPUParticles3D = hit_particles.instantiate()
+		get_tree().current_scene.add_child(particles_instance)
+		particle_instances.append(particles_instance)
+		particles_instance.global_position = collision_point
+		particles_instance.emitting = true
+		particles_instance.finished.connect(particles_instance.queue_free)
+		
+		if particle_instances.size() > 5:
+			var oldest_particle = particle_instances.pop_front()
+			if oldest_particle != null:
+				oldest_particle.queue_free()
+
+		#align particles to surface normal
+		var collision_normal = tool_raycast.get_collision_normal()
+		particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+
+		#activate flicker light
+		%ToolFlicker.show()
+		%ToolFlicker.global_position = collision_point
+		tool_current_cooldown = tool_max_cooldown
+	else:
+		%ToolFlicker.hide()
 
 
 func _on_body_entered(body: Node) -> void:

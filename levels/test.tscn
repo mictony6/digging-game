@@ -30,7 +30,6 @@ tonemap_mode = 4
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
 fog_light_color = Color(0.473885, 0.48978043, 0.33769453, 1)

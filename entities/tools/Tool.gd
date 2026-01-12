@@ -34,8 +34,7 @@ func _process(delta: float) -> void:
 		rotation_degrees = tool_data.rotation
 	if Engine.is_editor_hint():
 		return
-	if Input.is_action_pressed("action"):
-		use_tool()
+
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -65,6 +64,3 @@ func sway_tool(delta: float) -> void:
 	#lerp rotation
 	rotation_degrees.y = lerpf(rotation_degrees.y, tool_data.rotation.y + (mouse_movement.x * tool_data.sway_amount_rotation) * delta, tool_data.sway_speed_rotation)
 	rotation_degrees.x = lerpf(rotation_degrees.x, tool_data.rotation.x + ((mouse_movement.y - velocity.y * 2) * tool_data.sway_amount_rotation) * delta, tool_data.sway_speed_rotation)
-
-func use_tool() -> void:
-	pass
