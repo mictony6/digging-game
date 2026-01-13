@@ -9,7 +9,7 @@ noise = SubResource("FastNoiseLite_84mxu")
 as_normal_map = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd21k"]
-albedo_color = Color(0.55216837, 0.5738994, 0.5353507, 1)
+albedo_color = Color(0.6141742, 0.554337, 0.46974248, 1)
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_46fpe")
 rim = 0.06

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7tpeh28i7txf"]
+[gd_scene load_steps=15 format=3 uid="uid://7tpeh28i7txf"]
 
 [ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/rock.gd" id="1_1o8al"]
 [ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="2_hxsg1"]
@@ -6,28 +6,14 @@
 [ext_resource type="ArrayMesh" uid="uid://bibsa41esbcv2" path="res://assets/meshes/rock1_mesh.res" id="3_hxsg1"]
 [ext_resource type="ArrayMesh" uid="uid://b4tchty7ialvo" path="res://assets/meshes/rock2_mesh.res" id="4_xuhvl"]
 [ext_resource type="Material" uid="uid://b4s08eyg2bw3c" path="res://shaders/materials/crack_overlay.tres" id="5_e1dj2"]
+[ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="6_r8uvd"]
+[ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="8_cxmus"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xuhvl"]
 radius = 0.7319765
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_xuhvl"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_171nb"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_xuhvl")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1dj2"]
-albedo_color = Color(0.46828353, 0.54825264, 0.6561453, 1)
-roughness = 0.76
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_171nb")
-rim_enabled = true
-rim = 0.02
-uv1_triplanar = true
-proximity_fade_distance = 0.1
+[sub_resource type="Gradient" id="Gradient_cxmus"]
+offsets = PackedFloat32Array(0, 0.41613925)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hxsg1"]
 
@@ -35,18 +21,43 @@ proximity_fade_distance = 0.1
 width = 256
 height = 256
 noise = SubResource("FastNoiseLite_hxsg1")
+color_ramp = SubResource("Gradient_cxmus")
 seamless = true
 as_normal_map = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_171nb"]
-albedo_color = Color(0.59689826, 0.5985562, 0.5491507, 1)
-roughness = 0.85
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1dj2"]
+albedo_color = Color(0.5980536, 0.824774, 0.942545, 1)
+albedo_texture = ExtResource("6_r8uvd")
+roughness_texture = ExtResource("8_cxmus")
+roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_xuhvl")
 rim_enabled = true
 rim = 0.02
+ao_enabled = true
+ao_texture = ExtResource("8_cxmus")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 10.0
+proximity_fade_distance = 0.01
+distance_fade_min_distance = 5.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_171nb"]
+albedo_color = Color(0.90397143, 0.81727743, 0.6810573, 1)
+albedo_texture = ExtResource("6_r8uvd")
+metallic_specular = 0.38
+roughness_texture = ExtResource("8_cxmus")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_xuhvl")
+rim_enabled = true
+rim = 0.02
+ao_enabled = true
+ao_texture = ExtResource("8_cxmus")
 uv1_offset = Vector3(0.5, 0.5, 0)
 uv1_triplanar = true
+uv1_triplanar_sharpness = 10.0
+proximity_fade_distance = 0.01
 
 [node name="Rock" type="StaticBody3D"]
 collision_layer = 2
@@ -60,13 +71,13 @@ shape = SubResource("SphereShape3D_xuhvl")
 [node name="MeshTypes" type="Node3D" parent="."]
 
 [node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31755954, 0.009670258, 0.19799733)
 material_overlay = ExtResource("5_e1dj2")
 mesh = ExtResource("3_hxsg1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_e1dj2")
 
 [node name="RockMesh2" type="MeshInstance3D" parent="MeshTypes"]
-visible = false
 material_overlay = ExtResource("5_e1dj2")
 mesh = ExtResource("4_xuhvl")
 skeleton = NodePath("../..")

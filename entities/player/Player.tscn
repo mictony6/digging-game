@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="11_ax5yc"]
 [ext_resource type="Script" uid="uid://cbkl77dwp2ya1" path="res://systems/physics/is_knockbacked.gd" id="16_aubru"]
 [ext_resource type="Script" uid="uid://dkea10ua38epr" path="res://entities/player/states/fall.gd" id="17_j531f"]
-[ext_resource type="Script" uid="uid://bb74nrw85xiwt" path="res://entities/player/states/pause.gd" id="18_npcl8"]
+[ext_resource type="Script" path="res://entities/player/states/pause.gd" id="18_npcl8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -97,7 +97,7 @@ enabled = true
 
 [node name="HeadLamp" type="SpotLight3D" parent="Head"]
 visible = false
-light_color = Color(0.56400955, 0.9563965, 0.99999994, 1)
+light_color = Color(0.744366, 0.7852894, 0.74294144, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
