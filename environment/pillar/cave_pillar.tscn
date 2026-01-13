@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgfpvly4i58fe"]
+
+[ext_resource type="PackedScene" uid="uid://bcpt42snmk33r" path="res://assets/meshes/cave_pillar.glb" id="1_y8gu6"]
+[ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="2_q15me"]
+[ext_resource type="Texture2D" uid="uid://cf7gnc48buq8i" path="res://assets/textures/pillar/pillar_normal_map.png" id="3_nru5h"]
+[ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="4_ybhhk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_st3ec"]
+albedo_texture = ExtResource("2_q15me")
+roughness_texture = ExtResource("4_ybhhk")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_nru5h")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y8gu6"]
+height = 3.0289917
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y8gu6"]
+radius = 0.96924466
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nru5h"]
+radius = 0.8707903
+
+[node name="cave_pillar" instance=ExtResource("1_y8gu6")]
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_st3ec")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cylinder" index="0"]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26168823, 0)
+shape = SubResource("CylinderShape3D_y8gu6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cylinder/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062131047, -1.8913667, 0.040671587)
+shape = SubResource("SphereShape3D_y8gu6")
+debug_color = Color(0.8742791, 0.33218384, 0.2640182, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Cylinder/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062131047, 2.2801023, 0)
+shape = SubResource("SphereShape3D_nru5h")

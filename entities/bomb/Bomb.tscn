@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://hp64p4qgnxq1" path="res://assets/meshes/bomb.tres" id="1_b0f4v"]
 [ext_resource type="Script" uid="uid://b8db72wl7bxgi" path="res://entities/bomb/bomb.gd" id="1_vteb3"]
-[ext_resource type="Shader" uid="uid://co64sdped5c5u" path="res://entities/bomb_orb.tres" id="3_na0ft"]
+[ext_resource type="Shader" uid="uid://co64sdped5c5u" path="res://shaders/bomb_orb.tres" id="3_na0ft"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b0f4v"]
 bounce = 0.25
@@ -227,9 +227,7 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn2dq"]
-emission_enabled = true
-emission = Color(0.71000004, 1, 1, 1)
-emission_energy_multiplier = 2.0
+shading_mode = 0
 fov_override = 50.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_na0ft"]

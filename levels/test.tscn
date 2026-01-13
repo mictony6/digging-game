@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene load_steps=31 format=4 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
 [ext_resource type="Script" uid="uid://dkhl3ppui7enn" path="res://game/rock_spawner.gd" id="19_uy2g7"]
 [ext_resource type="PackedScene" uid="uid://uiig5ud3kjxl" path="res://greyboxing/exchange.tscn" id="20_u1nm5"]
+[ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="21_1w0m8"]
 
 [sub_resource type="Environment" id="Environment_r4e4k"]
 background_mode = 2
@@ -45,6 +46,7 @@ bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
 [sub_resource type="SystemFont" id="SystemFont_1w0m8"]
 font_names = PackedStringArray("Bahnschrift")
 font_weight = 800
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_8a51t"]
 font = SubResource("SystemFont_1w0m8")
@@ -595,6 +597,15 @@ size = Vector3(9, 14, 1)
 [node name="CSGBox3D3" type="CSGBox3D" parent="wall5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 size = Vector3(9, 14, 1)
+
+[node name="cave_pillar" parent="." instance=ExtResource("21_1w0m8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0.19999999, -15.7)
+
+[node name="cave_pillar2" parent="." instance=ExtResource("21_1w0m8")]
+transform = Transform3D(-0.14538923, 0.038956925, 1.7204281, 0.44698045, 1.6681539, 0, -1.661806, 0.44527954, -0.15051802, 13.138085, 0.1234902, -22.32919)
+
+[node name="cave_pillar3" parent="." instance=ExtResource("21_1w0m8")]
+transform = Transform3D(1.0443968, -2.1345126e-09, 1.0443968, 1.6413775e-09, 1.477, 1.3772792e-09, -1.0443968, 1.867458e-10, 1.0443968, 10.641117, -0.3082598, -21.147017)
 
 [connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]
