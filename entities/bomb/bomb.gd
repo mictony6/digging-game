@@ -3,6 +3,7 @@ class_name Bomb
 
 @onready var area: Area3D = $Area3D
 signal exploded(position: Vector3)
+var damage = 67
 
 
 func _ready() -> void:
@@ -15,7 +16,7 @@ func explode():
 		if body is Rock:
 			body.destroy()
 		elif body is Player:
-			PlayerData.remove_health(5)
+			PlayerData.remove_health(damage)
 			var kb = body.get_node("IsKnockbacked") as IsKnockbacked
 			kb.start(global_position)
 	await $AnimationPlayer.animation_finished

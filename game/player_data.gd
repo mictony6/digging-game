@@ -25,10 +25,9 @@ func add_coins(value: int):
     coins_changed.emit(coins)
 
 func remove_oxygen(val: float):
-    oxygen_remaining -= val
+    oxygen_remaining = max(oxygen_remaining - val, 0)
     oxygen_changed.emit()
     if !has_oxygen():
-        oxygen_remaining = 0
         oxygen_depleted.emit()
 
 func add_oxygen(val: float):
@@ -40,6 +39,9 @@ func add_oxygen(val: float):
 
 func has_oxygen():
     return oxygen_remaining > 0
+
+func oxygen_not_full():
+    return oxygen_remaining < max_oxygen
 
 
 func end_day():

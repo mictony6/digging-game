@@ -12,7 +12,7 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 
-	if Input.is_action_pressed("jump") or player.buffered_jump_timer > 0.0:
+	if Input.is_action_pressed("jump") or player.has_buffered_jump():
 		finished.emit(JUMP)
 	elif Input.is_action_just_released("sprint") or !Input.is_action_pressed("sprint"):
 		finished.emit(MOVE)

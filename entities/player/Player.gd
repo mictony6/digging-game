@@ -20,6 +20,10 @@ var buffered_jump_time: float = 0.05
 
 @onready var state_machine: StateMachine = $StateMachine
 
+#status effects
+var is_poisoned: bool = false
+var is_suffocating: bool = false
+var active_depletion_rate_multiplier: float = 0.0
 
 func _ready() -> void:
 	if head == null:
@@ -50,6 +54,20 @@ func _process(delta: float) -> void:
 	buffered_jump_timer -= delta
 	buffered_jump_timer = max(buffered_jump_timer, 0.0)
 
+	# suffocation and oxygen
+	if is_suffocating:
+		if PlayerData.has_oxygen():
+			PlayerData.remove_oxygen(PlayerData.depletion_rate
+			* active_depletion_rate_multiplier
+			* delta)
+		else:
+			PlayerData.remove_health(11 * delta)
+	elif PlayerData.oxygen_not_full():
+		PlayerData.add_oxygen(10 * delta)
 
-	if !PlayerData.has_oxygen():
-		PlayerData.remove_health(PlayerData.depletion_rate * 5 * delta)
+func has_buffered_jump():
+	return buffered_jump_timer > 0.0
+
+func determine_suffocation(status: bool, difficulty: int):
+	is_suffocating = status
+	active_depletion_rate_multiplier = difficulty if is_suffocating else 1.0

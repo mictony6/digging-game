@@ -1,12 +1,12 @@
-class_name PlayerState
 extends State
+class_name PlayerState
 
 const IDLE = "Idle";
 const MOVE = "Move";
 const SPRINT = "Sprint";
 const JUMP = "Jump";
 const CROUCH = "Crouch";
-
+const FALL = "Fall";
 
 var player: Player;
 

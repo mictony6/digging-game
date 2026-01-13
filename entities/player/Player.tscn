@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmujhjwc5ylgy"]
+[gd_scene load_steps=23 format=3 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://bkvj6rlc6m5h8" path="res://entities/player/states/jump.gd" id="11_1ms0h"]
 [ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="11_ax5yc"]
 [ext_resource type="Script" uid="uid://cbkl77dwp2ya1" path="res://systems/physics/is_knockbacked.gd" id="16_aubru"]
+[ext_resource type="Script" uid="uid://dkea10ua38epr" path="res://entities/player/states/fall.gd" id="17_j531f"]
+[ext_resource type="Script" uid="uid://bb74nrw85xiwt" path="res://entities/player/states/pause.gd" id="18_npcl8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -119,6 +121,14 @@ script = ExtResource("10_ak4un")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("11_1ms0h")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("17_j531f")
+metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
+
+[node name="Pause" type="Node" parent="StateMachine"]
+script = ExtResource("18_npcl8")
+metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

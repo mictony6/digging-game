@@ -1,29 +1,20 @@
 extends PlayerState
 
 
-var last_state
-
-
 func enter(previous_state_path: String, data := {}) -> void:
 	player.acceleration = player.air_acceleration
-	player.velocity.y = player.JUMP_FORCE
-	last_state = previous_state_path
-	if last_state == SPRINT:
-		player.velocity.z *= 1.1
 
-func physics_update(delta):
+## Called by the state machine on the engine's physics update tick.
+func physics_update(delta: float) -> void:
 	player.velocity.y -= (player.gravity * delta)
 	player.velocity.x = move_toward(player.velocity.x, player.direction.x * player.SPEED, player.acceleration * delta)
 	player.velocity.z = move_toward(player.velocity.z, player.direction.z * player.SPEED, player.acceleration * delta)
 	player.move_and_slide()
 
 	if player.is_on_floor():
-		if Input.is_action_pressed("sprint"):
-			finished.emit(SPRINT)
 		if player.has_buffered_jump():
 			finished.emit(JUMP)
+		elif Input.is_action_pressed("sprint"):
+			finished.emit(SPRINT)
 		else:
 			finished.emit(IDLE)
-	else:
-		if player.velocity.y < 0.0:
-			finished.emit(FALL)
