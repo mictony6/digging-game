@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu7tjycbex2nb"]
+
+[ext_resource type="ArrayMesh" uid="uid://rhbbdoy6vb3p" path="res://assets/meshes/console/console.res" id="1_41aal"]
+
+[node name="Plane" type="MeshInstance3D"]
+mesh = ExtResource("1_41aal")
+skeleton = NodePath("")

@@ -5,6 +5,8 @@ class_name Bomb
 signal exploded(position: Vector3)
 var damage = 67
 
+@onready var flicker: OmniLight3D = $ToolFlicker
+
 
 func _ready() -> void:
 	get_tree().create_timer(3.0).timeout.connect(explode)
@@ -22,3 +24,7 @@ func explode():
 	await $AnimationPlayer.animation_finished
 	exploded.emit()
 	queue_free()
+
+func _physics_process(delta: float) -> void:
+	flicker.global_position = global_position
+	flicker.global_position.y += .25

@@ -26,6 +26,7 @@ color_ramp = SubResource("Gradient_eudka")
 seamless = true
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_jejbx")
 shader_parameter/Side_Albedo = ExtResource("8_pavjo")
@@ -33,8 +34,8 @@ shader_parameter/Albedo1 = ExtResource("2_dxh0l")
 shader_parameter/Albedo2 = ExtResource("3_dury2")
 shader_parameter/Noise_Scale = 0.01
 shader_parameter/Noise = SubResource("NoiseTexture2D_drwxn")
-shader_parameter/Separation = 0.455
-shader_parameter/Transition_Softness = 0.12
+shader_parameter/Separation = 0.73
+shader_parameter/Transition_Softness = 0.085
 shader_parameter/Side_ORM = ExtResource("10_m5jeh")
 shader_parameter/ORM1 = ExtResource("6_m5jeh")
 shader_parameter/ORM2 = ExtResource("7_ql7u6")
@@ -43,4 +44,4 @@ shader_parameter/Normal_Map1 = ExtResource("4_pavjo")
 shader_parameter/Normal_Map2 = ExtResource("5_bpi1l")
 shader_parameter/triplanar_scale = Vector3(0.1, 0.1, 0.1)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 5.0
+shader_parameter/triplanar_sharpness = 10.0

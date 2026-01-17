@@ -36,6 +36,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_F11:
 			get_window().mode = Window.MODE_FULLSCREEN if get_window().mode != Window.MODE_FULLSCREEN else Window.MODE_WINDOWED
+		if event.pressed and event.keycode == Key.KEY_F1:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:
 	$Control/StateLabel.text = state_machine.state.name

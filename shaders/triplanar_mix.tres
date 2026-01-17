@@ -109,7 +109,7 @@ parameter_name = "ORM1"
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_burley, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_burley, specular_schlick_ggx;
 
 uniform sampler2D Side_Albedo : source_color;
 uniform sampler2D Albedo1 : source_color;
@@ -291,6 +291,7 @@ void fragment() {
 
 }
 "
+modes/cull = 2
 modes/diffuse = 2
 nodes/vertex/0/position = Vector2(780, 0)
 nodes/fragment/0/position = Vector2(5280, 3420)

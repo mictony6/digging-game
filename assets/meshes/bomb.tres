@@ -2,22 +2,19 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07kbm"]
 resource_name = "Body"
-cull_mode = 2
-albedo_color = Color(0.28792843, 0.25656533, 0.9063355, 1)
+albedo_color = Color(0.38995466, 0.65398777, 0.62826717, 1)
 roughness = 0.5
-emission = Color(0.20713809, 0.40305698, 0.76201993, 1)
-emission_energy_multiplier = 5.0
+emission_enabled = true
+emission = Color(0.38923737, 0.6106937, 0.7226991, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow5oq"]
 resource_name = "Material.001"
-cull_mode = 2
-albedo_color = Color(0.90633965, 0.7920923, 0.12889703, 1)
+albedo_color = Color(0.7698943, 0.66905135, 0.32149017, 1)
 roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hf1jj"]
 resource_name = "Fuse"
-cull_mode = 2
-albedo_color = Color(0.9063355, 0.30976573, 0.084890276, 1)
+albedo_color = Color(0.39150277, 0.27058476, 0.03265965, 1)
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fmgue"]

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="8_cxmus"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xuhvl"]
-radius = 0.7319765
+radius = 0.73400164
 
 [sub_resource type="Gradient" id="Gradient_5ne07"]
 interpolation_mode = 2
@@ -45,7 +45,7 @@ seamless = true
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_rr552")
-shader_parameter/Crack_Color = Color(0.35186478, 0.38144532, 0.38107687, 1)
+shader_parameter/Crack_Color = Color(0.19607843, 0.21176471, 0.21176471, 1)
 shader_parameter/ratio = 1.0
 shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
 shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
@@ -113,7 +113,6 @@ shape = SubResource("SphereShape3D_xuhvl")
 [node name="MeshTypes" type="Node3D" parent="."]
 
 [node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31755954, 0.009670258, 0.19799733)
 material_overlay = SubResource("ShaderMaterial_0exme")
 mesh = ExtResource("3_hxsg1")
 skeleton = NodePath("../..")

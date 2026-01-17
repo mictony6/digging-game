@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://djhlwhtnyh1j6"]
+[gd_scene load_steps=22 format=3 uid="uid://djhlwhtnyh1j6"]
 
 [ext_resource type="ArrayMesh" uid="uid://hp64p4qgnxq1" path="res://assets/meshes/bomb.tres" id="1_b0f4v"]
 [ext_resource type="Script" uid="uid://b8db72wl7bxgi" path="res://entities/bomb/bomb.gd" id="1_vteb3"]
 [ext_resource type="Shader" uid="uid://co64sdped5c5u" path="res://shaders/bomb_orb.tres" id="3_na0ft"]
+[ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="4_sn2dq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b0f4v"]
 bounce = 0.25
@@ -326,3 +327,14 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_sn2dq")
 draw_pass_1 = SubResource("SphereMesh_7j5nf")
+
+[node name="ToolFlicker" type="OmniLight3D" parent="."]
+top_level = true
+light_color = Color(0.36351272, 0.6896181, 0.7917227, 1)
+light_size = 1.0
+omni_attenuation = 2.0
+script = ExtResource("4_sn2dq")
+enabled = true
+max_energy = 0.5
+cooldown = 0.5
+start_delay = 1.5

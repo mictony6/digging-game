@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bng6fg8mckdjt"]
+[gd_scene load_steps=4 format=3 uid="uid://bng6fg8mckdjt"]
 
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_qm8wc"]
 [ext_resource type="Texture2D" uid="uid://bstbcvk7gr7ne" path="res://GreyboxTextures/greybox_yellow_grid.png" id="2_7xyeg"]
@@ -10,78 +10,61 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8c3k"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[node name="Card" type="BoxContainer"]
-offset_right = 178.0
-offset_bottom = 279.0
-
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Card" type="PanelContainer"]
 clip_contents = true
-layout_mode = 2
+offset_right = 149.0
+offset_bottom = 192.0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_joplb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 4
 
-[node name="ToolIcon" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+
+[node name="ToolIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 texture = ExtResource("1_qm8wc")
+expand_mode = 4
+stretch_mode = 5
 
-[node name="ToolName" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="ToolName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 text = "Laser"
+horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="LevelLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Level: 0"
 horizontal_alignment = 3
 autowrap_trim_flags = 128
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Panel/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_x8c3k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Current Bonus"
-
-[node name="UpgradeDescription" type="Label" parent="Panel/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="UpgradeDescription" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "+0 Mining Power"
 
-[node name="PurchaseButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="PurchaseButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 text = "100 Coins"
 icon = ExtResource("2_7xyeg")
 expand_icon = true

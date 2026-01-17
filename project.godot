@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 QuotaManager="*res://game/quota_manager.gd"
 PlayerData="*res://game/player_data.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 move_left={
