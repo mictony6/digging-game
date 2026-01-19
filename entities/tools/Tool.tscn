@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://wf6ij42xq2w2"]
+[gd_scene load_steps=12 format=4 uid="uid://wf6ij42xq2w2"]
 
 [ext_resource type="Script" uid="uid://c6fgwgulxpbym" path="res://entities/tools/tool.gd" id="1_ubxhq"]
 [ext_resource type="Resource" uid="uid://cmcmmofhy52j6" path="res://data/tools/PickaxeToolData.tres" id="2_7klon"]
+[ext_resource type="PackedScene" uid="uid://du0vtp13ykrea" path="res://entities/laser_tool/LaserTool.tscn" id="3_7klon"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7klon"]
 no_depth_test = true
@@ -57,6 +58,7 @@ tool_mesh_instance = NodePath("ToolMeshInstance")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="ToolMeshInstance" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_7klon")
 mesh = SubResource("CylinderMesh_tlcfd")
 
@@ -71,8 +73,12 @@ libraries = {
 
 [node name="fortestingonly" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27357918, 0)
+visible = false
 mesh = SubResource("BoxMesh_ubxhq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="fortestingonly"]
 mesh = SubResource("ArrayMesh_7klon")
 surface_material_override/0 = SubResource("StandardMaterial3D_5luwi")
+
+[node name="LaserTool" parent="." instance=ExtResource("3_7klon")]
+transform = Transform3D(-0.5, 0, 4.371139e-08, 0, 0.5, 0, -4.371139e-08, 0, -0.5, 0, -0.20000005, -0.032349885)

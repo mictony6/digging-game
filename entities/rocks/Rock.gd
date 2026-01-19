@@ -1,3 +1,4 @@
+@tool
 extends StaticBody3D
 class_name Rock
 
@@ -39,6 +40,8 @@ func destroy():
 	queue_free()
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	#update crack shader based on health
 	if current_health == rock_data.max_health:
 		return

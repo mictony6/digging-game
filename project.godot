@@ -22,6 +22,8 @@ PlayerData="*res://game/player_data.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -85,6 +87,7 @@ throw={
 3d_physics/layer_3="Environment"
 3d_physics/layer_4="Bomb"
 3d_physics/layer_5="Selectable"
+3d_physics/layer_6="Props"
 
 [rendering]
 

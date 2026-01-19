@@ -9,6 +9,6 @@ extends Control
 func _process(delta: float) -> void:
 	assert(player != null, "Player should be assigned to the coordinates system!")
 
-	x_label.text = "X: " + str(round(player.global_position.x))
-	y_label.text = "Y: " + str(round(player.global_position.y))
-	z_label.text = "Z: " + str(round(-player.global_position.z))
+	x_label.text = str(round(player.global_position.x)) + " :X"
+	y_label.text = str(round(player.global_position.y)) + " :Y"
+	z_label.text = str(round(-player.global_position.z)) + " :Z"

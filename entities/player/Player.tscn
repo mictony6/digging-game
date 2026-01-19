@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=4 uid="uid://dmujhjwc5ylgy"]
 
-[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/player.gd" id="1_ak4un"]
+[ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
 [ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
 [ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
@@ -137,7 +137,7 @@ shadow_mesh = SubResource("ArrayMesh_fmgue")
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 7
+collision_mask = 39
 floor_max_angle = 1.0471976
 script = ExtResource("1_ak4un")
 SPRINT_SPEED = 3.0

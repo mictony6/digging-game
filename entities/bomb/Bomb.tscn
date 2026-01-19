@@ -270,10 +270,9 @@ is_hemisphere = true
 
 [node name="Bomb" type="RigidBody3D"]
 collision_layer = 8
-collision_mask = 6
+collision_mask = 38
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_b0f4v")
-continuous_cd = true
 angular_damp = 20.0
 script = ExtResource("1_vteb3")
 
@@ -331,6 +330,7 @@ draw_pass_1 = SubResource("SphereMesh_7j5nf")
 [node name="ToolFlicker" type="OmniLight3D" parent="."]
 top_level = true
 light_color = Color(0.36351272, 0.6896181, 0.7917227, 1)
+light_volumetric_fog_energy = 0.0
 light_size = 1.0
 omni_attenuation = 2.0
 script = ExtResource("4_sn2dq")

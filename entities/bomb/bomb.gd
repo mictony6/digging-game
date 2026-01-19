@@ -18,9 +18,18 @@ func explode():
 		if body is Rock:
 			body.destroy()
 		elif body is Player:
-			PlayerData.remove_health(damage)
-			var kb = body.get_node("IsKnockbacked") as IsKnockbacked
-			kb.start(global_position)
+			# raycast to player to allow hiding from explosion
+			var space_state = get_world_3d().direct_space_state
+	
+			var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(global_position, body.global_position)
+			query.collision_mask = 0b100111 # Layers 1, 2, 3, 6
+			var result = space_state.intersect_ray(query)
+
+			
+			if result and result.collider == body:
+				PlayerData.remove_health(damage)
+				var kb = body.get_node("IsKnockbacked") as IsKnockbacked
+				kb.start(global_position)
 	await $AnimationPlayer.animation_finished
 	exploded.emit()
 	queue_free()
