@@ -62,7 +62,6 @@ shape = SubResource("BoxShape3D_5k8kf")
 
 [node name="ShopUI" type="Control" parent="HUD"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

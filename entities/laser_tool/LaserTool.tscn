@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=4 uid="uid://du0vtp13ykrea"]
 
-[ext_resource type="ArrayMesh" uid="uid://c4qemc3pv2ap3" path="res://assets/meshes/laser_tool/mesh1.res" id="1_xc8d0"]
-[ext_resource type="ArrayMesh" uid="uid://cq6anlilomib6" path="res://assets/meshes/laser_tool/mesh2.res" id="2_hnwkv"]
+[ext_resource type="ArrayMesh" uid="uid://oayamxo0lqio" path="res://assets/meshes/laser_tool/mesh1.res" id="1_xc8d0"]
+[ext_resource type="ArrayMesh" uid="uid://dd2mq26i2rpwf" path="res://assets/meshes/laser_tool/mesh2.res" id="2_hnwkv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybjws"]
 albedo_color = Color(0.55670536, 0.59298605, 0.6438336, 1)
 metallic = 1.0
 roughness = 0.35
 use_z_clip_scale = true
-z_clip_scale = 0.8
+z_clip_scale = 0.85
 fov_override = 50.4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xc8d0"]
@@ -34,9 +34,10 @@ albedo_color = Color(0.6028166, 0.63801384, 0.6831894, 1)
 metallic = 1.0
 roughness = 0.0
 use_z_clip_scale = true
-z_clip_scale = 0.8
+z_clip_scale = 0.85
 
 [node name="LaserTool" type="Node3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_xc8d0")

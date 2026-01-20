@@ -1,15 +1,12 @@
 [gd_resource type="Resource" script_class="ToolData" load_steps=3 format=3 uid="uid://cmcmmofhy52j6"]
 
+[ext_resource type="PackedScene" uid="uid://du0vtp13ykrea" path="res://entities/laser_tool/LaserTool.tscn" id="1_r3wa3"]
 [ext_resource type="Script" uid="uid://l3ckd63l0kfx" path="res://data/tools/ToolData.gd" id="1_tlcfd"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_tlcfd"]
-top_radius = 0.15
-bottom_radius = 0.1
-height = 0.75
 
 [resource]
 script = ExtResource("1_tlcfd")
 name = "Pickaxe"
-mesh = SubResource("CylinderMesh_tlcfd")
-position = Vector3(0.75, -0.5, -0.75)
+scene = ExtResource("1_r3wa3")
+position = Vector3(0.331, -0.27, -0.4)
+rotation = Vector3(0, 180, 0)
 metadata/_custom_type_script = "uid://l3ckd63l0kfx"

@@ -39,6 +39,8 @@ albedo_color = Color(0.38995466, 0.65398777, 0.62826717, 1)
 roughness = 0.5
 emission = Color(0.38923737, 0.6106937, 0.7226991, 1)
 rim_tint = 0.82
+use_z_clip_scale = true
+z_clip_scale = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow5oq"]
 resource_name = "Material.001"
@@ -46,11 +48,15 @@ albedo_color = Color(0.7698943, 0.66905135, 0.32149017, 1)
 roughness = 0.5
 emission_enabled = true
 emission = Color(0.93504477, 0.6847158, 0.41558102, 1)
+use_z_clip_scale = true
+z_clip_scale = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hf1jj"]
 resource_name = "Fuse"
 albedo_color = Color(0.39150277, 0.27058476, 0.03265965, 1)
 roughness = 0.5
+use_z_clip_scale = true
+z_clip_scale = 0.9
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fmgue"]
 _surfaces = [{
@@ -163,7 +169,7 @@ script = ExtResource("3_mq27t")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager"]
-transform = Transform3D(0.09552654, -0.014453307, 0.025802767, 0.023032174, 0.091085605, -0.034248095, -0.018552622, 0.038658958, 0.09033983, -0.5, -0.1960786, -0.6)
+transform = Transform3D(0.09552654, -0.014453307, 0.025802767, 0.023032174, 0.091085605, -0.034248095, -0.018552622, 0.038658958, 0.09033983, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")

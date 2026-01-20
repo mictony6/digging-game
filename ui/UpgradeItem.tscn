@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl8rloc1873ka"]
+[gd_scene load_steps=4 format=3 uid="uid://dl8rloc1873ka"]
 
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_2ib3c"]
+[ext_resource type="Script" uid="uid://c7hcepwiic7nx" path="res://ui/UpgradeItem.gd" id="1_hrcar"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmxiq"]
 content_margin_left = 6.0
@@ -15,6 +16,7 @@ corner_radius_bottom_left = 6
 
 [node name="UpgradeItem" type="PanelContainer"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_qmxiq")
+script = ExtResource("1_hrcar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -49,7 +51,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="ActionButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UPGRADE"
