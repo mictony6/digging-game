@@ -118,22 +118,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer"]
+[node name="UpgradeParent" type="VBoxContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="UpgradeItem" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/VBoxContainer" instance=ExtResource("4_v733u")]
+[node name="TierUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" instance=ExtResource("4_v733u")]
 layout_mode = 2
+cost = 100
 
-[node name="UpgradeItem2" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/VBoxContainer" instance=ExtResource("4_v733u")]
+[node name="StrengthUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" instance=ExtResource("4_v733u")]
 layout_mode = 2
-
-[node name="UpgradeItem3" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/VBoxContainer" instance=ExtResource("4_v733u")]
-layout_mode = 2
-
-[node name="UpgradeItem4" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/VBoxContainer" instance=ExtResource("4_v733u")]
-layout_mode = 2
+upgrade = 1
+cost = 50
 
 [node name="Sell" type="Control" parent="HUD/ShopUI/VBoxContainer/TabContainer"]
 visible = false

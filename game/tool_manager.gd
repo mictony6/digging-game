@@ -2,9 +2,8 @@ extends Node3D
 class_name ToolManager
 
 
-@export var tool: Tool
+@export var current_tool: Tool
 @export var tool_raycast: RayCast3D
-@export var tool_aoe_mesh: MeshInstance3D
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
@@ -40,11 +39,11 @@ func _physics_process(delta: float) -> void:
 		tool_area3d.monitoring = true
 
 		for body in bodies_in_aoe:
-			if body.rock_data.tier <= tool.tool_data.tier:
+			if body.rock_data.tier <= get_total_tier():
 				if body == tool_raycast.get_collider():
-					body.take_damage(tool.tool_data.strength)
+					body.take_damage(get_total_damage())
 				else:
-					body.take_damage(tool.tool_data.strength / 4.0) # quarter damage to neighboring rocks
+					body.take_damage(get_total_damage() / 4.0) # quarter damage to neighboring rocks
 
 		
 		#spawn hit particles
@@ -82,14 +81,9 @@ func _on_body_exited(body: Node) -> void:
 		bodies_in_aoe.erase(body)
 		# body.destroyed.disconnect(_on_rock_destroyed)
 
-# func _on_rock_destroyed(body: Rock) -> void:
-# 	#spawn break particles
-# 	var particles_instance: GPUParticles3D = break_particles.instantiate()
-# 	get_tree().current_scene.add_child(particles_instance)
-# 	particle_instances.append(particles_instance)
-# 	particles_instance.global_position = body.global_position
-# 	particles_instance.emitting = true
-# 	particles_instance.finished.connect(particles_instance.queue_free)
-# 	if body in bodies_in_aoe:
-# 		bodies_in_aoe.erase(body)
-# 		body.destroyed.disconnect(_on_rock_destroyed)
+
+func get_total_damage():
+	return current_tool.tool_data.strength + current_tool.tool_data.strength_upgrade
+
+func get_total_tier():
+	return current_tool.tool_data.tier + current_tool.tool_data.tier_upgrade

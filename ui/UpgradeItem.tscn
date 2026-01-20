@@ -28,7 +28,7 @@ size_flags_horizontal = 2
 texture = ExtResource("1_2ib3c")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="UpgradeName" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Laser Tool"
 horizontal_alignment = 1
@@ -54,4 +54,6 @@ size_flags_stretch_ratio = 0.1
 [node name="ActionButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "UPGRADE"
+size_flags_vertical = 3
+text = "UPGRADE
+100 Coins"

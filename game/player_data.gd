@@ -24,6 +24,10 @@ func add_coins(value: int):
     coins += value
     coins_changed.emit(coins)
 
+func remove_coins(value: int):
+    coins -= value
+    coins_changed.emit(coins)
+
 func remove_oxygen(val: float):
     oxygen_remaining = max(oxygen_remaining - val, 0)
     oxygen_changed.emit()

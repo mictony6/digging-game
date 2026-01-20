@@ -161,8 +161,10 @@ script = ExtResource("2_fmb3c")
 [node name="Camera3D" type="Camera3D" parent="Head"]
 current = true
 
-[node name="ObjectSelector" parent="Head/Camera3D" instance=ExtResource("3_2a181")]
+[node name="ObjectSelector" parent="Head/Camera3D" node_paths=PackedStringArray("_player", "_tool") instance=ExtResource("3_2a181")]
 hit_from_inside = true
+_player = NodePath("../../..")
+_tool = NodePath("../../ToolManager/Tool")
 
 [node name="BombManager" type="Node3D" parent="Head"]
 script = ExtResource("3_mq27t")
@@ -174,9 +176,9 @@ material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
 
-[node name="ToolManager" type="Node3D" parent="Head" node_paths=PackedStringArray("tool", "tool_raycast", "tool_area3d")]
+[node name="ToolManager" type="Node3D" parent="Head" node_paths=PackedStringArray("current_tool", "tool_raycast", "tool_area3d")]
 script = ExtResource("3_rl6fg")
-tool = NodePath("Tool")
+current_tool = NodePath("Tool")
 tool_raycast = NodePath("RayCast3D")
 tool_area3d = NodePath("ToolAreaCollision")
 hit_particles = ExtResource("4_q57vx")

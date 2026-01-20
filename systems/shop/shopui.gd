@@ -3,15 +3,21 @@ class_name Shop
 
 
 @onready var shopui: Control = %ShopUI
+var upgrades: Array[UpgradeItem]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide_and_exit()
 	
+	var upgrade_parent_node = %UpgradeParent
+	for child in upgrade_parent_node.get_children():
+		upgrades.append(child)
+	
 
-
-func _on_is_selectable_selected() -> void:
+func _on_is_selectable_selected(player: Player, current_tool: Tool) -> void:
 	show_ui()
+	for upgrade in upgrades:
+		upgrade.set_tool(current_tool)
 	
 
 func _on_exit_button_pressed() -> void:

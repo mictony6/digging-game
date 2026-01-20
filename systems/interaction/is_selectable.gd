@@ -15,7 +15,7 @@ var label: Label
 # for some reason i made this a callable. this cold be a signal instead where items can connect to. but this is fine for now
 # var select: Callable = (func(): pass )
 # i did this hehe and even made the stupid unused signal go away. im a great programmer 
-signal selected
+signal selected(_player: Player, _tool: Tool)
 signal hovered
 signal unhovered
 
@@ -59,5 +59,5 @@ func switch_interaction_label() -> void:
 		label.text = interaction_name
 		interaction_index = 0
 
-func select():
-	selected.emit()
+func select(player: Player, current_tool: Tool):
+	selected.emit(player, current_tool)
