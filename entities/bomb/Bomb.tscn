@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://djhlwhtnyh1j6"]
+[gd_scene load_steps=24 format=3 uid="uid://djhlwhtnyh1j6"]
 
 [ext_resource type="ArrayMesh" uid="uid://hp64p4qgnxq1" path="res://assets/meshes/bomb.tres" id="1_b0f4v"]
 [ext_resource type="Script" uid="uid://b8db72wl7bxgi" path="res://entities/bomb/bomb.gd" id="1_vteb3"]
@@ -131,10 +131,22 @@ tracks/6/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ToolFlicker:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_na0ft"]
 resource_name = "explode"
-length = 0.41666806
+length = 0.83333474
 step = 0.013888889
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -191,10 +203,10 @@ tracks/4/path = NodePath("GPUParticles3D:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.027777778, 0.083333336),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.027777778),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -203,10 +215,10 @@ tracks/5/path = NodePath("TinyBits:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.055555556, 0.11111111),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.055555556),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [false, true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -219,6 +231,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [1.0, 1.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ToolFlicker:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.09722224),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7j5nf"]
@@ -235,6 +259,8 @@ fov_override = 50.0
 particle_flag_align_y = true
 emission_shape = 1
 emission_sphere_radius = 1.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 1.9999776
 gravity = Vector3(0, 0, 0)
@@ -246,14 +272,22 @@ height = 100.0
 radial_segments = 4
 rings = 4
 
+[sub_resource type="Curve" id="Curve_7j5nf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dghi2"]
+curve = SubResource("Curve_7j5nf")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sn2dq"]
 particle_flag_align_y = true
 emission_shape = 1
 emission_sphere_radius = 0.5
 radial_velocity_min = 1.9999776
 radial_velocity_max = 9.999977
-gravity = Vector3(0, -1, 0)
+gravity = Vector3(0, -0.2, 0)
 scale_min = 0.5
+scale_curve = SubResource("CurveTexture_dghi2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na0ft"]
 emission_enabled = true
@@ -273,6 +307,7 @@ collision_layer = 8
 collision_mask = 38
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_b0f4v")
+continuous_cd = true
 angular_damp = 20.0
 script = ExtResource("1_vteb3")
 
@@ -313,6 +348,7 @@ emitting = false
 lifetime = 0.15000000000000002
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_na0ft")
 draw_pass_1 = SubResource("CapsuleMesh_7j5nf")
 
@@ -320,8 +356,8 @@ draw_pass_1 = SubResource("CapsuleMesh_7j5nf")
 cast_shadow = 0
 emitting = false
 amount = 32
-lifetime = 0.5
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_sn2dq")
@@ -331,7 +367,6 @@ draw_pass_1 = SubResource("SphereMesh_7j5nf")
 top_level = true
 light_color = Color(0.36351272, 0.6896181, 0.7917227, 1)
 light_volumetric_fog_energy = 0.0
-light_size = 1.0
 omni_attenuation = 2.0
 script = ExtResource("4_sn2dq")
 enabled = true

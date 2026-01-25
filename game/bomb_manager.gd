@@ -1,6 +1,8 @@
 extends Node3D
 class_name BombManager
 
+@export var animation: AnimationPlayer
+
 
 @export var bomb_scene: PackedScene
 @onready var aiming_preview: MeshInstance3D = $AimingPreview
@@ -10,9 +12,11 @@ var can_throw: bool = true
 var cooldown_timer: float = 3.0
 var exploded: bool = false
 
-
+var has_played_ready_animation: bool = false
+var has_played_aim_animation: bool = false
 func _ready():
 	aiming_preview.visible = false
+	has_played_aim_animation = false
 
 func _process(delta: float) -> void:
 	if !can_throw and exploded:
@@ -32,9 +36,16 @@ func _physics_process(delta: float) -> void:
 
 func aim():
 	aiming_preview.visible = true
+	if !has_played_ready_animation:
+		animation.play("ReadyBomb")
+		animation.queue("AimBomb")
+		has_played_ready_animation = true
 
 	
 func release():
+	has_played_ready_animation = false
+	has_played_aim_animation = false
+
 	aiming_preview.visible = false
 	var bomb: Bomb = bomb_scene.instantiate()
 	get_tree().root.add_child(bomb)

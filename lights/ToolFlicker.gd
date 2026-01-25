@@ -14,7 +14,7 @@ func _ready() -> void:
 		return
 	if start_delay > 0:
 		await get_tree().create_timer(start_delay).timeout
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = create_tween()
 	tween.set_loops()
 	var dur = randf_range(min_duration_to_on, max_duration_to_on)
 	tween.tween_property(self, "light_energy", max_energy, dur)

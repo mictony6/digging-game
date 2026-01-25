@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://b2ksgj830wn2e"]
+[gd_resource type="ShaderMaterial" load_steps=17 format=3 uid="uid://b2ksgj830wn2e"]
 
 [ext_resource type="Shader" uid="uid://banurgygw2w5" path="res://shaders/triplanar_mix.tres" id="1_jejbx"]
 [ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="2_dxh0l"]
@@ -9,20 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="7_ql7u6"]
 [ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="8_pavjo"]
 [ext_resource type="Texture2D" uid="uid://d1tokg018su56" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_nor_gl_2k.png" id="9_bpi1l"]
+[ext_resource type="Texture2D" uid="uid://v48ytb8w1pxo" path="res://assets/textures/rock_05/rock_05_diff_2k.png" id="9_ql7u6"]
 [ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="10_m5jeh"]
+[ext_resource type="Texture2D" uid="uid://don1w70xpoaub" path="res://assets/textures/rock_05/rock_05_nor_gl_2k.png" id="11_cact8"]
+[ext_resource type="Texture2D" uid="uid://sabuk1rf0xri" path="res://assets/textures/rock_05/rock_05_arm_2k.png" id="13_vtyyi"]
 
-[sub_resource type="Gradient" id="Gradient_eudka"]
+[sub_resource type="Gradient" id="Gradient_5c7w6"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.14814815, 0.5923077, 0.7962963)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.57700837, 0.5770084, 0.57700825, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qtvpr"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fvaya"]
 noise_type = 3
 frequency = 0.0138
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drwxn"]
-noise = SubResource("FastNoiseLite_qtvpr")
-color_ramp = SubResource("Gradient_eudka")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_51b6t"]
+noise = SubResource("FastNoiseLite_fvaya")
+color_ramp = SubResource("Gradient_5c7w6")
 seamless = true
 
 [resource]
@@ -30,18 +33,21 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_jejbx")
 shader_parameter/Side_Albedo = ExtResource("8_pavjo")
+shader_parameter/Side_Albedo2 = ExtResource("9_ql7u6")
+shader_parameter/Noise_Scale = 0.01
+shader_parameter/Noise = SubResource("NoiseTexture2D_51b6t")
 shader_parameter/Albedo1 = ExtResource("2_dxh0l")
 shader_parameter/Albedo2 = ExtResource("3_dury2")
-shader_parameter/Noise_Scale = 0.01
-shader_parameter/Noise = SubResource("NoiseTexture2D_drwxn")
 shader_parameter/Separation = 0.73
 shader_parameter/Transition_Softness = 0.085
 shader_parameter/Side_ORM = ExtResource("10_m5jeh")
+shader_parameter/Side_ORM2 = ExtResource("13_vtyyi")
 shader_parameter/ORM1 = ExtResource("6_m5jeh")
 shader_parameter/ORM2 = ExtResource("7_ql7u6")
 shader_parameter/Side_Normal_Map = ExtResource("9_bpi1l")
+shader_parameter/Side_Normal_Map2 = ExtResource("11_cact8")
 shader_parameter/Normal_Map1 = ExtResource("4_pavjo")
 shader_parameter/Normal_Map2 = ExtResource("5_bpi1l")
-shader_parameter/triplanar_scale = Vector3(0.1, 0.1, 0.1)
+shader_parameter/triplanar_scale = Vector3(-0.1, 0.1, 0.1)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 10.0

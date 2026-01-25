@@ -8,6 +8,8 @@ class_name ToolManager
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
 
+@onready var flicker: OmniLight3D = $ToolFlicker
+
 var particle_instances: Array[GPUParticles3D] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -64,11 +66,11 @@ func _physics_process(delta: float) -> void:
 		particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
 
 		#activate flicker light
-		%ToolFlicker.show()
-		%ToolFlicker.global_position = collision_point
+		flicker.show()
+		flicker.global_position = collision_point
 		tool_current_cooldown = tool_max_cooldown
 	else:
-		%ToolFlicker.hide()
+		flicker.hide()
 
 
 func _on_body_entered(body: Node) -> void:
