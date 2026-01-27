@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://d2sruleu4iip6"]
+[gd_scene format=4 uid="uid://d2sruleu4iip6"]
 
 [ext_resource type="Texture2D" uid="uid://dhgqbyay37wjv" path="res://assets/meshes/wooden_crate/WoodenCrate_113_Chestnut fine wood PBR texture seamless.jpg" id="1_8typ7"]
 [ext_resource type="Texture2D" uid="uid://cts31ituy31ah" path="res://assets/meshes/wooden_crate/WoodenCrate_RoughnessMap_1250x1250_ThiagoCarneiro.png" id="2_bjsmg"]
@@ -11,6 +11,7 @@ metallic_texture = ExtResource("2_bjsmg")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("2_bjsmg")
 roughness_texture_channel = 1
+texture_filter = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0psq"]
 resource_name = "Nails"
@@ -78,16 +79,16 @@ shadow_mesh = SubResource("ArrayMesh_f807c")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r3g4c"]
 data = PackedVector3Array(-1, -1, 1.0797056, -1, 1, -1.0797056, -1, 1, 1.0797056, -1, -1, 1.0797056, -1, -1, -1.0797056, -1, 1, -1.0797056, -1, -1, -1.0797056, 1, 1, -1.0797056, -1, 1, -1.0797056, -1, -1, -1.0797056, 1, -1, -1.0797056, 1, 1, -1.0797056, 1, -1, -1.0797056, 1, 1, 1.0797056, 1, 1, -1.0797056, 1, -1, -1.0797056, 1, -1, 1.0797056, 1, 1, 1.0797056, 1, -1, 1.0797056, -1, 1, 1.0797056, 1, 1, 1.0797056, 1, -1, 1.0797056, -1, -1, 1.0797056, -1, 1, 1.0797056, -1, -1, -1.0797056, 1, -1, 1.0797056, 1, -1, -1.0797056, -1, -1, -1.0797056, -1, -1, 1.0797056, 1, -1, 1.0797056, -0.90000343, 1, 0.9821965, 0.9000035, -0.93687695, 0.9821965, 0.9000035, 1, 0.9821965, -0.90000343, 1, 0.9821965, -0.90000343, -0.93687695, 0.9821965, 0.9000035, -0.93687695, 0.9821965, -0.90000343, 1, 0.9821965, -1, 1, -1.0797056, -0.90000343, 1, -0.98219657, -0.90000343, 1, 0.9821965, -1, 1, 1.0797056, -1, 1, -1.0797056, -0.90000343, 1, -0.98219657, 1, 1, -1.0797056, 0.9000035, 1, -0.98219657, -0.90000343, 1, -0.98219657, -1, 1, -1.0797056, 1, 1, -1.0797056, 0.9000035, 1, -0.98219657, 1, 1, 1.0797056, 0.9000035, 1, 0.9821965, 0.9000035, 1, -0.98219657, 1, 1, -1.0797056, 1, 1, 1.0797056, 0.9000035, 1, 0.9821965, -1, 1, 1.0797056, -0.90000343, 1, 0.9821965, 0.9000035, 1, 0.9821965, 1, 1, 1.0797056, -1, 1, 1.0797056, 0.9000035, -0.93687695, -0.98219657, -0.90000343, -0.93687695, 0.9821965, -0.90000343, -0.93687695, -0.98219657, 0.9000035, -0.93687695, -0.98219657, 0.9000035, -0.93687695, 0.9821965, -0.90000343, -0.93687695, 0.9821965, 0.9000035, 1, -0.98219657, -0.90000343, -0.93687695, -0.98219657, -0.90000343, 1, -0.98219657, 0.9000035, 1, -0.98219657, 0.9000035, -0.93687695, -0.98219657, -0.90000343, -0.93687695, -0.98219657, 0.9000035, 1, 0.9821965, 0.9000035, -0.93687695, -0.98219657, 0.9000035, 1, -0.98219657, 0.9000035, 1, 0.9821965, 0.9000035, -0.93687695, 0.9821965, 0.9000035, -0.93687695, -0.98219657, -0.90000343, 1, -0.98219657, -0.90000343, -0.93687695, 0.9821965, -0.90000343, 1, 0.9821965, -0.90000343, 1, -0.98219657, -0.90000343, -0.93687695, -0.98219657, -0.90000343, -0.93687695, 0.9821965)
 
-[node name="WoodenCrate" type="Node3D"]
+[node name="WoodenCrate" type="Node3D" unique_id=132977324]
 
-[node name="Cube" type="MeshInstance3D" parent="."]
+[node name="Cube" type="MeshInstance3D" parent="." unique_id=2122819278]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.4, -1.1175871e-08)
 mesh = SubResource("ArrayMesh_4qg6j")
 skeleton = NodePath("")
 
-[node name="@StaticBody3D@215164" type="StaticBody3D" parent="Cube"]
+[node name="_StaticBody3D_215164" type="StaticBody3D" parent="Cube" unique_id=313106378]
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/@StaticBody3D@215164"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/_StaticBody3D_215164" unique_id=803583014]
 shape = SubResource("ConcavePolygonShape3D_r3g4c")

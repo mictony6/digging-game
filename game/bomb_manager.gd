@@ -7,7 +7,7 @@ class_name BombManager
 @export var bomb_scene: PackedScene
 @onready var aiming_preview: MeshInstance3D = $AimingPreview
 
-var throw_force: float = 10
+var throw_force: float = 5
 var can_throw: bool = true
 var cooldown_timer: float = 3.0
 var exploded: bool = false

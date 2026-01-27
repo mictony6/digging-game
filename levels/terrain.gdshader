@@ -17,27 +17,29 @@ varying vec3 triplanar_power_normal;
 varying vec3 triplanar_pos;
 
 group_uniforms Noise;
-uniform sampler2D noise_texture;
+uniform sampler2D noise_texture : filter_linear_mipmap_anisotropic;
 uniform bool noise_is_triplanar = false;
+
 group_uniforms Main_Texture;
-uniform sampler2D ground_texture : source_color;
-uniform sampler2D ground_orm_texture;
-uniform sampler2D ground_normal : hint_normal;
+uniform sampler2D ground_texture : source_color, filter_linear_mipmap_anisotropic;
+uniform sampler2D ground_orm_texture : filter_linear_mipmap_anisotropic;
+uniform sampler2D ground_normal : hint_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Alt_Texture;
-uniform sampler2D alt_ground_texture : source_color;
-uniform sampler2D alt_ground_orm_texture;
-uniform sampler2D alt_ground_normal : hint_normal;
+uniform sampler2D alt_ground_texture : source_color, filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_ground_orm_texture : filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_ground_normal : hint_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Cliff_Texture;
-uniform sampler2D cliff_texture : source_color;
-uniform sampler2D cliff_orm_texture;
-uniform sampler2D cliff_normal : hint_normal;
+uniform sampler2D cliff_texture : source_color, filter_linear_mipmap_anisotropic;
+uniform sampler2D cliff_orm_texture : filter_linear_mipmap_anisotropic;
+uniform sampler2D cliff_normal : hint_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Alt_cliff_Texture;
-uniform sampler2D alt_cliff_texture : source_color;
-uniform sampler2D alt_cliff_orm_texture;
-uniform sampler2D alt_cliff_normal : hint_normal;
+uniform sampler2D alt_cliff_texture : source_color, filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_cliff_orm_texture : filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_cliff_normal : hint_normal, filter_linear_mipmap_anisotropic;
+
 
 group_uniforms Transition;
 uniform float separation = 0.5;

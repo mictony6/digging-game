@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=17 format=3 uid="uid://b2ksgj830wn2e"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b2ksgj830wn2e"]
 
 [ext_resource type="Shader" uid="uid://banurgygw2w5" path="res://shaders/triplanar_mix.tres" id="1_jejbx"]
 [ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="2_dxh0l"]

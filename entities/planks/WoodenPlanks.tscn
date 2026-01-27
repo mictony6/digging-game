@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmxt2kujrceq0"]
+[gd_scene format=3 uid="uid://dmxt2kujrceq0"]
 
 [ext_resource type="ArrayMesh" uid="uid://di0pexuq7ebw8" path="res://assets/meshes/planks/Planks.res" id="1_mo2hw"]
 
@@ -9,15 +9,15 @@ bounce = 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_ub7gp"]
 size = Vector3(2.0020523, 0.072021484, 2.0046692)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1884469314]
 collision_layer = 32
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_jhtk8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1880127581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0, 1)
 mesh = ExtResource("1_mo2hw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=414295160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0039669, -4.196167e-05, 1.0002899)
 shape = SubResource("BoxShape3D_ub7gp")

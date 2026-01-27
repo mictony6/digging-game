@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=5 format=4 uid="uid://hp64p4qgnxq1"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://hp64p4qgnxq1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07kbm"]
 resource_name = "Body"

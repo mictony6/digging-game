@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7tpeh28i7txf"]
+[gd_scene format=3 uid="uid://7tpeh28i7txf"]
 
 [ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/rock.gd" id="1_1o8al"]
 [ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="2_hxsg1"]
@@ -80,6 +80,7 @@ ao_enabled = true
 ao_texture = ExtResource("8_cxmus")
 uv1_triplanar = true
 uv1_triplanar_sharpness = 10.0
+texture_filter = 5
 proximity_fade_distance = 0.01
 distance_fade_min_distance = 5.0
 distance_fade_max_distance = 0.0
@@ -99,28 +100,29 @@ ao_texture = ExtResource("8_cxmus")
 uv1_offset = Vector3(0.5, 0.5, 0)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 10.0
+texture_filter = 5
 proximity_fade_distance = 0.01
 
-[node name="Rock" type="StaticBody3D"]
-transform = Transform3D(0.81810844, 0, 0.41684708, 0, 0.9181846, 0, -0.41684708, 0, 0.81810844, 0, 0, 0)
+[node name="Rock" type="StaticBody3D" unique_id=1346294821]
+transform = Transform3D(0.22536284, 0, -0.97615296, 0, 1.0018299, 0, 0.97615296, 0, 0.22536284, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_1o8al")
 rock_data = ExtResource("2_hxsg1")
 break_particles = ExtResource("3_e1dj2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=512977792]
 shape = SubResource("SphereShape3D_xuhvl")
 
-[node name="MeshTypes" type="Node3D" parent="."]
+[node name="MeshTypes" type="Node3D" parent="." unique_id=1619301207]
 
-[node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes"]
+[node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes" unique_id=2933227]
 visible = false
 material_overlay = SubResource("ShaderMaterial_0exme")
 mesh = ExtResource("3_hxsg1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_e1dj2")
 
-[node name="RockMesh2" type="MeshInstance3D" parent="MeshTypes"]
+[node name="RockMesh2" type="MeshInstance3D" parent="MeshTypes" unique_id=138502345]
 material_overlay = ExtResource("5_e1dj2")
 mesh = ExtResource("4_xuhvl")
 skeleton = NodePath("../..")

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://b4s08eyg2bw3c"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b4s08eyg2bw3c"]
 
 [ext_resource type="Shader" uid="uid://7lkclcg3l0i5" path="res://shaders/crack.tres" id="1_5ne07"]
 

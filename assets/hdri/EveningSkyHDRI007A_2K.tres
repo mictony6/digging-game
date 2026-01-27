@@ -1,4 +1,4 @@
-[gd_resource type="Sky" load_steps=3 format=3 uid="uid://blbb15ddcdlb6"]
+[gd_resource type="Sky" format=3 uid="uid://blbb15ddcdlb6"]
 
 [ext_resource type="Texture2D" uid="uid://bqqtc3psrxgrg" path="res://assets/hdri/EveningSkyHDRI007A_2K_HDR.exr" id="acg_liodc8k9"]
 
