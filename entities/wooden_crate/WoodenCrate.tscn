@@ -84,7 +84,6 @@ data = PackedVector3Array(-1, -1, 1.0797056, -1, 1, -1.0797056, -1, 1, 1.0797056
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=2122819278]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.4, -1.1175871e-08)
 mesh = SubResource("ArrayMesh_4qg6j")
-skeleton = NodePath("")
 
 [node name="_StaticBody3D_215164" type="StaticBody3D" parent="Cube" unique_id=313106378]
 collision_layer = 32

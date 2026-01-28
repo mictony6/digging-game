@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://djhlwhtnyh1j6"]
+[gd_scene format=3 uid="uid://djhlwhtnyh1j6"]
 
 [ext_resource type="ArrayMesh" uid="uid://hp64p4qgnxq1" path="res://assets/meshes/bomb.tres" id="1_b0f4v"]
 [ext_resource type="Script" uid="uid://b8db72wl7bxgi" path="res://entities/bomb/bomb.gd" id="1_vteb3"]
@@ -302,7 +302,7 @@ radial_segments = 8
 rings = 4
 is_hemisphere = true
 
-[node name="Bomb" type="RigidBody3D"]
+[node name="Bomb" type="RigidBody3D" unique_id=1944514692]
 collision_layer = 8
 collision_mask = 38
 mass = 0.5
@@ -311,37 +311,35 @@ continuous_cd = true
 angular_damp = 20.0
 script = ExtResource("1_vteb3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1477976299]
 shape = SubResource("SphereShape3D_kqdr2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=905157511]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("1_b0f4v")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1247727427]
 collision_layer = 0
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1876806362]
 shape = SubResource("SphereShape3D_na0ft")
 
-[node name="RadiusFX" type="MeshInstance3D" parent="."]
+[node name="RadiusFX" type="MeshInstance3D" parent="." unique_id=976082072]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_sn2dq")
 mesh = SubResource("SphereMesh_vteb3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_7j5nf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=527776033]
+libraries/ = SubResource("AnimationLibrary_7j5nf")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1695576047]
 light_color = Color(0.16000003, 0.6779999, 1, 1)
 light_energy = 0.0
 omni_range = 10.0
 omni_attenuation = 2.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1369880120]
 material_override = SubResource("StandardMaterial3D_sn2dq")
 cast_shadow = 0
 emitting = false
@@ -352,7 +350,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_na0ft")
 draw_pass_1 = SubResource("CapsuleMesh_7j5nf")
 
-[node name="TinyBits" type="GPUParticles3D" parent="."]
+[node name="TinyBits" type="GPUParticles3D" parent="." unique_id=2102371952]
 cast_shadow = 0
 emitting = false
 amount = 32
@@ -363,7 +361,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_sn2dq")
 draw_pass_1 = SubResource("SphereMesh_7j5nf")
 
-[node name="ToolFlicker" type="OmniLight3D" parent="."]
+[node name="ToolFlicker" type="OmniLight3D" parent="." unique_id=614280270]
 top_level = true
 light_color = Color(0.36351272, 0.6896181, 0.7917227, 1)
 light_volumetric_fog_energy = 0.0

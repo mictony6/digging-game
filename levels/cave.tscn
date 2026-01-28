@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqlr2elgdlc72"]
+[gd_scene format=3 uid="uid://cqlr2elgdlc72"]
 
 [ext_resource type="Shader" uid="uid://banurgygw2w5" path="res://shaders/triplanar_mix.tres" id="1_1fr7q"]
 [ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="2_36a6l"]
@@ -30,10 +30,10 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_1fr7q")
 shader_parameter/Side_Albedo = ExtResource("8_sptxb")
-shader_parameter/Albedo1 = ExtResource("2_36a6l")
-shader_parameter/Albedo2 = ExtResource("3_v4apa")
 shader_parameter/Noise_Scale = 0.59
 shader_parameter/Noise = SubResource("NoiseTexture2D_51b6t")
+shader_parameter/Albedo1 = ExtResource("2_36a6l")
+shader_parameter/Albedo2 = ExtResource("3_v4apa")
 shader_parameter/Separation = 0.73
 shader_parameter/Transition_Softness = 0.085
 shader_parameter/Side_ORM = ExtResource("10_ruwj0")
@@ -46,7 +46,7 @@ shader_parameter/triplanar_scale = Vector3(10, 10, 10)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 10.0
 
-[node name="Cave" type="Node3D"]
+[node name="Cave" type="Node3D" unique_id=458523866]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1639531075]
 material_override = SubResource("ShaderMaterial_grg7a")

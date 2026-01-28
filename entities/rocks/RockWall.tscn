@@ -1,99 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd8eju1cig105"]
+[gd_scene format=3 uid="uid://cd8eju1cig105"]
 
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="1_va8ni"]
 
-[node name="RockWall" type="Node3D"]
+[node name="RockWall" type="Node3D" unique_id=1742819580]
 
-[node name="Rock" parent="." instance=ExtResource("1_va8ni")]
+[node name="Rock" parent="." unique_id=884563940 instance=ExtResource("1_va8ni")]
+transform = Transform3D(1.0366024, 0, 0.01809396, 0, 1.0367602, 0, -0.01809396, 0, 1.0366024, 0, 0, 0)
 
-[node name="Rock2" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+[node name="Rock2" parent="." unique_id=1068811808 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-1.0337254, 0, -0.10864888, 0, 1.0394194, 0, 0.10864888, 0, -1.0337254, 1, 0, 0)
 
-[node name="Rock3" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+[node name="Rock3" parent="." unique_id=750293885 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-1.0612175, 0, -0.26459116, 0, 1.0937053, 0, 0.26459116, 0, -1.0612175, 1, 1, 0)
 
-[node name="Rock4" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Rock4" parent="." unique_id=1409942913 instance=ExtResource("1_va8ni")]
+transform = Transform3D(1.0364425, 0, 0.07247511, 0, 1.0389733, 0, -0.07247511, 0, 1.0364425, 0, 1, 0)
 
-[node name="Rock5" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+[node name="Rock5" parent="." unique_id=1672701692 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.46049842, 0, 0.98754215, 0, 1.0896322, 0, -0.98754215, 0, 0.46049842, -1, 1, 0)
 
-[node name="Rock6" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+[node name="Rock6" parent="." unique_id=160665733 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.88815475, 0, 0.15660565, 0, 0.901856, 0, -0.15660565, 0, 0.88815475, -1, 0, 0)
 
-[node name="Rock7" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+[node name="Rock7" parent="." unique_id=1954730446 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.14246583, 0, -1.013696, 0, 1.0236582, 0, 1.013696, 0, -0.14246583, -0.5, 0.5, 0)
 
-[node name="Rock8" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+[node name="Rock8" parent="." unique_id=1086650513 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-1.0095718, 0, 0.17801487, 0, 1.0251461, 0, -0.17801487, 0, -1.0095718, 0.5, 0.5, 0)
 
-[node name="Rock9" parent="." instance=ExtResource("1_va8ni")]
+[node name="Rock9" parent="." unique_id=2117035249 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.410292, 0, 0.8798741, 0, 0.97083366, 0, -0.8798741, 0, 0.410292, 0, 0, 0)
 
-[node name="Rock10" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+[node name="Rock10" parent="." unique_id=1026183323 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.34724283, 0, -0.9045991, 0, 0.96895665, 0, 0.9045991, 0, -0.34724283, 1, 0, 0)
 
-[node name="Rock11" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+[node name="Rock11" parent="." unique_id=1712492761 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.78727037, 0, 0.5719853, 0, 0.9731196, 0, -0.5719853, 0, -0.78727037, 1, 1, 0)
 
-[node name="Rock12" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Rock12" parent="." unique_id=2059457467 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.23848829, 0, -0.89005065, 0, 0.9214482, 0, 0.89005065, 0, -0.23848829, 0, 1, 0)
 
-[node name="Rock13" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+[node name="Rock13" parent="." unique_id=368287453 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.01698442, 0, -0.97304296, 0, 0.9731912, 0, 0.97304296, 0, -0.01698442, -1, 1, 0)
 
-[node name="Rock14" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+[node name="Rock14" parent="." unique_id=961087801 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.16591513, 0, 1.0475467, 0, 1.0606046, 0, -1.0475467, 0, 0.16591513, -1, 0, 0)
 
-[node name="Rock15" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+[node name="Rock15" parent="." unique_id=1832746818 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.80834067, 0, 0.6315449, 0, 1.025799, 0, -0.6315449, 0, -0.80834067, -0.5, 0.5, 0)
 
-[node name="Rock16" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+[node name="Rock16" parent="." unique_id=1128452414 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.5823261, 0, 0.8316479, 0, 1.0152546, 0, -0.8316479, 0, -0.5823261, 0.5, 0.5, 0)
 
-[node name="Rock17" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="Rock17" parent="." unique_id=902364167 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-1.0093579, 0, -0.05289824, 0, 1.0107431, 0, 0.05289824, 0, -1.0093579, 0, 1.5, 0)
 
-[node name="Rock18" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+[node name="Rock18" parent="." unique_id=1537989761 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.68445104, 0, 0.8452268, 0, 1.0876036, 0, -0.8452268, 0, -0.68445104, 1, 1.5, 0)
 
-[node name="Rock19" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0)
+[node name="Rock19" parent="." unique_id=1850333285 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.9281417, 0, 0.47291192, 0, 1.0416778, 0, -0.47291192, 0, -0.9281417, 1, 2.5, 0)
 
-[node name="Rock20" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+[node name="Rock20" parent="." unique_id=712999725 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-1.0401467, 0, 0.3180049, 0, 1.0876728, 0, -0.3180049, 0, -1.0401467, 0, 2.5, 0)
 
-[node name="Rock21" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 0)
+[node name="Rock21" parent="." unique_id=1348241036 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.80933803, 0, 0.5667046, 0, 0.9880193, 0, -0.5667046, 0, -0.80933803, -1, 2.5, 0)
 
-[node name="Rock22" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+[node name="Rock22" parent="." unique_id=624579203 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.67857486, 0, -0.7536336, 0, 1.0141141, 0, 0.7536336, 0, -0.67857486, -1, 1.5, 0)
 
-[node name="Rock23" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
+[node name="Rock23" parent="." unique_id=1569730003 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.27756953, 0, -0.90788984, 0, 0.9493728, 0, 0.90788984, 0, 0.27756953, -0.5, 2, 0)
 
-[node name="Rock24" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 0)
+[node name="Rock24" parent="." unique_id=696864055 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.1845619, 0, 1.0467024, 0, 1.0628495, 0, -1.0467024, 0, -0.1845619, 0.5, 2, 0)
 
-[node name="Rock25" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="Rock25" parent="." unique_id=1290567816 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.03176597, 0, 0.90965843, 0, 0.9102129, 0, -0.90965843, 0, 0.03176597, 0, 1.5, 0)
 
-[node name="Rock26" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+[node name="Rock26" parent="." unique_id=607745945 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.5012441, 0, -0.94270283, 0, 1.067677, 0, 0.94270283, 0, 0.5012441, 1, 1.5, 0)
 
-[node name="Rock27" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0)
+[node name="Rock27" parent="." unique_id=1695129040 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.06946094, 0, -0.99333674, 0, 0.9957624, 0, 0.99333674, 0, -0.06946094, 1, 2.5, 0)
 
-[node name="Rock28" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+[node name="Rock28" parent="." unique_id=2094631385 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.37481943, 0, -1.029808, 0, 1.0958989, 0, 1.029808, 0, 0.37481943, 0, 2.5, 0)
 
-[node name="Rock29" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 0)
+[node name="Rock29" parent="." unique_id=164871521 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.90761983, 0, 0.16003788, 0, 0.9216214, 0, -0.16003788, 0, 0.90761983, -1, 2.5, 0)
 
-[node name="Rock30" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+[node name="Rock30" parent="." unique_id=169737204 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.8939045, 0, -0.4752974, 0, 1.0124094, 0, 0.4752974, 0, -0.8939045, -1, 1.5, 0)
 
-[node name="Rock31" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
+[node name="Rock31" parent="." unique_id=747817571 instance=ExtResource("1_va8ni")]
+transform = Transform3D(0.5331311, 0, 0.9617941, 0, 1.0996711, 0, -0.9617941, 0, 0.5331311, -0.5, 2, 0)
 
-[node name="Rock32" parent="." instance=ExtResource("1_va8ni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 0)
+[node name="Rock32" parent="." unique_id=174132264 instance=ExtResource("1_va8ni")]
+transform = Transform3D(-0.62294143, 0, -0.79732865, 0, 1.0118246, 0, 0.79732865, 0, -0.62294143, 0.5, 2, 0)

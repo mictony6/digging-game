@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://du0vtp13ykrea"]
+[gd_scene format=4 uid="uid://du0vtp13ykrea"]
 
 [ext_resource type="ArrayMesh" uid="uid://oayamxo0lqio" path="res://assets/meshes/laser_tool/mesh1.res" id="1_xc8d0"]
 [ext_resource type="ArrayMesh" uid="uid://dd2mq26i2rpwf" path="res://assets/meshes/laser_tool/mesh2.res" id="2_hnwkv"]
@@ -36,20 +36,18 @@ roughness = 0.0
 use_z_clip_scale = true
 z_clip_scale = 0.85
 
-[node name="LaserTool" type="Node3D"]
+[node name="LaserTool" type="Node3D" unique_id=978511806]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="."]
+[node name="Cube" type="MeshInstance3D" parent="." unique_id=1570464307]
 mesh = ExtResource("1_xc8d0")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ybjws")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1557904099]
 mesh = SubResource("ArrayMesh_xc8d0")
 surface_material_override/0 = SubResource("StandardMaterial3D_hnwkv")
 
-[node name="Cube_001" type="MeshInstance3D" parent="."]
+[node name="Cube_001" type="MeshInstance3D" parent="." unique_id=1373628562]
 transform = Transform3D(0.25579977, 0, 0, 0, 0, -0.25579977, 0, 0.25579977, 0, 0, 1.1434436, 0.19197425)
 mesh = ExtResource("2_hnwkv")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_bqd44")

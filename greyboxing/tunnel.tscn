@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7qj54fhr3era"]
+[gd_scene format=3 uid="uid://7qj54fhr3era"]
 
 [ext_resource type="Material" uid="uid://b2ksgj830wn2e" path="res://shaders/materials/triplanar_ground.tres" id="2_0w3mh"]
 
-[node name="Tunnel4" type="CSGBox3D"]
+[node name="Tunnel4" type="CSGBox3D" unique_id=1074758698]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 0)
 use_collision = true
 collision_layer = 4
@@ -10,7 +10,7 @@ collision_mask = 9
 size = Vector3(10, 5, 10)
 material = ExtResource("2_0w3mh")
 
-[node name="Box2" type="CSGCylinder3D" parent="."]
+[node name="Box2" type="CSGCylinder3D" parent="." unique_id=242126705]
 transform = Transform3D(0.9999999, -7.3513704e-08, 7.35137e-08, 7.3513704e-08, -4.371139e-08, -0.99999994, 7.3513704e-08, 0.99999994, -4.3711374e-08, 0, -1, 0)
 operation = 2
 use_collision = true

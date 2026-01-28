@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d2rwq3anfdsn8"]
 
-[ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_2grjb"]
+[ext_resource type="Environment" uid="uid://bo22vvl5ev0to" path="res://data/environment/main.tres" id="1_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
 [ext_resource type="Script" uid="uid://b608we0ij00bo" path="res://game/coordinates.gd" id="4_6g8e2"]
 [ext_resource type="Material" uid="uid://b2ksgj830wn2e" path="res://shaders/materials/triplanar_ground.tres" id="4_r4e4k"]
@@ -29,50 +29,15 @@
 [ext_resource type="Script" uid="uid://dkhl3ppui7enn" path="res://game/rock_spawner.gd" id="19_uy2g7"]
 [ext_resource type="PackedScene" uid="uid://uiig5ud3kjxl" path="res://greyboxing/exchange.tscn" id="20_u1nm5"]
 [ext_resource type="PackedScene" uid="uid://cdlfx6d6pumlb" path="res://levels/terrain.tscn" id="22_8a51t"]
+[ext_resource type="PackedScene" uid="uid://cepatjt0ekjg3" path="res://entities/water/water.tscn" id="25_70x8p"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://b62ceimsar2op" path="res://assets/meshes/tree/tree.glb" id="33_4ksiy"]
 [ext_resource type="PackedScene" uid="uid://clil0bg04tt7a" path="res://entities/rocks/StrangeOre01.tscn" id="34_0v7wf"]
 [ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="35_krped"]
 [ext_resource type="PackedScene" uid="uid://d2sruleu4iip6" path="res://entities/wooden_crate/WoodenCrate.tscn" id="36_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dmxt2kujrceq0" path="res://entities/planks/WoodenPlanks.tscn" id="36_m8nfy"]
+[ext_resource type="Texture2D" uid="uid://ckenlabal34qg" path="res://assets/textures/terrain/terrain_mix_noise_texture.res" id="37_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="37_01s5a"]
-
-[sub_resource type="Curve" id="Curve_m8nfy"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.43392074, 0.2865169), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_1ijy3"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_01s5a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xqdkm"]
-curve_x = SubResource("Curve_m8nfy")
-curve_y = SubResource("Curve_1ijy3")
-curve_z = SubResource("Curve_01s5a")
-
-[sub_resource type="Environment" id="Environment_r4e4k"]
-background_mode = 2
-sky = ExtResource("1_2grjb")
-ambient_light_color = Color(0.67414933, 0.4878065, 0.26124206, 1)
-ambient_light_sky_contribution = 0.3
-tonemap_mode = 4
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-glow_enabled = true
-fog_light_color = Color(0.4745098, 0.49019608, 0.3372549, 1)
-fog_sky_affect = 0.168
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.02
-volumetric_fog_albedo = Color(0.3271365, 0.44102186, 0.4406896, 1)
-volumetric_fog_sky_affect = 0.391
-adjustment_brightness = 1.1
-adjustment_contrast = 0.85
-adjustment_color_correction = SubResource("CurveXYZTexture_xqdkm")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nm5"]
 bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
@@ -152,16 +117,49 @@ point_count = 2
 albedo_texture = ExtResource("35_krped")
 uv1_triplanar = true
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_m8nfy"]
+top_radius = 5.5
+bottom_radius = 6.0
+height = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01s5a"]
+render_priority = 0
+shader = ExtResource("5_krped")
+shader_parameter/global_scale = 0.1
+shader_parameter/triplanar_scale = Vector3(1, 1, 1)
+shader_parameter/triplanar_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 2.0
+shader_parameter/noise_texture = ExtResource("37_1ijy3")
+shader_parameter/noise_is_triplanar = false
+shader_parameter/ground_texture = ExtResource("13_4ksiy")
+shader_parameter/ground_orm_texture = ExtResource("17_1ijy3")
+shader_parameter/ground_normal = ExtResource("15_krped")
+shader_parameter/alt_ground_texture = ExtResource("14_0v7wf")
+shader_parameter/alt_ground_orm_texture = ExtResource("18_01s5a")
+shader_parameter/alt_ground_normal = ExtResource("16_m8nfy")
+shader_parameter/cliff_texture = ExtResource("14_uoqfl")
+shader_parameter/cliff_orm_texture = ExtResource("13_gmj64")
+shader_parameter/cliff_normal = ExtResource("12_xqdkm")
+shader_parameter/alt_cliff_texture = ExtResource("8_01s5a")
+shader_parameter/alt_cliff_orm_texture = ExtResource("7_1ijy3")
+shader_parameter/alt_cliff_normal = ExtResource("6_m8nfy")
+shader_parameter/separation = 0.9
+shader_parameter/transition_sharpness = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xqdkm"]
+top_radius = 5.0
+bottom_radius = 5.0
+
 [node name="Level" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
-transform = Transform3D(0.63876784, 0.7158628, -0.28198585, 0, 0.36650118, 0.9304176, 0.7693995, -0.5943208, 0.2341092, 112.5, -6, 27.5)
+transform = Transform3D(0.63876784, 0.6879618, -0.3445056, 0, 0.44775903, 0.89415425, 0.7693995, -0.5711569, 0.28601408, 112.5, -6, 27.5)
 light_color = Color(0.77525723, 0.6606558, 0.5471344, 1)
 light_energy = 3.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2016625581]
-environment = SubResource("Environment_r4e4k")
+environment = ExtResource("1_1ijy3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
@@ -518,21 +516,23 @@ transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 32, 0, -42)
 
 [node name="StrangeOre01" parent="." unique_id=664903195 instance=ExtResource("34_0v7wf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, -29.5, -59)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -29.266825, -21)
 
-[node name="StaticBody3D2" parent="." unique_id=849281995 instance=ExtResource("36_m8nfy")]
+[node name="Bridge" type="Node3D" parent="." unique_id=1935211174]
+
+[node name="StaticBody3D2" parent="Bridge" unique_id=849281995 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0.08715574, 0.9961947, 3.8096983e-09, -0.9961947, 0.08715574, -4.3545054e-08, 10.5, -26.766705, -15)
 
-[node name="StaticBody3D3" parent="." unique_id=991911090 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D3" parent="Bridge" unique_id=991911090 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.5, -26.57216, -17)
 
-[node name="StaticBody3D4" parent="." unique_id=1416874134 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D4" parent="Bridge" unique_id=1416874134 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0.17364818, 0.9848077, 7.590403e-09, -0.9848077, 0.17364818, -4.304731e-08, 10.5, -26.57216, -19)
 
-[node name="StaticBody3D5" parent="." unique_id=1500019412 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D5" parent="Bridge" unique_id=1500019412 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-4.37114e-08, 6.971991e-15, 1, 0.6427877, 0.7660444, 2.8097146e-08, -0.7660444, 0.6427877, -3.348487e-08, 10.5, -26.222162, -20.95)
 
-[node name="StaticBody3D6" parent="." unique_id=484797442 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D6" parent="Bridge" unique_id=484797442 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-3.0908627e-08, -3.0908616e-08, 1, -0.08715561, 0.9961947, 2.809715e-08, -0.9961947, -0.08715561, -3.348487e-08, 10.5, -24.936586, -22.48209)
 
 [node name="Temple" parent="." unique_id=1459980554 instance=ExtResource("37_01s5a")]
@@ -552,10 +552,49 @@ operation = 2
 size = Vector3(3, 2.9725342, 15)
 
 [node name="WoodenCrate" parent="." unique_id=132977324 instance=ExtResource("36_1ijy3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -25, 7)
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -1, -25.431196, 5.5)
 
 [node name="WoodenCrate2" parent="." unique_id=530048680 instance=ExtResource("36_1ijy3")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -1, -25, 8.5)
+
+[node name="mesa" type="Node3D" parent="." unique_id=964658255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -25, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesa" unique_id=2034554993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+mesh = SubResource("CylinderMesh_m8nfy")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesa" unique_id=2038452311]
+mesh = SubResource("CylinderMesh_xqdkm")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="mesa2" type="Node3D" parent="." unique_id=820728184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -25, -23.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesa2" unique_id=735516253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+mesh = SubResource("CylinderMesh_m8nfy")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesa2" unique_id=225170659]
+mesh = SubResource("CylinderMesh_xqdkm")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="mesa3" type="Node3D" parent="." unique_id=543567353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -28, -23)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesa3" unique_id=571050886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+mesh = SubResource("CylinderMesh_m8nfy")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesa3" unique_id=477803151]
+mesh = SubResource("CylinderMesh_xqdkm")
+surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
+
+[node name="Node3D" parent="." unique_id=941027867 instance=ExtResource("25_70x8p")]
+transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 7.4818425, -29.518824, -19.02978)
 
 [connection signal="body_entered" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LowOxygenArea" to="LowOxygenArea" method="_on_body_exited"]

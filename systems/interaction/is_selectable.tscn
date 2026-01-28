@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://56rt610we0mn"]
+[gd_scene format=3 uid="uid://56rt610we0mn"]
 
 [ext_resource type="Script" uid="uid://4qpe268m4w7h" path="res://systems/interaction/is_selectable.gd" id="1_rqgv7"]
 [ext_resource type="Shader" uid="uid://dq3dij6k6hn5t" path="res://shaders/outline.tres" id="2_tsyar"]
@@ -19,7 +19,7 @@ oversampling = 8.0
 font = SubResource("SystemFont_v733u")
 font_size = 32
 
-[node name="IsSelectable" type="Area3D"]
+[node name="IsSelectable" type="Area3D" unique_id=453905894]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
@@ -28,13 +28,13 @@ interaction_name = "Open"
 secondary_interaction_name = "Open"
 outline_material = SubResource("ShaderMaterial_5k8kf")
 
-[node name="Prompt" type="Control" parent="."]
+[node name="Prompt" type="Control" parent="." unique_id=1763173018]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="HSplitContainer" type="HBoxContainer" parent="Prompt"]
+[node name="HSplitContainer" type="HBoxContainer" parent="Prompt" unique_id=215967311]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,12 +43,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Prompt/HSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Prompt/HSplitContainer" unique_id=1410065636]
 layout_mode = 2
 texture = ExtResource("3_3qftb")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="Prompt/HSplitContainer"]
+[node name="Label" type="Label" parent="Prompt/HSplitContainer" unique_id=1475376944]
 layout_mode = 2
 text = "Test"
 label_settings = SubResource("LabelSettings_qmxiq")

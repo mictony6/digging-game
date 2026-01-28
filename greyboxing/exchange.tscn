@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uiig5ud3kjxl"]
+[gd_scene format=3 uid="uid://uiig5ud3kjxl"]
 
 [ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_4wnub"]
 [ext_resource type="Script" uid="uid://dpjbs6jxb2p3t" path="res://game/exchange.gd" id="1_tqr2y"]
@@ -38,38 +38,38 @@ size = Vector3(5, 5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tqr2y"]
 
-[node name="Exchange" type="StaticBody3D"]
+[node name="Exchange" type="StaticBody3D" unique_id=173155330]
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_tqr2y")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1755018779]
 mesh = SubResource("BoxMesh_tqr2y")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=1832670687]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.4)
 pixel_size = 0.001
 text = "Exchange"
 font_size = 240
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=439841110]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.25)
 mesh = SubResource("CylinderMesh_2noy1")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1112633531]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.3)
 mesh = SubResource("CylinderMesh_arsk0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289857091]
 shape = SubResource("BoxShape3D_4wnub")
 
-[node name="IsSelectable" parent="." node_paths=PackedStringArray("target_mesh") instance=ExtResource("2_5whdh")]
+[node name="IsSelectable" parent="." unique_id=1706861804 node_paths=PackedStringArray("target_mesh") instance=ExtResource("2_5whdh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 interaction_name = "Use"
 secondary_interaction_name = "Use"
 target_mesh = NodePath("../MeshInstance3D2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IsSelectable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IsSelectable" unique_id=406184877]
 shape = SubResource("SphereShape3D_tqr2y")
 
 [connection signal="selected" from="IsSelectable" to="." method="_on_is_selectable_selected"]

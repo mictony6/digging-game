@@ -1,0 +1,40 @@
+[gd_resource type="Environment" format=3 uid="uid://bo22vvl5ev0to"]
+
+[ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_q0qwx"]
+
+[sub_resource type="Curve" id="Curve_m8nfy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.43392074, 0.2865169), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_1ijy3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_01s5a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xqdkm"]
+curve_x = SubResource("Curve_m8nfy")
+curve_y = SubResource("Curve_1ijy3")
+curve_z = SubResource("Curve_01s5a")
+
+[resource]
+background_mode = 2
+sky = ExtResource("1_q0qwx")
+ambient_light_color = Color(0.67414933, 0.4878065, 0.26124206, 1)
+ambient_light_sky_contribution = 0.3
+tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.4745098, 0.49019608, 0.3372549, 1)
+fog_sky_affect = 0.168
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.3271365, 0.44102186, 0.4406896, 1)
+volumetric_fog_sky_affect = 0.391
+adjustment_brightness = 1.1
+adjustment_contrast = 0.85
+adjustment_color_correction = SubResource("CurveXYZTexture_xqdkm")

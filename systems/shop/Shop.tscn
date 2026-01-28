@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb8q5e8g11qb6"]
+[gd_scene format=3 uid="uid://bb8q5e8g11qb6"]
 
 [ext_resource type="Script" uid="uid://dqe6sfruy5p44" path="res://systems/shop/shopui.gd" id="1_v733u"]
 [ext_resource type="PackedScene" uid="uid://cu7tjycbex2nb" path="res://entities/console/console.tscn" id="2_v733u"]
@@ -40,27 +40,27 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_lmy5d"]
 events = [SubResource("InputEventKey_7abev")]
 
-[node name="Shop" type="StaticBody3D"]
+[node name="Shop" type="StaticBody3D" unique_id=105563488]
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_v733u")
 
-[node name="console" parent="." instance=ExtResource("2_v733u")]
+[node name="console" parent="." unique_id=468653655 instance=ExtResource("2_v733u")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1627782953]
 shape = SubResource("ConcavePolygonShape3D_qmxiq")
 
-[node name="IsSelectable" parent="." node_paths=PackedStringArray("target_mesh") instance=ExtResource("2_w4jjq")]
+[node name="IsSelectable" parent="." unique_id=207736859 node_paths=PackedStringArray("target_mesh") instance=ExtResource("2_w4jjq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022146702, 2.5311205, 0.09779918)
 target_mesh = NodePath("../console")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="IsSelectable"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="IsSelectable" unique_id=433422324]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016729832, -1.0424225, -0.29674172)
 shape = SubResource("BoxShape3D_5k8kf")
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=994633315]
 
-[node name="ShopUI" type="Control" parent="HUD"]
+[node name="ShopUI" type="Control" parent="HUD" unique_id=461165848]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -69,7 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="HUD/ShopUI"]
+[node name="Panel" type="Panel" parent="HUD/ShopUI" unique_id=1149219853]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +77,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ShopUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ShopUI" unique_id=1646637637]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -87,30 +87,30 @@ anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="HUD/ShopUI/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ShopUI/VBoxContainer" unique_id=1815924700]
 layout_mode = 2
 text = "Mining Shop"
 label_settings = SubResource("LabelSettings_6eahv")
 
-[node name="Label2" type="Label" parent="HUD/ShopUI/VBoxContainer"]
+[node name="Label2" type="Label" parent="HUD/ShopUI/VBoxContainer" unique_id=254451342]
 layout_mode = 2
 text = "Upgrade your mining equipment and boost your earnings"
 label_settings = SubResource("LabelSettings_hevaj")
 
-[node name="HSeparator" type="HSeparator" parent="HUD/ShopUI/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="HUD/ShopUI/VBoxContainer" unique_id=1995854021]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="TabContainer" type="TabContainer" parent="HUD/ShopUI/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="HUD/ShopUI/VBoxContainer" unique_id=1649983202]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Upgrades" type="Control" parent="HUD/ShopUI/VBoxContainer/TabContainer"]
+[node name="Upgrades" type="Control" parent="HUD/ShopUI/VBoxContainer/TabContainer" unique_id=1570059861]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades" unique_id=545357927]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,27 +118,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UpgradeParent" type="VBoxContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer"]
+[node name="UpgradeParent" type="VBoxContainer" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer" unique_id=2110676610]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TierUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" instance=ExtResource("4_v733u")]
+[node name="TierUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=1968511382 instance=ExtResource("4_v733u")]
 layout_mode = 2
 cost = 100
 
-[node name="StrengthUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" instance=ExtResource("4_v733u")]
+[node name="StrengthUpgrade" parent="HUD/ShopUI/VBoxContainer/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=1454043474 instance=ExtResource("4_v733u")]
 layout_mode = 2
 upgrade = 1
 cost = 50
 
-[node name="Sell" type="Control" parent="HUD/ShopUI/VBoxContainer/TabContainer"]
+[node name="Sell" type="Control" parent="HUD/ShopUI/VBoxContainer/TabContainer" unique_id=308795091]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Add100Coins" type="Button" parent="HUD/ShopUI/VBoxContainer/TabContainer/Sell"]
+[node name="Add100Coins" type="Button" parent="HUD/ShopUI/VBoxContainer/TabContainer/Sell" unique_id=1959734789]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,7 +153,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "+100 coins"
 
-[node name="ExitButton" type="Button" parent="HUD/ShopUI"]
+[node name="ExitButton" type="Button" parent="HUD/ShopUI" unique_id=1286532845]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

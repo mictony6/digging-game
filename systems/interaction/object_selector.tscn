@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bplpbwh5ifues"]
+[gd_scene format=3 uid="uid://bplpbwh5ifues"]
 
 [ext_resource type="Script" uid="uid://dqgs3m2c7njrt" path="res://systems/interaction/object_selector.gd" id="1_iddfb"]
 
-[node name="ObjectSelector" type="RayCast3D"]
+[node name="ObjectSelector" type="RayCast3D" unique_id=1404006718]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 collision_mask = 16
 collide_with_areas = true

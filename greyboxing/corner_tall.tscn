@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://26bbwmyvb8hh"]
+[gd_scene format=3 uid="uid://26bbwmyvb8hh"]
 
 [ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_kqx8o"]
 
@@ -7,7 +7,7 @@ albedo_texture = ExtResource("1_kqx8o")
 roughness = 0.5
 uv1_triplanar = true
 
-[node name="CornerTall" type="CSGBox3D"]
+[node name="CornerTall" type="CSGBox3D" unique_id=1631257866]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 use_collision = true
 collision_layer = 4

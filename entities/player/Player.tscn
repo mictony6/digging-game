@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dmujhjwc5ylgy"]
+[gd_scene format=4 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
@@ -142,6 +142,22 @@ shadow_mesh = SubResource("ArrayMesh_fmgue")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
 
+[sub_resource type="Animation" id="Animation_4fbvh"]
+resource_name = "AimBomb"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/BombManager/AimingPreview:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.335, -0.131, -0.44), Vector3(-0.335, -0.106, -0.44), Vector3(-0.335, -0.131, -0.44)]
+}
+
 [sub_resource type="Animation" id="Animation_npcl8"]
 length = 0.001
 tracks/0/type = "value"
@@ -230,22 +246,6 @@ tracks/1/keys = {
 "values": [Vector3(0.6034791, 0.35569543, 0.2835148), Vector3(1.6179202, 0.35604715, 0.28274333), Vector3(0.6034791, 0.35569543, 0.2835148), Vector3(-0.015707964, 0.35604715, 0.28274333), Vector3(0.6034791, 0.35569543, 0.2835148)]
 }
 
-[sub_resource type="Animation" id="Animation_4fbvh"]
-resource_name = "AimBomb"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/BombManager/AimingPreview:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.335, -0.131, -0.44), Vector3(-0.335, -0.106, -0.44), Vector3(-0.335, -0.131, -0.44)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4fbvh"]
 _data = {
 &"AimBomb": SubResource("Animation_4fbvh"),
@@ -253,43 +253,44 @@ _data = {
 &"ReadyBomb": SubResource("Animation_j531f")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head")]
+[node name="Player" type="CharacterBody3D" unique_id=1047360223 node_paths=PackedStringArray("head")]
 collision_mask = 39
 floor_max_angle = 1.0471976
 script = ExtResource("1_ak4un")
 head = NodePath("Head")
 SPRINT_SPEED = 3.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
+gi_mode = 0
 mesh = SubResource("CapsuleMesh_lkjt4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=913752307]
 shape = SubResource("CapsuleShape3D_ny0t1")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=779965885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_fmb3c")
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1163092297]
 current = true
 
-[node name="ObjectSelector" parent="Head/Camera3D" node_paths=PackedStringArray("_player", "_tool") instance=ExtResource("3_2a181")]
+[node name="ObjectSelector" parent="Head/Camera3D" unique_id=1138480435 node_paths=PackedStringArray("_player", "_tool") instance=ExtResource("3_2a181")]
 hit_from_inside = true
 _player = NodePath("../../..")
 _tool = NodePath("../../ToolManager/Tool")
 
-[node name="BombManager" type="Node3D" parent="Head" node_paths=PackedStringArray("animation")]
+[node name="BombManager" type="Node3D" parent="Head" unique_id=430717964 node_paths=PackedStringArray("animation")]
 script = ExtResource("3_mq27t")
 animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
-[node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager"]
-transform = Transform3D(0.09552653, -0.014453307, 0.025802756, 0.023032172, 0.09108559, -0.034248088, -0.018552616, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+[node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
+transform = Transform3D(0.09552651, -0.014453307, 0.025802756, 0.023032168, 0.09108559, -0.034248088, -0.018552613, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
 
-[node name="ToolManager" type="Node3D" parent="Head" node_paths=PackedStringArray("current_tool", "tool_raycast", "tool_area3d")]
+[node name="ToolManager" type="Node3D" parent="Head" unique_id=1393119786 node_paths=PackedStringArray("current_tool", "tool_raycast", "tool_area3d")]
 script = ExtResource("3_rl6fg")
 current_tool = NodePath("Tool")
 tool_raycast = NodePath("RayCast3D")
@@ -297,33 +298,33 @@ tool_area3d = NodePath("ToolAreaCollision")
 hit_particles = ExtResource("4_q57vx")
 break_particles = ExtResource("5_ak4un")
 
-[node name="Tool" parent="Head/ToolManager" instance=ExtResource("6_1ms0h")]
+[node name="Tool" parent="Head/ToolManager" unique_id=665250785 instance=ExtResource("6_1ms0h")]
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager" unique_id=1059309043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
 enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 2
 
-[node name="ToolAreaCollision" type="Area3D" parent="Head/ToolManager"]
+[node name="ToolAreaCollision" type="Area3D" parent="Head/ToolManager" unique_id=1666621720]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision" unique_id=90150752]
 shape = SubResource("SphereShape3D_u45fp")
 
-[node name="Beam" type="MeshInstance3D" parent="Head/ToolManager"]
+[node name="Beam" type="MeshInstance3D" parent="Head/ToolManager" unique_id=130590868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1719015)
 cast_shadow = 0
 
-[node name="ToolFlicker" type="OmniLight3D" parent="Head/ToolManager"]
+[node name="ToolFlicker" type="OmniLight3D" parent="Head/ToolManager" unique_id=1094896208]
 light_color = Color(0.91715086, 0.30366266, 0.2268546, 1)
 light_volumetric_fog_energy = 0.0
 omni_attenuation = 2.0
 script = ExtResource("11_ax5yc")
 enabled = true
 
-[node name="HeadLamp" type="SpotLight3D" parent="Head"]
+[node name="HeadLamp" type="SpotLight3D" parent="Head" unique_id=1319693506]
 visible = false
 light_color = Color(0.744366, 0.7852894, 0.74294144, 1)
 light_energy = 5.0
@@ -333,28 +334,28 @@ spot_range = 8.0
 spot_attenuation = 2.0
 spot_angle = 35.0
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=1800093817 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_rl6fg")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cp5a0y857k43q"
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=270801323]
 script = ExtResource("8_rl6fg")
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Move" type="Node" parent="StateMachine" unique_id=555587710]
 script = ExtResource("8_q57vx")
 
-[node name="Sprint" type="Node" parent="StateMachine"]
+[node name="Sprint" type="Node" parent="StateMachine" unique_id=1479996798]
 script = ExtResource("10_ak4un")
 
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1290695842]
 script = ExtResource("11_1ms0h")
 
-[node name="Fall" type="Node" parent="StateMachine"]
+[node name="Fall" type="Node" parent="StateMachine" unique_id=936237370]
 script = ExtResource("17_j531f")
 metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=799556388]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -365,7 +366,7 @@ grow_horizontal = 0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="StateLabel" type="Label" parent="Control"]
+[node name="StateLabel" type="Label" parent="Control" unique_id=1505214324]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -375,10 +376,8 @@ offset_bottom = 23.0
 grow_horizontal = 0
 horizontal_alignment = 2
 
-[node name="IsKnockbacked" type="Node3D" parent="."]
+[node name="IsKnockbacked" type="Node3D" parent="." unique_id=1271568824]
 script = ExtResource("16_aubru")
 
-[node name="BombAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4fbvh")
-}
+[node name="BombAnimations" type="AnimationPlayer" parent="." unique_id=1478394349]
+libraries/ = SubResource("AnimationLibrary_4fbvh")

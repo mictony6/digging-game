@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ToolData" load_steps=3 format=3 uid="uid://cmcmmofhy52j6"]
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://cmcmmofhy52j6"]
 
 [ext_resource type="PackedScene" uid="uid://du0vtp13ykrea" path="res://entities/laser_tool/LaserTool.tscn" id="1_r3wa3"]
 [ext_resource type="Script" uid="uid://l3ckd63l0kfx" path="res://data/tools/ToolData.gd" id="1_tlcfd"]

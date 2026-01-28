@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://buxr6qhn67k7e"]
+[gd_scene format=3 uid="uid://buxr6qhn67k7e"]
 
 [ext_resource type="ArrayMesh" uid="uid://n1vmebqkelki" path="res://assets/meshes/fractures/rock_cells_rock_cell_004.res" id="1_84mxu"]
 
@@ -45,7 +45,7 @@ scale_min = 0.25
 scale_max = 0.75
 scale_curve = SubResource("CurveTexture_3m1cx")
 
-[node name="GPUParticles3D" type="GPUParticles3D"]
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=677331480]
 material_override = SubResource("StandardMaterial3D_cd21k")
 emitting = false
 amount = 16

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://8dmx8arlhau2"]
+[gd_scene format=4 uid="uid://8dmx8arlhau2"]
 
 [ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="1_w1uyh"]
 [ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="2_g56ly"]
@@ -29,14 +29,14 @@ uv1_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_xqdkm"]
 size = Vector3(19, 12.5, 2)
 
-[node name="BoundaryWall" type="MeshInstance3D"]
+[node name="BoundaryWall" type="MeshInstance3D" unique_id=1685303700]
 mesh = SubResource("ArrayMesh_01s5a")
 surface_material_override/0 = SubResource("StandardMaterial3D_01s5a")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1279308384]
 collision_layer = 4
 collision_mask = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1766485260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("BoxShape3D_xqdkm")

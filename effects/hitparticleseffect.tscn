@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnsi80dh14xy6"]
+[gd_scene format=3 uid="uid://cnsi80dh14xy6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2grjb"]
 shading_mode = 2
@@ -33,7 +33,7 @@ scale_curve = SubResource("CurveTexture_0tsex")
 radius = 0.016
 height = 0.252
 
-[node name="hitparticleseffect" type="GPUParticles3D"]
+[node name="hitparticleseffect" type="GPUParticles3D" unique_id=1948748199]
 material_override = SubResource("StandardMaterial3D_2grjb")
 emitting = false
 amount = 16

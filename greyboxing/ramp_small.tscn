@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://deeqsp53ccaqm"]
+[gd_scene format=3 uid="uid://deeqsp53ccaqm"]
 
 [ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_4jvj0"]
 
@@ -7,7 +7,7 @@ albedo_texture = ExtResource("1_4jvj0")
 roughness = 0.5
 uv1_triplanar = true
 
-[node name="RampSmall" type="CSGBox3D"]
+[node name="RampSmall" type="CSGBox3D" unique_id=1237772314]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 use_collision = true
 collision_layer = 4
@@ -15,7 +15,7 @@ collision_mask = 9
 size = Vector3(2, 2, 4)
 material = SubResource("StandardMaterial3D_eudka")
 
-[node name="Box5" type="CSGBox3D" parent="."]
+[node name="Box5" type="CSGBox3D" parent="." unique_id=156452592]
 transform = Transform3D(0.9999927, 0, 0, 0, 0.866021, -0.4999975, 3.5527137e-15, 0.49999738, 0.86602086, -4.7683716e-06, 0.3457291, 1.7163029)
 operation = 2
 use_collision = true

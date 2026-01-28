@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://mcfdyr2dl68s"]
+[gd_scene format=3 uid="uid://mcfdyr2dl68s"]
 
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="6_d4o56"]
 [ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_ssmx2"]
@@ -208,232 +208,6 @@ default_value = Vector2(5, 5)
 input_name = "uv"
 
 [sub_resource type="VisualShader" id="VisualShader_7tmjo"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_burley, specular_schlick_ggx;
-
-uniform vec2 Uv_Scale1 = vec2(5.000000, 5.000000);
-uniform sampler2D tex_frg_17;
-uniform sampler2D Main_Texture : source_color;
-uniform sampler2D tex_frg_19;
-uniform vec2 UV_Scale_2 = vec2(5.000000, 5.000000);
-uniform sampler2D Secondary_Texture : source_color;
-uniform sampler2D Noise_Texture;
-uniform sampler2D O_R_M;
-uniform sampler2D Secondary_O_R_M;
-uniform sampler2D Normal_Map : hint_normal;
-uniform sampler2D Secondary_Normal_Map : hint_normal;
-
-
-
-void fragment() {
-// Input:9
-	vec2 n_out9p0 = UV;
-
-
-// Vector2Parameter:8
-	vec2 n_out8p0 = Uv_Scale1;
-
-
-// UVFunc:10
-	vec2 n_in10p2 = vec2(0.00000, 0.00000);
-	vec2 n_out10p0 = (n_out9p0 - n_in10p2) * n_out8p0 + n_in10p2;
-
-
-// Reroute:30
-	vec2 n_out30p0 = n_out10p0;
-
-
-// Vector2Constant:15
-	vec2 n_out15p0 = vec2(0.500000, 0.500000);
-
-
-// Texture2D:17
-	vec4 n_out17p0 = texture(tex_frg_17, UV);
-
-
-	float n_out18p0;
-// Remap:18
-	float n_in18p1 = 0.00000;
-	float n_in18p2 = 1.00000;
-	float n_in18p3 = 0.00000;
-	float n_in18p4 = 360.00000;
-	{
-		float __input_range = n_in18p2 - n_in18p1;
-		float __output_range = n_in18p4 - n_in18p3;
-		n_out18p0 = n_in18p3 + __output_range * ((n_out17p0.x - n_in18p1) / __input_range);
-	}
-
-
-	vec2 n_out13p0;
-// Expression:13
-	n_out13p0 = vec2(0.0, 0.0);
-	{
-		n_out30p0 -= n_out15p0;
-		float rotation_radians = radians(n_out18p0);
-		float c = cos(rotation_radians);
-		float s = sin(rotation_radians);
-		
-		n_out13p0.x = n_out30p0.x * c + n_out30p0.y * s;
-		n_out13p0.y = n_out30p0.y * c - n_out30p0.x * s;
-		
-		n_out13p0 += n_out15p0;
-	}
-
-
-	vec4 n_out20p0;
-// Texture2D:20
-	n_out20p0 = texture(Main_Texture, n_out13p0);
-
-
-	vec4 n_out11p0;
-// Texture2D:11
-	n_out11p0 = texture(Main_Texture, n_out30p0);
-
-
-// Texture2D:19
-	vec4 n_out19p0 = texture(tex_frg_19, UV);
-
-
-// Mix:21
-	vec3 n_out21p0 = mix(vec3(n_out20p0.xyz), vec3(n_out11p0.xyz), vec3(n_out19p0.xyz));
-
-
-// Reroute:46
-	vec3 n_out46p0 = n_out21p0;
-
-
-// Input:53
-	vec2 n_out53p0 = UV;
-
-
-// Vector2Parameter:60
-	vec2 n_out60p0 = UV_Scale_2;
-
-
-// UVFunc:54
-	vec2 n_in54p2 = vec2(0.00000, 0.00000);
-	vec2 n_out54p0 = (n_out53p0 - n_in54p2) * n_out60p0 + n_in54p2;
-
-
-	vec4 n_out42p0;
-// Texture2D:42
-	n_out42p0 = texture(Secondary_Texture, n_out54p0);
-
-
-	vec4 n_out45p0;
-// Texture2D:45
-	n_out45p0 = texture(Noise_Texture, UV);
-
-
-// Mix:43
-	vec3 n_out43p0 = mix(n_out46p0, vec3(n_out42p0.xyz), vec3(n_out45p0.xyz));
-
-
-	vec4 n_out23p0;
-// Texture2D:23
-	n_out23p0 = texture(O_R_M, n_out13p0);
-
-
-// Input:36
-	vec2 n_out36p0 = UV;
-
-
-// ParameterRef:35
-	vec2 n_out35p0 = Uv_Scale1;
-
-
-// UVFunc:37
-	vec2 n_in37p2 = vec2(0.00000, 0.00000);
-	vec2 n_out37p0 = (n_out36p0 - n_in37p2) * n_out35p0 + n_in37p2;
-
-
-	vec4 n_out38p0;
-// Texture2D:38
-	n_out38p0 = texture(O_R_M, n_out37p0);
-
-
-// Reroute:40
-	vec4 n_out40p0 = n_out19p0;
-
-
-// Mix:39
-	vec3 n_out39p0 = mix(vec3(n_out23p0.xyz), vec3(n_out38p0.xyz), vec3(n_out40p0.xyz));
-
-
-// Input:56
-	vec2 n_out56p0 = UV;
-
-
-// ParameterRef:59
-	vec2 n_out59p0 = Uv_Scale1;
-
-
-// UVFunc:58
-	vec2 n_in58p2 = vec2(0.00000, 0.00000);
-	vec2 n_out58p0 = (n_out56p0 - n_in58p2) * n_out59p0 + n_in58p2;
-
-
-	vec4 n_out47p0;
-// Texture2D:47
-	n_out47p0 = texture(Secondary_O_R_M, n_out58p0);
-
-
-// Mix:49
-	vec3 n_out49p0 = mix(n_out39p0, vec3(n_out47p0.xyz), vec3(n_out45p0.xyz));
-
-
-// VectorDecompose:22
-	float n_out22p0 = n_out49p0.x;
-	float n_out22p1 = n_out49p0.y;
-	float n_out22p2 = n_out49p0.z;
-
-
-	vec4 n_out24p0;
-// Texture2D:24
-	n_out24p0 = texture(Normal_Map, n_out13p0);
-
-
-// Input:33
-	vec2 n_out33p0 = UV;
-
-
-// ParameterRef:34
-	vec2 n_out34p0 = Uv_Scale1;
-
-
-// UVFunc:31
-	vec2 n_in31p2 = vec2(0.00000, 0.00000);
-	vec2 n_out31p0 = (n_out33p0 - n_in31p2) * n_out34p0 + n_in31p2;
-
-
-	vec4 n_out29p0;
-// Texture2D:29
-	n_out29p0 = texture(Normal_Map, n_out31p0);
-
-
-// Mix:28
-	vec3 n_out28p0 = mix(vec3(n_out24p0.xyz), vec3(n_out29p0.xyz), vec3(n_out40p0.xyz));
-
-
-	vec4 n_out51p0;
-// Texture2D:51
-	n_out51p0 = texture(Secondary_Normal_Map, n_out58p0);
-
-
-// Mix:50
-	vec3 n_out50p0 = mix(n_out28p0, vec3(n_out51p0.xyz), vec3(n_out45p0.xyz));
-
-
-// Output:0
-	ALBEDO = n_out43p0;
-	METALLIC = n_out22p2;
-	ROUGHNESS = n_out22p1;
-	AO = n_out22p0;
-	NORMAL_MAP = n_out50p0;
-
-
-}
-"
 modes/diffuse = 2
 nodes/vertex/0/position = Vector2(780, 0)
 nodes/fragment/0/position = Vector2(4320, 1240)
@@ -551,28 +325,28 @@ shader = SubResource("VisualShader_7tmjo")
 shader_parameter/Uv_Scale1 = Vector2(5, 5)
 shader_parameter/UV_Scale_2 = Vector2(5, 5)
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" unique_id=1080948073]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=742405051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.429657, -0.1017952, -6.0048027)
 material_override = SubResource("ShaderMaterial_p718k")
 use_collision = true
 size = Vector3(100, 0.5, 100)
 
-[node name="Player" parent="." instance=ExtResource("6_d4o56")]
+[node name="Player" parent="." unique_id=546937018 instance=ExtResource("6_d4o56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5341018, 0)
 
-[node name="Rock" parent="." instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.3607821)
+[node name="Rock" parent="." unique_id=895391112 instance=ExtResource("7_ssmx2")]
+transform = Transform3D(0.64317095, 0, -0.68971634, 0, 0.94306815, 0, 0.68971634, 0, 0.64317095, 0, 0, 3.3607821)
 
-[node name="Rock2" parent="." instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8701072, 0, 3.3607821)
+[node name="Rock2" parent="." unique_id=661035680 instance=ExtResource("7_ssmx2")]
+transform = Transform3D(-0.83514464, 0, -0.6762869, 0, 1.0746304, 0, 0.6762869, 0, -0.83514464, -0.8701072, 0, 3.3607821)
 
-[node name="Rock3" parent="." instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.842257, 0, 3.3607821)
+[node name="Rock3" parent="." unique_id=85702041 instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1.2862345e-08, 0, -1.0786141, 0, 1.0786141, 0, 1.0786141, 0, 1.2862345e-08, -1.842257, 0, 3.3607821)
 
-[node name="Rock4" parent="." instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6745121, 0, 3.3607821)
+[node name="Rock4" parent="." unique_id=2105459525 instance=ExtResource("7_ssmx2")]
+transform = Transform3D(0.65856606, 0, -0.842926, 0, 1.0696886, 0, 0.842926, 0, 0.65856606, -2.6745121, 0, 3.3607821)
 
-[node name="Rock5" parent="." instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2883675, 0, 3.3607821)
+[node name="Rock5" parent="." unique_id=1928892151 instance=ExtResource("7_ssmx2")]
+transform = Transform3D(1.0318865, 0, 0.27649313, 0, 1.0682875, 0, -0.27649313, 0, 1.0318865, -3.2883675, 0, 3.3607821)

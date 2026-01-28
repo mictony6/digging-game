@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bng6fg8mckdjt"]
+[gd_scene format=3 uid="uid://bng6fg8mckdjt"]
 
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_qm8wc"]
 
@@ -13,30 +13,30 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="UpgradeCard" type="PanelContainer"]
+[node name="UpgradeCard" type="PanelContainer" unique_id=1134734363]
 theme_override_styles/panel = SubResource("StyleBoxFlat_qmxiq")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1808220155]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=591093539]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 2
 texture = ExtResource("1_qm8wc")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=358391328]
 layout_mode = 2
 text = "Laser Tool"
 horizontal_alignment = 1
 
-[node name="Spacer5" type="Control" parent="HBoxContainer"]
+[node name="Spacer5" type="Control" parent="HBoxContainer" unique_id=1406610303]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer" unique_id=2047898835]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -44,12 +44,12 @@ max_value = 5.0
 step = 1.0
 rounded = true
 
-[node name="Spacer6" type="Control" parent="HBoxContainer"]
+[node name="Spacer6" type="Control" parent="HBoxContainer" unique_id=2047023823]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=317173638]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UPGRADE"

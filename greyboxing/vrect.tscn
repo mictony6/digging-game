@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://do3gkunb1m42d"]
+[gd_scene format=3 uid="uid://do3gkunb1m42d"]
 
 [ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_1lgqw"]
 
@@ -7,7 +7,7 @@ albedo_texture = ExtResource("1_1lgqw")
 roughness = 0.5
 uv1_triplanar = true
 
-[node name="Vrect" type="CSGBox3D"]
+[node name="Vrect" type="CSGBox3D" unique_id=1852663360]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 use_collision = true
 collision_layer = 4
