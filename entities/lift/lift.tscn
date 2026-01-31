@@ -1,27 +1,185 @@
-[gd_scene format=3 uid="uid://sx0awbrt80do"]
+[gd_scene format=4 uid="uid://sx0awbrt80do"]
 
-[node name="Lift" type="Node3D" unique_id=451557037]
+[ext_resource type="Texture2D" uid="uid://ddkdb57ppojhe" path="res://assets/textures/metal_plate/metal_plate_02_diff_1k.png" id="1_2kajr"]
+[ext_resource type="Script" uid="uid://df8ju7w5cv70a" path="res://entities/lift/elevator.gd" id="1_7domg"]
+[ext_resource type="ArrayMesh" uid="uid://db06wgsusvb11" path="res://assets/meshes/elevator/elevatorA.res" id="1_uum4n"]
+[ext_resource type="ArrayMesh" uid="uid://bflvkjlsp6mft" path="res://assets/meshes/elevator/elevatorB.res" id="2_7bj7x"]
+[ext_resource type="Texture2D" uid="uid://ccg57vxtl6uod" path="res://assets/textures/metal_plate/metal_plate_02_nor_gl_1k.png" id="2_hjp0w"]
+[ext_resource type="Texture2D" uid="uid://dul3miw6a5fe" path="res://assets/textures/rusty_metal/rusty_metal_04_diff_1k.png" id="3_2kajr"]
+[ext_resource type="Texture2D" uid="uid://bob5dujw05o86" path="res://assets/textures/metal_plate/metal_plate_02_arm_1k.png" id="3_7domg"]
+[ext_resource type="Texture2D" uid="uid://c1b7taomq7qcy" path="res://assets/textures/rusty_metal/rusty_metal_04_nor_gl_1k.png" id="4_hjp0w"]
+[ext_resource type="Texture2D" uid="uid://bjux7arjvjr2i" path="res://assets/textures/rusty_metal/rusty_metal_04_arm_1k.png" id="5_7domg"]
+[ext_resource type="Animation" uid="uid://3wu6b7rygh7f" path="res://assets/meshes/elevator/animations/CubeAction.res" id="6_t3e4p"]
+[ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="10_hjp0w"]
 
-[node name="Car" type="Node3D" parent="." unique_id=1494984908]
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5d6t"]
+size = Vector3(2, 3.5400634, 0.11203756)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Car" unique_id=1196253068]
-use_collision = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3x5t"]
+size = Vector3(2.3291016, 0.28930664, 2.126831)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qosab"]
+size = Vector3(2.3291016, 0.5899658, 2.126831)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ev218"]
+size = Vector3(0.15, 2.660437, 2.126831)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y3efi"]
+size = Vector3(0.41026002, 3.2656434, 0.3834076)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_e5d6t"]
+albedo_texture = ExtResource("1_2kajr")
+orm_texture = ExtResource("3_7domg")
+normal_enabled = true
+normal_texture = ExtResource("2_hjp0w")
+ao_enabled = true
+uv1_offset = Vector3(0.054, 0.151, 0)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_815yl"]
+albedo_color = Color(0.9976477, 0.8693556, 0.90070444, 1)
+albedo_texture = ExtResource("3_2kajr")
+orm_texture = ExtResource("5_7domg")
+normal_enabled = true
+normal_texture = ExtResource("4_hjp0w")
+texture_filter = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogq3x"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s8oyp"]
+_surfaces = [{
+"aabb": AABB(-1, -2.5400634, -0.05601878, 2, 3.5400634, 0.11203756),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o8crl"]
+resource_name = "elevator_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -2.5400634, -0.05601878, 2, 3.5400634, 0.11203756),
+"attribute_data": PackedByteArray("8nv//wyEAADyewAADIT//683//9PyAAArzcAAE/I//8MhP//8nsAAAyEAADye///T8j//683AABPyAAArzf//6838ntPyAyET8jye683DIRPyPJ7rzcMhK838ntPyAyE"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_ogq3x"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAD//wAAAAD//wAAAAAAAP//AAAAAP+//////////7//////AAD/v///AAD///+///8AAP//AIAAAP////8AgP///////wCAAAAAAP//AIAAAAAAAAD/P///AAD///8///8AAAAA/z8AAAAA////P/////8AAP+/AAD//////78AAP//AAD/v/////////+//z//f/8//3//P/9//z//f////3////9/////f////3//fwAA/38AAP9/AAD/fwAA/3////9/////f////3///wAA/38AAP9/AAD/fwAA/3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_s8oyp")
+
+[sub_resource type="Animation" id="Animation_uum4n"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5400634, 0.90287614)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/DoorCollisionShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80kln"]
+_data = {
+&"OpenDoor": ExtResource("6_t3e4p"),
+&"RESET": SubResource("Animation_uum4n")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7domg"]
+size = Vector3(2.0686035, 3.5996094, 0.97546387)
+
+[node name="Elevator" type="Node3D" unique_id=1038308039]
+script = ExtResource("1_7domg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1274944426]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Car/CSGCombiner3D" unique_id=1520240658]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-size = Vector3(1.5, 2, 1)
+[node name="DoorCollisionShape" type="CollisionShape3D" parent="StaticBody3D" unique_id=599805115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7152827, 0.90287614)
+shape = SubResource("BoxShape3D_e5d6t")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Car/CSGCombiner3D" unique_id=135555091]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, 0)
-operation = 2
-size = Vector3(1.0500001, 1.7, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1763698674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13464355, -0.062072754)
+shape = SubResource("BoxShape3D_o3x5t")
 
-[node name="Level1" type="Marker3D" parent="." unique_id=582480660]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1291670002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5643363, -0.062072754)
+shape = SubResource("BoxShape3D_qosab")
 
-[node name="Level2" type="Marker3D" parent="." unique_id=254819658]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=466145795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0895507, 1.9343191, -0.062072754)
+shape = SubResource("BoxShape3D_ev218")
 
-[node name="Level3" type="Marker3D" parent="." unique_id=1203264972]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1265482665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09, 1.934, -0.062)
+shape = SubResource("BoxShape3D_ev218")
 
-[node name="Level4" type="Marker3D" parent="." unique_id=41059466]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=436999212]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.04, 1.3392185, -1.051)
+shape = SubResource("BoxShape3D_ev218")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=2066038374]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.80181974, 1.6418216, 0.8030415)
+shape = SubResource("BoxShape3D_y3efi")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=622633055]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.80181974, 1.6418216, -0.8040938)
+shape = SubResource("BoxShape3D_y3efi")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=1085269149]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.8056486, 1.6418216, -0.8040938)
+shape = SubResource("BoxShape3D_y3efi")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" unique_id=722422838]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.8056486, 1.6418216, 0.7909046)
+shape = SubResource("BoxShape3D_y3efi")
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=911868503]
+material_override = SubResource("ORMMaterial3D_e5d6t")
+mesh = ExtResource("1_uum4n")
+
+[node name="Plane_001" type="MeshInstance3D" parent="." unique_id=1774484149]
+material_override = SubResource("ORMMaterial3D_815yl")
+mesh = ExtResource("2_7bj7x")
+
+[node name="Cube" type="MeshInstance3D" parent="." unique_id=924446190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5400634, 0.90287614)
+material_override = SubResource("ORMMaterial3D_815yl")
+mesh = SubResource("ArrayMesh_o8crl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2073695143]
+libraries/ = SubResource("AnimationLibrary_80kln")
+
+[node name="IsSelectable" parent="." unique_id=453905894 node_paths=PackedStringArray("target_mesh") instance=ExtResource("10_hjp0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93686295, 0.9044577)
+secondary_interaction_name = "Close"
+target_mesh = NodePath("../Cube")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IsSelectable" unique_id=3541184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86910987, -0.0853858)
+shape = SubResource("BoxShape3D_7domg")
+debug_color = Color(0, 0.5950001, 0.7, 0)

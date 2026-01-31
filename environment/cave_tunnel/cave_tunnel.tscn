@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bxcsf7he164iw"]
+
+[ext_resource type="Shader" uid="uid://ber4b3hd7exu0" path="res://levels/terrain.gdshader" id="1_dt53t"]
+[ext_resource type="Texture2D" uid="uid://bg42783a62meg" path="res://assets/textures/rock_face/rock_face_03_nor_gl_2k.png" id="2_3sllk"]
+[ext_resource type="Texture2D" uid="uid://143phtfwbpkb" path="res://assets/textures/rock_face/rock_face_03_arm_2k.png" id="3_7p7yt"]
+[ext_resource type="Texture2D" uid="uid://kcgxc04wwpoy" path="res://assets/textures/rock_face/rock_face_03_diff_2k.png" id="4_feia3"]
+[ext_resource type="Texture2D" uid="uid://cgmy2tsg5xgmm" path="res://assets/textures/trail/rocky_trail_02_nor_dx_2k.png" id="5_lvnhc"]
+[ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="6_vhhxh"]
+[ext_resource type="Texture2D" uid="uid://mt1tt4li5wqi" path="res://assets/textures/trail/rocky_trail_02_diff_2k.png" id="7_prqes"]
+[ext_resource type="Texture2D" uid="uid://ds8ucwnmt404i" path="res://assets/textures/mossy_rock/rock_pitted_mossy_nor_gl_2k.png" id="8_iunov"]
+[ext_resource type="Texture2D" uid="uid://b2houwx21stss" path="res://assets/textures/mossy_rock/rock_pitted_mossy_arm_2k.png" id="9_xuqyi"]
+[ext_resource type="Texture2D" uid="uid://bo8sf0m2cmuqw" path="res://assets/textures/mossy_rock/rock_pitted_mossy_diff_2k.png" id="10_j0r41"]
+[ext_resource type="Texture2D" uid="uid://b3adsvjmvukf6" path="res://assets/textures/gravel/gravel_nor_gl_2k.png" id="11_cckru"]
+[ext_resource type="Texture2D" uid="uid://btwwenj77v122" path="res://assets/textures/gravel/gravel_arm_2k.png" id="12_ik54f"]
+[ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="13_6f0el"]
+[ext_resource type="Texture2D" uid="uid://ckenlabal34qg" path="res://assets/textures/terrain/terrain_mix_noise_texture.res" id="14_dbrbe"]
+[ext_resource type="ArrayMesh" uid="uid://ceasseqsxejvy" path="res://assets/meshes/cave_tunnel/cave_tunnel_Plane.res" id="15_3sllk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc1ww"]
+render_priority = 0
+shader = ExtResource("1_dt53t")
+shader_parameter/global_scale = 1.0
+shader_parameter/triplanar_scale = Vector3(1, 1, 1)
+shader_parameter/triplanar_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 2.0
+shader_parameter/noise_texture = ExtResource("14_dbrbe")
+shader_parameter/noise_is_triplanar = false
+shader_parameter/ground_texture = ExtResource("13_6f0el")
+shader_parameter/ground_orm_texture = ExtResource("12_ik54f")
+shader_parameter/ground_normal = ExtResource("11_cckru")
+shader_parameter/alt_ground_texture = ExtResource("7_prqes")
+shader_parameter/alt_ground_orm_texture = ExtResource("6_vhhxh")
+shader_parameter/alt_ground_normal = ExtResource("5_lvnhc")
+shader_parameter/cliff_texture = ExtResource("10_j0r41")
+shader_parameter/cliff_orm_texture = ExtResource("9_xuqyi")
+shader_parameter/cliff_normal = ExtResource("8_iunov")
+shader_parameter/alt_cliff_texture = ExtResource("4_feia3")
+shader_parameter/alt_cliff_orm_texture = ExtResource("3_7p7yt")
+shader_parameter/alt_cliff_normal = ExtResource("2_3sllk")
+shader_parameter/separation = 1.245
+shader_parameter/transition_sharpness = 0.29
+
+[node name="CaveTunnel" type="Node3D" unique_id=71517295]
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=240848844]
+material_override = SubResource("ShaderMaterial_pc1ww")
+mesh = ExtResource("15_3sllk")

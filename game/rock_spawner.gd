@@ -8,15 +8,15 @@ const BATCH_SIZE := 25
 
 
 @export_tool_button("Generate") var generate_button: Callable = generate
+@export_tool_button("Clear") var clear_button: Callable = clear_generated
 signal generated
 
 func generate():
+	if curve.get_baked_length() <= 0:
+		print_debug("No curve")
+		return
 	# remove all previoously generated rocks
-	for child in get_children():
-		if child is Rock:
-			child.queue_free()
-
-	await get_tree().process_frame
+	clear_generated()
 
 	var space_state = get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.new()
@@ -55,3 +55,10 @@ func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3):
 	var instance: Rock = _rock_scene.instantiate()
 	add_child(instance)
 	instance.global_position = instance_position
+
+func clear_generated():
+	for child in get_children():
+		if child is Rock:
+			child.queue_free()
+
+	await get_tree().process_frame

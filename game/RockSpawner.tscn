@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://nx4nj5ft54fa"]
+
+[ext_resource type="Script" uid="uid://dkhl3ppui7enn" path="res://game/rock_spawner.gd" id="1_acafa"]
+[ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="2_1aiie"]
+
+[sub_resource type="Curve3D" id="Curve3D_uy2g7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.48266983, 0.48282623, 0.4505787, 0, 0, 0, 0, 0, 0, -8.887352, 0.53948975, 4.09797),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="RockSpawner" type="Path3D" unique_id=262859873]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, 0, 0)
+curve = SubResource("Curve3D_uy2g7")
+script = ExtResource("1_acafa")
+count = 500
+rock_scene = ExtResource("2_1aiie")

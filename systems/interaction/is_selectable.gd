@@ -60,4 +60,5 @@ func switch_interaction_label() -> void:
 		interaction_index = 0
 
 func select(player: Player, current_tool: Tool):
+	switch_interaction_label()
 	selected.emit(player, current_tool)
