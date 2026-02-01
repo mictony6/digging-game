@@ -18,46 +18,8 @@
 [ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="11_ax5yc"]
 [ext_resource type="Script" uid="uid://cbkl77dwp2ya1" path="res://systems/physics/is_knockbacked.gd" id="16_aubru"]
 [ext_resource type="Script" uid="uid://dkea10ua38epr" path="res://entities/player/states/fall.gd" id="17_j531f"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j531f"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-shading_mode = 0
-diffuse_mode = 2
-specular_mode = 2
-vertex_color_use_as_albedo = true
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_npcl8"]
-offsets = PackedFloat32Array(0, 0.1869213, 0.7980324, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.8342923, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4fbvh"]
-gradient = SubResource("Gradient_npcl8")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j531f"]
-emission_shape = 2
-emission_sphere_radius = 5.0
-direction = Vector3(1, 0, 1)
-initial_velocity_min = -0.099999994
-initial_velocity_max = 0.099999994
-gravity = Vector3(0, -0.1, 0)
-scale_min = 0.5
-color = Color(0.9136562, 0.8188205, 0.78726274, 1)
-color_ramp = SubResource("GradientTexture1D_4fbvh")
-hue_variation_min = -0.17000002
-hue_variation_max = 0.079999976
-
-[sub_resource type="SphereMesh" id="SphereMesh_npcl8"]
-radius = 0.01
-height = 0.02
-radial_segments = 4
-rings = 4
+[ext_resource type="Script" uid="uid://b3usssf8jsfah" path="res://systems/health/has_health.gd" id="19_npcl8"]
+[ext_resource type="Script" uid="uid://41q0bda1p4mj" path="res://systems/oxygen/has_oxygen.gd" id="20_4fbvh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -300,15 +262,6 @@ script = ExtResource("1_ak4un")
 head = NodePath("Head")
 SPRINT_SPEED = 3.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1380824453]
-material_override = SubResource("StandardMaterial3D_j531f")
-cast_shadow = 0
-gi_mode = 0
-amount = 500
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_j531f")
-draw_pass_1 = SubResource("SphereMesh_npcl8")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
 gi_mode = 0
 mesh = SubResource("CapsuleMesh_lkjt4")
@@ -334,7 +287,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.095526494, -0.014453307, 0.025802756, 0.023032164, 0.09108559, -0.034248088, -0.018552609, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552648, -0.014453307, 0.025802756, 0.02303216, 0.09108559, -0.034248088, -0.018552607, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
@@ -430,3 +383,13 @@ script = ExtResource("16_aubru")
 
 [node name="BombAnimations" type="AnimationPlayer" parent="." unique_id=1478394349]
 libraries/ = SubResource("AnimationLibrary_4fbvh")
+
+[node name="HasHealth" type="Node" parent="." unique_id=756661855]
+script = ExtResource("19_npcl8")
+max_health = 100.0
+current_health = 100.0
+
+[node name="HasOxygen" type="Node" parent="." unique_id=945450416]
+script = ExtResource("20_4fbvh")
+max_oxygen = 100.0
+current_oxygen = 100.0

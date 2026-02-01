@@ -25,7 +25,14 @@ var is_poisoned: bool = false
 var is_suffocating: bool = false
 var active_depletion_rate_multiplier: float = 0.0
 
+
+#components
+@onready var health: HasHealth = $HasHealth
+@onready var oxygen: HasOxygen = $HasOxygen
+
 func _ready() -> void:
+	assert(health != null, "Player must have health component")
+	assert(oxygen != null, "Player must have oxygen component")
 	if head == null:
 		head = get_node("Head");
 
@@ -58,14 +65,14 @@ func _process(delta: float) -> void:
 
 	# suffocation and oxygen
 	if is_suffocating:
-		if PlayerData.has_oxygen():
-			PlayerData.remove_oxygen(PlayerData.depletion_rate
+		if !oxygen.is_empty():
+			oxygen.remove_oxygen(PlayerData.depletion_rate
 			* active_depletion_rate_multiplier
 			* delta)
 		else:
-			PlayerData.remove_health(11 * delta)
-	elif PlayerData.oxygen_not_full():
-		PlayerData.add_oxygen(10 * delta)
+			health.take_damage(11 * delta)
+	elif !oxygen.is_full():
+		oxygen.add_oxygen(10 * delta)
 
 func has_buffered_jump():
 	return buffered_jump_timer > 0.0

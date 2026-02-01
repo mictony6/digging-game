@@ -27,7 +27,7 @@ func explode():
 
 			
 			if result and result.collider == body:
-				PlayerData.remove_health(damage)
+				body.health.take_damage(damage)
 				var kb = body.get_node("IsKnockbacked") as IsKnockbacked
 				kb.start(global_position)
 	await $AnimationPlayer.animation_finished
