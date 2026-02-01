@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b64267mpxut34"]
+
+[ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="1_gl5o8"]
+[ext_resource type="Material" uid="uid://ba5b3ds4jaarl" path="res://shaders/materials/mediun_rock.material" id="2_jg4cx"]
+
+[node name="GPUParticles3D" unique_id=677331480 instance=ExtResource("1_gl5o8")]
+material_override = ExtResource("2_jg4cx")

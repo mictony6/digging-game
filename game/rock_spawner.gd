@@ -3,6 +3,7 @@ extends Path3D
 
 @export var count: int = 25
 @export var rock_scene: PackedScene
+@export var seed: int = 0
 var gen: RandomNumberGenerator
 const BATCH_SIZE := 25
 
@@ -12,6 +13,7 @@ const BATCH_SIZE := 25
 signal generated
 
 func generate():
+	gen.seed = seed
 	if curve.get_baked_length() <= 0:
 		print_debug("No curve")
 		return
@@ -47,9 +49,10 @@ func generate():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gen = RandomNumberGenerator.new()
-	gen.seed = 42
+
 	if !Engine.is_editor_hint():
 		generate()
+	
 
 func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3):
 	var instance: Rock = _rock_scene.instantiate()

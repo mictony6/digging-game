@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_tlcfd")
 name = "Pickaxe"
+tier = 5
 scene = ExtResource("1_r3wa3")
 position = Vector3(0.331, -0.27, -0.4)
 rotation = Vector3(0, 180, 0)

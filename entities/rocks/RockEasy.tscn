@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="2_hxsg1"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="3_e1dj2"]
 [ext_resource type="ArrayMesh" uid="uid://bibsa41esbcv2" path="res://assets/meshes/rock1_mesh.res" id="3_hxsg1"]
-[ext_resource type="Shader" uid="uid://7lkclcg3l0i5" path="res://shaders/crack.tres" id="4_rr552"]
+[ext_resource type="Material" uid="uid://co50w2qt43827" path="res://shaders/materials/crack_overlay.material" id="4_0exme"]
 [ext_resource type="ArrayMesh" uid="uid://b4tchty7ialvo" path="res://assets/meshes/rock2_mesh.res" id="4_xuhvl"]
 [ext_resource type="Material" uid="uid://b4s08eyg2bw3c" path="res://shaders/materials/crack_overlay.tres" id="5_e1dj2"]
 [ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="6_r8uvd"]
@@ -16,47 +16,6 @@ points = PackedVector3Array(0.018926116, -0.43694183, -0.32368195, -0.021044644,
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0c3hv"]
 points = PackedVector3Array(-0.053543933, 0.31604302, -0.5204126, 0.004792843, 0.08228267, 0.592235, 0.06345535, 0.17874941, 0.56880593, 0.5330381, -0.5045131, -0.09177504, -0.42115015, -0.36390153, 0.02571728, 0.37158558, 0.44707495, -0.26306775, -0.30542025, 0.45077473, 0.20026298, -0.18856584, -0.42218408, 0.43275955, 0.3166173, -0.42410594, -0.36374772, 0.4075891, -0.03387808, 0.38885435, -0.34202847, -0.11146914, -0.32189018, 0.08288445, 0.63165975, -0.19016069, 0.02450142, -0.61896765, 0.1423117, 0.1976441, 0.36800057, 0.37050655, 0.60839105, -0.30705625, -0.12993081, 0.23787293, 0.37240154, -0.4782418, -0.42411473, 0.23814987, 0.1424229, -0.13019493, 0.44964737, -0.458594, 0.12167685, -0.4421964, -0.36258423, -0.11146694, 0.5481464, 0.31689826, 0.48543888, -0.4942292, 0.08317437, 0.024999242, -0.14982213, 0.56546324, -0.4421271, -0.28736475, 0.20051493, -0.19065094, -0.054213677, -0.46306422, 0.34883082, 0.25120783, 0.31094986, 0.043883234, 0.6302118, -0.32660136, -0.24691255, 0.39217547, -0.32355338, -0.44012848, -0.11183226, -0.09048515, -0.2480739, -0.5213395, 0.12281387, 0.46871546, -0.16928276, -0.3216057, -0.2828025, 0.29277182, 0.31418067, -0.032216042, -0.43656826, 0.40900224)
-
-[sub_resource type="Gradient" id="Gradient_5ne07"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.06048387, 0.15725806)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oamob"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c83ie"]
-noise = SubResource("FastNoiseLite_oamob")
-color_ramp = SubResource("Gradient_5ne07")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="Gradient" id="Gradient_r8uvd"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.05645161, 0.36290324)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cxmus"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rr552"]
-noise = SubResource("FastNoiseLite_cxmus")
-color_ramp = SubResource("Gradient_r8uvd")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0exme"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("4_rr552")
-shader_parameter/Crack_Color = Color(0.19607843, 0.21176471, 0.21176471, 1)
-shader_parameter/ratio = 1.0
-shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
-shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
-shader_parameter/Edge = 1.2
-shader_parameter/triplanar_scale = Vector3(1, 1, 1)
-shader_parameter/triplanar_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 10.0
 
 [sub_resource type="Gradient" id="Gradient_cxmus"]
 offsets = PackedFloat32Array(0, 0.41613925)
@@ -123,13 +82,12 @@ shape = SubResource("ConvexPolygonShape3D_0c3hv")
 [node name="MeshTypes" type="Node3D" parent="." unique_id=1619301207]
 
 [node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes" unique_id=2933227]
-material_overlay = SubResource("ShaderMaterial_0exme")
+material_overlay = ExtResource("4_0exme")
 mesh = ExtResource("3_hxsg1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_e1dj2")
 
 [node name="RockMesh2" type="MeshInstance3D" parent="MeshTypes" unique_id=138502345]
-visible = false
 material_overlay = ExtResource("5_e1dj2")
 mesh = ExtResource("4_xuhvl")
 skeleton = NodePath("../..")

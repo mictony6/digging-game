@@ -10,9 +10,10 @@ var crack_material: ShaderMaterial
 @onready var health: HasHealth = $HasHealth
 
 func _ready():
-	health.max_health = rock_data.max_health
-	health.current_health = rock_data.max_health
-	health.death.connect(destroy)
+	if !Engine.is_editor_hint():
+		health.max_health = rock_data.max_health
+		health.current_health = rock_data.max_health
+		health.death.connect(destroy)
 	#assign a random rotation for variety
 	rotation_degrees.y = randi() % 360
 

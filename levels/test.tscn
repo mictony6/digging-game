@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cq74hswke7bp6" path="res://assets/textures/trail/rocky_trail_02_arm_2k.png" id="18_01s5a"]
 [ext_resource type="PackedScene" uid="uid://uiig5ud3kjxl" path="res://greyboxing/exchange.tscn" id="20_u1nm5"]
 [ext_resource type="PackedScene" uid="uid://cdlfx6d6pumlb" path="res://levels/terrain.tscn" id="22_8a51t"]
+[ext_resource type="PackedScene" uid="uid://ry7ojknmwfcr" path="res://entities/rocks/RockMedium.tscn" id="23_01s5a"]
 [ext_resource type="PackedScene" uid="uid://nx4nj5ft54fa" path="res://game/RockSpawner.tscn" id="23_krped"]
 [ext_resource type="PackedScene" uid="uid://cepatjt0ekjg3" path="res://entities/water/water.tscn" id="25_70x8p"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
@@ -35,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="36_xqdkm"]
 [ext_resource type="Texture2D" uid="uid://ckenlabal34qg" path="res://assets/textures/terrain/terrain_mix_noise_texture.res" id="37_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="37_01s5a"]
+[ext_resource type="Script" uid="uid://crjiivy1niwso" path="res://game/date_manager.gd" id="37_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://sx0awbrt80do" path="res://entities/lift/lift.tscn" id="39_xqdkm"]
 
 [sub_resource type="Gradient" id="Gradient_jemwd"]
@@ -90,6 +92,20 @@ data = PackedVector3Array(-50, -0.25, 50, -50, -0.25, -50, -50, 0.25, -50, 50, -
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
 size = Vector3(10, 5, 2)
+
+[sub_resource type="Curve3D" id="Curve3D_01s5a"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2.4000702, 1.1015854, 5.327465, 0, 0, 0, 0, 0, 0, -1.8891973, 0.5112972, -4.895382),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_xqdkm"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.57681656, 0.3677826, 0.1442337, 0, 0, 0, 0, 0, 0, -7.2250023, 0.5171318, 3.6733255),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8nfy"]
 albedo_texture = ExtResource("35_krped")
@@ -153,7 +169,7 @@ shadow_enabled = true
 environment = ExtResource("1_1ijy3")
 
 [node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, -26.917719, -0.824831)
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 4, -28.349966, -22.324831)
 
 [node name="Elevator" parent="." unique_id=1038308039 instance=ExtResource("39_xqdkm")]
 transform = Transform3D(0.72, 0, -5.9604645e-08, 0, 0.72, 0, 5.9604645e-08, 0, 0.72, 4, -29.444885, -41)
@@ -198,9 +214,18 @@ difficulty = 10
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.687002, -17)
 shape = SubResource("BoxShape3D_drwxn")
 
-[node name="RockSpawner" parent="LevelLoader/OverWorld" unique_id=262859873 instance=ExtResource("23_krped")]
+[node name="RockSpawner2" parent="LevelLoader/OverWorld" unique_id=262859873 instance=ExtResource("23_krped")]
+transform = Transform3D(-0.9063078, 0, 0.42261818, 0, 1, 0, -0.42261818, 0, -0.9063078, 3.5, -29, -31.500004)
+curve = SubResource("Curve3D_01s5a")
+count = 12
+rock_scene = ExtResource("23_01s5a")
+seed = 4
+
+[node name="RockSpawner" parent="LevelLoader/OverWorld" unique_id=897679868 instance=ExtResource("23_krped")]
 transform = Transform3D(-0.4226182, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, -0.4226182, 4, -29, -30.000004)
+curve = SubResource("Curve3D_xqdkm")
 count = 60
+seed = 4
 
 [node name="OmniLight3D" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=2039909637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.900002, -26.5, -37.55)
@@ -364,7 +389,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
-[node name="HUD" type="Control" parent="CanvasLayer" unique_id=192495585 node_paths=PackedStringArray("death_screen", "player")]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=192495585 node_paths=PackedStringArray("death_screen", "player", "eod_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -376,6 +401,7 @@ mouse_filter = 2
 script = ExtResource("8_2grjb")
 death_screen = NodePath("../DeathScreen")
 player = NodePath("../../Player")
+eod_screen = NodePath("../EODUI")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD" unique_id=1785891940]
@@ -527,5 +553,43 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Title Screen"
 
+[node name="EODUI" type="Control" parent="CanvasLayer" unique_id=1319771091]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/EODUI" unique_id=755397321]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EODUI/PanelContainer" unique_id=1216378024]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="EOD" type="Label" parent="CanvasLayer/EODUI/PanelContainer/VBoxContainer" unique_id=16974335]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "End of Day"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/EODUI/PanelContainer/VBoxContainer" unique_id=2059823453]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Your qouta was not met."
+
+[node name="DateManager" type="Node" parent="." unique_id=131097900]
+script = ExtResource("37_xqdkm")
+
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]
+[connection signal="day_passed" from="DateManager" to="CanvasLayer/HUD" method="_on_date_manager_day_passed"]

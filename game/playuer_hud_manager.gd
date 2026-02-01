@@ -4,9 +4,9 @@ extends Control
 @onready var progress_bar: ProgressBar = $MarginContainer/VBoxContainer/ProgressBar
 @export var death_screen: Control
 @export var player: Player
+@export var eod_screen: Control
 
 func _ready() -> void:
-	print(player)
 	player.health.health_changed.connect(_on_health_changed)
 	player.health.death.connect(_on_player_death)
 	player.oxygen.oxygen_changed.connect(_on_oxygen_changed)
@@ -16,6 +16,7 @@ func _ready() -> void:
 	progress_bar.max_value = QuotaManager.required_quota
 	progress_bar.value = 0
 	death_screen.hide()
+	eod_screen.hide()
 	
 
 func _on_oxygen_changed(current, max_value):
@@ -39,3 +40,12 @@ func _on_quota_changed(current: int, required: int) -> void:
 
 func _on_coins_changed(value: int):
 	$CoinAmountLabel.text = "Coins: " + str(value)
+
+
+func _on_date_manager_day_passed(days: int) -> void:
+	self.hide()
+	eod_screen.show()
+	await get_tree().create_timer(5.0).timeout
+	QuotaManager.reset()
+	self.show()
+	eod_screen.hide()
