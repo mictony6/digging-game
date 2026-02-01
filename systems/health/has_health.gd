@@ -15,3 +15,9 @@ func take_damage(damage: float):
 func heal(amnt: float):
 	current_health = min(max_health, current_health + amnt)
 	health_changed.emit(current_health, max_health)
+
+func is_max_health():
+	return current_health == max_health
+
+func is_dead():
+	return current_health <= 0

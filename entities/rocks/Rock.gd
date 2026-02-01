@@ -4,12 +4,15 @@ class_name Rock
 
 
 @export var rock_data: RockData
-var current_health: float
 var crack_material: ShaderMaterial
 @export var break_particles: PackedScene
 
+@onready var health: HasHealth = $HasHealth
+
 func _ready():
-	current_health = rock_data.max_health
+	health.max_health = rock_data.max_health
+	health.current_health = rock_data.max_health
+	health.death.connect(destroy)
 	#assign a random rotation for variety
 	rotation_degrees.y = randi() % 360
 
@@ -17,17 +20,22 @@ func _ready():
 	var scale_variation = randf_range(0.9, 1.1)
 	scale = Vector3.ONE * scale_variation
 
+	var shapes: Array[CollisionShape3D] = []
+	for node in get_children():
+		if node is CollisionShape3D:
+			node.disabled = true
+			shapes.append(node)
+
+	
 	# #select a random mesh
-	randomize_mesh()
+	var index: int = randomize_mesh()
+	var shape: CollisionShape3D = shapes[index]
+	shape.disabled = false
 
 
 func take_damage(damage: float):
-	if current_health <= 0:
-		current_health = 0
-		destroy()
-	if not rock_data.is_destructible:
-		return
-	current_health -= damage
+	if rock_data.is_destructible:
+		health.take_damage(damage)
 
 
 func destroy():
@@ -43,18 +51,21 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	#update crack shader based on health
-	if current_health == rock_data.max_health:
+	if health.is_max_health():
 		return
 	if rock_data.is_destructible:
-		var health_ratio = float(current_health) / float(rock_data.max_health) + .5
+		var health_ratio = float(health.current_health) / float(health.max_health) + .5
 		var current_ratio = crack_material.get_shader_parameter("Edge")
 		health_ratio = lerpf(current_ratio, health_ratio, 0.1)
 		crack_material.set_shader_parameter("Edge", health_ratio)
 
 func randomize_mesh():
 	#select a random mesh
+	var mesh: MeshInstance3D
+	var mesh_index = randi() % $MeshTypes.get_child_count()
 	for i in $MeshTypes.get_children():
 		i.visible = false
-	var mesh_index = randi() % $MeshTypes.get_child_count()
-	$MeshTypes.get_child(mesh_index).visible = true
-	crack_material = $MeshTypes.get_child(mesh_index).material_overlay
+	mesh = $MeshTypes.get_child(mesh_index)
+	mesh.visible = true
+	crack_material = mesh.material_overlay
+	return mesh_index

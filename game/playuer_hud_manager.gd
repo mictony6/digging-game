@@ -6,6 +6,7 @@ extends Control
 @export var player: Player
 
 func _ready() -> void:
+	print(player)
 	player.health.health_changed.connect(_on_health_changed)
 	player.health.death.connect(_on_player_death)
 	player.oxygen.oxygen_changed.connect(_on_oxygen_changed)

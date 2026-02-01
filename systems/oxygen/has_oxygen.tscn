@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dyst6k0o03jhc"]
+
+[ext_resource type="Script" uid="uid://41q0bda1p4mj" path="res://systems/oxygen/has_oxygen.gd" id="1_kmxus"]
+
+[node name="HasOxygen" type="Node" unique_id=791893390]
+script = ExtResource("1_kmxus")
+max_oxygen = 100.0
+current_oxygen = 100.0

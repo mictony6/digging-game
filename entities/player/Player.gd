@@ -79,4 +79,4 @@ func has_buffered_jump():
 
 func determine_suffocation(status: bool, difficulty: int):
 	is_suffocating = status
-	active_depletion_rate_multiplier = difficulty if is_suffocating else 1.0
+	active_depletion_rate_multiplier = float(difficulty) if is_suffocating else 1.0

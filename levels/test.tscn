@@ -155,207 +155,212 @@ environment = ExtResource("1_1ijy3")
 [node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, -26.917719, -0.824831)
 
+[node name="Elevator" parent="." unique_id=1038308039 instance=ExtResource("39_xqdkm")]
+transform = Transform3D(0.72, 0, -5.9604645e-08, 0, 0.72, 0, 5.9604645e-08, 0, 0.72, 4, -29.444885, -41)
+
 [node name="LevelLoader" type="Node" parent="." unique_id=1634671409]
 
-[node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
+[node name="OverWorld" type="Node3D" parent="LevelLoader" unique_id=360423907]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelLoader" unique_id=1841373696]
+[node name="Terrain" parent="LevelLoader/OverWorld" unique_id=718331278 instance=ExtResource("22_8a51t")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelLoader/OverWorld" unique_id=1841373696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.372826, -30.535934, -72.25868)
 collision_layer = 4
 collision_mask = 9
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LevelLoader/StaticBody3D" unique_id=1482170995]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LevelLoader/OverWorld/StaticBody3D" unique_id=1482170995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.14999962, 0)
 material_override = SubResource("ShaderMaterial_j3o6a")
 mesh = SubResource("ArrayMesh_qhvcx")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="LevelLoader/StaticBody3D" unique_id=2136371246]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="LevelLoader/OverWorld/StaticBody3D" unique_id=2136371246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.099998, 0.14999962, 0)
 shape = SubResource("ConcavePolygonShape3D_kqvnf")
 
-[node name="Cave" type="Node3D" parent="LevelLoader" unique_id=1079105136]
+[node name="Cave" type="Node3D" parent="LevelLoader/OverWorld" unique_id=1079105136]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, -30.5, -36.5)
 
-[node name="Exchange" parent="LevelLoader" unique_id=542972572 instance=ExtResource("20_u1nm5")]
+[node name="Exchange" parent="LevelLoader/OverWorld" unique_id=542972572 instance=ExtResource("20_u1nm5")]
 transform = Transform3D(-0.8660254, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.8660254, -14.99118, -25.657654, -3.5329132)
 
-[node name="Shop" parent="LevelLoader" unique_id=30838348 instance=ExtResource("13_drwxn")]
+[node name="Shop" parent="LevelLoader/OverWorld" unique_id=30838348 instance=ExtResource("13_drwxn")]
 transform = Transform3D(-4.827799e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -4.827799e-08, -5.5, -25.454784, 3)
 
-[node name="LowOxygenArea" type="Area3D" parent="LevelLoader" unique_id=1042252791]
+[node name="LowOxygenArea" type="Area3D" parent="LevelLoader/OverWorld" unique_id=1042252791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -29.850908, 19)
 collision_layer = 0
 script = ExtResource("14_rmkky")
 difficulty = 10
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelLoader/LowOxygenArea" unique_id=1596931592]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelLoader/OverWorld/LowOxygenArea" unique_id=1596931592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.687002, -17)
 shape = SubResource("BoxShape3D_drwxn")
 
-[node name="RockSpawner" parent="LevelLoader" unique_id=262859873 instance=ExtResource("23_krped")]
+[node name="RockSpawner" parent="LevelLoader/OverWorld" unique_id=262859873 instance=ExtResource("23_krped")]
 transform = Transform3D(-0.4226182, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, -0.4226182, 4, -29, -30.000004)
 count = 60
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LevelLoader" unique_id=2039909637]
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=2039909637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.900002, -26.5, -37.55)
 light_color = Color(0.96656257, 0.78816503, 0.47723514, 1)
 shadow_enabled = true
 omni_range = 20.0
 
-[node name="bigwalls" type="Node3D" parent="LevelLoader" unique_id=1864543519]
+[node name="bigwalls" type="Node3D" parent="LevelLoader/OverWorld" unique_id=1864543519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1)
 
-[node name="BoundaryWall" parent="LevelLoader/bigwalls" unique_id=1546230521 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall" parent="LevelLoader/OverWorld/bigwalls" unique_id=1546230521 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(8.940697e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 8.940697e-08, 47, 5, 0)
 
-[node name="BoundaryWall2" parent="LevelLoader/bigwalls" unique_id=1717507257 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall2" parent="LevelLoader/OverWorld/bigwalls" unique_id=1717507257 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.49999988, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.49999988, 43, 5, -17.428204)
 
-[node name="BoundaryWall3" parent="LevelLoader/bigwalls" unique_id=630890362 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall3" parent="LevelLoader/OverWorld/bigwalls" unique_id=630890362 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.70710665, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710665, 32.335785, 6, -32.035458)
 
-[node name="BoundaryWall4" parent="LevelLoader/bigwalls" unique_id=1851483329 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall4" parent="LevelLoader/OverWorld/bigwalls" unique_id=1851483329 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.9659257, 0, 0.25881907, 0, 1, 0, -0.25881907, 0, -0.9659257, 19.607864, 5, -39.26338)
 
-[node name="BoundaryWall5" parent="LevelLoader/bigwalls" unique_id=321698763 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall5" parent="LevelLoader/OverWorld/bigwalls" unique_id=321698763 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.96592575, 0, -0.25881895, 0, 1, 0, 0.25881895, 0, -0.96592575, 3.351212, 6.5, -41.3779)
 
-[node name="BoundaryWall6" parent="LevelLoader/bigwalls" unique_id=259544880 instance=ExtResource("30_m8nfy")]
+[node name="BoundaryWall6" parent="LevelLoader/OverWorld/bigwalls" unique_id=259544880 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, -10.819527, 4.5, -33.080864)
 
-[node name="AuxScene" parent="LevelLoader" unique_id=753142831 instance=ExtResource("33_4ksiy")]
+[node name="AuxScene" parent="LevelLoader/OverWorld" unique_id=753142831 instance=ExtResource("33_4ksiy")]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 32, 0, -42)
 
-[node name="StrangeOre01" parent="LevelLoader" unique_id=664903195 instance=ExtResource("34_0v7wf")]
+[node name="StrangeOre01" parent="LevelLoader/OverWorld" unique_id=664903195 instance=ExtResource("34_0v7wf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -29.266825, -21)
 
-[node name="StrangeOre02" parent="LevelLoader" unique_id=685458529 instance=ExtResource("34_0v7wf")]
+[node name="StrangeOre02" parent="LevelLoader/OverWorld" unique_id=685458529 instance=ExtResource("34_0v7wf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -30.266825, -19)
 
-[node name="Temple" parent="LevelLoader" unique_id=1459980554 instance=ExtResource("37_01s5a")]
+[node name="Temple" parent="LevelLoader/OverWorld" unique_id=1459980554 instance=ExtResource("37_01s5a")]
 transform = Transform3D(0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071067, 5.6291656, -24.435398, 15.25)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelLoader" unique_id=1062068497]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=1062068497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.600002, -20.135935, -70.5)
 material_override = SubResource("StandardMaterial3D_m8nfy")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/CSGCombiner3D" unique_id=1952577953]
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=1952577953]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -8.377991, 38.5)
 size = Vector3(3.5, 3.2440186, 15)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/CSGCombiner3D" unique_id=426916067]
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=426916067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -8.513733, 38.5)
 operation = 2
 size = Vector3(3, 2.9725342, 15)
 
-[node name="WoodenCrate" parent="LevelLoader" unique_id=132977324 instance=ExtResource("36_1ijy3")]
+[node name="WoodenCrate" parent="LevelLoader/OverWorld" unique_id=132977324 instance=ExtResource("36_1ijy3")]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -1, -25.431196, 5.5)
 
-[node name="WoodenCrate2" parent="LevelLoader" unique_id=530048680 instance=ExtResource("36_1ijy3")]
+[node name="WoodenCrate2" parent="LevelLoader/OverWorld" unique_id=530048680 instance=ExtResource("36_1ijy3")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -1, -25, 8.5)
 
-[node name="mesa" type="Node3D" parent="LevelLoader" unique_id=964658255]
+[node name="mesa" type="Node3D" parent="LevelLoader/OverWorld" unique_id=964658255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -25, -0.5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelLoader/mesa" unique_id=2034554993]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelLoader/OverWorld/mesa" unique_id=2034554993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
 mesh = SubResource("CylinderMesh_m8nfy")
 surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelLoader/mesa" unique_id=2038452311]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelLoader/OverWorld/mesa" unique_id=2038452311]
 mesh = SubResource("CylinderMesh_xqdkm")
 surface_material_override/0 = SubResource("ShaderMaterial_01s5a")
 
-[node name="Node3D" parent="LevelLoader" unique_id=941027867 instance=ExtResource("25_70x8p")]
+[node name="Node3D" parent="LevelLoader/OverWorld" unique_id=941027867 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -12.479779)
 
-[node name="Node3D2" parent="LevelLoader" unique_id=534561177 instance=ExtResource("25_70x8p")]
+[node name="Node3D2" parent="LevelLoader/OverWorld" unique_id=534561177 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -12.48)
 
-[node name="Node3D3" parent="LevelLoader" unique_id=1251126703 instance=ExtResource("25_70x8p")]
+[node name="Node3D3" parent="LevelLoader/OverWorld" unique_id=1251126703 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -41.72978)
 
-[node name="Node3D4" parent="LevelLoader" unique_id=1593397328 instance=ExtResource("25_70x8p")]
+[node name="Node3D4" parent="LevelLoader/OverWorld" unique_id=1593397328 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -41.73)
 
-[node name="Elevator" parent="LevelLoader" unique_id=1038308039 instance=ExtResource("39_xqdkm")]
-transform = Transform3D(0.72, 0, -5.9604645e-08, 0, 0.72, 0, 5.9604645e-08, 0, 0.72, 4, -29.444885, -41)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="LevelLoader" unique_id=374928563]
+[node name="OmniLight3D2" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=374928563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -32.40001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_attenuation = 2.0
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="LevelLoader" unique_id=875404622]
+[node name="OmniLight3D4" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=875404622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -36.10001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_attenuation = 2.0
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="LevelLoader" unique_id=477117379]
+[node name="OmniLight3D3" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=477117379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -27.40001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_attenuation = 2.0
 
-[node name="Marker3D" type="Marker3D" parent="LevelLoader" unique_id=1582798423]
+[node name="Marker3D" type="Marker3D" parent="LevelLoader/OverWorld" unique_id=1582798423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -29.135935, -22.5)
 
-[node name="StaticBody3D6" parent="LevelLoader/Marker3D" unique_id=1884469314 instance=ExtResource("35_m8nfy")]
+[node name="StaticBody3D6" parent="LevelLoader/OverWorld/Marker3D" unique_id=1884469314 instance=ExtResource("35_m8nfy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0, 0)
 
-[node name="StaticBody3D2" parent="LevelLoader/Marker3D" unique_id=2075144993 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D2" parent="LevelLoader/OverWorld/Marker3D" unique_id=2075144993 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-0.08715578, 0, -0.9961947, 0, 1, 0, 0.9961947, 0, -0.08715578, 1, 0.01, 2)
 
-[node name="StaticBody3D" parent="LevelLoader/Marker3D" unique_id=1102223179 instance=ExtResource("35_m8nfy")]
+[node name="StaticBody3D" parent="LevelLoader/OverWorld/Marker3D" unique_id=1102223179 instance=ExtResource("35_m8nfy")]
 transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17364821, 0.8260002, -0.017999649, 3.9920006)
 
-[node name="StaticBody3D4" parent="LevelLoader/Marker3D" unique_id=1686232369 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D4" parent="LevelLoader/OverWorld/Marker3D" unique_id=1686232369 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17364821, 0.478392, 0, 5.962005)
 
-[node name="StaticBody3D5" parent="LevelLoader/Marker3D" unique_id=881741225 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D5" parent="LevelLoader/OverWorld/Marker3D" unique_id=881741225 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(0.17364828, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364828, -2.1858163, 0, 9.553939)
 
-[node name="StaticBody3D7" parent="LevelLoader/Marker3D" unique_id=281079381 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D7" parent="LevelLoader/OverWorld/Marker3D" unique_id=281079381 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(0.17364828, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364828, -2.8804095, 0, 13.49317)
 
-[node name="StaticBody3D8" parent="LevelLoader/Marker3D" unique_id=431905984 instance=ExtResource("36_m8nfy")]
+[node name="StaticBody3D8" parent="LevelLoader/OverWorld/Marker3D" unique_id=431905984 instance=ExtResource("36_m8nfy")]
 transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17364821, -0.91079366, 0, 13.840468)
 
-[node name="StaticBody3D9" parent="LevelLoader/Marker3D" unique_id=607590220 instance=ExtResource("35_m8nfy")]
+[node name="StaticBody3D9" parent="LevelLoader/OverWorld/Marker3D" unique_id=607590220 instance=ExtResource("35_m8nfy")]
 transform = Transform3D(-0.17364809, 0, -0.9848077, 0, 1, 0, 0.9848077, 0, -0.17364809, -1.2544765, -0.0140651725, 15.822983)
 
-[node name="StaticBody3D10" parent="LevelLoader/Marker3D" unique_id=1204817211 instance=ExtResource("35_m8nfy")]
+[node name="StaticBody3D10" parent="LevelLoader/OverWorld/Marker3D" unique_id=1204817211 instance=ExtResource("35_m8nfy")]
 transform = Transform3D(-0.17364809, 0, -0.9848077, 0, 1, 0, 0.9848077, 0, -0.17364809, -0.21258807, -0.0140651725, 9.914137)
 
-[node name="RiverPillar" parent="LevelLoader/Marker3D" unique_id=1678325179 instance=ExtResource("36_01s5a")]
+[node name="RiverPillar" parent="LevelLoader/OverWorld/Marker3D" unique_id=1678325179 instance=ExtResource("36_01s5a")]
 transform = Transform3D(-0.54, -5.8699115e-08, 1.0350245e-08, -5.9604645e-08, 0.5317962, -0.09377009, 0, -0.09377009, -0.5317962, 0.4599997, -3.5529199, -1.2442638)
 
-[node name="RiverPillar2" parent="LevelLoader/Marker3D" unique_id=402244759 instance=ExtResource("36_01s5a")]
+[node name="RiverPillar2" parent="LevelLoader/OverWorld/Marker3D" unique_id=402244759 instance=ExtResource("36_01s5a")]
 transform = Transform3D(0.46765378, 0.046885107, 0.26589817, -5.9604645e-08, 0.5317962, -0.09377009, -0.27000004, 0.081207246, 0.46054903, 0.039999485, -3.3955593, -3.4000072)
 
-[node name="RiverPillar3" parent="LevelLoader/Marker3D" unique_id=1740241288 instance=ExtResource("36_01s5a")]
+[node name="RiverPillar3" parent="LevelLoader/OverWorld/Marker3D" unique_id=1740241288 instance=ExtResource("36_01s5a")]
 transform = Transform3D(0.44804353, 0.44627738, 0.14141248, -0.37674594, 0.22753301, 0.4755998, 0.27789113, -0.4110586, 0.41678697, -0.56000066, -1.2955589, -5.050007)
 
-[node name="cave_pillar" parent="LevelLoader" unique_id=1697288309 instance=ExtResource("36_xqdkm")]
+[node name="cave_pillar" parent="LevelLoader/OverWorld" unique_id=1697288309 instance=ExtResource("36_xqdkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -29.5, -39.5)
 
-[node name="cave_pillar2" parent="LevelLoader" unique_id=1471189945 instance=ExtResource("36_xqdkm")]
+[node name="cave_pillar2" parent="LevelLoader/OverWorld" unique_id=1471189945 instance=ExtResource("36_xqdkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -31, -38.5)
 
-[node name="cave_pillar3" parent="LevelLoader" unique_id=389118080 instance=ExtResource("36_xqdkm")]
+[node name="cave_pillar3" parent="LevelLoader/OverWorld" unique_id=389118080 instance=ExtResource("36_xqdkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -31, -36)
 
-[node name="RiverPillar" parent="LevelLoader" unique_id=1012362721 instance=ExtResource("36_01s5a")]
+[node name="RiverPillar" parent="LevelLoader/OverWorld" unique_id=1012362721 instance=ExtResource("36_01s5a")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, -30, -32)
+
+[node name="Level1" type="Node3D" parent="LevelLoader" unique_id=69558858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
@@ -522,5 +527,5 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Title Screen"
 
-[connection signal="body_entered" from="LevelLoader/LowOxygenArea" to="LevelLoader/LowOxygenArea" method="_on_body_entered"]
-[connection signal="body_exited" from="LevelLoader/LowOxygenArea" to="LevelLoader/LowOxygenArea" method="_on_body_exited"]
+[connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]
