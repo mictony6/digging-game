@@ -40,30 +40,8 @@ func _physics_process(delta: float) -> void:
 		tool_area3d.global_position = tool_raycast.get_collider().global_position
 		tool_area3d.monitoring = true
 
-		for body in bodies_in_aoe:
-			if body.rock_data.tier <= get_total_tier():
-				if body == tool_raycast.get_collider():
-					body.take_damage(get_total_damage())
-				else:
-					body.take_damage(get_total_damage() / 4.0) # quarter damage to neighboring rocks
-
-		
-		#spawn hit particles
-		var particles_instance: GPUParticles3D = hit_particles.instantiate()
-		get_tree().current_scene.add_child(particles_instance)
-		particle_instances.append(particles_instance)
-		particles_instance.global_position = collision_point
-		particles_instance.emitting = true
-		particles_instance.finished.connect(particles_instance.queue_free)
-		
-		if particle_instances.size() > 5:
-			var oldest_particle = particle_instances.pop_front()
-			if oldest_particle != null:
-				oldest_particle.queue_free()
-
-		#align particles to surface normal
-		var collision_normal = tool_raycast.get_collision_normal()
-		particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+		deal_damage_on_affected_rocks(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
+		play_particles(collision_point)
 
 		#activate flicker light
 		flicker.show()
@@ -89,3 +67,37 @@ func get_total_damage():
 
 func get_total_tier():
 	return current_tool.tool_data.tier + current_tool.tool_data.tier_upgrade
+
+func deal_damage_on_affected_rocks(rocks: Array[Rock], damage, tier, main_rock):
+	for rock in rocks:
+		if rock.rock_data.tier <= tier:
+			shake_target(rock)
+
+			if rock == main_rock:
+				rock.take_damage(damage)
+			else:
+				rock.take_damage(damage / 4.0) # quarter damage to neighboring rocks
+
+func play_particles(collision_point: Vector3):
+	#spawn hit particles
+	var particles_instance: GPUParticles3D = hit_particles.instantiate()
+	get_tree().current_scene.add_child(particles_instance)
+	particle_instances.append(particles_instance)
+	particles_instance.global_position = collision_point
+	particles_instance.emitting = true
+	particles_instance.finished.connect(particles_instance.queue_free)
+	
+	if particle_instances.size() > 5:
+		var oldest_particle = particle_instances.pop_front()
+		if oldest_particle != null:
+			oldest_particle.queue_free()
+
+	#align particles to surface normal
+	var collision_normal = tool_raycast.get_collision_normal()
+	particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+
+func shake_target(target: Node3D):
+	var tween: Tween = create_tween()
+	tween.tween_property(target, "rotation_degrees", Vector3(1, target.rotation_degrees.y, target.rotation_degrees.z), .04)
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(target, "rotation_degrees", Vector3(-1, target.rotation_degrees.y, target.rotation_degrees.z), .01)

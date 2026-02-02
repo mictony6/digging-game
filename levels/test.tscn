@@ -102,7 +102,7 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_xqdkm"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.57681656, 0.3677826, 0.1442337, 0, 0, 0, 0, 0, 0, -7.2250023, 0.5171318, 3.6733255),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 17.585354, 0.3677826, -8.338661, 0, 0, 0, 0, 0, 0, -7.2250023, 0.5171318, 3.6733255),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -168,9 +168,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2016625581]
 environment = ExtResource("1_1ijy3")
 
-[node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 4, -28.349966, -22.324831)
-
 [node name="Elevator" parent="." unique_id=1038308039 instance=ExtResource("39_xqdkm")]
 transform = Transform3D(0.72, 0, -5.9604645e-08, 0, 0.72, 0, 5.9604645e-08, 0, 0.72, 4, -29.444885, -41)
 
@@ -224,8 +221,8 @@ seed = 4
 [node name="RockSpawner" parent="LevelLoader/OverWorld" unique_id=897679868 instance=ExtResource("23_krped")]
 transform = Transform3D(-0.4226182, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, -0.4226182, 4, -29, -30.000004)
 curve = SubResource("Curve3D_xqdkm")
-count = 60
-seed = 4
+count = 20
+seed = 9
 
 [node name="OmniLight3D" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=2039909637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.900002, -26.5, -37.55)
@@ -316,21 +313,18 @@ transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -41
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -32.40001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
-shadow_enabled = true
 omni_attenuation = 2.0
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=875404622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -36.10001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
-shadow_enabled = true
 omni_attenuation = 2.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=477117379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -27.40001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
 light_energy = 5.0
-shadow_enabled = true
 omni_attenuation = 2.0
 
 [node name="Marker3D" type="Marker3D" parent="LevelLoader/OverWorld" unique_id=1582798423]
@@ -386,6 +380,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, -30, -32)
 
 [node name="Level1" type="Node3D" parent="LevelLoader" unique_id=69558858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
+
+[node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 4, -28.349966, -22.324831)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 

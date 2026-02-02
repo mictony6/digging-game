@@ -287,7 +287,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552648, -0.014453307, 0.025802756, 0.02303216, 0.09108559, -0.034248088, -0.018552607, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552647, -0.014453307, 0.025802756, 0.023032159, 0.09108559, -0.034248088, -0.018552605, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")

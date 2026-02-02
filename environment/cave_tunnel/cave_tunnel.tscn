@@ -39,6 +39,7 @@ shader_parameter/alt_cliff_orm_texture = ExtResource("3_7p7yt")
 shader_parameter/alt_cliff_normal = ExtResource("2_3sllk")
 shader_parameter/separation = 1.245
 shader_parameter/transition_sharpness = 0.29
+shader_parameter/proximity_fade_distance = 0.1
 
 [node name="CaveTunnel" type="Node3D" unique_id=71517295]
 

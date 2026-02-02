@@ -1,7 +1,5 @@
 [gd_resource type="Environment" format=3 uid="uid://bo22vvl5ev0to"]
 
-[ext_resource type="Sky" uid="uid://blbb15ddcdlb6" path="res://assets/hdri/EveningSkyHDRI007A_2K.tres" id="1_q0qwx"]
-
 [sub_resource type="Curve" id="Curve_m8nfy"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.43392074, 0.2865169), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -19,15 +17,21 @@ curve_x = SubResource("Curve_m8nfy")
 curve_y = SubResource("Curve_1ijy3")
 curve_z = SubResource("Curve_01s5a")
 
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qptwq"]
+
+[sub_resource type="Sky" id="Sky_q0qwx"]
+sky_material = SubResource("PhysicalSkyMaterial_qptwq")
+
 [resource]
 background_mode = 2
-sky = ExtResource("1_q0qwx")
+sky = SubResource("Sky_q0qwx")
 ambient_light_color = Color(0.67414933, 0.4878065, 0.26124206, 1)
 ambient_light_sky_contribution = 0.3
 tonemap_mode = 4
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
 fog_light_color = Color(0.4745098, 0.49019608, 0.3372549, 1)
 fog_sky_affect = 0.168

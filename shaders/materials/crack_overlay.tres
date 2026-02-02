@@ -2,43 +2,43 @@
 
 [ext_resource type="Shader" uid="uid://7lkclcg3l0i5" path="res://shaders/crack.tres" id="1_5ne07"]
 
-[sub_resource type="Gradient" id="Gradient_5ne07"]
+[sub_resource type="Gradient" id="Gradient_0exme"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.06048387, 0.15725806)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oamob"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0c3hv"]
 noise_type = 2
 cellular_return_type = 4
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c83ie"]
-noise = SubResource("FastNoiseLite_oamob")
-color_ramp = SubResource("Gradient_5ne07")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljfkj"]
+noise = SubResource("FastNoiseLite_0c3hv")
+color_ramp = SubResource("Gradient_0exme")
 seamless = true
 as_normal_map = true
 
-[sub_resource type="Gradient" id="Gradient_r8uvd"]
+[sub_resource type="Gradient" id="Gradient_f7tjr"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.05645161, 0.36290324)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cxmus"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_25kht"]
 noise_type = 2
 cellular_return_type = 4
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rr552"]
-noise = SubResource("FastNoiseLite_cxmus")
-color_ramp = SubResource("Gradient_r8uvd")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3d7dp"]
+noise = SubResource("FastNoiseLite_25kht")
+color_ramp = SubResource("Gradient_f7tjr")
 seamless = true
 
 [resource]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_5ne07")
-shader_parameter/Crack_Color = Color(0.19607843, 0.21176471, 0.21176471, 1)
+shader_parameter/Crack_Color = Color(0.50525934, 0.23697746, 0.28127798, 1)
 shader_parameter/ratio = 1.0
-shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
-shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
-shader_parameter/Edge = 0.585
+shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_3d7dp")
+shader_parameter/Normals = SubResource("NoiseTexture2D_ljfkj")
+shader_parameter/Edge = 1.2
 shader_parameter/triplanar_scale = Vector3(1, 1, 1)
 shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 10.0
