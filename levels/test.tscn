@@ -309,12 +309,6 @@ transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.51882
 [node name="Node3D4" parent="LevelLoader/OverWorld" unique_id=1593397328 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -41.73)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=374928563]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -32.40001)
-light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
-light_energy = 5.0
-omni_attenuation = 2.0
-
 [node name="OmniLight3D4" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=875404622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -36.10001)
 light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
@@ -382,7 +376,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, -30, -32)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
 
 [node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 4, -28.349966, -22.324831)
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 1.5, -28.349966, -9.824831)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
@@ -586,6 +580,16 @@ text = "Your qouta was not met."
 
 [node name="DateManager" type="Node" parent="." unique_id=131097900]
 script = ExtResource("37_xqdkm")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=52378124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.099966, -8.5)
+use_collision = true
+collision_layer = 4
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1085810621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.699965, -7)
+use_collision = true
+collision_layer = 4
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

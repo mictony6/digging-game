@@ -87,7 +87,7 @@ shader_parameter/depthDistance = 1.0000000149012
 shader_parameter/beersLaw = 12.0
 shader_parameter/waterTransparency = 0.0499999988824
 
-[node name="Node3D" type="Node3D" unique_id=941027867]
+[node name="WaterArea" type="Node3D" unique_id=941027867]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1262636385]
 environment = SubResource("Environment_x56v6")

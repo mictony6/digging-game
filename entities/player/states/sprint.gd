@@ -15,5 +15,7 @@ func physics_update(delta: float) -> void:
 
 	if Input.is_action_pressed("jump") or player.has_buffered_jump():
 		finished.emit(JUMP)
+	elif Input.is_action_pressed("crouch"):
+		finished.emit(CROUCH)
 	elif Input.is_action_just_released("sprint") or !Input.is_action_pressed("sprint"):
 		finished.emit(MOVE)

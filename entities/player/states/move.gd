@@ -9,6 +9,9 @@ func handle_input(_event: InputEvent) -> void:
 func update(_delta: float) -> void:
 	pass
 
+func enter(previous_state_path: String, data := {}) -> void:
+	player.acceleration = player.ground_acceleration
+
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(delta: float) -> void:
 	player.velocity.y -= (player.gravity * delta);
@@ -20,14 +23,12 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor():
 		if Input.is_action_pressed("jump") or player.buffered_jump_timer > 0.0:
 			finished.emit(JUMP)
+		elif Input.is_action_pressed("crouch"):
+			finished.emit(CROUCH)
 		elif Input.is_action_pressed("sprint"):
 			finished.emit(SPRINT)
 		if player.velocity.is_equal_approx(Vector3.ZERO):
 			finished.emit(IDLE)
-
-
-func enter(previous_state_path: String, data := {}) -> void:
-	player.acceleration = player.ground_acceleration
 
 
 ## Called by the state machine before changing the active state. Use this function

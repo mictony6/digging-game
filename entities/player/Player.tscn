@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="11_ax5yc"]
 [ext_resource type="Script" uid="uid://cbkl77dwp2ya1" path="res://systems/physics/is_knockbacked.gd" id="16_aubru"]
 [ext_resource type="Script" uid="uid://dkea10ua38epr" path="res://entities/player/states/fall.gd" id="17_j531f"]
+[ext_resource type="Script" uid="uid://b8bi1sti00wun" path="res://entities/player/states/swim.gd" id="18_ux552"]
+[ext_resource type="Script" uid="uid://c2bq2xjcl88t5" path="res://entities/player/states/crouch.gd" id="19_3uni3"]
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="19_4fbvh"]
 [ext_resource type="PackedScene" uid="uid://dyst6k0o03jhc" path="res://systems/oxygen/has_oxygen.tscn" id="20_ux552"]
 
@@ -287,7 +289,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552647, -0.014453307, 0.025802756, 0.023032159, 0.09108559, -0.034248088, -0.018552605, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526464, -0.014453307, 0.025802756, 0.023032157, 0.09108559, -0.034248088, -0.018552603, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
@@ -355,6 +357,16 @@ script = ExtResource("11_1ms0h")
 
 [node name="Fall" type="Node" parent="StateMachine" unique_id=936237370]
 script = ExtResource("17_j531f")
+metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
+
+[node name="Swim" type="Node" parent="StateMachine" unique_id=718099420]
+script = ExtResource("18_ux552")
+metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
+
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=892233771 node_paths=PackedStringArray("collider", "head")]
+script = ExtResource("19_3uni3")
+collider = NodePath("../../CollisionShape3D")
+head = NodePath("../../Head")
 metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 
 [node name="Control" type="Control" parent="." unique_id=799556388]

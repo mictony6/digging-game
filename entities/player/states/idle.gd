@@ -11,9 +11,12 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			finished.emit(JUMP);
+		elif Input.is_action_pressed("crouch"):
+			finished.emit(CROUCH)
 		elif player.direction.x or player.direction.z:
 			if Input.is_action_pressed("sprint"):
 				finished.emit(SPRINT)
 			finished.emit(MOVE);
+			
 	else:
 		finished.emit(FALL)
