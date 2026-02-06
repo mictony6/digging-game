@@ -39,14 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"cave_tunnel_Plane": {
+"cave_tunnel_Plane_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/meshes/cave_tunnel/cave_tunnel_Plane.res",
-"save_to_file/path": "uid://bja2tc1pf41hd"
+"save_to_file/fallback_path": "res://assets/meshes/cave_tunnel/cave_tunnel_Plane_001.res",
+"save_to_file/path": "uid://cjg6e8dilv8gg"
 }
 }
 }

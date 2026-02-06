@@ -11,6 +11,10 @@ roughness_texture = ExtResource("4_ybhhk")
 roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = ExtResource("3_nru5h")
+ao_enabled = true
+ao_texture = ExtResource("4_ybhhk")
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y8gu6"]
 height = 3.0289917
@@ -24,7 +28,7 @@ radius = 0.8707903
 [node name="cave_pillar" unique_id=1697288309 instance=ExtResource("1_y8gu6")]
 
 [node name="Cylinder" parent="." index="0" unique_id=1209431573]
-surface_material_override/0 = SubResource("StandardMaterial3D_st3ec")
+material_override = SubResource("StandardMaterial3D_st3ec")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder" index="0" unique_id=1700945074]
 collision_layer = 4

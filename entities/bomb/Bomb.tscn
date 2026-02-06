@@ -307,6 +307,7 @@ collision_layer = 8
 collision_mask = 38
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_b0f4v")
+continuous_cd = true
 angular_damp = 20.0
 script = ExtResource("1_vteb3")
 

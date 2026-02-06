@@ -1,9 +1,8 @@
-[gd_scene format=4 uid="uid://d2rwq3anfdsn8"]
+[gd_scene format=3 uid="uid://d2rwq3anfdsn8"]
 
 [ext_resource type="Environment" uid="uid://bo22vvl5ev0to" path="res://data/environment/main.tres" id="1_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
 [ext_resource type="Script" uid="uid://b608we0ij00bo" path="res://game/coordinates.gd" id="4_6g8e2"]
-[ext_resource type="Material" uid="uid://b2ksgj830wn2e" path="res://shaders/materials/triplanar_ground.tres" id="4_r4e4k"]
 [ext_resource type="Shader" uid="uid://ber4b3hd7exu0" path="res://levels/terrain.gdshader" id="5_krped"]
 [ext_resource type="Texture2D" uid="uid://bg42783a62meg" path="res://assets/textures/rock_face/rock_face_03_nor_gl_2k.png" id="6_m8nfy"]
 [ext_resource type="Texture2D" uid="uid://143phtfwbpkb" path="res://assets/textures/rock_face/rock_face_03_arm_2k.png" id="7_1ijy3"]
@@ -28,67 +27,20 @@
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://b62ceimsar2op" path="res://assets/meshes/tree/tree.glb" id="33_4ksiy"]
 [ext_resource type="PackedScene" uid="uid://clil0bg04tt7a" path="res://entities/rocks/StrangeOre01.tscn" id="34_0v7wf"]
-[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="35_krped"]
 [ext_resource type="PackedScene" uid="uid://bdslp2bfm771l" path="res://entities/planks/WoodenPlanks2.tscn" id="35_m8nfy"]
+[ext_resource type="PackedScene" uid="uid://bhtsgd8ntpafc" path="res://environment/lightpost/light_post.tscn" id="35_uoqfl"]
 [ext_resource type="PackedScene" uid="uid://d2sruleu4iip6" path="res://entities/wooden_crate/WoodenCrate.tscn" id="36_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dnfwtv8t8h2vr" path="res://environment/pillar/river_pillar.tscn" id="36_01s5a"]
+[ext_resource type="Script" uid="uid://tyor5x7s0fde" path="res://game/clutter_instancer.gd" id="36_gmj64"]
 [ext_resource type="PackedScene" uid="uid://dmxt2kujrceq0" path="res://entities/planks/WoodenPlanks.tscn" id="36_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="36_xqdkm"]
 [ext_resource type="Texture2D" uid="uid://ckenlabal34qg" path="res://assets/textures/terrain/terrain_mix_noise_texture.res" id="37_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="37_01s5a"]
 [ext_resource type="Script" uid="uid://crjiivy1niwso" path="res://game/date_manager.gd" id="37_xqdkm"]
+[ext_resource type="PackedScene" uid="uid://bfsg057gh6mku" path="res://entities/pot/Pot1.tscn" id="39_gmj64"]
+[ext_resource type="VoxelGIData" uid="uid://dtk7452x1ld28" path="res://GI/new_voxel_gi_data.tres" id="39_uoqfl"]
 [ext_resource type="PackedScene" uid="uid://sx0awbrt80do" path="res://entities/lift/lift.tscn" id="39_xqdkm"]
-
-[sub_resource type="Gradient" id="Gradient_jemwd"]
-offsets = PackedFloat32Array(0.2890625, 0.7942708, 0.7995283)
-colors = PackedColorArray(0, 0, 0, 1, 0.96085304, 0.96085304, 0.96085304, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jemwd"]
-noise_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ac41s"]
-noise = SubResource("FastNoiseLite_jemwd")
-color_ramp = SubResource("Gradient_jemwd")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3o6a"]
-render_priority = 0
-shader = ExtResource("5_krped")
-shader_parameter/global_scale = 0.1
-shader_parameter/triplanar_scale = Vector3(1, 1, 1)
-shader_parameter/triplanar_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 2.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_ac41s")
-shader_parameter/noise_is_triplanar = false
-shader_parameter/ground_texture = ExtResource("13_4ksiy")
-shader_parameter/ground_orm_texture = ExtResource("17_1ijy3")
-shader_parameter/ground_normal = ExtResource("15_krped")
-shader_parameter/alt_ground_texture = ExtResource("14_0v7wf")
-shader_parameter/alt_ground_orm_texture = ExtResource("18_01s5a")
-shader_parameter/alt_ground_normal = ExtResource("16_m8nfy")
-shader_parameter/cliff_texture = ExtResource("14_uoqfl")
-shader_parameter/cliff_orm_texture = ExtResource("13_gmj64")
-shader_parameter/cliff_normal = ExtResource("12_xqdkm")
-shader_parameter/alt_cliff_texture = ExtResource("8_01s5a")
-shader_parameter/alt_cliff_orm_texture = ExtResource("7_1ijy3")
-shader_parameter/alt_cliff_normal = ExtResource("6_m8nfy")
-shader_parameter/separation = 0.9
-shader_parameter/transition_sharpness = 0.6
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_qhvcx"]
-_surfaces = [{
-"aabb": AABB(-50, -0.25, -50, 100, 0.5, 100),
-"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
-"format": 34359738391,
-"material": ExtResource("4_r4e4k"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 36,
-"vertex_data": PackedByteArray("AABIwgAAgL4AAEhCAABIwgAAgL4AAEjCAABIwgAAgD4AAEjCAABIQgAAgL4AAEjCAABIwgAAgL4AAEjCAABIwgAAgL4AAEhCAABIwgAAgD4AAEjCAABIwgAAgL4AAEjCAABIQgAAgL4AAEjCAABIwgAAgD4AAEjCAABIwgAAgD4AAEhCAABIwgAAgL4AAEhCAABIwgAAgL4AAEhCAABIwgAAgD4AAEhCAABIQgAAgD4AAEhCAABIQgAAgD4AAEhCAABIwgAAgD4AAEhCAABIwgAAgD4AAEjCAABIwgAAgL4AAEhCAABIQgAAgL4AAEhCAABIQgAAgL4AAEjCAABIQgAAgD4AAEhCAABIQgAAgL4AAEhCAABIwgAAgL4AAEhCAABIQgAAgL4AAEjCAABIQgAAgL4AAEhCAABIQgAAgD4AAEhCAABIQgAAgL4AAEjCAABIQgAAgD4AAEjCAABIwgAAgD4AAEjCAABIwgAAgD4AAEjCAABIQgAAgD4AAEjCAABIQgAAgD4AAEhCAABIQgAAgD4AAEhCAABIQgAAgD4AAEjCAABIQgAAgL4AAEjCAAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
-}]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kqvnf"]
-data = PackedVector3Array(-50, -0.25, 50, -50, -0.25, -50, -50, 0.25, -50, 50, -0.25, -50, -50, -0.25, -50, -50, -0.25, 50, -50, 0.25, -50, -50, -0.25, -50, 50, -0.25, -50, -50, 0.25, -50, -50, 0.25, 50, -50, -0.25, 50, -50, -0.25, 50, -50, 0.25, 50, 50, 0.25, 50, 50, 0.25, 50, -50, 0.25, 50, -50, 0.25, -50, -50, -0.25, 50, 50, -0.25, 50, 50, -0.25, -50, 50, 0.25, 50, 50, -0.25, 50, -50, -0.25, 50, 50, -0.25, -50, 50, -0.25, 50, 50, 0.25, 50, 50, -0.25, -50, 50, 0.25, -50, -50, 0.25, -50, -50, 0.25, -50, 50, 0.25, -50, 50, 0.25, 50, 50, 0.25, 50, 50, 0.25, -50, 50, -0.25, -50)
+[ext_resource type="PackedScene" uid="uid://bxcsf7he164iw" path="res://environment/cave_tunnel/cave_tunnel.tscn" id="40_gmj64"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
 size = Vector3(10, 5, 2)
@@ -106,10 +58,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8nfy"]
-albedo_texture = ExtResource("35_krped")
-uv1_triplanar = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_m8nfy"]
 top_radius = 5.5
@@ -144,6 +92,14 @@ shader_parameter/transition_sharpness = 0.6
 top_radius = 5.0
 bottom_radius = 5.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_gmj64"]
+radial_segments = 6
+rings = 3
+
+[sub_resource type="MultiMesh" id="MultiMesh_uoqfl"]
+transform_format = 1
+mesh = SubResource("SphereMesh_gmj64")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nm5"]
 bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
 
@@ -160,7 +116,7 @@ font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
 [node name="Main" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
-transform = Transform3D(0.63876784, 0.6879619, -0.3445056, 0, 0.4477591, 0.89415425, 0.7693995, -0.571157, 0.28601408, 112.5, -6, 27.5)
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.86602545, 0, 0, 0)
 light_color = Color(0.77525723, 0.6606558, 0.5471344, 1)
 light_energy = 3.0
 shadow_enabled = true
@@ -169,28 +125,13 @@ shadow_enabled = true
 environment = ExtResource("1_1ijy3")
 
 [node name="Elevator" parent="." unique_id=1038308039 instance=ExtResource("39_xqdkm")]
-transform = Transform3D(0.72, 0, -5.9604645e-08, 0, 0.72, 0, 5.9604645e-08, 0, 0.72, 4, -29.444885, -41)
+transform = Transform3D(0.06275207, 0, -0.7172604, 0, 0.7200001, 0, 0.7172604, 0, 0.06275207, 5.7000003, -29.707956, -41.15)
 
 [node name="LevelLoader" type="Node" parent="." unique_id=1634671409]
 
 [node name="OverWorld" type="Node3D" parent="LevelLoader" unique_id=360423907]
 
 [node name="Terrain" parent="LevelLoader/OverWorld" unique_id=718331278 instance=ExtResource("22_8a51t")]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelLoader/OverWorld" unique_id=1841373696]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.372826, -30.535934, -72.25868)
-collision_layer = 4
-collision_mask = 9
-
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LevelLoader/OverWorld/StaticBody3D" unique_id=1482170995]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0.14999962, 0)
-material_override = SubResource("ShaderMaterial_j3o6a")
-mesh = SubResource("ArrayMesh_qhvcx")
-skeleton = NodePath("../../../..")
-
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="LevelLoader/OverWorld/StaticBody3D" unique_id=2136371246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.099998, 0.14999962, 0)
-shape = SubResource("ConcavePolygonShape3D_kqvnf")
 
 [node name="Cave" type="Node3D" parent="LevelLoader/OverWorld" unique_id=1079105136]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, -30.5, -36.5)
@@ -224,12 +165,6 @@ curve = SubResource("Curve3D_xqdkm")
 count = 20
 seed = 9
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=2039909637]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.900002, -26.5, -37.55)
-light_color = Color(0.96656257, 0.78816503, 0.47723514, 1)
-shadow_enabled = true
-omni_range = 20.0
-
 [node name="bigwalls" type="Node3D" parent="LevelLoader/OverWorld" unique_id=1864543519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1)
 
@@ -251,33 +186,35 @@ transform = Transform3D(-0.96592575, 0, -0.25881895, 0, 1, 0, 0.25881895, 0, -0.
 [node name="BoundaryWall6" parent="LevelLoader/OverWorld/bigwalls" unique_id=259544880 instance=ExtResource("30_m8nfy")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, -10.819527, 4.5, -33.080864)
 
+[node name="BoundaryWall7" parent="LevelLoader/OverWorld/bigwalls" unique_id=1685303700 instance=ExtResource("30_m8nfy")]
+transform = Transform3D(0.31199998, 0, 0, 0, 0.31199998, 0, 0, 0, 0.31199998, 3.35, -28.6, -41.6)
+
+[node name="BoundaryWall8" parent="LevelLoader/OverWorld/bigwalls" unique_id=1426365396 instance=ExtResource("30_m8nfy")]
+transform = Transform3D(0.28145674, 0, -0.10244186, 0, 0.29952, 0, 0.10244186, 0, 0.28145674, 9.35, -29, -43.199997)
+
+[node name="BoundaryWall10" parent="LevelLoader/OverWorld/bigwalls" unique_id=1867589899 instance=ExtResource("30_m8nfy")]
+transform = Transform3D(0.28145677, 0, -0.10244188, -0.07243734, 0.21179263, -0.19901998, 0.07243734, 0.21179263, 0.19901998, 9.35, -25.85, -43.699997)
+
+[node name="BoundaryWall9" parent="LevelLoader/OverWorld/bigwalls" unique_id=131474900 instance=ExtResource("30_m8nfy")]
+transform = Transform3D(0.6743234, 0, 0.24543361, 0, 0.7175999, 0, -0.24543361, 0, 0.6743234, 5.8500004, -27.1, -44.399998)
+
 [node name="AuxScene" parent="LevelLoader/OverWorld" unique_id=753142831 instance=ExtResource("33_4ksiy")]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 32, 0, -42)
 
 [node name="StrangeOre01" parent="LevelLoader/OverWorld" unique_id=664903195 instance=ExtResource("34_0v7wf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -29.266825, -21)
 
-[node name="StrangeOre02" parent="LevelLoader/OverWorld" unique_id=685458529 instance=ExtResource("34_0v7wf")]
+[node name="StrangeOre03" parent="LevelLoader/OverWorld" unique_id=685458529 instance=ExtResource("34_0v7wf")]
+transform = Transform3D(0.34999996, 1.1965737e-08, -0.60621774, 0.25619873, 0.63441545, 0.14791638, 0.5494199, -0.29583272, 0.31720763, 6.5, -30.066826, -22.75)
+
+[node name="StrangeOre04" parent="LevelLoader/OverWorld" unique_id=2001758575 instance=ExtResource("34_0v7wf")]
+transform = Transform3D(-0.08657274, 0.68871975, -0.09038964, 0.5703076, 0.122475915, 0.38697413, 0.39655328, -0.025783561, -0.5762645, 5.4, -30.066826, -22.449999)
+
+[node name="StrangeOre02" parent="LevelLoader/OverWorld" unique_id=144969570 instance=ExtResource("34_0v7wf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -30.266825, -19)
 
 [node name="Temple" parent="LevelLoader/OverWorld" unique_id=1459980554 instance=ExtResource("37_01s5a")]
 transform = Transform3D(0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071067, 5.6291656, -24.435398, 15.25)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=1062068497]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.600002, -20.135935, -70.5)
-material_override = SubResource("StandardMaterial3D_m8nfy")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=1952577953]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -8.377991, 38.5)
-size = Vector3(3.5, 3.2440186, 15)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=426916067]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -8.513733, 38.5)
-operation = 2
-size = Vector3(3, 2.9725342, 15)
 
 [node name="WoodenCrate" parent="LevelLoader/OverWorld" unique_id=132977324 instance=ExtResource("36_1ijy3")]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -1, -25.431196, 5.5)
@@ -286,7 +223,7 @@ transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.965
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -1, -25, 8.5)
 
 [node name="mesa" type="Node3D" parent="LevelLoader/OverWorld" unique_id=964658255]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -25, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -26.5, -22.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelLoader/OverWorld/mesa" unique_id=2034554993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
@@ -302,24 +239,6 @@ transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.51882
 
 [node name="Node3D2" parent="LevelLoader/OverWorld" unique_id=534561177 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -12.48)
-
-[node name="Node3D3" parent="LevelLoader/OverWorld" unique_id=1251126703 instance=ExtResource("25_70x8p")]
-transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -41.72978)
-
-[node name="Node3D4" parent="LevelLoader/OverWorld" unique_id=1593397328 instance=ExtResource("25_70x8p")]
-transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -41.73)
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=875404622]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -36.10001)
-light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
-light_energy = 5.0
-omni_attenuation = 2.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="LevelLoader/OverWorld" unique_id=477117379]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0399995, -28.031494, -27.40001)
-light_color = Color(0.81088716, 0.66125196, 0.47354633, 1)
-light_energy = 5.0
-omni_attenuation = 2.0
 
 [node name="Marker3D" type="Marker3D" parent="LevelLoader/OverWorld" unique_id=1582798423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -29.135935, -22.5)
@@ -352,31 +271,68 @@ transform = Transform3D(-0.17364809, 0, -0.9848077, 0, 1, 0, 0.9848077, 0, -0.17
 transform = Transform3D(-0.17364809, 0, -0.9848077, 0, 1, 0, 0.9848077, 0, -0.17364809, -0.21258807, -0.0140651725, 9.914137)
 
 [node name="RiverPillar" parent="LevelLoader/OverWorld/Marker3D" unique_id=1678325179 instance=ExtResource("36_01s5a")]
-transform = Transform3D(-0.54, -5.8699115e-08, 1.0350245e-08, -5.9604645e-08, 0.5317962, -0.09377009, 0, -0.09377009, -0.5317962, 0.4599997, -3.5529199, -1.2442638)
+transform = Transform3D(-1.2420001, -1.3500798e-07, 2.3805566e-08, -1.370907e-07, 1.2231314, -0.21567121, 0, -0.21567121, -1.2231314, -0.0400002, -7.5529194, 0.2557354)
 
 [node name="RiverPillar2" parent="LevelLoader/OverWorld/Marker3D" unique_id=402244759 instance=ExtResource("36_01s5a")]
-transform = Transform3D(0.46765378, 0.046885107, 0.26589817, -5.9604645e-08, 0.5317962, -0.09377009, -0.27000004, 0.081207246, 0.46054903, 0.039999485, -3.3955593, -3.4000072)
+transform = Transform3D(0.46765378, 0.046885107, 0.26589817, -5.9604645e-08, 0.5317962, -0.09377009, -0.27000004, 0.081207246, 0.46054903, -1.1600006, -3.4955578, -3.3000069)
+
+[node name="RiverPillar5" parent="LevelLoader/OverWorld/Marker3D" unique_id=690981076 instance=ExtResource("36_01s5a")]
+transform = Transform3D(-1.151373, 0.11543167, -0.6953541, -0.20301798, -1.3296467, 0.11543201, -0.67500025, 0.20301816, 1.1513728, 1.5399995, -2.6455574, -2.6500072)
 
 [node name="RiverPillar3" parent="LevelLoader/OverWorld/Marker3D" unique_id=1740241288 instance=ExtResource("36_01s5a")]
-transform = Transform3D(0.44804353, 0.44627738, 0.14141248, -0.37674594, 0.22753301, 0.4755998, 0.27789113, -0.4110586, 0.41678697, -0.56000066, -1.2955589, -5.050007)
+transform = Transform3D(-0.015794713, 0.647489, -0.020311495, -0.39517593, 0.0064688316, 0.51351553, 0.5133133, 0.024903456, 0.39470667, -2.1100006, -0.59555817, -5.050007)
 
-[node name="cave_pillar" parent="LevelLoader/OverWorld" unique_id=1697288309 instance=ExtResource("36_xqdkm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -29.5, -39.5)
-
-[node name="cave_pillar2" parent="LevelLoader/OverWorld" unique_id=1471189945 instance=ExtResource("36_xqdkm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -31, -38.5)
-
-[node name="cave_pillar3" parent="LevelLoader/OverWorld" unique_id=389118080 instance=ExtResource("36_xqdkm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -31, -36)
+[node name="RiverPillar4" parent="LevelLoader/OverWorld/Marker3D" unique_id=86178786 instance=ExtResource("36_01s5a")]
+transform = Transform3D(-0.08003269, -0.6303105, -0.1273081, -0.4152549, -0.04729419, 0.4952076, -0.4909807, 0.14274399, -0.39807796, 2.9399996, -0.59555817, -5.050007)
 
 [node name="RiverPillar" parent="LevelLoader/OverWorld" unique_id=1012362721 instance=ExtResource("36_01s5a")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, -30, -32)
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -2, -30, -27.5)
+
+[node name="RiverPillar2" parent="LevelLoader/OverWorld" unique_id=1147565117 instance=ExtResource("36_01s5a")]
+transform = Transform3D(-0.094561875, -0.02350825, -1.0454684, -0.0051654307, 1.0497317, -0.023136878, 1.0457201, 0.0030594347, -0.0946534, 7.15, -29.45, -25.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld" unique_id=52378124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.099966, -8.5)
+use_collision = true
+collision_layer = 4
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/OverWorld" unique_id=1085810621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.699965, -7)
+use_collision = true
+collision_layer = 4
+
+[node name="StaticBody3D" parent="LevelLoader/OverWorld" unique_id=1524283683 instance=ExtResource("39_gmj64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.967155, -42)
+
+[node name="StaticBody3D2" parent="LevelLoader/OverWorld" unique_id=522921278 instance=ExtResource("39_gmj64")]
+transform = Transform3D(0.45962664, 0, -0.38567254, 0, 0.59999996, 0, 0.38567254, 0, 0.45962664, -0.5, -29.967155, -41.5)
+
+[node name="CaveTunnel" parent="LevelLoader/OverWorld" unique_id=71517295 instance=ExtResource("40_gmj64")]
+transform = Transform3D(4.6400003, 0, 0, 0, 4.6400003, 0, 0, 0, 4.6400003, 3.4499998, -29.649998, -31.15)
+
+[node name="CaveTunnel2" parent="LevelLoader/OverWorld" unique_id=127229258 instance=ExtResource("40_gmj64")]
+transform = Transform3D(4.6400003, 0, 0, 0, 4.6400003, 0, 0, 0, 4.6400003, 3.4499998, -29.999998, -39.45)
+
+[node name="cave_pillar" parent="LevelLoader/OverWorld" unique_id=1697288309 instance=ExtResource("36_xqdkm")]
+transform = Transform3D(0.4625126, 0.36234668, -1.2707428, -0.12392986, 1.3522964, 0.34049445, 1.3155698, 0, 0.47882828, -0.30000007, -30.1, -36.5)
+
+[node name="LightPost" parent="LevelLoader/OverWorld" unique_id=795842710 instance=ExtResource("35_uoqfl")]
+transform = Transform3D(0.087155685, 0, -0.99619484, 0, 1, 0, 0.99619484, 0, 0.087155685, 4.6835537, -29.97977, -41.055946)
 
 [node name="Level1" type="Node3D" parent="LevelLoader" unique_id=69558858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
 
 [node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 1.5, -28.349966, -9.824831)
+
+[node name="ClutterInstancer" type="Node3D" parent="." unique_id=1074972713 node_paths=PackedStringArray("player")]
+script = ExtResource("36_gmj64")
+enabled = false
+player = NodePath("../Player")
+radius = 5.0
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="ClutterInstancer" unique_id=303528326]
+multimesh = SubResource("MultiMesh_uoqfl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
@@ -581,15 +537,10 @@ text = "Your qouta was not met."
 [node name="DateManager" type="Node" parent="." unique_id=131097900]
 script = ExtResource("37_xqdkm")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=52378124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.099966, -8.5)
-use_collision = true
-collision_layer = 4
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1085810621]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -27.699965, -7)
-use_collision = true
-collision_layer = 4
+[node name="VoxelGI" type="VoxelGI" parent="." unique_id=65422826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.540512, -38.5)
+size = Vector3(20, 7, 17)
+data = ExtResource("39_uoqfl")
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

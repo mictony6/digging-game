@@ -29,6 +29,7 @@ normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_dox17")
 rim_enabled = true
 uv1_triplanar = true
+proximity_fade_distance = 0.01
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_oaev0"]
 _surfaces = [{

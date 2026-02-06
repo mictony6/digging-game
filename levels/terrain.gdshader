@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode diffuse_burley, cull_disabled;
+render_mode diffuse_burley, cull_back;
 
 vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
 	vec4 samp = vec4(0.0);

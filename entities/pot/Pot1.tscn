@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bfsg057gh6mku"]
+
+[ext_resource type="ArrayMesh" uid="uid://2p0c8ireg2j1" path="res://assets/meshes/pot1/pot_Plane_002.res" id="1_ewb5y"]
+[ext_resource type="Texture2D" uid="uid://b8mxu81p3axb0" path="res://assets/meshes/pot1/pot_Untitled.png" id="2_210ff"]
+[ext_resource type="Texture2D" uid="uid://dng5ku23x6227" path="res://assets/textures/pot/pot.jpg" id="3_210ff"]
+[ext_resource type="Texture2D" uid="uid://qkdvjlu1dbs4" path="res://assets/meshes/pot1/pot_pot_roughness.png" id="3_qsqv0"]
+[ext_resource type="Texture2D" uid="uid://cr446nqlx7ome" path="res://assets/meshes/pot1/pot_pot_normal_map.png" id="4_p21ag"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qsqv0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p21ag"]
+noise = SubResource("FastNoiseLite_qsqv0")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrgfw"]
+resource_name = "Material.001"
+albedo_texture = ExtResource("2_210ff")
+metallic_texture = ExtResource("3_qsqv0")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_qsqv0")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("4_p21ag")
+rim = 0.29
+backlight_enabled = true
+backlight = Color(0.8014953, 0.5659122, 0.19732699, 1)
+detail_mask = SubResource("NoiseTexture2D_p21ag")
+detail_albedo = ExtResource("3_210ff")
+texture_filter = 5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ewb5y"]
+points = PackedVector3Array(0.78004783, 0.22007324, 0.032167703, -0.8864938, 0.92302245, -0.028067969, -0.74104697, 0.2532787, -0.30166328, 0.16913617, 2.0706067, -0.4512885, 0.17028087, 1.0128945, 0.88409704, 0.17067987, 0.9821125, -0.8824207, -0.31581524, 0.16247965, 0.7003126, -0.3745397, 2.0705483, 0.30393422, 0.43884283, 2.0658767, 0.21217991, 0.898616, 1.0431294, -0.08911527, 0.29351428, 0.12534139, -0.6707939, -0.642301, 1.0140882, -0.658576, -0.6743015, 1.0138217, 0.6643182, 0.68261486, 1.0135212, 0.666531, 0.35305116, 0.12969089, 0.6409946, -0.4354458, 2.0713494, -0.20942363, 0.71246105, 0.98329645, -0.571571, -0.2878594, 0.12400789, -0.67171067, -0.6842064, 0.12616971, 0.24628004, -0.011908881, 2.005719, 0.51299906, -0.40474963, 1.0135164, 0.8780612, -0.3392969, 1.0443046, -0.8315507, 0.43887272, 2.0659428, -0.2082428, 0.7161434, 0.16291152, -0.27107754, -0.8505018, 1.0739638, 0.24150054, -0.16360186, 2.0736127, -0.4526975, -0.012080823, 0.22179279, 0.7925756, 0.8693361, 1.0430434, 0.24508925, 0.7206302, 0.18760794, 0.30726984, -0.82412696, 1.073835, -0.32875967, 0.5607601, 1.0435266, -0.72173166, -0.042352114, 0.2240568, -0.78676516)
+
+[node name="Pot1" type="StaticBody3D" unique_id=1524283683]
+collision_layer = 32
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1536583561]
+transform = Transform3D(0.4328327, 0, 0, 0, 0.4328327, 0, 0, 0, 0.4328327, 0, 0, 0)
+mesh = ExtResource("1_ewb5y")
+surface_material_override/0 = SubResource("StandardMaterial3D_qrgfw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=525034405]
+transform = Transform3D(0.4328327, 0, 0, 0, 0.4328327, 0, 0, 0, 0.4328327, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ewb5y")

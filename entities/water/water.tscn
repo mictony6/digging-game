@@ -2,20 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://tvsdwvk0xy1e" path="res://shaders/water.gdshader" id="1_02y12"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_02y12"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_avpee"]
-sky_material = SubResource("ProceduralSkyMaterial_02y12")
-
-[sub_resource type="Environment" id="Environment_x56v6"]
-background_mode = 2
-sky = SubResource("Sky_avpee")
-tonemap_mode = 2
-ssr_enabled = true
-glow_enabled = true
-
 [sub_resource type="QuadMesh" id="QuadMesh_x56v6"]
 size = Vector2(5, 5)
 subdivide_width = 64
@@ -77,7 +63,7 @@ shader_parameter/heightScale = 0.025
 shader_parameter/uvScale = 1.0
 shader_parameter/movementDirection = Vector2(1, 1)
 shader_parameter/movementStrength = 0.01
-shader_parameter/refractionStrength = 0.050000002375
+shader_parameter/refractionStrength = 0.0250000011875
 shader_parameter/foamTexture = SubResource("NoiseTexture2D_5r0hp")
 shader_parameter/foamColor = Color(0.99260193, 0.99151236, 0.9847905, 1)
 shader_parameter/foamDepth = 0.0499999988824
@@ -85,12 +71,9 @@ shader_parameter/foamStrength = 0.8
 shader_parameter/foamScale = 3.20000004768384
 shader_parameter/depthDistance = 1.0000000149012
 shader_parameter/beersLaw = 12.0
-shader_parameter/waterTransparency = 0.0499999988824
+shader_parameter/waterTransparency = 0.249999994412
 
 [node name="WaterArea" type="Node3D" unique_id=941027867]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1262636385]
-environment = SubResource("Environment_x56v6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=865984856]
 mesh = SubResource("QuadMesh_x56v6")
