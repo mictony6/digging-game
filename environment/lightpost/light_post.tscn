@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhtsgd8ntpafc"]
 
-[ext_resource type="ArrayMesh" uid="uid://dbe5abofm8b8" path="res://assets/meshes/lightpost/LightPost_Plane.res" id="1_tw6gd"]
+[ext_resource type="ArrayMesh" uid="uid://b7xkf7gjenvmq" path="res://assets/meshes/lightpost/LightPost_Plane.res" id="1_tw6gd"]
 [ext_resource type="Material" uid="uid://bfsolfawxp1d" path="res://shaders/materials/metal_plate.material" id="2_b35jw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsgyp"]
@@ -50,5 +50,4 @@ light_color = Color(0.8471728, 0.60802686, 0.41517365, 1)
 light_size = 0.151
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 10.0
 omni_attenuation = 2.0

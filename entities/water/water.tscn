@@ -51,8 +51,8 @@ as_normal_map = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_avpee"]
 render_priority = 0
 shader = ExtResource("1_02y12")
-shader_parameter/primaryColor = Color(0.20234749, 0.34826228, 0.47189558, 1)
-shader_parameter/secondaryColor = Color(0.20353475, 0.30860752, 0.3262527, 1)
+shader_parameter/primaryColor = Color(0.23453069, 0.42752138, 0.56671983, 1)
+shader_parameter/secondaryColor = Color(0.18888992, 0.29255354, 0.30551413, 1)
 shader_parameter/roughness = 0.2
 shader_parameter/normalMapA = SubResource("NoiseTexture2D_x56v6")
 shader_parameter/normalMapB = SubResource("NoiseTexture2D_355tc")
@@ -76,5 +76,6 @@ shader_parameter/waterTransparency = 0.249999994412
 [node name="WaterArea" type="Node3D" unique_id=941027867]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=865984856]
+cast_shadow = 0
 mesh = SubResource("QuadMesh_x56v6")
 surface_material_override/0 = SubResource("ShaderMaterial_avpee")

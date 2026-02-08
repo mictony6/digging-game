@@ -9,7 +9,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=686203665]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.06459808, 1.4305115e-06, -0.08319092)
 cast_shadow = 2
 mesh = ExtResource("1_8ycuo")
 surface_material_override/0 = ExtResource("2_8ycuo")

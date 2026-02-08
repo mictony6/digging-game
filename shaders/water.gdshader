@@ -1,5 +1,6 @@
 shader_type spatial;
-render_mode depth_draw_opaque, cull_disabled, diffuse_burley;
+render_mode depth_draw_opaque, cull_back, diffuse_burley;
+
 group_uniforms Colors;
 uniform vec4 primaryColor : source_color;
 uniform vec4 secondaryColor: source_color;

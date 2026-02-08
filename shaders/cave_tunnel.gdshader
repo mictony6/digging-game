@@ -20,10 +20,8 @@ void fragment() {
 	vec2 uv = UV* UVScale;
 	vec3 orm = texture(ORM_texture, uv).rgb;
 	vec3 normalB = texture(normalMapB, uv).rgb;
-	//normalA.xy*= ratio;
-	//normalB.xy *= (1.0-ratio);
 	
-	NORMAL_MAP = blendNormalsWhiteout(normalA, normalB);
+	NORMAL_MAP = blendNormalsWhiteout(normalA, normalB) ;
 	ALBEDO = texture(albedo, uv).rgb ;
 	AO = orm.r;
 	ROUGHNESS = orm.g;

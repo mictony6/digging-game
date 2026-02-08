@@ -34,7 +34,7 @@ height = 1.5
 render_priority = 0
 shader = ExtResource("6_j531f")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 2.0
+shader_parameter/outline_width = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07kbm"]
 resource_name = "Body"
@@ -44,6 +44,7 @@ emission = Color(0.38923737, 0.6106937, 0.7226991, 1)
 rim_tint = 0.82
 use_z_clip_scale = true
 z_clip_scale = 0.9
+stencil_flags = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow5oq"]
 resource_name = "Material.001"
@@ -288,7 +289,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552646, -0.014453307, 0.025802756, 0.023032155, 0.09108559, -0.034248088, -0.018552603, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552645, -0.014453307, 0.025802756, 0.023032153, 0.09108559, -0.034248088, -0.018552601, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")

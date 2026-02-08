@@ -26,4 +26,6 @@ void fragment() {
 		ALPHA = outline_color.a;
 	}
 	
-}"
+}
+
+"

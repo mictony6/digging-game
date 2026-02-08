@@ -1,6 +1,7 @@
 @tool
 extends Path3D
 
+@export var lenght: int = 5
 @export var count: int = 25
 @export var rock_scene: PackedScene
 @export var seed: int = 0
@@ -40,7 +41,7 @@ func generate():
 			).normalized()
 
 		query.from = point_position
-		query.to = point_position + dir * 5
+		query.to = point_position + dir * lenght
 
 		var result = space_state.intersect_ray(query)
 		if result:

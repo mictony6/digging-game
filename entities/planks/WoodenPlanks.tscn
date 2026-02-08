@@ -1,15 +1,32 @@
 [gd_scene format=3 uid="uid://dmxt2kujrceq0"]
 
 [ext_resource type="ArrayMesh" uid="uid://di0pexuq7ebw8" path="res://assets/meshes/planks/Planks.res" id="1_mo2hw"]
+[ext_resource type="Texture2D" uid="uid://cjvq05dt42n2b" path="res://assets/meshes/planks/Planks_113_Chestnut fine wood PBR texture seamless.jpg" id="2_ub7gp"]
+[ext_resource type="Texture2D" uid="uid://dn02l318vum1f" path="res://assets/meshes/planks/Planks_RoughnessMap_1250x1250_ThiagoCarneiro.png" id="3_6wyhl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jhtk8"]
 rough = true
 bounce = 0.1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ub7gp"]
-size = Vector3(2.0020523, 0.072021484, 2.0046692)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wyhl"]
+size = Vector3(1.99935, 0.105319485, 2.0300245)
 
-[node name="StaticBody3D" type="StaticBody3D" unique_id=1884469314]
+[sub_resource type="CylinderMesh" id="CylinderMesh_kljsf"]
+top_radius = 0.1
+bottom_radius = 0.1
+radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yxk3"]
+resource_name = "Planks"
+albedo_texture = ExtResource("2_ub7gp")
+metallic_texture = ExtResource("3_6wyhl")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_6wyhl")
+roughness_texture_channel = 1
+uv1_scale = Vector3(0.605, 0.605, 0.605)
+texture_filter = 5
+
+[node name="WoodenBridge" type="StaticBody3D" unique_id=1884469314]
 collision_layer = 32
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_jhtk8")
@@ -18,6 +35,16 @@ physics_material_override = SubResource("PhysicsMaterial_jhtk8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0, 1)
 mesh = ExtResource("1_mo2hw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=414295160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0039669, -4.196167e-05, 1.0002899)
-shape = SubResource("BoxShape3D_ub7gp")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1718002163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0030625, 0, 0.9991418)
+shape = SubResource("BoxShape3D_6wyhl")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1659562095]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.996, -0.125, 1.8414464)
+mesh = SubResource("CylinderMesh_kljsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_1yxk3")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1541930494]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.9960598, -0.12455511, 0.12438205)
+mesh = SubResource("CylinderMesh_kljsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_1yxk3")

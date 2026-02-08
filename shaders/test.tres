@@ -1,0 +1,28 @@
+[gd_resource type="VisualShader" format=3 uid="uid://ddouqjv0y414y"]
+
+[ext_resource type="Script" uid="uid://c83xl430n1yfw" path="res://addons/diffuse_full_oren_nayar/DiffuseFullOrenNayar.gd" id="1_tnh2o"]
+
+[sub_resource type="VisualShaderNodeTextureParameterTriplanar" id="VisualShaderNodeTextureParameterTriplanar_a4v6c"]
+parameter_name = "TextureParameterTriplanar"
+texture_type = 1
+texture_filter = 6
+
+[sub_resource type="VisualShaderNodeTextureParameterTriplanar" id="VisualShaderNodeTextureParameterTriplanar_bltgd"]
+parameter_name = "TextureParameterTriplanar2"
+texture_filter = 6
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_gp7r8"]
+default_input_values = [0, null, 1, null, 2, null, 3, null, 4, null, 5, 0.9, 6, 30.0]
+initialized = true
+script = ExtResource("1_tnh2o")
+
+[resource]
+nodes/fragment/2/node = SubResource("VisualShaderNodeTextureParameterTriplanar_a4v6c")
+nodes/fragment/2/position = Vector2(-160, -80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTextureParameterTriplanar_bltgd")
+nodes/fragment/3/position = Vector2(-272, 320)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 9)
+nodes/light/0/position = Vector2(928, 256)
+nodes/light/2/node = SubResource("VisualShaderNodeCustom_gp7r8")
+nodes/light/2/position = Vector2(512, 208)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 0)

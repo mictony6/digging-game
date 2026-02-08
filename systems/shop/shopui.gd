@@ -28,7 +28,7 @@ func hide_and_exit():
 	shopui.visible = false
 
 func show_ui():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	shopui.visible = true
 
 

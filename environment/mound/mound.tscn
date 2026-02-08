@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dbf4ij4d18ruw"]
+
+[ext_resource type="Shader" uid="uid://dwlt7f41xvycs" path="res://shaders/VertexMixer.gdshader" id="1_gxcv3"]
+[ext_resource type="ArrayMesh" uid="uid://bsjesn1tmjr20" path="res://assets/meshes/mound/mound_Plane.res" id="1_m4nx4"]
+[ext_resource type="Texture2D" uid="uid://mt1tt4li5wqi" path="res://assets/textures/trail/rocky_trail_02_diff_2k.png" id="2_x1jti"]
+[ext_resource type="Texture2D" uid="uid://bcd7x55rkhy3m" path="res://assets/textures/trail/rocky_trail_nor_gl_2k.png" id="4_0exsb"]
+[ext_resource type="Texture2D" uid="uid://dqnn4ntseerdf" path="res://assets/textures/gravel/gravel_diff_2k.png" id="4_m4nx4"]
+[ext_resource type="Texture2D" uid="uid://b3adsvjmvukf6" path="res://assets/textures/gravel/gravel_nor_gl_2k.png" id="6_0exsb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vfvy"]
+render_priority = 0
+shader = ExtResource("1_gxcv3")
+shader_parameter/colorA = ExtResource("2_x1jti")
+shader_parameter/colorB = ExtResource("4_m4nx4")
+shader_parameter/normalA = ExtResource("4_0exsb")
+shader_parameter/normalB = ExtResource("6_0exsb")
+shader_parameter/UVScale = 0.75
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m4nx4"]
+points = PackedVector3Array(0.2756538, 0.1918506, 0.25068006, -0.84558994, -0.19437405, -0.84558994, -0.8457704, -0.19441636, 0.8457704, 0.906565, -0.20866509, 0.906565, 0.906565, -0.1802961, -0.906565, -0.2756538, 0.1918506, -0.25068006, -0.26214024, 0.095546335, 0.6292351, 0.05061797, 0.14308739, -0.5571151, 0.55877936, 0.14350346, -0.050769184, -0.5571151, 0.14308739, 0.05061797, -0.906565, -0.1802961, -0.906565, -0.906565, -0.1802961, 0.906565, 0.906565, -0.1802961, 0.906565, 0.2507021, 0.19186714, -0.27567807, 0.8455901, -0.19437408, -0.8455901, 0.22838427, 0.11802313, 0.58384305, -0.2507021, 0.19186714, 0.27567807, -0.7352135, 0.016920824, -0.026157742, -0.026157742, 0.016920824, -0.7352135, 0.7352135, 0.016920824, -0.026157742, 0.62117136, 0.06849112, 0.41411424, -0.6206676, 0.068438664, -0.41377836, -0.22838427, 0.11802313, -0.58384305, 0.026157742, 0.016920824, 0.7352135, -0.5839709, 0.09265799, 0.35537755, 0.35290006, 0.11725174, -0.50423324, 0.62889665, 0.09549699, -0.26199922, -0.0748162, 0.16617537, 0.47456634, 0.22831386, 0.11798791, -0.58366305, -0.58384305, 0.11802313, -0.22838427, 0.58366305, 0.11798791, 0.22831386, -0.8151309, -0.061904497, 0.07874546)
+
+[node name="Mound" type="StaticBody3D" unique_id=2125545552]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=2089025217]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_5vfvy")
+mesh = ExtResource("1_m4nx4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=250727559]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_m4nx4")
