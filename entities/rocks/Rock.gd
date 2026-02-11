@@ -1,19 +1,16 @@
-@tool
 extends StaticBody3D
 class_name Rock
 
 
 @export var rock_data: RockData
-var crack_material: ShaderMaterial
 @export var break_particles: PackedScene
-
+@export var mesh: MeshInstance3D
 @onready var health: HasHealth = $HasHealth
 
 func _ready():
-	if !Engine.is_editor_hint():
-		health.max_health = rock_data.max_health
-		health.current_health = rock_data.max_health
-		health.death.connect(destroy)
+	health.max_health = rock_data.max_health
+	health.current_health = rock_data.max_health
+	health.death.connect(destroy)
 	#assign a random rotation for variety
 	rotation_degrees.y = randi() % 360
 
@@ -21,17 +18,7 @@ func _ready():
 	var scale_variation = randf_range(0.9, 1.1)
 	scale = Vector3.ONE * scale_variation
 
-	var shapes: Array[CollisionShape3D] = []
-	for node in get_children():
-		if node is CollisionShape3D:
-			node.disabled = true
-			shapes.append(node)
-
-	
-	# #select a random mesh
-	var index: int = randomize_mesh()
-	var shape: CollisionShape3D = shapes[index]
-	shape.disabled = false
+	mesh.set_instance_shader_parameter("damage", 0.0)
 
 
 func take_damage(damage: float):
@@ -49,24 +36,11 @@ func destroy():
 	queue_free()
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
 	#update crack shader based on health
 	if health.is_max_health():
 		return
 	if rock_data.is_destructible:
-		var health_ratio = float(health.current_health) / float(health.max_health) + .5
-		var current_ratio = crack_material.get_shader_parameter("Edge")
+		var health_ratio = 1.0 - float(health.current_health) / float(health.max_health)
+		var current_ratio = mesh.get_instance_shader_parameter("damage")
 		health_ratio = lerpf(current_ratio, health_ratio, 0.1)
-		crack_material.set_shader_parameter("Edge", health_ratio)
-
-func randomize_mesh():
-	#select a random mesh
-	var mesh: MeshInstance3D
-	var mesh_index = randi() % $MeshTypes.get_child_count()
-	for i in $MeshTypes.get_children():
-		i.visible = false
-	mesh = $MeshTypes.get_child(mesh_index)
-	mesh.visible = true
-	crack_material = mesh.material_overlay
-	return mesh_index
+		mesh.set_instance_shader_parameter("damage", health_ratio)

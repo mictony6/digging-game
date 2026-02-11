@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dul3miw6a5fe" path="res://assets/textures/rusty_metal/rusty_metal_04_diff_1k.png" id="3_2kajr"]
 [ext_resource type="Texture2D" uid="uid://c1b7taomq7qcy" path="res://assets/textures/rusty_metal/rusty_metal_04_nor_gl_1k.png" id="4_hjp0w"]
 [ext_resource type="Texture2D" uid="uid://bjux7arjvjr2i" path="res://assets/textures/rusty_metal/rusty_metal_04_arm_1k.png" id="5_7domg"]
-[ext_resource type="Animation" uid="uid://3wu6b7rygh7f" path="res://assets/meshes/elevator/animations/CubeAction.res" id="6_t3e4p"]
+[ext_resource type="Animation" uid="uid://bynd8kw3evhow" path="res://assets/meshes/elevator/animations/CubeAction.res" id="6_t3e4p"]
 [ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="10_hjp0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5d6t"]

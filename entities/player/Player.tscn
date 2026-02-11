@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://c2svr5hwaqbpu" path="res://entities/player/states/idle.gd" id="8_rl6fg"]
 [ext_resource type="Script" uid="uid://dfdivswxvjssr" path="res://entities/player/states/sprint.gd" id="10_ak4un"]
 [ext_resource type="Script" uid="uid://bkvj6rlc6m5h8" path="res://entities/player/states/jump.gd" id="11_1ms0h"]
+[ext_resource type="PackedScene" uid="uid://dqirpkxa6qinr" path="res://effects/beam.tscn" id="11_3uni3"]
 [ext_resource type="Script" uid="uid://dt6xuwd2mcs3v" path="res://lights/ToolFlicker.gd" id="11_ax5yc"]
 [ext_resource type="Script" uid="uid://cbkl77dwp2ya1" path="res://systems/physics/is_knockbacked.gd" id="16_aubru"]
 [ext_resource type="Script" uid="uid://dkea10ua38epr" path="res://entities/player/states/fall.gd" id="17_j531f"]
@@ -289,7 +290,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552645, -0.014453307, 0.025802756, 0.023032153, 0.09108559, -0.034248088, -0.018552601, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526434, -0.014453307, 0.025802756, 0.02303215, 0.09108559, -0.034248088, -0.0185526, 0.03865895, 0.09033981, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
@@ -317,9 +318,8 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision" unique_id=90150752]
 shape = SubResource("SphereShape3D_u45fp")
 
-[node name="Beam" type="MeshInstance3D" parent="Head/ToolManager" unique_id=130590868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1719015)
-cast_shadow = 0
+[node name="Beam" parent="Head/ToolManager" unique_id=1253000187 instance=ExtResource("11_3uni3")]
+transform = Transform3D(-0.14271124, 3.8945913e-05, -0.01743428, 8.099568e-05, 0.1437717, -0.00034183572, 0.017434154, -0.00034913715, -0.14271083, 0.3436247, 0.01034075, -0.57086736)
 
 [node name="ToolFlicker" type="OmniLight3D" parent="Head/ToolManager" unique_id=1094896208]
 light_color = Color(0.91715086, 0.30366266, 0.2268546, 1)

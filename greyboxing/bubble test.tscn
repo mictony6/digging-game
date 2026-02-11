@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://6144lc2mo5yp"]
+
+[ext_resource type="Shader" uid="uid://bhrqwsr8meve6" path="res://shaders/crystal_body_back.gdshader" id="1_m5i8d"]
+[ext_resource type="Shader" uid="uid://doy72dkreomaw" path="res://shaders/crystal_inner_orb.gdshader" id="2_cjxs0"]
+[ext_resource type="Shader" uid="uid://pxsal54q8t1j" path="res://shaders/crystal_body_front.gdshader" id="3_e1f5w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_el8gh"]
+render_priority = -1
+shader = ExtResource("1_m5i8d")
+shader_parameter/back_color = Color(0.02, 0.05, 0.5, 1)
+shader_parameter/back_rim_color = Color(0.1, 0.3, 0.9, 1)
+shader_parameter/fresnel_power = 2.0
+shader_parameter/rim_intensity = 1.0
+shader_parameter/opacity_center = 0.25
+shader_parameter/opacity_edge = 0.7
+shader_parameter/emission_strength = 0.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_y6b17"]
+radial_segments = 32
+rings = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pp5ov"]
+render_priority = -2
+shader = ExtResource("2_cjxs0")
+shader_parameter/orb_color = Color(0.08, 0.2, 0.9, 1)
+shader_parameter/orb_rim_color = Color(0.4, 0.7, 1, 1)
+shader_parameter/fresnel_power = 2.0
+shader_parameter/rim_intensity = 1.2
+shader_parameter/opacity_center = 0.35
+shader_parameter/opacity_edge = 0.75
+shader_parameter/roughness_val = 0.15
+shader_parameter/specular_val = 0.8
+shader_parameter/emission_strength = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svybp"]
+render_priority = 0
+shader = ExtResource("3_e1f5w")
+shader_parameter/base_color = Color(0.03, 0.1, 0.75, 1)
+shader_parameter/rim_color = Color(0.35, 0.65, 1, 1)
+shader_parameter/inner_glow_color = Color(0.1, 0.3, 1, 1)
+shader_parameter/fresnel_power = 3.0
+shader_parameter/rim_intensity = 1.8
+shader_parameter/opacity_center = 0.1
+shader_parameter/opacity_edge = 0.85
+shader_parameter/roughness_val = 0.2
+shader_parameter/specular_val = 0.7
+shader_parameter/metallic_val = 0.0
+shader_parameter/refraction_strength = 0.05
+shader_parameter/emission_strength = 0.4
+shader_parameter/inner_glow_strength = 0.3
+shader_parameter/thickness_scale = 1.0
+
+[node name="Node3D" type="Node3D" unique_id=1312472994]
+
+[node name="Back" type="MeshInstance3D" parent="." unique_id=200862704]
+material_override = SubResource("ShaderMaterial_el8gh")
+mesh = SubResource("SphereMesh_y6b17")
+
+[node name="Inner" type="MeshInstance3D" parent="." unique_id=275673302]
+transform = Transform3D(0.58159834, 0, 0, 0, 0.58159834, 0, 0, 0, 0.58159834, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_pp5ov")
+mesh = SubResource("SphereMesh_y6b17")
+
+[node name="Font" type="MeshInstance3D" parent="." unique_id=1162429773]
+material_override = SubResource("ShaderMaterial_svybp")
+mesh = SubResource("SphereMesh_y6b17")

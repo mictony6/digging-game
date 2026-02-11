@@ -1,12 +1,13 @@
 @tool
 extends Node3D
-
+@export var material: Material
 @export var source_mesh_instance: MeshInstance3D
 @export var chunk_size: float = 32.0
 @export var split_now: bool = false:
     set(value):
         if value:
             split_terrain()
+            
 
 func split_terrain():
     if not source_mesh_instance or not source_mesh_instance.mesh:
@@ -50,6 +51,7 @@ func split_terrain():
         chunk.name = "Chunk_%d_%d" % [key.x, key.y]
         chunk.material_override = source_mesh_instance.material_override
         add_child(chunk)
-        chunk.owner = get_tree().edited_scene_root  # So it saves in editor
+        chunk.owner = get_tree().edited_scene_root # So it saves in editor
+        chunk.material_override = material
     
     print("Created %d chunks" % chunk_faces.size())

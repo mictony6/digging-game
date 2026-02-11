@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cepatjt0ekjg3"]
 
-[ext_resource type="Shader" uid="uid://tvsdwvk0xy1e" path="res://shaders/water.gdshader" id="1_02y12"]
+[ext_resource type="Material" uid="uid://bdjwppgk8sajl" path="res://shaders/materials/water.material" id="1_02y12"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_x56v6"]
 size = Vector2(5, 5)
@@ -8,74 +8,9 @@ subdivide_width = 64
 subdivide_depth = 64
 orientation = 1
 
-[sub_resource type="Gradient" id="Gradient_02y12"]
-offsets = PackedFloat32Array(0.30898267, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_avpee"]
-noise_type = 3
-frequency = 0.0414
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5r0hp"]
-noise = SubResource("FastNoiseLite_avpee")
-color_ramp = SubResource("Gradient_02y12")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_02y12"]
-noise_type = 3
-fractal_type = 0
-domain_warp_enabled = true
-domain_warp_amplitude = 100.0
-domain_warp_fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avpee"]
-noise = SubResource("FastNoiseLite_02y12")
-seamless = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x56v6"]
-noise = SubResource("FastNoiseLite_02y12")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5r0hp"]
-noise_type = 2
-frequency = 0.017
-domain_warp_fractal_gain = 1.575
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_355tc"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_5r0hp")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_avpee"]
-render_priority = 0
-shader = ExtResource("1_02y12")
-shader_parameter/primaryColor = Color(0.23453069, 0.42752138, 0.56671983, 1)
-shader_parameter/secondaryColor = Color(0.18888992, 0.29255354, 0.30551413, 1)
-shader_parameter/roughness = 0.2
-shader_parameter/normalMapA = SubResource("NoiseTexture2D_x56v6")
-shader_parameter/normalMapB = SubResource("NoiseTexture2D_355tc")
-shader_parameter/heightMap = SubResource("NoiseTexture2D_avpee")
-shader_parameter/normalMapAStrength = 0.5
-shader_parameter/normalMapBStrength = 0.5
-shader_parameter/heightScale = 0.025
-shader_parameter/uvScale = 1.0
-shader_parameter/movementDirection = Vector2(1, 1)
-shader_parameter/movementStrength = 0.01
-shader_parameter/refractionStrength = 0.0250000011875
-shader_parameter/foamTexture = SubResource("NoiseTexture2D_5r0hp")
-shader_parameter/foamColor = Color(0.99260193, 0.99151236, 0.9847905, 1)
-shader_parameter/foamDepth = 0.0499999988824
-shader_parameter/foamStrength = 0.8
-shader_parameter/foamScale = 3.20000004768384
-shader_parameter/depthDistance = 1.0000000149012
-shader_parameter/beersLaw = 12.0
-shader_parameter/waterTransparency = 0.249999994412
-
 [node name="WaterArea" type="Node3D" unique_id=941027867]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=865984856]
 cast_shadow = 0
 mesh = SubResource("QuadMesh_x56v6")
-surface_material_override/0 = SubResource("ShaderMaterial_avpee")
+surface_material_override/0 = ExtResource("1_02y12")

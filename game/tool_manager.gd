@@ -7,6 +7,7 @@ class_name ToolManager
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
+@onready var beam: Node3D = $Beam
 
 @onready var flicker: OmniLight3D = $ToolFlicker
 
@@ -37,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
 		var collision_point = tool_raycast.get_collision_point()
 
+		beam.show()
+
 		tool_area3d.global_position = tool_raycast.get_collider().global_position
 		tool_area3d.monitoring = true
 
@@ -49,6 +52,7 @@ func _physics_process(delta: float) -> void:
 		tool_current_cooldown = tool_max_cooldown
 	else:
 		flicker.hide()
+		beam.hide()
 
 
 func _on_body_entered(body: Node) -> void:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdlfx6d6pumlb"]
 
-[ext_resource type="ArrayMesh" uid="uid://cjvg2esv3lnpf" path="res://assets/meshes/terrain/terrain_mesh.res" id="1_8ycuo"]
+[ext_resource type="ArrayMesh" uid="uid://bw725terrxrxg" path="res://assets/meshes/terrain/terrain_mesh.res" id="1_8ycuo"]
 [ext_resource type="Material" uid="uid://ctg5sjglg8g7h" path="res://shaders/materials/terrain_main.res" id="2_8ycuo"]
 [ext_resource type="Shape3D" uid="uid://btr46d83w7efc" path="res://levels/terrain_collision_shape.shape" id="3_3mnpp"]
 

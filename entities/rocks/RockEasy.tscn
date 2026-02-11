@@ -3,177 +3,28 @@
 [ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/rock.gd" id="1_1o8al"]
 [ext_resource type="Resource" uid="uid://dfhyy6e317hqw" path="res://data/rocks/RockEasyData.tres" id="2_hxsg1"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="3_e1dj2"]
-[ext_resource type="ArrayMesh" uid="uid://bibsa41esbcv2" path="res://assets/meshes/rock1_mesh.res" id="3_hxsg1"]
-[ext_resource type="ArrayMesh" uid="uid://b4tchty7ialvo" path="res://assets/meshes/rock2_mesh.res" id="4_xuhvl"]
-[ext_resource type="Texture2D" uid="uid://pbhnrl1ngpmu" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_diff_2k.png" id="6_r8uvd"]
-[ext_resource type="Shader" uid="uid://7lkclcg3l0i5" path="res://shaders/crack.tres" id="8_0exme"]
-[ext_resource type="Texture2D" uid="uid://dsyi1v1koqc7m" path="res://assets/textures/rock_boulder_dry/rock_boulder_dry_arm_2k.png" id="8_cxmus"]
+[ext_resource type="Material" uid="uid://bm6c54hoh2ybs" path="res://shaders/materials/RockEasy1.material" id="4_cxmus"]
+[ext_resource type="ArrayMesh" uid="uid://dqcwhjnqtyg8w" path="res://assets/meshes/rocks/Easy1/RockEasy1_rock_003.res" id="4_r8uvd"]
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="10_0exme"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0exme"]
-points = PackedVector3Array(0.018926116, -0.43694183, -0.32368195, -0.021044644, -0.028433768, 0.6485675, 0.17883877, -0.008316789, 0.62728786, -0.08073052, 0.6295254, -0.47074693, 0.5557648, 0.11088667, -0.25077102, -0.5384909, -0.2869716, -0.032179784, 0.504973, 0.55833125, 0.5136389, 0.17835014, -0.50665265, 0.52572936, -0.21199428, 0.5696829, -0.10754593, 0.53428584, -0.40465197, 0.067048386, 0.3553009, 0.42714754, -0.52648187, -0.34061643, -0.4278457, 0.5469612, -0.25769892, -0.12672122, -0.48650664, 0.4735239, -0.12673864, -0.4864482, -0.0207099, -0.624074, 0.047309283, 0.53680927, -0.12766364, 0.5453779, -0.3372895, 0.50625354, -0.40798372, -0.48851904, -0.12500784, 0.20293869, -0.08102552, 0.4314499, -0.6122571, 0.39423594, -0.54161257, -0.07129084, -0.057503857, 0.1646108, 0.5243652, -0.35509232, -0.51997095, 0.0077049616, -0.0010019004, -0.5676617, 0.56681097, -0.020672271, 0.626778, 0.06710756, 0.13817303, 0.64792013, -0.29049727, 0.57772136, 0.39067575, 0.44656837, -0.47070888, -0.24303651, -0.26645714, 0.39537272, 0.5068896, -0.30940738, 0.55671185, -0.32696947, -0.11193774, 0.21838124, 0.31078482, -0.61084527, -0.3199328, -0.5267053, 0.42630634, -0.080790885, -0.36727726, 0.64586115)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r8uvd"]
+points = PackedVector3Array(0.1427427, -0.0332417, 0.32911178, -0.018140486, -0.50424355, -0.49869823, -0.04971962, 0.16068959, -0.18413569, -0.48060206, -0.4734711, 0.108274825, 0.5236609, -0.52138984, 0.009190464, -0.18202497, -0.3568941, 0.48448434, 0.50101465, -0.30664736, -0.21797465, -0.44433773, -0.43879154, -0.4497837, -0.30864295, -0.015449245, 0.13823774, 0.063648246, -0.6025298, 0.1238156, 0.42857322, -0.49088052, -0.4707864, 0.16214898, -0.4225803, 0.40276614, -0.0013438594, 0.15871187, 0.16877751, 0.1919281, 0.09695821, -0.13612923, 0.3088006, -0.14414418, 0.30326337, 0.31883225, -0.28942183, -0.4555401, -0.47190893, -0.22550519, 0.073859386, -0.39325476, -0.5520387, -0.03978876, -0.03422744, -0.5354097, 0.36780962, -0.03451935, -0.07825212, 0.43565753, -0.3738765, -0.16096726, -0.28239834, -0.09806539, -0.00018247838, -0.31310874, -0.28126693, -0.27517647, 0.4202528, 0.53146833, -0.3224271, -0.0072063804, 0.3910722, -0.5858463, -0.03979902, -0.14771238, 0.11519931, 0.20378824, 0.21243618, -0.35772505, -0.501926, -0.17888568, 0.12922508, -0.05551465, 0.43777108, -0.45359787, 0.18804745, -0.4857741, -0.49292365, -0.30739948, 0.23817784, 0.046077885, 0.040644184, -0.44086674, -0.24191141, 0.22048238)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0c3hv"]
-points = PackedVector3Array(-0.053543933, 0.31604302, -0.5204126, 0.004792843, 0.08228267, 0.592235, 0.06345535, 0.17874941, 0.56880593, 0.5330381, -0.5045131, -0.09177504, -0.42115015, -0.36390153, 0.02571728, 0.37158558, 0.44707495, -0.26306775, -0.30542025, 0.45077473, 0.20026298, -0.18856584, -0.42218408, 0.43275955, 0.3166173, -0.42410594, -0.36374772, 0.4075891, -0.03387808, 0.38885435, -0.34202847, -0.11146914, -0.32189018, 0.08288445, 0.63165975, -0.19016069, 0.02450142, -0.61896765, 0.1423117, 0.1976441, 0.36800057, 0.37050655, 0.60839105, -0.30705625, -0.12993081, 0.23787293, 0.37240154, -0.4782418, -0.42411473, 0.23814987, 0.1424229, -0.13019493, 0.44964737, -0.458594, 0.12167685, -0.4421964, -0.36258423, -0.11146694, 0.5481464, 0.31689826, 0.48543888, -0.4942292, 0.08317437, 0.024999242, -0.14982213, 0.56546324, -0.4421271, -0.28736475, 0.20051493, -0.19065094, -0.054213677, -0.46306422, 0.34883082, 0.25120783, 0.31094986, 0.043883234, 0.6302118, -0.32660136, -0.24691255, 0.39217547, -0.32355338, -0.44012848, -0.11183226, -0.09048515, -0.2480739, -0.5213395, 0.12281387, 0.46871546, -0.16928276, -0.3216057, -0.2828025, 0.29277182, 0.31418067, -0.032216042, -0.43656826, 0.40900224)
-
-[sub_resource type="Gradient" id="Gradient_5ne07"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.06048387, 0.15725806)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oamob"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c83ie"]
-noise = SubResource("FastNoiseLite_oamob")
-color_ramp = SubResource("Gradient_5ne07")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="Gradient" id="Gradient_r8uvd"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.05645161, 0.36290324)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cxmus"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rr552"]
-noise = SubResource("FastNoiseLite_cxmus")
-color_ramp = SubResource("Gradient_r8uvd")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rr552"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("8_0exme")
-shader_parameter/Crack_Color = Color(0.19607843, 0.21176471, 0.21176471, 1)
-shader_parameter/ratio = 1.0
-shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_rr552")
-shader_parameter/Normals = SubResource("NoiseTexture2D_c83ie")
-shader_parameter/Edge = 1.2
-shader_parameter/triplanar_scale = Vector3(1, 1, 1)
-shader_parameter/triplanar_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 10.0
-
-[sub_resource type="Gradient" id="Gradient_cxmus"]
-offsets = PackedFloat32Array(0, 0.41613925)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hxsg1"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xuhvl"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_hxsg1")
-color_ramp = SubResource("Gradient_cxmus")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1dj2"]
-albedo_color = Color(0.5980536, 0.824774, 0.942545, 1)
-albedo_texture = ExtResource("6_r8uvd")
-roughness_texture = ExtResource("8_cxmus")
-roughness_texture_channel = 1
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_xuhvl")
-rim_enabled = true
-rim = 0.05
-ao_enabled = true
-ao_texture = ExtResource("8_cxmus")
-uv1_triplanar = true
-uv1_triplanar_sharpness = 10.0
-texture_filter = 5
-proximity_fade_distance = 0.01
-distance_fade_min_distance = 5.0
-distance_fade_max_distance = 0.0
-
-[sub_resource type="Gradient" id="Gradient_0exme"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.06048387, 0.15725806)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0c3hv"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljfkj"]
-noise = SubResource("FastNoiseLite_0c3hv")
-color_ramp = SubResource("Gradient_0exme")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="Gradient" id="Gradient_f7tjr"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.05645161, 0.36290324)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_25kht"]
-noise_type = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3d7dp"]
-noise = SubResource("FastNoiseLite_25kht")
-color_ramp = SubResource("Gradient_f7tjr")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c3hv"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("8_0exme")
-shader_parameter/Crack_Color = Color(0.19607843, 0.21176471, 0.21176471, 1)
-shader_parameter/ratio = 1.0
-shader_parameter/TextureParameterTriplanar = SubResource("NoiseTexture2D_3d7dp")
-shader_parameter/Normals = SubResource("NoiseTexture2D_ljfkj")
-shader_parameter/Edge = 1.2
-shader_parameter/triplanar_scale = Vector3(1, 1, 1)
-shader_parameter/triplanar_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_171nb"]
-albedo_color = Color(0.90397143, 0.81727743, 0.6810573, 1)
-albedo_texture = ExtResource("6_r8uvd")
-metallic_specular = 0.38
-roughness_texture = ExtResource("8_cxmus")
-roughness_texture_channel = 1
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_xuhvl")
-rim_enabled = true
-rim = 0.05
-ao_enabled = true
-ao_texture = ExtResource("8_cxmus")
-uv1_offset = Vector3(0.5, 0.5, 0)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 10.0
-texture_filter = 5
-proximity_fade_distance = 0.01
-
-[node name="Rock" type="StaticBody3D" unique_id=1346294821]
-transform = Transform3D(-0.7182401, 0, -0.71823996, 0, 1.0157448, 0, 0.71823996, 0, -0.7182401, 0, 0, 0)
+[node name="Rock" type="StaticBody3D" unique_id=1346294821 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(-0.884178, 0, -0.3044468, 0, 0.9351249, 0, 0.3044468, 0, -0.884178, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_1o8al")
 rock_data = ExtResource("2_hxsg1")
 break_particles = ExtResource("3_e1dj2")
+mesh = NodePath("RockType1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1935718583]
-shape = SubResource("ConvexPolygonShape3D_0exme")
+[node name="RockType1" type="MeshInstance3D" parent="." unique_id=1439687345]
+transform = Transform3D(0.99999976, 0, 1.0430813e-07, 0, 0.9999996, 0, -1.0430813e-07, 0, 0.99999976, 0, 0.33266848, 0)
+material_override = ExtResource("4_cxmus")
+mesh = ExtResource("4_r8uvd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1890846032]
-shape = SubResource("ConvexPolygonShape3D_0c3hv")
-disabled = true
-
-[node name="MeshTypes" type="Node3D" parent="." unique_id=1619301207]
-
-[node name="RockMesh1" type="MeshInstance3D" parent="MeshTypes" unique_id=2933227]
-material_overlay = SubResource("ShaderMaterial_rr552")
-mesh = ExtResource("3_hxsg1")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_e1dj2")
-
-[node name="RockMesh2" type="MeshInstance3D" parent="MeshTypes" unique_id=138502345]
-visible = false
-material_overlay = SubResource("ShaderMaterial_0c3hv")
-mesh = ExtResource("4_xuhvl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_171nb")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=822168430]
+transform = Transform3D(0.99999976, 0, 1.0430813e-07, 0, 0.9999996, 0, -1.0430813e-07, 0, 0.99999976, 0, 0.33266848, 0)
+shape = SubResource("ConvexPolygonShape3D_r8uvd")
 
 [node name="HasHealth" parent="." unique_id=1565073669 instance=ExtResource("10_0exme")]
