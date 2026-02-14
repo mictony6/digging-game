@@ -1,12 +1,28 @@
 [gd_scene format=3 uid="uid://dqirpkxa6qinr"]
 
 [ext_resource type="Material" uid="uid://hx5tgy2lh20r" path="res://shaders/materials/laser_beam.material" id="1_kkdtw"]
+[ext_resource type="Shader" uid="uid://b8xpidc6ju3vf" path="res://shaders/beam_start.gdshader" id="1_p6cgm"]
+[ext_resource type="Script" uid="uid://dfeyrlkr7wj50" path="res://effects/beam.gd" id="1_xn531"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e7wm1"]
 size = Vector2(1, 20)
 subdivide_depth = 24
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xn531"]
+render_priority = 0
+shader = ExtResource("1_p6cgm")
+shader_parameter/color = Color(0.42554617, 0.40065682, 0.81636906, 1)
+shader_parameter/radius = 0.2510000119225
+shader_parameter/softness = 0.4310000204725
+shader_parameter/falloff = 2.22400010238012
+shader_parameter/emission_energy = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_p6cgm"]
+radial_segments = 32
+rings = 16
+
 [node name="Beam" type="Node3D" unique_id=1253000187]
+script = ExtResource("1_xn531")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=998748084]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 10)
@@ -27,3 +43,10 @@ mesh = SubResource("QuadMesh_e7wm1")
 transform = Transform3D(0.70710677, -3.0908613e-08, 0.7071067, -0.70710677, -3.0908613e-08, 0.7071067, 0, -0.9999999, -4.371138e-08, 0, 0, 10)
 material_override = ExtResource("1_kkdtw")
 mesh = SubResource("QuadMesh_e7wm1")
+
+[node name="BeamStart" type="MeshInstance3D" parent="." unique_id=1899163318]
+transform = Transform3D(0.76657736, 0, 0, 0, 0.76657736, 0, 0, 0, 3.7926688, 0, 0, 1.4595256)
+material_override = SubResource("ShaderMaterial_xn531")
+mesh = SubResource("SphereMesh_p6cgm")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
