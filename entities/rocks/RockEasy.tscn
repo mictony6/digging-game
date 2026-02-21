@@ -13,6 +13,7 @@ points = PackedVector3Array(0.1427427, -0.0332417, 0.32911178, -0.018140486, -0.
 [node name="Rock" type="StaticBody3D" unique_id=1346294821 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(-0.884178, 0, -0.3044468, 0, 0.9351249, 0, 0.3044468, 0, -0.884178, 0, 0, 0)
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_1o8al")
 rock_data = ExtResource("2_hxsg1")
 break_particles = ExtResource("3_e1dj2")

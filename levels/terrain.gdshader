@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode diffuse_burley, cull_back, depth_draw_opaque;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
 vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
 	vec4 samp = vec4(0.0);
@@ -23,22 +23,22 @@ uniform bool noise_is_triplanar = false;
 group_uniforms Main_Texture;
 uniform sampler2D ground_texture : source_color, filter_linear_mipmap_anisotropic;
 uniform sampler2D ground_orm_texture : filter_linear_mipmap_anisotropic;
-uniform sampler2D ground_normal : hint_normal, filter_linear_mipmap_anisotropic;
+uniform sampler2D ground_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Alt_Texture;
 uniform sampler2D alt_ground_texture : source_color, filter_linear_mipmap_anisotropic;
 uniform sampler2D alt_ground_orm_texture : filter_linear_mipmap_anisotropic;
-uniform sampler2D alt_ground_normal : hint_normal, filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_ground_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Cliff_Texture;
 uniform sampler2D cliff_texture : source_color, filter_linear_mipmap_anisotropic;
-uniform sampler2D cliff_orm_texture : filter_linear_mipmap_anisotropic;
-uniform sampler2D cliff_normal : hint_normal, filter_linear_mipmap_anisotropic;
+uniform sampler2D cliff_orm_texture : hint_roughness_g, filter_linear_mipmap_anisotropic;
+uniform sampler2D cliff_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic;
 
 group_uniforms Alt_cliff_Texture;
 uniform sampler2D alt_cliff_texture : source_color, filter_linear_mipmap_anisotropic;
-uniform sampler2D alt_cliff_orm_texture : filter_linear_mipmap_anisotropic;
-uniform sampler2D alt_cliff_normal : hint_normal, filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_cliff_orm_texture : hint_roughness_g, filter_linear_mipmap_anisotropic;
+uniform sampler2D alt_cliff_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic;
 
 
 group_uniforms Transition;
@@ -63,6 +63,8 @@ void vertex() {
 	triplanar_power_normal /= dot(triplanar_power_normal, vec3(1.0));
 	triplanar_pos = VERTEX * (triplanar_scale * global_scale) + triplanar_offset;
 	triplanar_pos *= vec3(1.0, -1.0, 1.0);
+	
+	
 }
 
 void fragment() {
@@ -88,7 +90,7 @@ void fragment() {
 	vec4 alt_cliff_normal_map = triplanar_texture(alt_cliff_normal, triplanar_power_normal, triplanar_pos);
 	
 	vec3 world_normal = normalize(INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
-	float is_ground = smoothstep(separation, separation * transition_sharpness, world_normal.y);
+	float is_ground = smoothstep(separation, separation + transition_sharpness, 1.0 - world_normal.y);
 	
 
 	vec3 final_ground_albedo = mix(ground_albedo.rgb, alt_ground_albedo.rgb, noise.r);
@@ -103,6 +105,5 @@ void fragment() {
 	AO =  mix(final_ground_orm.r, final_cliff_orm.r, is_ground);
 	ROUGHNESS = mix(final_ground_orm.g, final_cliff_orm.g, is_ground);
 	METALLIC = mix(final_ground_orm.b, final_cliff_orm.b, is_ground);
-
 	NORMAL_MAP =mix(final_ground_normal_map, final_cliff_normal_map, is_ground);
 }

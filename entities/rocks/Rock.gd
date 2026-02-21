@@ -19,11 +19,13 @@ func _ready():
 	scale = Vector3.ONE * scale_variation
 
 	mesh.set_instance_shader_parameter("damage", 0.0)
+	set_process(false)
 
 
 func take_damage(damage: float):
 	if rock_data.is_destructible:
 		health.take_damage(damage)
+		set_process(true)
 
 
 func destroy():
@@ -42,5 +44,6 @@ func _process(delta: float) -> void:
 	if rock_data.is_destructible:
 		var health_ratio = 1.0 - float(health.current_health) / float(health.max_health)
 		var current_ratio = mesh.get_instance_shader_parameter("damage")
-		health_ratio = lerpf(current_ratio, health_ratio, 0.1)
-		mesh.set_instance_shader_parameter("damage", health_ratio)
+		var speed = 100.0
+		health_ratio = lerpf(current_ratio, health_ratio, 1.0 - exp(-speed * delta))
+		mesh.set_instance_shader_parameter("damage", min(health_ratio, 0.9))

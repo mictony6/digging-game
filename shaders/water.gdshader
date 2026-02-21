@@ -39,11 +39,18 @@ float fresnel(float amount, vec3 normal, vec3 view){
 vec3 blendNormalsWhiteout(vec3 n1, vec3 n2) {
     return normalize(vec3(n1.xy + n2.xy, n1.z * n2.z));
 }
+
+vec3 reorientNormals(vec3 n1, vec3 n2) {
+    vec3 t = n1 + vec3(0.0, 0.0, 1.0);
+    vec3 u = n2 * vec3(-1.0, -1.0, 1.0);
+    return normalize(t * dot(t, u) / t.z - u);
+}
 void vertex() {
 	uvMovement = movementDirection * TIME * movementStrength;
 	vec2 uv = UV * uvScale;
  	float height = texture(heightMap, uv + uvMovement).x;
  	VERTEX.y += height * heightScale;
+	
 }
 void fragment() {
 	vec2 uv = UV * uvScale;
@@ -51,9 +58,9 @@ void fragment() {
 	vec3 normalA = texture(normalMapA, uv + uvMovement).rgb * 2.0 - 1.0;
 	vec3 normalB = texture(normalMapB, uv - uvMovement).rgb * 2.0 - 1.0;
 	
-	normalA.xy *= normalMapAStrength;
+	normalA.xy *= normalMapAStrength ;
     normalB.xy *= normalMapBStrength;
-	vec3 blended = blendNormalsWhiteout(normalA, normalB);
+	vec3 blended = reorientNormals(normalA, normalB);
 	
 	// Refracted UV
 	vec2 refractedUV = SCREEN_UV + blended.xy * refractionStrength;
@@ -73,6 +80,8 @@ void fragment() {
 	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	float depthTextureY = world.y / world.w;
 	float vertexY = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).y;
+	
+	
 	
 	float depthBlend = clamp((vertexY - depthTextureY) / depthDistance, 0.0, 1.0);
 	depthBlend = exp(-depthBlend * beersLaw);
