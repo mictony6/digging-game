@@ -116,6 +116,16 @@ _surfaces = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvcom"]
 size = Vector3(1.3857422, 3.0199432, 1.3190918)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvcom"]
+shading_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oc4ur"]
+flip_faces = true
+size = Vector3(1.72, 3.435, 1.09)
+
 [node name="Elevator" type="Node3D" unique_id=1038308039]
 script = ExtResource("1_7domg")
 
@@ -210,6 +220,12 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068115234, 1.5997543, -0.1595459)
 shape = SubResource("BoxShape3D_wvcom")
 debug_color = Color(0.93749404, 0.14970613, 0.50750244, 0.41960785)
+
+[node name="Fader" type="MeshInstance3D" parent="." unique_id=1699350385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7851627, 0)
+material_override = SubResource("StandardMaterial3D_wvcom")
+transparency = 1.0
+mesh = SubResource("BoxMesh_oc4ur")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
