@@ -11,10 +11,14 @@ var damage = 67
 func _ready() -> void:
 	get_tree().create_timer(3.0).timeout.connect(explode)
 func explode():
+	freeze = true
 	$AnimationPlayer.play("explode")
 	$MeshInstance3D.visible = false
 	var bodies_in_aoe = area.get_overlapping_bodies()
 	for body in bodies_in_aoe:
+		if body.has_node("IsKnockbacked"):
+			var kb = body.get_node("IsKnockbacked") as IsKnockbacked
+			kb.start(global_position)
 		if body is Rock:
 			body.destroy()
 		elif body is Player:
@@ -28,8 +32,8 @@ func explode():
 			
 			if result and result.collider == body:
 				body.health.take_damage(damage)
-				var kb = body.get_node("IsKnockbacked") as IsKnockbacked
-				kb.start(global_position)
+
+
 	await $AnimationPlayer.animation_finished
 	exploded.emit()
 	queue_free()

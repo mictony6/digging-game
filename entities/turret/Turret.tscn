@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bihwwnfk070la"]
+
+[ext_resource type="Script" uid="uid://ckgoka6xsdpsi" path="res://entities/turret/turret.gd" id="1_6ggdu"]
+[ext_resource type="Texture2D" uid="uid://no6acplfbuwu" path="res://GreyboxTextures/greybox_grey_grid.png" id="1_t0mni"]
+[ext_resource type="Script" uid="uid://cp5a0y857k43q" path="res://systems/state machine/StateMachine.gd" id="3_pod2y"]
+[ext_resource type="Script" uid="uid://b5yo6gyfx27fh" path="res://entities/turret/states/Idle.gd" id="4_qnfyo"]
+[ext_resource type="Script" uid="uid://cccdfn0a6jjrc" path="res://entities/turret/states/alert.gd" id="5_ijuyk"]
+[ext_resource type="Script" uid="uid://1r6pgil1xxci" path="res://entities/turret/states/locked_in.gd" id="6_oy062"]
+[ext_resource type="Script" uid="uid://ckxbgqe7mvwu3" path="res://entities/turret/states/attacking.gd" id="7_pod2y"]
+[ext_resource type="PackedScene" uid="uid://7i32ya3nm7oh" path="res://entities/instant_bomb/instant_bomb.tscn" id="8_7hgv6"]
+[ext_resource type="Script" uid="uid://7epuoytar3xo" path="res://entities/turret/states/cool_down.gd" id="8_qnfyo"]
+[ext_resource type="Script" uid="uid://t0w32tbnh0cr" path="res://entities/turret/helper_label_state.gd" id="9_ijuyk"]
+[ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="11_7hgv6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6my0"]
+albedo_texture = ExtResource("1_t0mni")
+uv1_triplanar = true
+texture_filter = 5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ecpgb"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.5
+radial_segments = 32
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t0mni"]
+height = 1.5
+radius = 0.7636719
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2mk88"]
+height = 1.0
+radial_segments = 32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bm101"]
+top_radius = 0.25
+height = 1.0
+radial_segments = 32
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l6my0"]
+height = 0.975
+radius = 0.4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qnfyo"]
+height = 3.5
+radius = 12.0
+
+[node name="Turret" type="Node3D" unique_id=967674956]
+script = ExtResource("1_6ggdu")
+
+[node name="Body" type="StaticBody3D" parent="." unique_id=1908409151 groups=["Turret"]]
+collision_layer = 64
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=196703356]
+material_override = SubResource("StandardMaterial3D_l6my0")
+mesh = SubResource("CylinderMesh_ecpgb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1761326824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_t0mni")
+
+[node name="Head" type="AnimatableBody3D" parent="." unique_id=705325519]
+collision_layer = 64
+collision_mask = 0
+sync_to_physics = false
+
+[node name="BombSpawnLoc" type="Marker3D" parent="Head" unique_id=1024136292]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7064711, -1.485077)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Head" unique_id=727993723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+material_override = SubResource("StandardMaterial3D_l6my0")
+mesh = SubResource("CylinderMesh_2mk88")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Head" unique_id=1237076236]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.0062500243, 0.7, -0.69375)
+material_override = SubResource("StandardMaterial3D_l6my0")
+mesh = SubResource("CylinderMesh_bm101")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Head" unique_id=1307512437]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.0062500234, 0.71043605, -0.50625)
+shape = SubResource("CylinderShape3D_l6my0")
+
+[node name="StateMachine" type="Node" parent="." unique_id=447236895 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_pod2y")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://cp5a0y857k43q"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=291303208 node_paths=PackedStringArray("detector")]
+script = ExtResource("4_qnfyo")
+detector = NodePath("../../AlertTrigger")
+metadata/_custom_type_script = "uid://dgbwh4311w1ft"
+
+[node name="Alert" type="Node" parent="StateMachine" unique_id=544726718 node_paths=PackedStringArray("detector")]
+script = ExtResource("5_ijuyk")
+detector = NodePath("../../AlertTrigger")
+metadata/_custom_type_script = "uid://dgbwh4311w1ft"
+
+[node name="LockedIn" type="Node" parent="StateMachine" unique_id=1414197521]
+script = ExtResource("6_oy062")
+metadata/_custom_type_script = "uid://dgbwh4311w1ft"
+
+[node name="Attacking" type="Node" parent="StateMachine" unique_id=1787548347]
+script = ExtResource("7_pod2y")
+bomb = ExtResource("8_7hgv6")
+metadata/_custom_type_script = "uid://dgbwh4311w1ft"
+
+[node name="CoolDown" type="Node" parent="StateMachine" unique_id=197519525]
+script = ExtResource("8_qnfyo")
+metadata/_custom_type_script = "uid://dgbwh4311w1ft"
+
+[node name="AlertTrigger" type="Area3D" parent="." unique_id=1039384552]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertTrigger" unique_id=1832173271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+shape = SubResource("CylinderShape3D_qnfyo")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=904955586 node_paths=PackedStringArray("state_machine")]
+billboard = 1
+no_depth_test = true
+text = "State"
+script = ExtResource("9_ijuyk")
+state_machine = NodePath("../StateMachine")
+
+[node name="HasHealth" parent="." unique_id=1565073669 instance=ExtResource("11_7hgv6")]
+
+[connection signal="death" from="HasHealth" to="." method="_on_has_health_death"]

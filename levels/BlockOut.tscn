@@ -1,352 +1,310 @@
 [gd_scene format=3 uid="uid://mcfdyr2dl68s"]
 
-[ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="6_d4o56"]
-[ext_resource type="PackedScene" uid="uid://7tpeh28i7txf" path="res://entities/rocks/RockEasy.tscn" id="7_ssmx2"]
+[ext_resource type="Texture2D" uid="uid://d0fxu5b6wrq1m" path="res://GreyboxTextures/greybox_grey_solid.png" id="1_p718k"]
+[ext_resource type="Texture2D" uid="uid://cfcawtsu6v6gg" path="res://GreyboxTextures/greybox_green_grid.png" id="2_yxv7j"]
+[ext_resource type="Texture2D" uid="uid://df2hdtir30aw3" path="res://GreyboxTextures/greybox_green_solid.png" id="3_kyw6u"]
+[ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="4_ssmx2"]
+[ext_resource type="PackedScene" uid="uid://bihwwnfk070la" path="res://entities/turret/Turret.tscn" id="5_yxv7j"]
 
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_5bagc"]
-expanded_output_ports = [0]
-function = 1
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p718k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_cqme5"]
-source = 5
-texture_type = 1
+[sub_resource type="Sky" id="Sky_yxv7j"]
+sky_material = SubResource("ProceduralSkyMaterial_p718k")
 
-[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_y3sm3"]
-size = Vector2(472, 300)
-expression = "uv_in -= pivot;
-float rotation_radians = radians(rotation_degrees);
-float c = cos(rotation_radians);
-float s = sin(rotation_radians);
+[sub_resource type="Environment" id="Environment_kyw6u"]
+background_mode = 2
+sky = SubResource("Sky_yxv7j")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 4
 
-uv_out.x = uv_in.x * c + uv_in.y * s;
-uv_out.y = uv_in.y * c - uv_in.x * s;
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4agq"]
+albedo_texture = ExtResource("1_p718k")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
 
-uv_out += pivot;"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pj48"]
+albedo_texture = ExtResource("2_yxv7j")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
 
-[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_51wuu"]
-constant = Vector2(0.5, 0.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cxby"]
+albedo_texture = ExtResource("3_kyw6u")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_kjiqm"]
-noise_type = 2
-fractal_type = 0
-cellular_return_type = 0
+[node name="Node3D" type="Node3D" unique_id=1729605664]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q1vfc"]
-noise = SubResource("FastNoiseLite_kjiqm")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2141427487]
+environment = SubResource("Environment_kyw6u")
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4yg6e"]
-texture = SubResource("NoiseTexture2D_q1vfc")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1277916096]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_fumrt"]
-default_input_values = [1, 0.0, 2, 1.0, 3, 0.0, 4, 360.0]
-
-[sub_resource type="Gradient" id="Gradient_suduf"]
-offsets = PackedFloat32Array(0, 0.025723472, 0.06109325)
-colors = PackedColorArray(1, 1, 1, 1, 0.3793103, 0.3793103, 0.3793103, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3sm52"]
-noise_type = 2
-fractal_type = 0
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bdqtr"]
-noise = SubResource("FastNoiseLite_3sm52")
-color_ramp = SubResource("Gradient_suduf")
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o5hbk"]
-texture = SubResource("NoiseTexture2D_bdqtr")
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7chrw"]
-output_port_for_preview = 0
-source = 5
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_5m6py"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_5bagc"]
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_un3gl"]
-source = 5
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_b4b3h"]
-source = 5
-texture_type = 2
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_5bagc"]
-parameter_name = "Main_Texture"
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_cqme5"]
-parameter_name = "O_R_M"
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_8o0qg"]
-parameter_name = "Normal_Map"
-texture_type = 2
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_5bagc"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_8o0qg"]
-source = 5
-texture_type = 2
-
-[sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_5bagc"]
-default_input_values = [0, Vector2(0, 0)]
-port_type = 3
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_cqme5"]
-expanded_output_ports = [0]
-function = 1
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8o0qg"]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeParameterRef" id="VisualShaderNodeParameterRef_un3gl"]
-parameter_name = "Uv_Scale1"
-param_type = 4
-
-[sub_resource type="VisualShaderNodeParameterRef" id="VisualShaderNodeParameterRef_b4b3h"]
-parameter_name = "Uv_Scale1"
-param_type = 4
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_akhuk"]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_y3sm3"]
-expanded_output_ports = [0]
-function = 1
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_51wuu"]
-source = 5
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_kjiqm"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_q1vfc"]
-default_input_values = [0, Vector4(0, 0, 0, 0)]
-port_type = 5
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_un3gl"]
-parameter_name = "Secondary_Texture"
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_akhuk"]
-source = 5
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_y3sm3"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_51wuu"]
-parameter_name = "Noise_Texture"
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kjiqm"]
-source = 5
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_4yg6e"]
-default_input_values = [0, Vector3(0, 0, 0)]
-port_type = 4
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_fumrt"]
-source = 5
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_suduf"]
-parameter_name = "Secondary_O_R_M"
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_3sm52"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_cqme5"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
-op_type = 3
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_y3sm3"]
-source = 5
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_kjiqm"]
-parameter_name = "Secondary_Normal_Map"
-texture_type = 2
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_5bagc"]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_8o0qg"]
-expanded_output_ports = [0]
-function = 1
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_un3gl"]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_b4b3h"]
-expanded_output_ports = [0]
-function = 1
-
-[sub_resource type="VisualShaderNodeParameterRef" id="VisualShaderNodeParameterRef_akhuk"]
-parameter_name = "Uv_Scale1"
-param_type = 4
-
-[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_y3sm3"]
-parameter_name = "UV_Scale_2"
-default_value_enabled = true
-default_value = Vector2(5, 5)
-
-[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_6lblk"]
-parameter_name = "Uv_Scale1"
-default_value_enabled = true
-default_value = Vector2(5, 5)
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4l0vo"]
-input_name = "uv"
-
-[sub_resource type="VisualShader" id="VisualShader_7tmjo"]
-modes/diffuse = 2
-nodes/vertex/0/position = Vector2(780, 0)
-nodes/fragment/0/position = Vector2(4320, 1240)
-nodes/fragment/8/node = SubResource("VisualShaderNodeVec2Parameter_6lblk")
-nodes/fragment/8/position = Vector2(-340, 1000)
-nodes/fragment/9/node = SubResource("VisualShaderNodeInput_4l0vo")
-nodes/fragment/9/position = Vector2(-340, 860)
-nodes/fragment/10/node = SubResource("VisualShaderNodeUVFunc_5bagc")
-nodes/fragment/10/position = Vector2(80, 960)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_cqme5")
-nodes/fragment/11/position = Vector2(1180, 1120)
-nodes/fragment/13/node = SubResource("VisualShaderNodeExpression_y3sm3")
-nodes/fragment/13/position = Vector2(520, 1240)
-nodes/fragment/13/size = Vector2(472, 300)
-nodes/fragment/13/input_ports = "0,3,uv_in;1,3,pivot;2,0,rotation_degrees;"
-nodes/fragment/13/output_ports = "0,3,uv_out;"
-nodes/fragment/13/expression = "uv_in -= pivot;
-float rotation_radians = radians(rotation_degrees);
-float c = cos(rotation_radians);
-float s = sin(rotation_radians);
-
-uv_out.x = uv_in.x * c + uv_in.y * s;
-uv_out.y = uv_in.y * c - uv_in.x * s;
-
-uv_out += pivot;"
-nodes/fragment/15/node = SubResource("VisualShaderNodeVec2Constant_51wuu")
-nodes/fragment/15/position = Vector2(0, 1300)
-nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_4yg6e")
-nodes/fragment/17/position = Vector2(-260, 1400)
-nodes/fragment/18/node = SubResource("VisualShaderNodeRemap_fumrt")
-nodes/fragment/18/position = Vector2(-20, 1500)
-nodes/fragment/19/node = SubResource("VisualShaderNodeTexture_o5hbk")
-nodes/fragment/19/position = Vector2(1000, 1620)
-nodes/fragment/20/node = SubResource("VisualShaderNodeTexture_7chrw")
-nodes/fragment/20/position = Vector2(1080, 700)
-nodes/fragment/21/node = SubResource("VisualShaderNodeMix_5m6py")
-nodes/fragment/21/position = Vector2(2260, 1380)
-nodes/fragment/22/node = SubResource("VisualShaderNodeVectorDecompose_5bagc")
-nodes/fragment/22/position = Vector2(4000, 1360)
-nodes/fragment/23/node = SubResource("VisualShaderNodeTexture_un3gl")
-nodes/fragment/23/position = Vector2(1700, 1580)
-nodes/fragment/24/node = SubResource("VisualShaderNodeTexture_b4b3h")
-nodes/fragment/24/position = Vector2(1780, 2020)
-nodes/fragment/25/node = SubResource("VisualShaderNodeTexture2DParameter_5bagc")
-nodes/fragment/25/position = Vector2(400, 560)
-nodes/fragment/26/node = SubResource("VisualShaderNodeTexture2DParameter_cqme5")
-nodes/fragment/26/position = Vector2(420, 2040)
-nodes/fragment/27/node = SubResource("VisualShaderNodeTexture2DParameter_8o0qg")
-nodes/fragment/27/position = Vector2(420, 2380)
-nodes/fragment/28/node = SubResource("VisualShaderNodeMix_5bagc")
-nodes/fragment/28/position = Vector2(2300, 2040)
-nodes/fragment/29/node = SubResource("VisualShaderNodeTexture_8o0qg")
-nodes/fragment/29/position = Vector2(1720, 2260)
-nodes/fragment/30/node = SubResource("VisualShaderNodeReroute_5bagc")
-nodes/fragment/30/position = Vector2(377.4734, 1020.881)
-nodes/fragment/31/node = SubResource("VisualShaderNodeUVFunc_cqme5")
-nodes/fragment/31/position = Vector2(900, 2760)
-nodes/fragment/33/node = SubResource("VisualShaderNodeInput_8o0qg")
-nodes/fragment/33/position = Vector2(440, 2720)
-nodes/fragment/34/node = SubResource("VisualShaderNodeParameterRef_un3gl")
-nodes/fragment/34/position = Vector2(440, 2880)
-nodes/fragment/35/node = SubResource("VisualShaderNodeParameterRef_b4b3h")
-nodes/fragment/35/position = Vector2(420, 1920)
-nodes/fragment/36/node = SubResource("VisualShaderNodeInput_akhuk")
-nodes/fragment/36/position = Vector2(400, 1780)
-nodes/fragment/37/node = SubResource("VisualShaderNodeUVFunc_y3sm3")
-nodes/fragment/37/position = Vector2(780, 1900)
-nodes/fragment/38/node = SubResource("VisualShaderNodeTexture_51wuu")
-nodes/fragment/38/position = Vector2(1720, 1780)
-nodes/fragment/39/node = SubResource("VisualShaderNodeMix_kjiqm")
-nodes/fragment/39/position = Vector2(2300, 1680)
-nodes/fragment/40/node = SubResource("VisualShaderNodeReroute_q1vfc")
-nodes/fragment/40/position = Vector2(2198.921, 2003.0586)
-nodes/fragment/41/node = SubResource("VisualShaderNodeTexture2DParameter_un3gl")
-nodes/fragment/41/position = Vector2(2560, 460)
-nodes/fragment/42/node = SubResource("VisualShaderNodeTexture_akhuk")
-nodes/fragment/42/position = Vector2(2960, 600)
-nodes/fragment/43/node = SubResource("VisualShaderNodeMix_y3sm3")
-nodes/fragment/43/position = Vector2(3700, 1060)
-nodes/fragment/44/node = SubResource("VisualShaderNodeTexture2DParameter_51wuu")
-nodes/fragment/44/position = Vector2(2540, 800)
-nodes/fragment/45/node = SubResource("VisualShaderNodeTexture_kjiqm")
-nodes/fragment/45/position = Vector2(2980, 820)
-nodes/fragment/46/node = SubResource("VisualShaderNodeReroute_4yg6e")
-nodes/fragment/46/position = Vector2(3183.7043, 1125.1799)
-nodes/fragment/47/node = SubResource("VisualShaderNodeTexture_fumrt")
-nodes/fragment/47/position = Vector2(3340, 1560)
-nodes/fragment/48/node = SubResource("VisualShaderNodeTexture2DParameter_suduf")
-nodes/fragment/48/position = Vector2(2840, 1660)
-nodes/fragment/49/node = SubResource("VisualShaderNodeMix_3sm52")
-nodes/fragment/49/position = Vector2(3680, 1320)
-nodes/fragment/50/node = SubResource("VisualShaderNodeMix_cqme5")
-nodes/fragment/50/position = Vector2(3660, 1640)
-nodes/fragment/51/node = SubResource("VisualShaderNodeTexture_y3sm3")
-nodes/fragment/51/position = Vector2(3500, 2120)
-nodes/fragment/52/node = SubResource("VisualShaderNodeTexture2DParameter_kjiqm")
-nodes/fragment/52/position = Vector2(3240, 2520)
-nodes/fragment/53/node = SubResource("VisualShaderNodeInput_5bagc")
-nodes/fragment/53/position = Vector2(2200, 200)
-nodes/fragment/54/node = SubResource("VisualShaderNodeUVFunc_8o0qg")
-nodes/fragment/54/position = Vector2(2660, 240)
-nodes/fragment/56/node = SubResource("VisualShaderNodeInput_un3gl")
-nodes/fragment/56/position = Vector2(2420, 2500)
-nodes/fragment/58/node = SubResource("VisualShaderNodeUVFunc_b4b3h")
-nodes/fragment/58/position = Vector2(2840, 2400)
-nodes/fragment/59/node = SubResource("VisualShaderNodeParameterRef_akhuk")
-nodes/fragment/59/position = Vector2(2400, 2640)
-nodes/fragment/60/node = SubResource("VisualShaderNodeVec2Parameter_y3sm3")
-nodes/fragment/60/position = Vector2(2200, 340)
-nodes/fragment/connections = PackedInt32Array(9, 0, 10, 0, 8, 0, 10, 1, 15, 0, 13, 1, 17, 0, 18, 0, 18, 0, 13, 2, 13, 0, 20, 0, 19, 0, 21, 2, 13, 0, 23, 0, 13, 0, 24, 0, 25, 0, 20, 2, 25, 0, 11, 2, 26, 0, 23, 2, 27, 0, 24, 2, 22, 0, 0, 6, 22, 1, 0, 3, 22, 2, 0, 2, 24, 0, 28, 0, 27, 0, 29, 2, 29, 0, 28, 1, 10, 0, 30, 0, 30, 0, 13, 0, 30, 0, 11, 0, 33, 0, 31, 0, 34, 0, 31, 1, 31, 0, 29, 0, 36, 0, 37, 0, 37, 0, 38, 0, 38, 0, 39, 1, 23, 0, 39, 0, 19, 0, 40, 0, 40, 0, 28, 2, 40, 0, 39, 2, 26, 0, 38, 2, 41, 0, 42, 2, 44, 0, 45, 2, 21, 0, 46, 0, 48, 0, 47, 2, 39, 0, 49, 0, 47, 0, 49, 1, 45, 0, 49, 2, 49, 0, 22, 0, 28, 0, 50, 0, 52, 0, 51, 2, 51, 0, 50, 1, 45, 0, 50, 2, 53, 0, 54, 0, 54, 0, 42, 0, 56, 0, 58, 0, 59, 0, 58, 1, 58, 0, 51, 0, 58, 0, 47, 0, 60, 0, 54, 1, 50, 0, 0, 9, 45, 0, 43, 2, 46, 0, 43, 0, 42, 0, 43, 1, 11, 0, 21, 1, 20, 0, 21, 0, 43, 0, 0, 0, 35, 0, 37, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p718k"]
-render_priority = 0
-shader = SubResource("VisualShader_7tmjo")
-shader_parameter/Uv_Scale1 = Vector2(5, 5)
-shader_parameter/UV_Scale_2 = Vector2(5, 5)
-
-[node name="Level" type="Node3D" unique_id=1080948073]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=742405051]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.429657, -0.1017952, -6.0048027)
-material_override = SubResource("ShaderMaterial_p718k")
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=778501074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1)
+material_override = SubResource("StandardMaterial3D_j4agq")
 use_collision = true
-size = Vector3(100, 0.5, 100)
+collision_layer = 4
+collision_mask = 0
+size = Vector3(12, 1, 18)
 
-[node name="Player" parent="." unique_id=546937018 instance=ExtResource("6_d4o56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5341018, 0)
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1297504660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.29999995, 0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.6, 1)
 
-[node name="Rock" parent="." unique_id=895391112 instance=ExtResource("7_ssmx2")]
-transform = Transform3D(0.64317095, 0, -0.68971634, 0, 0.94306815, 0, 0.68971634, 0, 0.64317095, 0, 0, 3.3607821)
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1526426461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.34999996, 0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.7, 1)
 
-[node name="Rock2" parent="." unique_id=661035680 instance=ExtResource("7_ssmx2")]
-transform = Transform3D(-0.83514464, 0, -0.6762869, 0, 1.0746304, 0, 0.6762869, 0, -0.83514464, -0.8701072, 0, 3.3607821)
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=1746685421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.39999998, 0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.8, 1)
 
-[node name="Rock3" parent="." unique_id=85702041 instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1.2862345e-08, 0, -1.0786141, 0, 1.0786141, 0, 1.0786141, 0, 1.2862345e-08, -1.842257, 0, 3.3607821)
+[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=1368555785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.45, 0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.90000004, 1)
 
-[node name="Rock4" parent="." unique_id=2105459525 instance=ExtResource("7_ssmx2")]
-transform = Transform3D(0.65856606, 0, -0.842926, 0, 1.0696886, 0, 0.842926, 0, 0.65856606, -2.6745121, 0, 3.3607821)
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1695774002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.25, 0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.5, 1)
 
-[node name="Rock5" parent="." unique_id=1928892151 instance=ExtResource("7_ssmx2")]
-transform = Transform3D(1.0318865, 0, 0.27649313, 0, 1.0682875, 0, -0.27649313, 0, 1.0318865, -3.2883675, 0, 3.3607821)
+[node name="CSGBox3D14" type="CSGBox3D" parent="." unique_id=1281581531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -1.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="." unique_id=325648206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -1.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="." unique_id=928516076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.8000002, -0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.4, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="." unique_id=1162746920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.80000025, -0.2)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.6, 0.4)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="." unique_id=1800624006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -1.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="." unique_id=1777076563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.4000001, -0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.2, 1)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="." unique_id=1855604964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.50000024, -0.2)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1, 0.4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=1529277750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.15, -0.5)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 0.3, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=915117937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 0.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." unique_id=470283111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 0.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(6, 1, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="." unique_id=911499030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1, 0.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="." unique_id=107128736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.75, 3.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.5, 1)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="." unique_id=2047655559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.75, 5.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.5, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="." unique_id=476878427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1, 2.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 2, 3)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="." unique_id=308350762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 2.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="." unique_id=1795430266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.5, -0.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="." unique_id=1461577639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.5, -2.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="." unique_id=374721465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -5.5)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 3, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="." unique_id=1812576449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099999994, 1.5, -2.85)
+material_override = SubResource("StandardMaterial3D_1cxby")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(3.8, 3, 1.7)
+
+[node name="Player" parent="." unique_id=1047360223 instance=ExtResource("4_ssmx2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.49983, 0.75, -4.941118)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=327694547]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.2395128, 0.07797241, -4.497034)
+double_sided = false
+texture_filter = 5
+text = "Walking Jump Distance"
+
+[node name="Label3D2" type="Label3D" parent="." unique_id=659971957]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.9209015, 0.086307526, -2.373025)
+double_sided = false
+texture_filter = 5
+text = "Sprinting Jump Distance"
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=735952875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(0, 0, -1, 0, -1, 1, 1, 0)
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="." unique_id=588125588]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 2, -1)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(-1, 0, -1, 1, 0, 0)
+
+[node name="CSGPolygon3D6" type="CSGPolygon3D" parent="." unique_id=2024024536]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 2, -1)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(-1, 0, -1, 1, 0, 0)
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="." unique_id=1366995561]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 2, 2)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(0, 0, -1, 0, -1, 1, 1, 0)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="." unique_id=1316520804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9855025, 1.5, 4)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(0, 0, 0, 0.5, 1, 0)
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="." unique_id=1071360275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+material_override = SubResource("StandardMaterial3D_7pj48")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+polygon = PackedVector2Array(0, 0, -1, 0, -1, 1.5, 1, 0)
+
+[node name="Turret" parent="." unique_id=615870833 instance=ExtResource("5_yxv7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.576961, 0.25, 3.3782363)

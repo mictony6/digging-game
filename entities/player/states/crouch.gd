@@ -15,6 +15,7 @@ func _ready():
 	crouch_height = default_height / 2.0
 	default_head_y = head.position.y
 	crouch_head_y = default_head_y - crouch_height
+	
 func enter(previous_state_path: String, data := {}) -> void:
 	player.acceleration = player.ground_acceleration
 	var capsule: CapsuleShape3D = collider.shape
@@ -23,7 +24,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(head, "position:y", crouch_head_y, CROUCH_DOWN_SPEED)
-	capsule.height = default_height / 2.0
+	capsule.height = crouch_height
 	collider.position.y = - default_height / 4.0
 	
 func exit() -> void:

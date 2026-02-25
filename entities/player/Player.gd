@@ -5,8 +5,11 @@ class_name Player
 
 # Movement variables
 @export var SPEED: float = 2;
-@export var SPRINT_SPEED: float = 10;
-@export var JUMP_FORCE = 4;
+@export var SPRINT_SPEED: float = 3;
+var JUMP_FORCE: float = 4;
+@export var JUMP_HEIGHT: float = 1.3;
+@export var JUMP_HALF_TIME: float = 0.35;
+@export var FALL_GRAVITY_MULTIPLIER: float = 1.3;
 var acceleration: float = 15.0;
 var air_acceleration: float = 2.5;
 var ground_acceleration: float = 15.0;
@@ -35,7 +38,8 @@ func _ready() -> void:
 	assert(oxygen != null, "Player must have oxygen component")
 	if head == null:
 		head = get_node("Head");
-
+	gravity = (2 * JUMP_HEIGHT) / (pow(JUMP_HALF_TIME, 2))
+	JUMP_FORCE = sqrt(2 * gravity * JUMP_HEIGHT)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
@@ -74,6 +78,7 @@ func _process(delta: float) -> void:
 	elif !oxygen.is_full():
 		oxygen.add_oxygen(10 * delta)
 
+	
 func has_buffered_jump():
 	return buffered_jump_timer > 0.0
 

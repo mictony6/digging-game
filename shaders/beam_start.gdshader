@@ -7,7 +7,7 @@ uniform float falloff : hint_range(0.1, 8.0) = 2.0;
 uniform float emission_energy  = 2.0;
 void vertex() {
     float sway = sin(TIME * 3.0) * 0.1;
-    float ripple = sin(VERTEX.y * 2.0 - TIME * 12.0) * 0.06;
+    float ripple = sin(VERTEX.y * 2.0 - TIME * 24.0) * 0.06;
     float vibration = sin(VERTEX.y * 10.0 - TIME * 25.0) * 0.02;
     
     float displacement = (sway + ripple + vibration) ;

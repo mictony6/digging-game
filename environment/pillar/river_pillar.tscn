@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnfwtv8t8h2vr"]
 
 [ext_resource type="Texture2D" uid="uid://bo8sf0m2cmuqw" path="res://assets/textures/mossy_rock/rock_pitted_mossy_diff_2k.png" id="1_cq0oj"]
-[ext_resource type="ArrayMesh" uid="uid://dnawd02bdw720" path="res://assets/meshes/river_pillar/river_pillar_Plane.res" id="1_yaiqc"]
+[ext_resource type="ArrayMesh" uid="uid://bdymc7om2ft4x" path="res://assets/meshes/river_pillar/river_pillar_Plane.res" id="1_yaiqc"]
 [ext_resource type="Texture2D" uid="uid://ds8ucwnmt404i" path="res://assets/textures/mossy_rock/rock_pitted_mossy_nor_gl_2k.png" id="2_yaiqc"]
 [ext_resource type="Texture2D" uid="uid://b2houwx21stss" path="res://assets/textures/mossy_rock/rock_pitted_mossy_arm_2k.png" id="3_i7agv"]
 

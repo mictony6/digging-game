@@ -29,7 +29,7 @@ void fragment() {
 
 
     
-    vec2 uv = vec2(UV.y - TIME * 0.5, UV.x);
+    vec2 uv = vec2(UV.y - TIME * 2.0, UV.x);
     uv.x *= 0.1;
     vec4 base_tex = texture(main_tex, uv);
     ALBEDO = base_tex.rgb * base_color.rgb;

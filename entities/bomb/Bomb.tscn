@@ -304,7 +304,7 @@ is_hemisphere = true
 
 [node name="Bomb" type="RigidBody3D" unique_id=1944514692]
 collision_layer = 8
-collision_mask = 38
+collision_mask = 110
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_b0f4v")
 angular_damp = 20.0
@@ -320,6 +320,7 @@ mesh = ExtResource("1_b0f4v")
 [node name="Area3D" type="Area3D" parent="." unique_id=1247727427]
 collision_layer = 0
 collision_mask = 3
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1876806362]
 shape = SubResource("SphereShape3D_na0ft")
