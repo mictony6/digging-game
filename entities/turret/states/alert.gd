@@ -8,7 +8,6 @@ var lock_on_time: float = 1.0
 
 func enter(_previous_state_path: String, data := {}) -> void:
 	time_in_view = 0.0
-	# target_entity = data.target_entity
 
 func physics_update(delta: float) -> void:
 	var bodies: Array = detector.get_overlapping_bodies()

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://gq6av05p0bv4"]
+
+[ext_resource type="Material" uid="uid://chhrxrn0jw2m7" path="res://shaders/materials/rockpile.material" id="1_lsv44"]
+[ext_resource type="ArrayMesh" uid="uid://tfmg1pfutnfw" path="res://assets/meshes/rock_pile/rockpile_Plane_004.res" id="2_i33hp"]
+[ext_resource type="Shape3D" uid="uid://cexhr3ng016oj" path="res://environment/mound/rock_pile_collider.shape" id="3_i33hp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i33hp"]
+points = PackedVector3Array(0.66236746, 0.23522097, -0.43289164, -0.72818494, 0.0324661, -0.95448494, 0.054023474, -0.02548492, 0.63878834, 1.125885, 0.0324661, -0.925447, -0.00387083, 0.351123, -0.2301708, 1.125885, 0.061441615, 0.899585, -0.72818494, 0.061441615, 0.899585, 1.125885, -0.02548492, 0.17508939, -0.00387083, 0.26415962, 0.40684813, 0.5462159, 0.11939263, -0.8964091, 0.66236746, 0.26415962, -0.027449965, 0.51717794, 0.003490582, -0.8675527, -0.72818494, 0.061441615, -0.95448494, -0.72818494, 0.0324661, 0.899585, 0.19885, 0.293172, -0.49096745, 1.125885, 0.061441615, -0.925447, 0.11209928, 0.17726994, 0.7257206, 1.125885, 0.0324661, 0.899585, -0.4962447, 0.17726994, -0.08534428, 1.0676277, 0.11939263, 0.23298371, -0.4673883, 0.003490582, 0.20412728, 0.1699936, -0.02548492, 0.6965012, 0.45928368, 0.26415962, -0.54886174, 0.29802716, 0.27464634, 0.19597106, 1.096847, 0.061441615, -0.95448494, 0.86508834, 0.003490582, -0.7806205, -0.29352388, 0.20624545, 0.5228182, 0.19885, 0.11939263, -0.8964091, 1.096847, 0.0324661, -0.95448494, 0.6331481, 0.26415962, -0.20113291, 0.14095569, 0.293172, -0.49096745, 1.0676277, -0.02548492, 0.14605148)
+
+[node name="RockPile" type="Node3D" unique_id=1948536236]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1668062347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+material_override = ExtResource("1_lsv44")
+mesh = ExtResource("2_i33hp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1315748076]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=434717317]
+shape = SubResource("ConvexPolygonShape3D_i33hp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=783443014]
+shape = ExtResource("3_i33hp")
+disabled = true

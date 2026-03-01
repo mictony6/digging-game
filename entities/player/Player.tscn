@@ -264,6 +264,7 @@ script = ExtResource("1_ak4un")
 head = NodePath("Head")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
+visible = false
 gi_mode = 0
 mesh = SubResource("CapsuleMesh_lkjt4")
 
@@ -288,7 +289,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552636, -0.014453307, 0.025802754, 0.02303213, 0.09108559, -0.034248088, -0.018552583, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552633, -0.014453307, 0.025802754, 0.023032125, 0.09108559, -0.034248088, -0.018552577, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")
@@ -336,6 +337,10 @@ shadow_enabled = true
 spot_range = 8.0
 spot_attenuation = 2.0
 spot_angle = 35.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Head" unique_id=77155747]
+doppler_tracking = 2
+current = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=1800093817 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_rl6fg")

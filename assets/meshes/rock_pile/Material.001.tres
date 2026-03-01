@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://0vh6ogtskebo"]
+
+[ext_resource type="Texture2D" uid="uid://dauw8qs83y38r" path="res://assets/meshes/rock_pile/rockpile_RockPileAlbedo1K.png" id="1_oag45"]
+[ext_resource type="Texture2D" uid="uid://w86pu4fwok04" path="res://assets/meshes/rock_pile/rockpile_RockPileRoughness.png" id="2_r3adb"]
+[ext_resource type="Texture2D" uid="uid://bq4gg30loll3b" path="res://assets/meshes/rock_pile/rockpile_RockPileNormal1K.png" id="3_c11n2"]
+
+[resource]
+resource_name = "Material.001"
+albedo_texture = ExtResource("1_oag45")
+metallic_texture = ExtResource("2_r3adb")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_r3adb")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_c11n2")
+texture_filter = 5

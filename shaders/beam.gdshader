@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled;
+render_mode cull_disabled, depth_test_disabled;
 uniform sampler2D main_tex : source_color, filter_linear_mipmap_anisotropic;
 uniform vec4 base_color : source_color;
 uniform float brightness : hint_range(0.0, 10.0, 0.1) = 1.0;
@@ -22,7 +22,7 @@ void vertex() {
     
     float displacement = (sway + ripple + vibration) * taper * taper;
     VERTEX.x += displacement;
-	Z_CLIP_SCALE = 0.8;
+	//Z_CLIP_SCALE = 0.8;
 }
 
 void fragment() {

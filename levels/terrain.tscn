@@ -3,8 +3,6 @@
 [ext_resource type="ArrayMesh" uid="uid://bw725terrxrxg" path="res://assets/meshes/terrain/terrain_mesh.res" id="1_8ycuo"]
 [ext_resource type="Material" uid="uid://ctg5sjglg8g7h" path="res://shaders/materials/terrain_main.res" id="2_8ycuo"]
 [ext_resource type="Shape3D" uid="uid://btr46d83w7efc" path="res://levels/terrain_collision_shape.shape" id="3_3mnpp"]
-[ext_resource type="Texture2D" uid="uid://cgeduv1a2ftuc" path="res://assets/textures/sulfur/sulphuric-rock_albedo.png" id="4_c8i7n"]
-[ext_resource type="Texture2D" uid="uid://cj6eq1k3axwc1" path="res://assets/textures/sulfur/sulphuric-rock_normal-ogl.png" id="5_jemwd"]
 
 [node name="Terrain" type="StaticBody3D" unique_id=718331278]
 collision_layer = 4
@@ -20,9 +18,3 @@ surface_material_override/0 = ExtResource("2_8ycuo")
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = ExtResource("3_3mnpp")
 debug_color = Color(0, 0.6, 0.69803923, 0)
-
-[node name="Decal" type="Decal" parent="." unique_id=1079331619]
-transform = Transform3D(1.4367021, 0, 0, 0, 1.4367021, 0, 0, 0, 1.4367021, 0, -28.08707, 0)
-size = Vector3(2, 1.2958984, 2)
-texture_albedo = ExtResource("4_c8i7n")
-texture_normal = ExtResource("5_jemwd")

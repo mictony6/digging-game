@@ -29,6 +29,9 @@ func physics_update(delta: float) -> void:
 			finished.emit(SPRINT)
 		if player.velocity.is_equal_approx(Vector3.ZERO):
 			finished.emit(IDLE)
+	else:
+		if player.velocity.y < 0.0:
+			finished.emit(FALL)
 
 
 ## Called by the state machine before changing the active state. Use this function
