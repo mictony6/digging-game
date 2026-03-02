@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuhdkboepfomp"
-path.s3tc="res://.godot/imported/greybox_lime_grid.png-bdf5e0046f91080515e51820847970ad.s3tc.ctex"
+uid="uid://bbktws5ifqikg"
+path="res://.godot/imported/stained-decals_0001_01_T_L.png-950fe9171c193f6ec6fa2505dc4e207a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://GreyboxTextures/greybox_lime_grid.png"
-dest_files=["res://.godot/imported/greybox_lime_grid.png-bdf5e0046f91080515e51820847970ad.s3tc.ctex"]
+source_file="res://assets/textures/decals/stained-decals_0001_01_T_L.png"
+dest_files=["res://.godot/imported/stained-decals_0001_01_T_L.png-950fe9171c193f6ec6fa2505dc4e207a.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
+compress/mode=0
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

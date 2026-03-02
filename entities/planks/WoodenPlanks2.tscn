@@ -32,10 +32,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 shape = SubResource("CylinderShape3D_yfhgo")
 
 [node name="Beam1" type="MeshInstance3D" parent="." index="4" unique_id=743949304]
+layers = 2
 mesh = SubResource("CylinderMesh_43nv6")
 surface_material_override/0 = SubResource("StandardMaterial3D_x6ont")
 
 [node name="Beam2" type="MeshInstance3D" parent="." index="5" unique_id=1052798809]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+layers = 2
 mesh = SubResource("CylinderMesh_43nv6")
 surface_material_override/0 = SubResource("StandardMaterial3D_x6ont")

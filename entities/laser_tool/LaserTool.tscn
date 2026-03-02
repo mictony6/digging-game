@@ -37,10 +37,12 @@ z_clip_scale = 0.85
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=1570464307]
+layers = 2
 mesh = ExtResource("1_xc8d0")
 surface_material_override/0 = SubResource("StandardMaterial3D_ybjws")
 
 [node name="Cube_001" type="MeshInstance3D" parent="." unique_id=1373628562]
 transform = Transform3D(0.25579977, 0, 0, 0, 0, -0.25579977, 0, 0.25579977, 0, 0, 1.1434436, 0.19197425)
+layers = 2
 mesh = ExtResource("2_hnwkv")
 surface_material_override/0 = SubResource("StandardMaterial3D_bqd44")

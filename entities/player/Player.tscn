@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
 [ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_rl6fg"]
+[ext_resource type="Script" uid="uid://dednsob4blsvv" path="res://game/torch_manager.gd" id="4_d168t"]
 [ext_resource type="PackedScene" uid="uid://djhlwhtnyh1j6" path="res://entities/bomb/Bomb.tscn" id="4_kwk8g"]
 [ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_q57vx"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_ak4un"]
+[ext_resource type="PackedScene" uid="uid://btl12hu81c37h" path="res://environment/lightpost/torch.tscn" id="5_oj2y3"]
 [ext_resource type="PackedScene" uid="uid://wf6ij42xq2w2" path="res://entities/tools/Tool.tscn" id="6_1ms0h"]
 [ext_resource type="Shader" uid="uid://dq3dij6k6hn5t" path="res://shaders/outline.tres" id="6_j531f"]
 [ext_resource type="Script" uid="uid://cp5a0y857k43q" path="res://systems/state machine/StateMachine.gd" id="7_rl6fg"]
@@ -283,13 +285,17 @@ hit_from_inside = true
 _player = NodePath("../../..")
 _tool = NodePath("../../ToolManager/Tool")
 
+[node name="TorchManager" type="Node3D" parent="Head" unique_id=1101061011]
+script = ExtResource("4_d168t")
+torch_scene = ExtResource("5_oj2y3")
+
 [node name="BombManager" type="Node3D" parent="Head" unique_id=430717964 node_paths=PackedStringArray("animation")]
 script = ExtResource("3_mq27t")
 animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552633, -0.014453307, 0.025802754, 0.023032125, 0.09108559, -0.034248088, -0.018552577, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526315, -0.014453307, 0.025802754, 0.023032121, 0.09108559, -0.034248088, -0.018552575, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")

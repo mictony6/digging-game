@@ -315,6 +315,7 @@ shape = SubResource("SphereShape3D_kqdr2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=905157511]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+layers = 2
 mesh = ExtResource("1_b0f4v")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1247727427]

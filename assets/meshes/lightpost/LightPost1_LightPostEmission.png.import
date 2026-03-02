@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuhdkboepfomp"
-path.s3tc="res://.godot/imported/greybox_lime_grid.png-bdf5e0046f91080515e51820847970ad.s3tc.ctex"
+uid="uid://6b6h58ct842s"
+path.s3tc="res://.godot/imported/LightPost1_LightPostEmission.png-e903e6b6e276794535cecdeb02298349.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "547b4a70b3bbc390ce7db7a24abaeddc"
+}
 
 [deps]
 
-source_file="res://GreyboxTextures/greybox_lime_grid.png"
-dest_files=["res://.godot/imported/greybox_lime_grid.png-bdf5e0046f91080515e51820847970ad.s3tc.ctex"]
+source_file="res://assets/meshes/lightpost/LightPost1_LightPostEmission.png"
+dest_files=["res://.godot/imported/LightPost1_LightPostEmission.png-e903e6b6e276794535cecdeb02298349.s3tc.ctex"]
 
 [params]
 
