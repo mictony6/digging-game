@@ -267,6 +267,7 @@ head = NodePath("Head")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
 visible = false
+cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("CapsuleMesh_lkjt4")
 
@@ -295,7 +296,8 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.095526315, -0.014453307, 0.025802754, 0.023032121, 0.09108559, -0.034248088, -0.018552575, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552629, -0.014453307, 0.025802754, 0.023032116, 0.09108559, -0.034248088, -0.018552572, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ax5yc")

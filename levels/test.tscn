@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cepatjt0ekjg3" path="res://entities/water/water.tscn" id="25_70x8p"]
 [ext_resource type="Texture2D" uid="uid://bbktws5ifqikg" path="res://assets/textures/decals/stained-decals_0001_01_T_L.png" id="26_4ksiy"]
 [ext_resource type="VoxelGIData" uid="uid://qxsvkp7lgutg" path="res://GI/test.VoxelGI_data.res" id="27_8m07d"]
+[ext_resource type="PackedScene" uid="uid://cw5y4cp0p2ipo" path="res://entities/stone_platform/stone_platform.tscn" id="28_0v7wf"]
 [ext_resource type="PackedScene" uid="uid://dbf4ij4d18ruw" path="res://environment/mound/mound.tscn" id="28_mfah6"]
 [ext_resource type="PackedScene" uid="uid://bykyj7fgs57c2" path="res://assets/meshes/shop_building/storebuilding.glb" id="29_g8des"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
@@ -320,8 +321,11 @@ cull_mask = 1048573
 [node name="Level1" type="Node3D" parent="LevelLoader" unique_id=69558858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
 
+[node name="StonePlatform" parent="LevelLoader" unique_id=1296816151 instance=ExtResource("28_0v7wf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.242578, -29.354034, -10.396272)
+
 [node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 5.453592, -28.803932, -34.41727)
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 5.453592, -29.297007, -19.55503)
 
 [node name="ClutterInstancer" type="Node3D" parent="." unique_id=1074972713 node_paths=PackedStringArray("player")]
 script = ExtResource("36_gmj64")
