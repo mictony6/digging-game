@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="19_4fbvh"]
 [ext_resource type="PackedScene" uid="uid://c7insi1sybo2e" path="res://systems/physics/is_knockbacked.tscn" id="20_3uni3"]
 [ext_resource type="PackedScene" uid="uid://dyst6k0o03jhc" path="res://systems/oxygen/has_oxygen.tscn" id="20_ux552"]
+[ext_resource type="PackedScene" uid="uid://c2hwqu8gqbygx" path="res://systems/inventory/has_inventory.tscn" id="25_pnvcq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -296,7 +297,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552629, -0.014453307, 0.025802754, 0.023032116, 0.09108559, -0.034248088, -0.018552572, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552625, -0.014453307, 0.025802754, 0.023032105, 0.09108559, -0.034248088, -0.01855256, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -407,3 +408,5 @@ libraries/ = SubResource("AnimationLibrary_4fbvh")
 [node name="HasHealth" parent="." unique_id=1565073669 instance=ExtResource("19_4fbvh")]
 
 [node name="HasOxygen" parent="." unique_id=791893390 instance=ExtResource("20_ux552")]
+
+[node name="HasInventory" parent="." unique_id=1085736782 instance=ExtResource("25_pnvcq")]

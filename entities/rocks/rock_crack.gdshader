@@ -91,7 +91,7 @@ void fragment() {
     vec3 emission = crack_color * crack_mask * crack_emission_strength * damage;
 
     ALBEDO = final_albedo;
-    ROUGHNESS = texture(rock_rougness, UV).r;
+    ROUGHNESS = texture(rock_rougness, UV).g;
     NORMAL_MAP = final_normal;
     NORMAL_MAP_DEPTH = 1.0;
     EMISSION = emission;

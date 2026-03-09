@@ -11,12 +11,12 @@ func _ready():
 	health.max_health = rock_data.max_health
 	health.current_health = rock_data.max_health
 	health.death.connect(destroy)
-	#assign a random rotation for variety
-	rotation_degrees.y = randi() % 360
+	# #assign a random rotation for variety
+	# rotation_degrees.y = randi() % 360
 
-	#random scale variation
-	var scale_variation = randf_range(0.9, 1.1)
-	scale = Vector3.ONE * scale_variation
+	# #random scale variation
+	# var scale_variation = randf_range(0.9, 1.1)
+	# scale = Vector3.ONE * scale_variation
 
 	mesh.set_instance_shader_parameter("damage", 0.0)
 	set_process(false)

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://drxwqodp3plus"]
+
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_52aqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmxiq"]
+bg_color = Color(0.318761, 0.31876105, 0.31876102, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="StoreItem" type="PanelContainer" unique_id=993386656]
+custom_minimum_size = Vector2(200, 200)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmxiq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=143054762]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=676088669]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1908785924]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Torch"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=798653887]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("1_52aqx")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1455836400]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Buy"

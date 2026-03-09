@@ -45,7 +45,7 @@ func generate():
 
 		var result = space_state.intersect_ray(query)
 		if result:
-			instantiate_rock(rock_scene, result.position)
+			instantiate_rock(rock_scene, result.position, result.normal)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -55,10 +55,25 @@ func _ready() -> void:
 		generate()
 	
 
-func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3):
+func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3, normal: Vector3):
 	var instance: Rock = _rock_scene.instantiate()
 	add_child(instance)
 	instance.global_position = instance_position
+	# var target_pos = instance.global_transform.origin + normal
+	# instance.look_at(target_pos, Vector3.UP)
+
+	var up = normal
+	var forward = - transform.basis.z
+	var right = forward.cross(up).normalized()
+	forward = up.cross(right).normalized()
+
+	instance.global_transform.basis = Basis(right, up, forward)
+	#assign a random rotation for variety
+	instance.rotation_degrees.y = randi() % 360
+
+	#random scale variation
+	var scale_variation = randf_range(0.9, 1.1)
+	instance.scale = Vector3.ONE * scale_variation
 
 func clear_generated():
 	for child in get_children():

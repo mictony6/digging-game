@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d27rvwtvru1qs"]
+
+[ext_resource type="Script" uid="uid://ch7h0s8qwnktu" path="res://entities/stone_platform/connector.gd" id="1_mf3u6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffycf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_37ejd"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mf3u6"]
+
+[node name="Node3D" type="Node3D" unique_id=117666062]
+script = ExtResource("1_mf3u6")
+
+[node name="MeshA" type="MeshInstance3D" parent="." unique_id=751367866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3193948, 0, 0)
+mesh = SubResource("BoxMesh_ffycf")
+
+[node name="MeshB" type="MeshInstance3D" parent="." unique_id=705319318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84156156, 0, 0)
+mesh = SubResource("SphereMesh_37ejd")
+
+[node name="ConnectingMesh" type="MeshInstance3D" parent="." unique_id=602379072]
+mesh = SubResource("ImmediateMesh_mf3u6")

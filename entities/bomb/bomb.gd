@@ -20,7 +20,8 @@ func explode():
 			var kb = body.get_node("IsKnockbacked") as IsKnockbacked
 			kb.start(global_position)
 		if body is Rock:
-			body.destroy()
+			if body.rock_data.is_destructible:
+				body.destroy()
 		elif body is Player:
 			# raycast to player to allow hiding from explosion
 			var space_state = get_world_3d().direct_space_state

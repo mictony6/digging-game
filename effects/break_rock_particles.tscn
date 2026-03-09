@@ -23,13 +23,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_cd21k"]
 curve = SubResource("Curve_46fpe")
 
-[sub_resource type="Curve" id="Curve_bs83e"]
-_data = [Vector2(0, 1), 0.0, 0.14382029, 0, 0, Vector2(0.53846157, 0.97752815), -0.20322415, -0.20322415, 0, 0, Vector2(1, 0), -3.3653939, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_3m1cx"]
-curve = SubResource("Curve_bs83e")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rr41v"]
 particle_flag_rotate_y = true
 emission_shape = 1
@@ -43,7 +36,6 @@ radial_velocity_max = 4.9999776
 radial_velocity_curve = SubResource("CurveTexture_cd21k")
 scale_min = 0.25
 scale_max = 0.75
-scale_curve = SubResource("CurveTexture_3m1cx")
 
 [node name="GPUParticles3D" type="GPUParticles3D" unique_id=677331480]
 material_override = SubResource("StandardMaterial3D_cd21k")

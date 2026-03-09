@@ -100,8 +100,13 @@ func play_particles(collision_point: Vector3):
 	var collision_normal = tool_raycast.get_collision_normal()
 	particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
 
+
 func shake_target(target: Node3D):
-	var tween: Tween = create_tween()
-	tween.tween_property(target, "rotation_degrees", Vector3(1, target.rotation_degrees.y, target.rotation_degrees.z), .04)
-	tween.set_trans(Tween.TRANS_BOUNCE)
-	tween.tween_property(target, "rotation_degrees", Vector3(-1, target.rotation_degrees.y, target.rotation_degrees.z), .01)
+	var base := target.global_position
+	var ray_dir := -tool_raycast.global_transform.basis.z
+	var push := ray_dir * 0.05
+
+	var tween := target.create_tween()
+
+	tween.tween_property(target, "global_position", base + push, 0.03)
+	tween.tween_property(target, "global_position", base, 0.06)

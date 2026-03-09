@@ -3,10 +3,7 @@ class_name TorchManager
 
 @export var torch_scene: PackedScene
 var last_torch: StaticBody3D
-func _ready() -> void:
-	var mesh: MeshInstance3D = MeshInstance3D.new()
-	mesh.mesh = SphereMesh.new()
-	add_child(mesh)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("torch"):
