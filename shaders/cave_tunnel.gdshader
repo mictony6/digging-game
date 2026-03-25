@@ -12,21 +12,26 @@ uniform sampler2D normalMapB: hint_normal ;
 uniform float ratio : hint_range(0.0, 1.0, 0.1) = 0.5;
 
 vec3 blendNormalsWhiteout(vec3 n1, vec3 n2) {
-    return normalize(vec3(n1.xy + n2.xy, n1.z * n2.z));
+    return normalize(vec3(n1.xy * n2.z + n2.xy * n1.z, n1.z * n2.z));
+}
+vec3 blendNormalsRNM(vec3 n1, vec3 n2) {
+    vec3 t = n1 + vec3(0.0, 0.0, 1.0);
+    vec3 u = n2 * vec3(-1.0, -1.0, 1.0);
+    return normalize(t * dot(t, u) - u * t.z);
 }
 
 void fragment() {
-	vec3 normalA = texture(normalMapA, UV).rgb;
-	vec2 uv = UV* UVScale;
-	vec3 orm = texture(ORM_texture, uv).rgb;
-	vec3 normalB = texture(normalMapB, uv).rgb;
-	
-	NORMAL_MAP = blendNormalsWhiteout(normalA, normalB) ;
-	ALBEDO = texture(albedo, uv).rgb ;
-	AO = orm.r;
-	ROUGHNESS = orm.g;
-}
+    vec2 uv = UV * UVScale;
+    vec3 normalA = texture(normalMapA, UV).rgb * 2.0 - 1.0;
+    vec3 normalB = texture(normalMapB, uv).rgb * 2.0 - 1.0;
 
+    NORMAL_MAP = blendNormalsRNM(normalA, normalB) * 0.5 + 0.5;
+
+    vec3 orm = texture(ORM_texture, uv).rgb;
+    ALBEDO = texture(albedo, uv).rgb;
+    AO = orm.r;
+    ROUGHNESS = orm.g;
+}
 //void light() {
 //	// Called for every pixel for every light affecting the material.
 //	// Uncomment to replace the default light processing function with this one.

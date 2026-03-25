@@ -1,26 +1,28 @@
 [gd_scene format=3 uid="uid://gq6av05p0bv4"]
 
-[ext_resource type="Material" uid="uid://chhrxrn0jw2m7" path="res://shaders/materials/rockpile.material" id="1_lsv44"]
-[ext_resource type="ArrayMesh" uid="uid://tfmg1pfutnfw" path="res://assets/meshes/rock_pile/rockpile_Plane_004.res" id="2_i33hp"]
-[ext_resource type="Shape3D" uid="uid://cexhr3ng016oj" path="res://environment/mound/rock_pile_collider.shape" id="3_i33hp"]
+[ext_resource type="ArrayMesh" uid="uid://btg7c6h6u74ub" path="res://assets/meshes/rock_pile/rockpile_trimmed_Plane_002.res" id="1_r8r72"]
+[ext_resource type="Texture2D" uid="uid://dn6w4jg8guiae" path="res://assets/meshes/rock_pile/rockpile_trimmed_rockpile_RockPileAlbedo1K.png" id="4_tjnvy"]
+[ext_resource type="Texture2D" uid="uid://df1idoottmu1a" path="res://assets/meshes/rock_pile/rockpile_trimmed_RockPileNormal1K.png" id="5_477x6"]
+[ext_resource type="Texture2D" uid="uid://bvigth8n7yn71" path="res://assets/meshes/rock_pile/rockpile_trimmed_rockpile_RockPileRoughness.png" id="6_e21ij"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i33hp"]
-points = PackedVector3Array(0.66236746, 0.23522097, -0.43289164, -0.72818494, 0.0324661, -0.95448494, 0.054023474, -0.02548492, 0.63878834, 1.125885, 0.0324661, -0.925447, -0.00387083, 0.351123, -0.2301708, 1.125885, 0.061441615, 0.899585, -0.72818494, 0.061441615, 0.899585, 1.125885, -0.02548492, 0.17508939, -0.00387083, 0.26415962, 0.40684813, 0.5462159, 0.11939263, -0.8964091, 0.66236746, 0.26415962, -0.027449965, 0.51717794, 0.003490582, -0.8675527, -0.72818494, 0.061441615, -0.95448494, -0.72818494, 0.0324661, 0.899585, 0.19885, 0.293172, -0.49096745, 1.125885, 0.061441615, -0.925447, 0.11209928, 0.17726994, 0.7257206, 1.125885, 0.0324661, 0.899585, -0.4962447, 0.17726994, -0.08534428, 1.0676277, 0.11939263, 0.23298371, -0.4673883, 0.003490582, 0.20412728, 0.1699936, -0.02548492, 0.6965012, 0.45928368, 0.26415962, -0.54886174, 0.29802716, 0.27464634, 0.19597106, 1.096847, 0.061441615, -0.95448494, 0.86508834, 0.003490582, -0.7806205, -0.29352388, 0.20624545, 0.5228182, 0.19885, 0.11939263, -0.8964091, 1.096847, 0.0324661, -0.95448494, 0.6331481, 0.26415962, -0.20113291, 0.14095569, 0.293172, -0.49096745, 1.0676277, -0.02548492, 0.14605148)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0240j"]
+albedo_texture = ExtResource("4_tjnvy")
+roughness_texture = ExtResource("6_e21ij")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("5_477x6")
+texture_filter = 5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dmr8m"]
+points = PackedVector3Array(0.015909195, -0.5094056, -4.223645, -3.8082714, -0.54335517, -3.054781, -1.870889, -0.49571404, -3.812016, -0.6787834, 0.67547566, -2.1491966, 0.84043455, 0.5009777, -2.373351, 2.9565487, -0.5264503, -3.0458148, -3.2889383, -0.54321545, 3.682898, -4.7626305, -0.54307574, 1.7168584, -4.3908353, -0.50269955, -1.0194573, -1.9189441, 0.81420773, -0.93550134, 3.7945633, -0.534274, -1.2069321, 3.4868422, -0.5381859, 3.303873, -1.6053209, 0.8839231, -0.8759985, 0.020124435, 0.7823538, -0.2972722, 1.6792927, 0.45962352, -0.7602532, 2.3714557, 0.19110078, -2.0725763, -2.5251138, -0.52407515, 4.0342093, -1.7503295, 0.44299805, 2.2099986, 2.6311226, -0.5380462, 3.8076096, -4.579684, -0.49822882, 0.3140583, -2.5082524, 0.5043308, 0.7925267, -1.7216651, 0.85821646, -0.69504476, 3.1369662, -0.08496636, 0.28797483, 3.8502064, -0.49222127, 0.3442173, 3.6967669, -0.5264503, 2.1007743, 3.1302218, -0.10270956, 0.62869024, 1.7838335, 0.47624904, -0.014430046, -0.03383255, 0.6522837, 1.2799611, 0.019281387, 0.78053766, 0.4232831, 1.7315631, -0.5218398, 3.9828577, 0.6380973, -0.49585372, 4.1034937, -0.13837337, 0.34045082, 2.2238555, 0.54535913, 0.051809788, 2.9501162)
 
 [node name="RockPile" type="Node3D" unique_id=1948536236]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1668062347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
-material_override = ExtResource("1_lsv44")
-mesh = ExtResource("2_i33hp")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1697883051]
+material_override = SubResource("StandardMaterial3D_0240j")
+mesh = ExtResource("1_r8r72")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1315748076]
-collision_layer = 32
-collision_mask = 0
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=2040677466]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=434717317]
-shape = SubResource("ConvexPolygonShape3D_i33hp")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=783443014]
-shape = ExtResource("3_i33hp")
-disabled = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=644197857]
+shape = SubResource("ConvexPolygonShape3D_dmr8m")

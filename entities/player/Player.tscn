@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="19_4fbvh"]
 [ext_resource type="PackedScene" uid="uid://c7insi1sybo2e" path="res://systems/physics/is_knockbacked.tscn" id="20_3uni3"]
 [ext_resource type="PackedScene" uid="uid://dyst6k0o03jhc" path="res://systems/oxygen/has_oxygen.tscn" id="20_ux552"]
+[ext_resource type="Script" uid="uid://ba70ixhalfeix" path="res://entities/player/states/riding_minecart.gd" id="22_3o0g8"]
 [ext_resource type="PackedScene" uid="uid://c2hwqu8gqbygx" path="res://systems/inventory/has_inventory.tscn" id="25_pnvcq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
@@ -297,7 +298,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552625, -0.014453307, 0.025802754, 0.023032105, 0.09108559, -0.034248088, -0.01855256, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552624, -0.014453307, 0.025802754, 0.023032103, 0.09108559, -0.034248088, -0.01855256, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -376,6 +377,10 @@ metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 script = ExtResource("19_3uni3")
 collider = NodePath("../../CollisionShape3D")
 head = NodePath("../../Head")
+metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
+
+[node name="RidingMinecart" type="Node" parent="StateMachine" unique_id=1538489736]
+script = ExtResource("22_3o0g8")
 metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 
 [node name="Control" type="Control" parent="." unique_id=799556388]

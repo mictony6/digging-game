@@ -94,6 +94,7 @@ torch={
 3d_physics/layer_5="Selectable"
 3d_physics/layer_6="Props"
 3d_physics/layer_7="Turrets"
+3d_physics/layer_8="Interactables"
 
 [physics]
 

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b2bxcey8u4o"]
+
+[ext_resource type="Script" uid="uid://nkyjhf8dlmxj" path="res://entities/rail/rail.gd" id="1_jiscc"]
+[ext_resource type="Texture2D" uid="uid://df2hdtir30aw3" path="res://GreyboxTextures/greybox_green_solid.png" id="5_c6ru4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7pj48"]
+size = Vector3(1.5, 0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cxby"]
+albedo_texture = ExtResource("5_c6ru4")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+
+[node name="Rail" type="Path3D" unique_id=1200198046]
+script = ExtResource("1_jiscc")
+mesh = SubResource("BoxMesh_7pj48")
+spacing = 0.5
+rail_segments = 24
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=178434704]
+
+[node name="RailMesh" type="MeshInstance3D" parent="." unique_id=451340784]
+material_override = SubResource("StandardMaterial3D_1cxby")

@@ -1,0 +1,113 @@
+[gd_scene format=4 uid="uid://bhxyv4nukyl8u"]
+
+[ext_resource type="Script" uid="uid://dih5hsypwwufj" path="res://entities/minecart/minecart.gd" id="2_t1bw6"]
+[ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="3_jk17u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_734v3"]
+load_path = "res://.godot/imported/greybox_red_grid.png-af35daf16ff530a7fd24ec028930f533.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8b8km"]
+albedo_texture = SubResource("CompressedTexture2D_734v3")
+uv1_triplanar = true
+texture_filter = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_yxv7j"]
+size = Vector3(1.25, 0.75, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_734v3"]
+albedo_color = Color(0.373172, 0.55566394, 0.27024648, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_734v3"]
+_surfaces = [{
+"aabb": AABB(-0.15, -0.5, -0.1, 0.3, 1, 0.2),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"material": SubResource("StandardMaterial3D_734v3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("mpkZvgAAAL/NzMw9mpkZvgAAAL/NzMy9mpkZvgAAAD/NzMy9mpkZPgAAAL/NzMy9mpkZvgAAAL/NzMy9mpkZvgAAAL/NzMw9mpkZvgAAAD/NzMy9mpkZvgAAAL/NzMy9mpkZPgAAAL/NzMy9mpkZvgAAAD/NzMy9mpkZvgAAAD/NzMw9mpkZvgAAAL/NzMw9mpkZvgAAAL/NzMw9mpkZvgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZvgAAAD/NzMw9mpkZvgAAAD/NzMy9mpkZvgAAAL/NzMw9mpkZPgAAAL/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAD/NzMw9mpkZPgAAAL/NzMw9mpkZvgAAAL/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAL/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAD/NzMy9mpkZvgAAAD/NzMy9mpkZvgAAAD/NzMy9mpkZPgAAAD/NzMy9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMy9mpkZPgAAAL/NzMy9AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8b8km"]
+radius = 0.1799606
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1bw6"]
+albedo_color = Color(0.70317197, 0.35143653, 0.04013142, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t1bw6"]
+_surfaces = [{
+"aabb": AABB(-0.15, -0.5, -0.1, 0.3, 1, 0.2),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"material": SubResource("StandardMaterial3D_t1bw6"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("mpkZvgAAAL/NzMw9mpkZvgAAAL/NzMy9mpkZvgAAAD/NzMy9mpkZPgAAAL/NzMy9mpkZvgAAAL/NzMy9mpkZvgAAAL/NzMw9mpkZvgAAAD/NzMy9mpkZvgAAAL/NzMy9mpkZPgAAAL/NzMy9mpkZvgAAAD/NzMy9mpkZvgAAAD/NzMw9mpkZvgAAAL/NzMw9mpkZvgAAAL/NzMw9mpkZvgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZvgAAAD/NzMw9mpkZvgAAAD/NzMy9mpkZvgAAAL/NzMw9mpkZPgAAAL/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAD/NzMw9mpkZPgAAAL/NzMw9mpkZvgAAAL/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAL/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAL/NzMy9mpkZPgAAAD/NzMy9mpkZvgAAAD/NzMy9mpkZvgAAAD/NzMy9mpkZPgAAAD/NzMy9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMw9mpkZPgAAAD/NzMy9mpkZPgAAAL/NzMy9AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jk17u"]
+radius = 0.18986638
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76gu1"]
+size = Vector3(1.2548828, 1.1469116, 1.510498)
+
+[node name="MinecartPathFollow" type="PathFollow3D" unique_id=2019470595]
+transform = Transform3D(0.99997246, 0, 0, 0, 1, 0, 0, 0, 0.99997246, 0, 0, 0)
+v_offset = 0.355
+rotation_mode = 1
+loop = false
+script = ExtResource("2_t1bw6")
+
+[node name="Minecart" type="MeshInstance3D" parent="." unique_id=2104588068]
+material_override = SubResource("StandardMaterial3D_8b8km")
+mesh = SubResource("BoxMesh_yxv7j")
+
+[node name="ForwardButton" type="MeshInstance3D" parent="Minecart" unique_id=179843347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16491626, 0.1, -0.40000272)
+mesh = SubResource("ArrayMesh_734v3")
+
+[node name="IsSelectable" parent="Minecart/ForwardButton" unique_id=453905894 node_paths=PackedStringArray("target_mesh") instance=ExtResource("3_jk17u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5250384, 0)
+interaction_name = "Forward"
+secondary_interaction_name = "Forward"
+target_mesh = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Minecart/ForwardButton/IsSelectable" unique_id=1831236127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010299355, -0.09193915, 0)
+shape = SubResource("SphereShape3D_8b8km")
+
+[node name="BackwardButton" type="MeshInstance3D" parent="Minecart" unique_id=715925144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23509476, 0.1, -0.40000272)
+mesh = SubResource("ArrayMesh_t1bw6")
+
+[node name="IsSelectable" parent="Minecart/BackwardButton" unique_id=1498878143 node_paths=PackedStringArray("target_mesh") instance=ExtResource("3_jk17u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51147574, 0)
+interaction_name = "Backward"
+secondary_interaction_name = "Backward"
+target_mesh = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Minecart/BackwardButton/IsSelectable" unique_id=900538955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0004993528, -0.08341563, 0)
+shape = SubResource("SphereShape3D_jk17u")
+
+[node name="Panel" type="CSGBox3D" parent="Minecart" unique_id=1827817531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036332358, 0, -0.40000278)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1, 0.4)
+
+[node name="AreaInside" type="Area3D" parent="Minecart" unique_id=647158298]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Minecart/AreaInside" unique_id=2125927091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07388306, -0.0010986333)
+shape = SubResource("BoxShape3D_76gu1")
+
+[connection signal="selected" from="Minecart/ForwardButton/IsSelectable" to="." method="_on_forward_is_selectable_selected"]
+[connection signal="selected" from="Minecart/BackwardButton/IsSelectable" to="." method="_on_backward_is_selectable_selected"]
+[connection signal="body_entered" from="Minecart/AreaInside" to="." method="_on_area_inside_body_entered"]
+[connection signal="body_exited" from="Minecart/AreaInside" to="." method="_on_area_inside_body_exited"]

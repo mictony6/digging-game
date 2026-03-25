@@ -21,6 +21,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var buffered_jump_timer: float = 0.0
 var buffered_jump_time: float = 0.05
 
+var height: float = 1.5
+
 @onready var state_machine: StateMachine = $StateMachine
 
 #status effects
@@ -40,6 +42,8 @@ func _ready() -> void:
 		head = get_node("Head");
 	gravity = (2 * JUMP_HEIGHT) / (pow(JUMP_HALF_TIME, 2))
 	JUMP_FORCE = sqrt(2 * gravity * JUMP_HEIGHT)
+
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
@@ -79,6 +83,9 @@ func _process(delta: float) -> void:
 		oxygen.add_oxygen(10 * delta)
 
 	
+func board_minecart(cart: PathFollow3D) -> void:
+	state_machine._transition_to_next_state("RidingMinecart", {"cart": cart})
+
 func has_buffered_jump():
 	return buffered_jump_timer > 0.0
 

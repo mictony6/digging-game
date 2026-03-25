@@ -97,13 +97,26 @@ void fragment() {
 	vec3 final_cliff_albedo = mix(cliff_albedo.rgb, alt_cliff_albedo.rgb, noise.r);
 	vec3 final_ground_orm = mix(ground_orm.rgb, alt_ground_orm.rgb, noise.r);
 	vec3 final_cliff_orm = mix(cliff_orm.rgb, alt_cliff_orm.rgb, noise.r);
-	vec3 final_ground_normal_map = mix(ground_normal_map.rgb, alt_ground_normal_map.rgb, noise.r);
-	vec3 final_cliff_normal_map = mix(cliff_normal_map.rgb, alt_cliff_normal_map.rgb, noise.r);
-
+	
+	// Unpack both to -1..1
+	vec3 final_ground_normal = normalize(
+	    mix(ground_normal_map.rgb * 2.0 - 1.0,
+	        alt_ground_normal_map.rgb * 2.0 - 1.0,
+	        noise.r)
+	);
+	vec3 final_cliff_normal = normalize(
+    mix(cliff_normal_map.rgb * 2.0 - 1.0,
+        alt_cliff_normal_map.rgb * 2.0 - 1.0,
+        noise.r)
+	);
+	// Spatial blend between ground and cliff, then repack
+	NORMAL_MAP = normalize(
+	    mix(final_ground_normal, final_cliff_normal, is_ground)
+	) * 0.5 + 0.5;
+	
 	ALBEDO = mix(final_ground_albedo, final_cliff_albedo, is_ground);
 
 	AO =  mix(final_ground_orm.r, final_cliff_orm.r, is_ground);
 	ROUGHNESS = mix(final_ground_orm.g, final_cliff_orm.g, is_ground);
 	METALLIC = mix(final_ground_orm.b, final_cliff_orm.b, is_ground);
-	NORMAL_MAP =mix(final_ground_normal_map, final_cliff_normal_map, is_ground);
 }
