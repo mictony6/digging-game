@@ -53,10 +53,13 @@ radius = 0.18986638
 [sub_resource type="BoxShape3D" id="BoxShape3D_76gu1"]
 size = Vector3(1.2548828, 1.1469116, 1.510498)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_734v3"]
+size = Vector3(1.2990723, 0.2815857, 1.53125)
+
 [node name="MinecartPathFollow" type="PathFollow3D" unique_id=2019470595]
 transform = Transform3D(0.99997246, 0, 0, 0, 1, 0, 0, 0, 0.99997246, 0, 0, 0)
 v_offset = 0.355
-rotation_mode = 1
+rotation_mode = 4
 loop = false
 script = ExtResource("2_t1bw6")
 
@@ -106,6 +109,15 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Minecart/AreaInside" unique_id=2125927091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07388306, -0.0010986333)
 shape = SubResource("BoxShape3D_76gu1")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Minecart" unique_id=928901523]
+collision_layer = 32
+collision_mask = 0
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Minecart/AnimatableBody3D" unique_id=735460023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36466813, 0)
+shape = SubResource("BoxShape3D_734v3")
 
 [connection signal="selected" from="Minecart/ForwardButton/IsSelectable" to="." method="_on_forward_is_selectable_selected"]
 [connection signal="selected" from="Minecart/BackwardButton/IsSelectable" to="." method="_on_backward_is_selectable_selected"]

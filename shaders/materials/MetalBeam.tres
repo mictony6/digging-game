@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ds4yq3p0lrcqh"]
+
+[ext_resource type="Texture2D" uid="uid://wnj0pfg3hhyt" path="res://assets/meshes/rail_beam/MetalBeam_baseColor.png" id="1_81mdj"]
+[ext_resource type="Texture2D" uid="uid://bmnvcvndeiilg" path="res://assets/meshes/rail_beam/MetalBeam_occlusionRoughnessMetallic.png" id="2_advhu"]
+[ext_resource type="Texture2D" uid="uid://cofaej88noif3" path="res://assets/meshes/rail_beam/MetalBeam_normal.png" id="3_27g1f"]
+
+[resource]
+resource_name = "MetalBeam"
+albedo_texture = ExtResource("1_81mdj")
+metallic = 1.0
+metallic_texture = ExtResource("2_advhu")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_advhu")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_27g1f")
+ao_enabled = true
+ao_texture = ExtResource("2_advhu")

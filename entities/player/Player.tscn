@@ -266,6 +266,7 @@ _data = {
 collision_mask = 103
 script = ExtResource("1_ak4un")
 head = NodePath("Head")
+FALL_GRAVITY_MULTIPLIER = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
 visible = false
@@ -298,7 +299,7 @@ animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552624, -0.014453307, 0.025802754, 0.023032103, 0.09108559, -0.034248088, -0.01855256, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552623, -0.014453307, 0.025802754, 0.0230321, 0.09108559, -0.034248088, -0.018552558, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0

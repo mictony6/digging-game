@@ -5,6 +5,8 @@ var player: Player = null
 @onready var forward_button: Node3D
 var speed: float = 0.0
 var target_speed: float = 0.0
+var MAX_SPEED = 3.0
+
 
 func _on_area_inside_body_entered(body: Node3D) -> void:
 	if body is Player:
@@ -30,7 +32,7 @@ func _on_backward_is_selectable_selected(_player: Player, _tool: Tool) -> void:
 	add_speed(-1.0)
 	
 func add_speed(addtl_speed: float):
-	target_speed += addtl_speed
+	target_speed = clamp(target_speed + addtl_speed, -MAX_SPEED, MAX_SPEED, )
 
 
 func _physics_process(delta):

@@ -16,12 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://bbktws5ifqikg" path="res://assets/textures/decals/stained-decals_0001_01_T_L.png" id="26_4ksiy"]
 [ext_resource type="VoxelGIData" uid="uid://qxsvkp7lgutg" path="res://GI/test.VoxelGI_data.res" id="27_8m07d"]
 [ext_resource type="PackedScene" uid="uid://cw5y4cp0p2ipo" path="res://entities/stone_platform/stone_platform.tscn" id="28_0v7wf"]
+[ext_resource type="PackedScene" uid="uid://bhxyv4nukyl8u" path="res://entities/minecart/MinecartPath.tscn" id="28_1ijy3"]
+[ext_resource type="ArrayMesh" uid="uid://jspdthm8pn4v" path="res://assets/meshes/rail_beam/rail_beam_Cube.res" id="28_01s5a"]
 [ext_resource type="PackedScene" uid="uid://dbf4ij4d18ruw" path="res://environment/mound/mound.tscn" id="28_mfah6"]
 [ext_resource type="PackedScene" uid="uid://bykyj7fgs57c2" path="res://assets/meshes/shop_building/storebuilding.glb" id="29_g8des"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://gq6av05p0bv4" path="res://environment/mound/rock_pile.tscn" id="32_mjxbh"]
 [ext_resource type="PackedScene" uid="uid://btl12hu81c37h" path="res://environment/lightpost/torch.tscn" id="33_0v7wf"]
 [ext_resource type="PackedScene" uid="uid://b62ceimsar2op" path="res://assets/meshes/tree/tree.glb" id="33_4ksiy"]
+[ext_resource type="PackedScene" uid="uid://b2bxcey8u4o" path="res://entities/rail/rail.tscn" id="35_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://bqdbh0mi2jvo8" path="res://environment/stalagmite/stalagmite_medium.tscn" id="35_krped"]
 [ext_resource type="PackedScene" uid="uid://bdslp2bfm771l" path="res://entities/planks/WoodenPlanks2.tscn" id="35_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://bhtsgd8ntpafc" path="res://environment/lightpost/light_post.tscn" id="35_uoqfl"]
@@ -56,6 +59,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_m8nfy"]
+_data = {
+"points": PackedVector3Array(-3.2595997, 0.100940704, 1.9390831, 3.2595997, -0.100940704, -1.9390831, 9.406334, -1.6935616, -18.177868, -1.6686716, -1.1070251, 0.22447586, 1.6686716, 1.1070251, -0.22447586, 13.591252, 0.72517014, -20.768381, -1.289072, -0.14764977, -1.0408802, 1.289072, 0.14764977, 1.0408802, 18.746143, 2.3315353, -18.175436, -0.55672455, 0.032852173, -2.6376505, 0.55672455, -0.032852173, 2.6376505, 25.336113, 2.7977428, -11.475262, -0.7600975, -0.29808426, -3.8543081, 0.7600975, 0.29808426, 3.8543081, 30.723104, 12.458687, 8.245422, -0.5435715, -0.8709297, -4.259163, 0.5435715, 0.8709297, 4.259163, 29.233345, 18.497398, 17.478123, -1.1230526, -0.7288704, -4.441017, 1.1230526, 0.7288704, 4.441017, 27.017248, 27.032658, 28.550396, -0.8530731, 0.20643616, -4.123314, 0.8530731, -0.20643616, 4.123314, 29.46205, 27.564392, 39.14958),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
 
 [sub_resource type="SphereMesh" id="SphereMesh_gmj64"]
 radial_segments = 6
@@ -329,6 +339,18 @@ transform = Transform3D(-0.21233112, 0, -0.97719777, 0, 1, 0, 0.97719777, 0, -0.
 size = Vector3(2, 0.32987595, 2)
 texture_albedo = ExtResource("26_4ksiy")
 cull_mask = 1048573
+
+[node name="Rail" parent="LevelLoader/OverWorld" unique_id=1200198046 instance=ExtResource("35_1ijy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.540512, 0)
+curve = SubResource("Curve3D_m8nfy")
+tie_rotation_offset = Vector3(-90, 0, 0)
+support_mesh = ExtResource("28_01s5a")
+support_mesh_height = 1.051
+rail_segments = 64
+
+[node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
+transform = Transform3D(0.5112369, 0.022863768, -0.85908484, 0, 0.99960417, 0.02660346, 0.8593896, -0.0136012845, 0.5110556, 9.414451, -1.3386872, -18.182697)
+rotation_mode = 2
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
 

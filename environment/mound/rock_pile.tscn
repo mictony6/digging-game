@@ -23,6 +23,8 @@ material_override = SubResource("StandardMaterial3D_0240j")
 mesh = ExtResource("1_r8r72")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=2040677466]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=644197857]
 shape = SubResource("ConvexPolygonShape3D_dmr8m")

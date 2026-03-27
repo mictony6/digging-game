@@ -321,5 +321,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020002544, 0)
 curve = SubResource("Curve3D_yxv7j")
 
 [node name="MinecartPathFollow" parent="Rail" unique_id=2019470595 instance=ExtResource("6_kyw6u")]
-transform = Transform3D(-0.99684095, 0, -0.078825094, 0, 1.0000242, 0, 0.07882193, 0, -0.99688095, 4.89877, 0.35500002, -6.0043807)
-rotation_mode = 4
+transform = Transform3D(-0.016602471, 0.6549658, 0.7554866, 0, 0.7556156, -0.65503454, -0.99981457, -0.010876068, -0.012545272, 1.0806917, 0.6267729, 3.007397)
+progress = 11.660282
