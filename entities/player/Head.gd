@@ -4,7 +4,7 @@ var MOUSE_SENSITIVITY = 0.15
 var MOUSE_X_SENSITIVITY = 0.5
 var MOUSE_Y_SENSITIVITY = 0.75
 var can_rotate = true
-var yaw_min: float = -INF
+var yaw_min: float = - INF
 var yaw_max: float = INF
 # Smoothing factor (0.0 to 1.0, where 1.0 is no smoothing)
 @export var smoothing_factor: float = 0.4
@@ -25,7 +25,7 @@ var target_rotation: Vector3 = Vector3.ZERO
 @export var swim_bob_amplitude_x: float = 0.015
 
 var _bob_time: float = 0.0
-var base_position: Vector3  # tweened by crouch; bob offsets from this
+var base_position: Vector3 # tweened by crouch; bob offsets from this
 
 func _ready() -> void:
 	base_position = position
@@ -54,9 +54,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_bob(delta: float) -> void:
-	var player := get_parent() as CharacterBody3D
+	var player := get_parent() as Player
 	var horizontal_speed := Vector2(player.velocity.x, player.velocity.z).length()
-	var is_swimming: bool = player.get("in_water") == true
+	var is_swimming: bool = player.in_water
 
 	var freq: float
 	var amp_y: float

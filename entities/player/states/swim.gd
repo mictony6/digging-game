@@ -44,10 +44,11 @@ func physics_update(delta: float) -> void:
 			Vector2(player.global_position.x, player.global_position.z))
 
 	if not player.in_water:
-		player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 		finished.emit(IDLE)
 
 func exit() -> void:
+	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+
 	if is_instance_valid(_trail):
 		_trail.emitting = false
 		var lifetime := _trail.lifetime

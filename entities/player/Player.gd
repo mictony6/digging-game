@@ -68,17 +68,8 @@ func _ready() -> void:
 
 	# Swim detector raised to y=0.3 (above center) so the player is already
 	# well submerged before swim triggers, keeping the camera lower in the water.
-	var swim_area := Area3D.new()
-	swim_area.name = "SwimDetector"
-	swim_area.collision_layer = 0
-	swim_area.collision_mask = 4  # matches water_volume layer
-	swim_area.position = Vector3(0, 0.3, 0)
-	var swim_shape := CollisionShape3D.new()
-	var sphere := SphereShape3D.new()
-	sphere.radius = 0.2
-	swim_shape.shape = sphere
-	swim_area.add_child(swim_shape)
-	add_child(swim_area)
+	var swim_area := $SwimDetector
+
 	swim_area.area_entered.connect(_on_water_entered)
 	swim_area.area_exited.connect(_on_water_exited)
 

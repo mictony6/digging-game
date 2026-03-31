@@ -33,7 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://c2hwqu8gqbygx" path="res://systems/inventory/has_inventory.tscn" id="25_pnvcq"]
 [ext_resource type="Script" uid="uid://bpwquu00ir5mf" path="res://systems/crafting/crafting_manager.gd" id="29_5qbdv"]
 [ext_resource type="Script" uid="uid://qpy4mtbuiq1y" path="res://entities/player/states/swim.gd" id="30_swim1"]
-[ext_resource type="Script" path="res://entities/player/states/climb.gd" id="31_climb1"]
+[ext_resource type="Script" uid="uid://bjonpc24rtpna" path="res://entities/player/states/climb.gd" id="31_climb1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -270,6 +270,9 @@ _data = {
 &"ReadyBomb": SubResource("Animation_j531f")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wbbrj"]
+radius = 0.2
+
 [node name="Player" type="CharacterBody3D" unique_id=1047360223 node_paths=PackedStringArray("head")]
 collision_mask = 103
 script = ExtResource("1_ak4un")
@@ -317,7 +320,7 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552615, -0.014453307, 0.025802754, 0.023032082, 0.09108559, -0.034248088, -0.018552544, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526144, -0.014453307, 0.025802754, 0.02303208, 0.09108559, -0.034248088, -0.018552542, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -440,3 +443,12 @@ libraries/ = SubResource("AnimationLibrary_4fbvh")
 [node name="HasOxygen" parent="." unique_id=791893390 instance=ExtResource("20_ux552")]
 
 [node name="HasInventory" parent="." unique_id=1085736782 instance=ExtResource("25_pnvcq")]
+
+[node name="SwimDetector" type="Area3D" parent="." unique_id=89663803]
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SwimDetector" unique_id=1832811902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("SphereShape3D_wbbrj")
+debug_color = Color(0.7802687, 0.4375185, 7.70092e-07, 0.41960785)

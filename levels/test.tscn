@@ -351,7 +351,7 @@ support_mesh_height = 1.051
 rail_segments = 64
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
-transform = Transform3D(0.5112369, 0.022863692, -0.85908484, 0, 0.9996008, 0.02660346, 0.8593896, -0.013601239, 0.5110556, 9.414451, -1.3386872, -18.182697)
+transform = Transform3D(0.5112369, 0.022863686, -0.85908484, 0, 0.9996006, 0.02660346, 0.8593896, -0.013601236, 0.5110556, 9.414451, -1.3386872, -18.182697)
 rotation_mode = 2
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
@@ -366,7 +366,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9994805, -0.03223066, 0, 0.03223066, 0.999
 transform = Transform3D(0.22840177, -0.014316632, -0.44396222, 0, 0.499215, -0.016098391, 0.44419298, 0.0073615396, 0.2282831, 3.1758697, -29.637026, -25.90784)
 
 [node name="Player" parent="." unique_id=856414097 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 13.983446, -27.687815, -17.750813)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 13.983446, -27.687815, -17.750813)
 inventory_ui = NodePath("../CanvasLayer/InventoryUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
