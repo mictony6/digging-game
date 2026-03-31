@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cve3qyhijjkgn"]
 
-[ext_resource type="Script" path="res://data/items/ItemData.gd" id="1_itemdata"]
+[ext_resource type="Script" uid="uid://nnw7orwbb1w6" path="res://data/items/ItemData.gd" id="1_itemdata"]
+[ext_resource type="Texture2D" uid="uid://bu0deo8ny11l3" path="res://assets/textures/ui/coal_icon.png" id="1_qqgb4"]
 
 [resource]
 script = ExtResource("1_itemdata")
 name = "Coal"
-description = "A lump of coal. Used to craft torches.\nDrops from easy rocks."
-item_type = 0
-max_stack = 99
+description = "A lump of coal. Used to craft torches.
+Drops from easy rocks."
+icon = ExtResource("1_qqgb4")

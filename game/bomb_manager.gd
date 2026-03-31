@@ -55,5 +55,22 @@ func release():
 
 	var bomb: Bomb = bomb_scene.instantiate()
 	get_tree().root.add_child(bomb)
-	bomb.global_position = global_position + (-global_transform.basis.z)
-	bomb.apply_impulse(-global_transform.basis.z * throw_force)
+
+	var forward := -global_transform.basis.z
+	var desired_offset := 1.0
+	var space := get_world_3d().direct_space_state
+	var q := PhysicsRayQueryParameters3D.create(
+		global_position,
+		global_position + forward * desired_offset
+	)
+	q.collide_with_bodies = true
+	q.collide_with_areas = false
+	q.collision_mask = 4  # layer 3 — environment
+	var hit := space.intersect_ray(q)
+	var safe_offset := desired_offset
+	if not hit.is_empty():
+		safe_offset = global_position.distance_to(hit.position) - 0.1
+	safe_offset = max(safe_offset, 0.1)
+
+	bomb.global_position = global_position + forward * safe_offset
+	bomb.apply_impulse(forward * throw_force)

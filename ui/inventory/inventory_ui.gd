@@ -1,7 +1,6 @@
 class_name InventoryUI
 extends Control
 
-@export var player: CharacterBody3D
 
 @onready var _grid: GridContainer = $Background/MarginContainer/HBox/LeftPanel/Scroll/Grid
 @onready var _detail_icon: TextureRect = $Background/MarginContainer/HBox/RightPanel/VBox/Icon

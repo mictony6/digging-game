@@ -43,12 +43,14 @@ func hover() -> void:
 	if !can_be_selected:
 		return
 	prompt.show()
-	target_mesh.material_overlay = outline_material
+	if target_mesh:
+		target_mesh.material_overlay = outline_material
 	hovered.emit()
 
 func unhover() -> void:
 	prompt.hide()
-	target_mesh.material_overlay = null
+	if target_mesh:
+		target_mesh.material_overlay = null
 	unhovered.emit()
 
 func switch_interaction_label() -> void:

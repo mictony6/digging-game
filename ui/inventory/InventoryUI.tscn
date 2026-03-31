@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c3nwrr57k1euh"]
 
 [ext_resource type="Script" uid="uid://b1mgynf3g48ny" path="res://ui/inventory/inventory_ui.gd" id="1_ui"]
-[ext_resource type="Script" uid="uid://d3edj7t8fkhcb" path="res://ui/inventory/crafting_timer_ui.gd" id="2_timer"]
 
 [sub_resource type="StyleBoxFlat" id="2_bg"]
 bg_color = Color(0.08, 0.08, 0.08, 0.92)
@@ -42,11 +41,11 @@ script = ExtResource("1_ui")
 
 [node name="Background" type="PanelContainer" parent="." unique_id=1972433555]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.6
 offset_left = -480.0
 offset_top = -300.0
 offset_right = 480.0
