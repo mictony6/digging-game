@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://c2hwqu8gqbygx" path="res://systems/inventory/has_inventory.tscn" id="25_pnvcq"]
 [ext_resource type="Script" uid="uid://bpwquu00ir5mf" path="res://systems/crafting/crafting_manager.gd" id="29_5qbdv"]
 [ext_resource type="Script" uid="uid://qpy4mtbuiq1y" path="res://entities/player/states/swim.gd" id="30_swim1"]
+[ext_resource type="Script" path="res://entities/player/states/climb.gd" id="31_climb1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -403,6 +404,9 @@ metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 
 [node name="Swim" type="Node" parent="StateMachine" unique_id=200000010]
 script = ExtResource("30_swim1")
+
+[node name="Climb" type="Node" parent="StateMachine" unique_id=310000001]
+script = ExtResource("31_climb1")
 
 [node name="Control" type="Control" parent="." unique_id=799556388]
 layout_mode = 3

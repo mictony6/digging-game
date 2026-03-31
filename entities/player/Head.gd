@@ -4,6 +4,8 @@ var MOUSE_SENSITIVITY = 0.15
 var MOUSE_X_SENSITIVITY = 0.5
 var MOUSE_Y_SENSITIVITY = 0.75
 var can_rotate = true
+var yaw_min: float = -INF
+var yaw_max: float = INF
 # Smoothing factor (0.0 to 1.0, where 1.0 is no smoothing)
 @export var smoothing_factor: float = 0.4
 # Target rotation for smoothing
@@ -39,6 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_rotation.y -= y_rot
 
 		target_rotation.x = clampf(target_rotation.x, -90.0, 75)
+		target_rotation.y = clampf(target_rotation.y, yaw_min, yaw_max)
 
 
 func _physics_process(delta: float) -> void:

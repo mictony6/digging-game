@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cibqp30ke24fh"]
+
+[ext_resource type="Script" uid="uid://yugb6onfh10v" path="res://entities/ladder/ladder_generator.gd" id="1_1twkw"]
+[ext_resource type="ArrayMesh" uid="uid://3qff0aylepti" path="res://assets/meshes/rung/rung_Plane.res" id="2_b2a8f"]
+[ext_resource type="Material" uid="uid://2kv54s7wadjb" path="res://assets/meshes/wooden_crate/wood.material" id="3_n1k0d"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_j4agq"]
+transform_format = 1
+instance_count = 6
+mesh = ExtResource("2_b2a8f")
+buffer = PackedFloat32Array(1, 0, 0, 0, 0, -4.371139e-08, 1, 0.5, 0, -1, -4.371139e-08, 0, 1, 0, 0, 0, 0, -4.371139e-08, 1, 1, 0, -1, -4.371139e-08, 0, 1, 0, 0, 0, 0, -4.371139e-08, 1, 1.5, 0, -1, -4.371139e-08, 0, 1, 0, 0, 0, 0, -4.371139e-08, 1, 2, 0, -1, -4.371139e-08, 0, 1, 0, 0, 0, 0, -4.371139e-08, 1, 2.5, 0, -1, -4.371139e-08, 0, 1, 0, 0, 0, 0, -4.371139e-08, 1, 3, 0, -1, -4.371139e-08, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j4agq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7pj48"]
+
+[node name="LadderGenerator" type="Node3D" unique_id=1611220197]
+script = ExtResource("1_1twkw")
+rung_mesh = ExtResource("2_b2a8f")
+height = 3.0
+
+[node name="RungMultimesh" type="MultiMeshInstance3D" parent="." unique_id=645836361]
+multimesh = SubResource("MultiMesh_j4agq")
+
+[node name="StileMeshRight" type="MeshInstance3D" parent="." unique_id=1608036539]
+transform = Transform3D(0.06, 0, 0, 0, 3, 0, 0, 0, 0.06, 0.3, 1.5, 0)
+material_override = ExtResource("3_n1k0d")
+mesh = SubResource("BoxMesh_j4agq")
+
+[node name="StileMeshLeft" type="MeshInstance3D" parent="." unique_id=1690829099]
+transform = Transform3D(0.06, 0, 0, 0, 3, 0, 0, 0, 0.06, -0.3, 1.5, 0)
+material_override = ExtResource("3_n1k0d")
+mesh = SubResource("BoxMesh_7pj48")

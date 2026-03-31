@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="4_ssmx2"]
 [ext_resource type="PackedScene" uid="uid://b2bxcey8u4o" path="res://entities/rail/rail.tscn" id="5_yxv7j"]
 [ext_resource type="PackedScene" uid="uid://bhxyv4nukyl8u" path="res://entities/minecart/MinecartPath.tscn" id="6_kyw6u"]
-[ext_resource type="Script" uid="uid://yugb6onfh10v" path="res://entities/ladder/ladder_generator.gd" id="7_ssmx2"]
+[ext_resource type="PackedScene" uid="uid://cibqp30ke24fh" path="res://entities/ladder/ladder_generator.tscn" id="7_ssmx2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p718k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,15 +46,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
-
-[sub_resource type="BoxMesh" id="BoxMesh_ssmx2"]
-size = Vector3(1, 0.15, 0.15)
-
-[sub_resource type="MultiMesh" id="MultiMesh_ssmx2"]
-transform_format = 1
-instance_count = 6
-mesh = SubResource("BoxMesh_ssmx2")
-buffer = PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0.5, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1.5, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 2.5, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 3, 0, 0, 1, 0)
 
 [node name="Node3D" type="Node3D" unique_id=1729605664]
 
@@ -312,7 +303,7 @@ collision_mask = 0
 polygon = PackedVector2Array(0, 0, -1, 0, -1, 1.5, 1, 0)
 
 [node name="Player" parent="." unique_id=1047360223 instance=ExtResource("4_ssmx2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.49983, 0.75, -4.941118)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49983, 0.75, -4.941118)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=327694547]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.2395128, 0.07797241, -4.497034)
@@ -331,14 +322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020002544, 0)
 curve = SubResource("Curve3D_yxv7j")
 
 [node name="MinecartPathFollow" parent="Rail" unique_id=2019470595 instance=ExtResource("6_kyw6u")]
-transform = Transform3D(-0.016602486, 0.6549669, 0.7554868, 0, 0.75561684, -0.6550347, -0.9998154, -0.010876087, -0.0125452755, 1.0806917, 0.6267729, 3.007397)
+transform = Transform3D(-0.016602494, 0.65496755, 0.7554868, 0, 0.75561756, -0.6550347, -0.9998159, -0.010876097, -0.0125452755, 1.0806917, 0.6267729, 3.007397)
 progress = 11.660282
 
-[node name="LadderGenerator" type="Node3D" parent="." unique_id=2147162461]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.1, 0, -3.8240573)
-script = ExtResource("7_ssmx2")
-rung_mesh = SubResource("BoxMesh_ssmx2")
-height = 3.0
-
-[node name="RungMultimesh" type="MultiMeshInstance3D" parent="LadderGenerator" unique_id=759520965]
-multimesh = SubResource("MultiMesh_ssmx2")
+[node name="LadderGenerator" parent="." unique_id=1611220197 instance=ExtResource("7_ssmx2")]

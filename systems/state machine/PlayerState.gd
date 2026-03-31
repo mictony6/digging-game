@@ -9,6 +9,7 @@ const CROUCH = "Crouch";
 const FALL = "Fall";
 const RIDING_MINECART = "RidingMinecart"
 const SWIM = "Swim";
+const CLIMB = "Climb";
 
 var player: Player;
 

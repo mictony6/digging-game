@@ -29,6 +29,10 @@ var height: float = 1.5
 var in_water: bool = false
 var _water_area_count: int = 0
 
+# Ladders
+var overlapping_ladders: Array = []
+var current_ladder: LadderGenerator = null
+
 #status effects
 var is_poisoned: bool = false
 var is_suffocating: bool = false
@@ -77,6 +81,19 @@ func _ready() -> void:
 	add_child(swim_area)
 	swim_area.area_entered.connect(_on_water_entered)
 	swim_area.area_exited.connect(_on_water_exited)
+
+	var ladder_detector := Area3D.new()
+	ladder_detector.name = "LadderDetector"
+	ladder_detector.collision_layer = 0
+	ladder_detector.collision_mask = 256
+	var ld_shape := CollisionShape3D.new()
+	var ld_box := BoxShape3D.new()
+	ld_box.size = Vector3(0.8, 1.6, 0.8)
+	ld_shape.shape = ld_box
+	ladder_detector.add_child(ld_shape)
+	add_child(ladder_detector)
+	ladder_detector.area_entered.connect(_on_ladder_entered)
+	ladder_detector.area_exited.connect(_on_ladder_exited)
 
 func _input(event: InputEvent) -> void:
 	#full screen toggle
@@ -148,6 +165,13 @@ func _on_water_exited(area: Area3D) -> void:
 	if area.is_in_group("water_volume"):
 		_water_area_count -= 1
 		in_water = _water_area_count > 0
+
+func _on_ladder_entered(area: Area3D) -> void:
+	if area.is_in_group("ladder"):
+		overlapping_ladders.append(area)
+
+func _on_ladder_exited(area: Area3D) -> void:
+	overlapping_ladders.erase(area)
 
 func board_minecart(cart: PathFollow3D) -> void:
 	state_machine._transition_to_next_state("RidingMinecart", {"cart": cart})
