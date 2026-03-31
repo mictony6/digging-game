@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d17i5hy2dc0ru"]
+
+[ext_resource type="Script" uid="uid://nnw7orwbb1w6" path="res://data/items/ItemData.gd" id="1_itemdata"]
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_tr6cj"]
+
+[resource]
+script = ExtResource("1_itemdata")
+name = "Iron"
+description = "A chunk of iron ore. Used to craft bombs.
+Drops from medium rocks."
+icon = ExtResource("1_tr6cj")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c6bc3j51enqri"]
+
+[ext_resource type="Script" uid="uid://nnw7orwbb1w6" path="res://data/items/ItemData.gd" id="1_itemdata"]
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_xixag"]
+
+[resource]
+script = ExtResource("1_itemdata")
+name = "Gunpowder"
+description = "Volatile black powder. Used to craft bombs.
+Drops from medium rocks."
+icon = ExtResource("1_xixag")

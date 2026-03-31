@@ -75,6 +75,22 @@ func _on_curve_changed() -> void:
 	build_supports()
 
 
+func _ensure_static_body(body_name: String) -> StaticBody3D:
+	var existing = get_node_or_null(body_name)
+	if existing is StaticBody3D:
+		for child in existing.get_children():
+			child.queue_free()
+		return existing
+	if existing:
+		existing.queue_free()
+	var body := StaticBody3D.new()
+	body.name = body_name
+	body.collision_layer = 4
+	body.collision_mask = 0
+	add_child(body)
+	return body
+
+
 # --- Ties (cross pieces) ---
 
 func build_multimesh() -> void:
@@ -104,6 +120,27 @@ func build_multimesh() -> void:
 
 	multimesh_instance.multimesh = mm
 
+	if not Engine.is_editor_hint() and mesh:
+		var body := _ensure_static_body("TieCollision")
+		var aabb := mesh.get_aabb()
+		var box := BoxShape3D.new()
+		box.size = aabb.size
+		var center_offset := aabb.get_center()
+		for i in count:
+			var offset: float = step * i
+			var pos := curve.sample_baked(offset)
+			var tangent: Vector3 = (curve.sample_baked(minf(offset + 0.01, total_length)) - curve.sample_baked(maxf(offset - 0.01, 0.0))).normalized()
+			var up := Vector3.UP
+			if abs(tangent.dot(up)) > 0.99:
+				up = Vector3.FORWARD
+			var tie_basis := Basis.looking_at(tangent, up)
+			var rot_offset := Basis.from_euler(Vector3(deg_to_rad(tie_rotation_offset.x), deg_to_rad(tie_rotation_offset.y), deg_to_rad(tie_rotation_offset.z)))
+			var xform := Transform3D(tie_basis * rot_offset, pos + tie_basis.y * tie_y_offset + (tie_basis * rot_offset) * center_offset)
+			var col := CollisionShape3D.new()
+			col.shape = box
+			col.transform = xform
+			body.add_child(col)
+
 
 # --- Rail bars (extruded along path) ---
 
@@ -119,6 +156,12 @@ func build_rails() -> void:
 
 	st.generate_normals()
 	rail_mesh_instance.mesh = st.commit()
+
+	if not Engine.is_editor_hint():
+		var body := _ensure_static_body("RailCollision")
+		var col := CollisionShape3D.new()
+		col.shape = rail_mesh_instance.mesh.create_trimesh_shape()
+		body.add_child(col)
 
 
 func _extrude_rail(st: SurfaceTool, x_offset: float) -> void:
@@ -244,3 +287,22 @@ func build_supports() -> void:
 		mm.set_instance_transform(i, beam_xforms[i])
 
 	support_multimesh_instance.multimesh = mm
+
+	if not Engine.is_editor_hint():
+		var body := _ensure_static_body("SupportCollision")
+		var aabb := support_mesh.get_aabb()
+		var base_box := BoxShape3D.new()
+		base_box.size = aabb.size
+		var center_offset := aabb.get_center()
+		for xform in beam_xforms:
+			var col := CollisionShape3D.new()
+			# For scaled beams (remainder segments) the basis includes scale — extract it
+			if xform.basis.determinant() != 1.0:
+				var scaled_box := BoxShape3D.new()
+				scaled_box.size = aabb.size * xform.basis.get_scale()
+				col.shape = scaled_box
+				col.transform = Transform3D(xform.basis.orthonormalized(), xform.origin + xform.basis * center_offset)
+			else:
+				col.shape = base_box
+				col.transform = Transform3D(xform.basis, xform.origin + xform.basis * center_offset)
+			body.add_child(col)

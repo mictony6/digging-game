@@ -7,6 +7,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func physics_update(delta):
+	if player.in_water:
+		finished.emit(SWIM)
+		return
 	player.velocity.y -= (player.gravity * delta)
 
 	var horizontal = Vector3(player.velocity.x, 0, player.velocity.z)

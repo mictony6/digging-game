@@ -5,6 +5,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(delta: float) -> void:
+	if player.in_water:
+		finished.emit(SWIM)
+		return
 	player.velocity.y -= (player.gravity * player.FALL_GRAVITY_MULTIPLIER * delta)
 	# player.velocity.x = move_toward(player.velocity.x, player.direction.x * player.SPEED, player.acceleration * delta)
 	# player.velocity.z = move_toward(player.velocity.z, player.direction.z * player.SPEED, player.acceleration * delta)

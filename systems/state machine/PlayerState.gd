@@ -7,7 +7,8 @@ const SPRINT = "Sprint";
 const JUMP = "Jump";
 const CROUCH = "Crouch";
 const FALL = "Fall";
-const RIDING_MINECART = "RidingMinecart";
+const RIDING_MINECART = "RidingMinecart"
+const SWIM = "Swim";
 
 var player: Player;
 

@@ -23,7 +23,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(head, "position:y", crouch_head_y, CROUCH_DOWN_SPEED)
+	tween.tween_property(head, "base_position:y", crouch_head_y, CROUCH_DOWN_SPEED)
 	capsule.height = crouch_height
 	collider.position.y = - default_height / 4.0
 	
@@ -32,12 +32,15 @@ func exit() -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(head, "position:y", default_head_y, UNCROUCH_SPEED)
+	tween.tween_property(head, "base_position:y", default_head_y, UNCROUCH_SPEED)
 	capsule.height = default_height
 	collider.position.y = 0.0
 
 
 func physics_update(delta: float) -> void:
+	if player.in_water:
+		finished.emit(SWIM)
+		return
 	player.velocity.y -= (player.gravity * delta);
 
 	player.velocity.x = move_toward(player.velocity.x, player.direction.x * CROUCH_SPEED, player.acceleration * delta)

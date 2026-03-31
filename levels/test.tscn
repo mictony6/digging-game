@@ -17,7 +17,7 @@
 [ext_resource type="VoxelGIData" uid="uid://qxsvkp7lgutg" path="res://GI/test.VoxelGI_data.res" id="27_8m07d"]
 [ext_resource type="PackedScene" uid="uid://cw5y4cp0p2ipo" path="res://entities/stone_platform/stone_platform.tscn" id="28_0v7wf"]
 [ext_resource type="PackedScene" uid="uid://bhxyv4nukyl8u" path="res://entities/minecart/MinecartPath.tscn" id="28_1ijy3"]
-[ext_resource type="ArrayMesh" uid="uid://jspdthm8pn4v" path="res://assets/meshes/rail_beam/rail_beam_Cube.res" id="28_01s5a"]
+[ext_resource type="ArrayMesh" uid="uid://ib41bj04sm4t" path="res://assets/meshes/rail_beam/rail_beam_Cube.res" id="28_01s5a"]
 [ext_resource type="PackedScene" uid="uid://dbf4ij4d18ruw" path="res://environment/mound/mound.tscn" id="28_mfah6"]
 [ext_resource type="PackedScene" uid="uid://bykyj7fgs57c2" path="res://assets/meshes/shop_building/storebuilding.glb" id="29_g8des"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="30_m8nfy"]
@@ -28,9 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://bqdbh0mi2jvo8" path="res://environment/stalagmite/stalagmite_medium.tscn" id="35_krped"]
 [ext_resource type="PackedScene" uid="uid://bdslp2bfm771l" path="res://entities/planks/WoodenPlanks2.tscn" id="35_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://bhtsgd8ntpafc" path="res://environment/lightpost/light_post.tscn" id="35_uoqfl"]
+[ext_resource type="PackedScene" uid="uid://c3nwrr57k1euh" path="res://ui/inventory/InventoryUI.tscn" id="35_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://d2sruleu4iip6" path="res://entities/wooden_crate/WoodenCrate.tscn" id="36_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dnfwtv8t8h2vr" path="res://environment/pillar/river_pillar.tscn" id="36_01s5a"]
-[ext_resource type="Script" uid="uid://tyor5x7s0fde" path="res://game/clutter_instancer.gd" id="36_gmj64"]
 [ext_resource type="PackedScene" uid="uid://dmxt2kujrceq0" path="res://entities/planks/WoodenPlanks.tscn" id="36_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="36_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="37_01s5a"]
@@ -48,14 +48,14 @@ uv1_triplanar = true
 
 [sub_resource type="Curve3D" id="Curve3D_mfah6"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.517323, -3.5585117, -4.5259333, 0, 0, 0, 0, 0, 0, -4.504223, -3.0325756, -3.7881515),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.517323, -4.9477253, -3.1756392, 0, 0, 0, 0, 0, 0, -4.504223, -4.4513264, -3.1145198),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_8m07d"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.517323, -3.5585117, -2.1295533, 0, 0, 0, 0, 0, 0, -7.111841, -3.0325756, -1.998769),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -10.043118, -3.4943027, -2.129553, 0, 0, 0, 0, 0, 0, -7.111841, -4.171562, -0.67882633),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -66,14 +66,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
-
-[sub_resource type="SphereMesh" id="SphereMesh_gmj64"]
-radial_segments = 6
-rings = 3
-
-[sub_resource type="MultiMesh" id="MultiMesh_uoqfl"]
-transform_format = 1
-mesh = SubResource("SphereMesh_gmj64")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nm5"]
 bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
@@ -184,6 +176,9 @@ transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49
 [node name="WaterArea" parent="LevelLoader/OverWorld" unique_id=941027867 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -12.479779)
 
+[node name="WaterArea3" parent="LevelLoader/OverWorld" unique_id=533343318 instance=ExtResource("25_70x8p")]
+transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -28.179106, -38.065536)
+
 [node name="WaterArea2" parent="LevelLoader/OverWorld" unique_id=576836525 instance=ExtResource("25_70x8p")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -12.48)
 
@@ -255,6 +250,7 @@ transform = Transform3D(4.6400003, 0, 0, 0, 4.6400003, 0, 0, 0, 4.6400003, 3.449
 
 [node name="cave_pillar" parent="LevelLoader/OverWorld" unique_id=1697288309 instance=ExtResource("36_xqdkm")]
 transform = Transform3D(0.4625126, 0.36234668, -1.2707428, -0.12392986, 1.3522964, 0.34049445, 1.3155698, 0, 0.47882828, -0.30000007, -30.1, -36.5)
+visible = false
 
 [node name="LightPost" parent="LevelLoader/OverWorld" unique_id=795842710 instance=ExtResource("35_uoqfl")]
 transform = Transform3D(0.087155685, 0, -0.99619484, 0, 1, 0, 0.99619484, 0, 0.087155685, 4.6835537, -29.97977, -41.055946)
@@ -289,7 +285,8 @@ transform = Transform3D(0.96853465, 0, 0.9245176, 0, 1.3389518, 0, -0.9245176, 0
 [node name="RockSpawner" parent="LevelLoader/OverWorld" unique_id=262859873 instance=ExtResource("23_krped")]
 transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, -24.14136, -24.07993)
 curve = SubResource("Curve3D_mfah6")
-count = 50
+count = 100
+vertical_bias = 0.30000000000000004
 
 [node name="RockSpawner2" parent="LevelLoader/OverWorld" unique_id=920196059 instance=ExtResource("23_krped")]
 transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, -24.14136, -24.07993)
@@ -349,7 +346,7 @@ support_mesh_height = 1.051
 rail_segments = 64
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
-transform = Transform3D(0.5112369, 0.022863768, -0.85908484, 0, 0.99960417, 0.02660346, 0.8593896, -0.0136012845, 0.5110556, 9.414451, -1.3386872, -18.182697)
+transform = Transform3D(0.5112369, 0.022863707, -0.85908484, 0, 0.9996014, 0.02660346, 0.8593896, -0.013601247, 0.5110556, 9.414451, -1.3386872, -18.182697)
 rotation_mode = 2
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
@@ -363,17 +360,9 @@ transform = Transform3D(1, 0, 0, 0, 0.9994805, -0.03223066, 0, 0.03223066, 0.999
 [node name="StonePlatform2" parent="LevelLoader" unique_id=1128614540 instance=ExtResource("28_0v7wf")]
 transform = Transform3D(0.22840177, -0.014316632, -0.44396222, 0, 0.499215, -0.016098391, 0.44419298, 0.0073615396, 0.2282831, 3.1758697, -29.637026, -25.90784)
 
-[node name="Player" parent="." unique_id=856414097 instance=ExtResource("1_r4e4k")]
-transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 5.453592, -29.297007, -19.55503)
-
-[node name="ClutterInstancer" type="Node3D" parent="." unique_id=1074972713 node_paths=PackedStringArray("player")]
-script = ExtResource("36_gmj64")
-enabled = false
-player = NodePath("../Player")
-radius = 5.0
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="ClutterInstancer" unique_id=303528326]
-multimesh = SubResource("MultiMesh_uoqfl")
+[node name="Player" parent="." unique_id=856414097 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_r4e4k")]
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 13.983446, -27.687815, -17.750813)
+inventory_ui = NodePath("../CanvasLayer/InventoryUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
 
@@ -575,6 +564,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
 text = "Your qouta was not met."
+
+[node name="InventoryUI" parent="CanvasLayer" unique_id=219044315 node_paths=PackedStringArray("player") instance=ExtResource("35_xqdkm")]
+player = NodePath("../../Player")
 
 [node name="DateManager" type="Node" parent="." unique_id=131097900]
 script = ExtResource("37_xqdkm")

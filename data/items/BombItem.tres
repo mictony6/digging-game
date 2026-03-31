@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://uje2ye3gel36"]
+
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_3r6m0"]
+[ext_resource type="Script" uid="uid://nnw7orwbb1w6" path="res://data/items/ItemData.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+name = "Bomb"
+description = "A timed explosive. Destroys rocks in a wide radius.
+Auto-crafted every 5 minutes from Gunpowder and Iron."
+icon = ExtResource("1_3r6m0")
+item_type = 1
+max_stack = 3

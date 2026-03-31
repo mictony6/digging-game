@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cwtrailwtr001"]
+
+[sub_resource type="Gradient" id="Gradient_f0dsg"]
+offsets = PackedFloat32Array(0.61534554, 1)
+colors = PackedColorArray(1, 1, 1, 0.11764706, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k1ru2"]
+gradient = SubResource("Gradient_f0dsg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+transparency = 1
+shading_mode = 2
+albedo_texture = SubResource("GradientTexture2D_k1ru2")
+emission_enabled = true
+emission = Color(0.35, 0.55, 0.8, 1)
+emission_energy_multiplier = 0.4
+billboard_keep_scale = true
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
+
+[sub_resource type="Curve" id="Curve_1"]
+_data = [Vector2(0, 0.2), 0.0, 3.0, 0, 0, Vector2(0.31770834, 1), -0.05264087, -0.05264087, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1"]
+curve = SubResource("Curve_1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 0.38
+emission_ring_inner_radius = 0.2
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 1.2
+gravity = Vector3(0, -5, 0)
+scale_min = 0.5
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1"]
+size = Vector2(0.25, 0.25)
+orientation = 1
+
+[node name="WaterTrail" type="GPUParticles3D" unique_id=1610768475]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1")
+amount = 100
+lifetime = 0.3
+speed_scale = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1")
+draw_pass_1 = SubResource("QuadMesh_1")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/items/ItemData.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+name = "Coal"
+description = "A lump of coal. Used to craft torches.\nDrops from easy rocks."
+item_type = 0
+max_stack = 99

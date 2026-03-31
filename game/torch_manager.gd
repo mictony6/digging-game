@@ -2,14 +2,22 @@ extends Node3D
 class_name TorchManager
 
 @export var torch_scene: PackedScene
+@export var player_inventory: HasInventory
+@export var torch_item: ItemData
+
 var last_torch: StaticBody3D
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("torch"):
+		if player_inventory != null and torch_item != null:
+			if not player_inventory.has_items(torch_item, 1):
+				return
 		var result = raycast_forward()
 		if result and result.position and result.normal:
 			attempt_place_torch(result.position, result.normal)
+			if player_inventory != null and torch_item != null:
+				player_inventory.remove_item(torch_item, 1)
 
 
 func raycast_forward():

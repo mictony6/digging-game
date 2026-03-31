@@ -6,6 +6,8 @@ uniform sampler2D rock_rougness : hint_roughness_gray, filter_linear_mipmap_anis
 uniform sampler2D rock_normal : hint_normal, filter_linear_mipmap;
 uniform sampler2D crack_map : source_color, filter_linear_mipmap_anisotropic;
 
+
+
 instance uniform float damage : hint_range(0.0, 1.0) = 0.0;
 uniform vec3 crack_color : source_color = vec3(1.0, 0.3, 0.0);
 uniform float crack_emission_strength : hint_range(0.0, 5.0) = 2.0;
@@ -15,6 +17,7 @@ uniform float crack_scale : hint_range(0.1, 10.0) = 1.0;
 uniform float rim : hint_range(0.0, 1.0, 0.01);
 uniform float rim_tint : hint_range(0.0, 1.0, 0.01);
 uniform sampler2D texture_rim : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform sampler2D texture_orm : hint_roughness_g, filter_linear_mipmap, repeat_enable;
 
 varying vec3 local_pos;
 varying vec3 local_normal;
@@ -89,9 +92,11 @@ void fragment() {
 
     // Glow
     vec3 emission = crack_color * crack_mask * crack_emission_strength * damage;
-
+	
+	vec3 orm_map = texture(texture_orm,UV).rgb;
     ALBEDO = final_albedo;
-    ROUGHNESS = texture(rock_rougness, UV).g;
+    ROUGHNESS = orm_map.g * texture(rock_rougness, UV).g;
+	AO = orm_map.r;
     NORMAL_MAP = final_normal;
     NORMAL_MAP_DEPTH = 1.0;
     EMISSION = emission;

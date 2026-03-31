@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3 uid="uid://boen3vimvygwh"]
+
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_okdr5"]
+[ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="1_s4ebi"]
+[ext_resource type="Resource" uid="uid://c6bc3j51enqri" path="res://data/items/GunpowderItem.tres" id="2_am85a"]
+[ext_resource type="Resource" uid="uid://d17i5hy2dc0ru" path="res://data/items/IronItem.tres" id="3_8755l"]
+[ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="4_5dsdj"]
+
+[resource]
+script = ExtResource("1_s4ebi")
+label = "Bombs"
+icon = ExtResource("1_okdr5")
+output_item = ExtResource("4_5dsdj")
+output_amount = 3
+ingredient_items = Array[Resource]([ExtResource("2_am85a"), ExtResource("3_8755l")])
+ingredient_amounts = Array[int]([1, 1])
+metadata/_custom_type_script = "uid://dtqve2lokywk"

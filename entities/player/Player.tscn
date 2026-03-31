@@ -3,10 +3,15 @@
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_ak4un"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
 [ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
+[ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="3_5qbdv"]
 [ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
 [ext_resource type="Script" uid="uid://d11e4qey5mgdf" path="res://game/tool_manager.gd" id="3_rl6fg"]
+[ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="3_wbbrj"]
 [ext_resource type="Script" uid="uid://dednsob4blsvv" path="res://game/torch_manager.gd" id="4_d168t"]
+[ext_resource type="Resource" uid="uid://bdd4ddk7o8t10" path="res://data/crafting/TorchRecipe.tres" id="4_i3i7k"]
 [ext_resource type="PackedScene" uid="uid://djhlwhtnyh1j6" path="res://entities/bomb/Bomb.tscn" id="4_kwk8g"]
+[ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="4_m1mwl"]
+[ext_resource type="Resource" uid="uid://boen3vimvygwh" path="res://data/crafting/BombRecipe.tres" id="4_m3vrt"]
 [ext_resource type="PackedScene" uid="uid://cnsi80dh14xy6" path="res://effects/hitparticleseffect.tscn" id="4_q57vx"]
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="5_ak4un"]
 [ext_resource type="PackedScene" uid="uid://btl12hu81c37h" path="res://environment/lightpost/torch.tscn" id="5_oj2y3"]
@@ -26,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://dyst6k0o03jhc" path="res://systems/oxygen/has_oxygen.tscn" id="20_ux552"]
 [ext_resource type="Script" uid="uid://ba70ixhalfeix" path="res://entities/player/states/riding_minecart.gd" id="22_3o0g8"]
 [ext_resource type="PackedScene" uid="uid://c2hwqu8gqbygx" path="res://systems/inventory/has_inventory.tscn" id="25_pnvcq"]
+[ext_resource type="Script" uid="uid://bpwquu00ir5mf" path="res://systems/crafting/crafting_manager.gd" id="29_5qbdv"]
+[ext_resource type="Script" uid="uid://qpy4mtbuiq1y" path="res://entities/player/states/swim.gd" id="30_swim1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -266,7 +273,13 @@ _data = {
 collision_mask = 103
 script = ExtResource("1_ak4un")
 head = NodePath("Head")
-FALL_GRAVITY_MULTIPLIER = 1.0
+FALL_GRAVITY_MULTIPLIER = 1.1
+
+[node name="CraftingManager" type="Node" parent="." unique_id=432815612 node_paths=PackedStringArray("player_inventory")]
+script = ExtResource("29_5qbdv")
+player_inventory = NodePath("../HasInventory")
+recipes = Array[ExtResource("3_5qbdv")]([ExtResource("4_m3vrt"), ExtResource("4_i3i7k")])
+metadata/_custom_type_script = "uid://bpwquu00ir5mf"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
 visible = false
@@ -289,17 +302,21 @@ hit_from_inside = true
 _player = NodePath("../../..")
 _tool = NodePath("../../ToolManager/Tool")
 
-[node name="TorchManager" type="Node3D" parent="Head" unique_id=1101061011]
+[node name="TorchManager" type="Node3D" parent="Head" unique_id=1101061011 node_paths=PackedStringArray("player_inventory")]
 script = ExtResource("4_d168t")
 torch_scene = ExtResource("5_oj2y3")
+player_inventory = NodePath("../../HasInventory")
+torch_item = ExtResource("4_m1mwl")
 
-[node name="BombManager" type="Node3D" parent="Head" unique_id=430717964 node_paths=PackedStringArray("animation")]
+[node name="BombManager" type="Node3D" parent="Head" unique_id=430717964 node_paths=PackedStringArray("animation", "player_inventory")]
 script = ExtResource("3_mq27t")
 animation = NodePath("../../BombAnimations")
 bomb_scene = ExtResource("4_kwk8g")
+player_inventory = NodePath("../../HasInventory")
+bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552623, -0.014453307, 0.025802754, 0.0230321, 0.09108559, -0.034248088, -0.018552558, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552615, -0.014453307, 0.025802754, 0.023032082, 0.09108559, -0.034248088, -0.018552544, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -383,6 +400,9 @@ metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
 [node name="RidingMinecart" type="Node" parent="StateMachine" unique_id=1538489736]
 script = ExtResource("22_3o0g8")
 metadata/_custom_type_script = "uid://bhtfex6lfsfcw"
+
+[node name="Swim" type="Node" parent="StateMachine" unique_id=200000010]
+script = ExtResource("30_swim1")
 
 [node name="Control" type="Control" parent="." unique_id=799556388]
 layout_mode = 3

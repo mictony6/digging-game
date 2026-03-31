@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://qpdot03w8apb"]
+
+[ext_resource type="Script" uid="uid://c00305n8dnfvk" path="res://ui/inventory/inventory_slot_ui.gd" id="1_slotui"]
+
+[sub_resource type="StyleBoxFlat" id="2_normal"]
+bg_color = Color(0.15, 0.15, 0.15, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="InventorySlotUI" type="PanelContainer" unique_id=1139576698]
+custom_minimum_size = Vector2(64, 64)
+theme_override_styles/panel = SubResource("2_normal")
+script = ExtResource("1_slotui")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=295873920]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer" unique_id=1585905335]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CountLabel" type="Label" parent="VBoxContainer" unique_id=2145421553]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2

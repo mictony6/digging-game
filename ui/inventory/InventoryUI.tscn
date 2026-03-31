@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://c3nwrr57k1euh"]
+
+[ext_resource type="Script" uid="uid://b1mgynf3g48ny" path="res://ui/inventory/inventory_ui.gd" id="1_ui"]
+[ext_resource type="Script" uid="uid://d3edj7t8fkhcb" path="res://ui/inventory/crafting_timer_ui.gd" id="2_timer"]
+
+[sub_resource type="StyleBoxFlat" id="2_bg"]
+bg_color = Color(0.08, 0.08, 0.08, 0.92)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="5_button_normal"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="6_button_hover"]
+bg_color = Color(0.35, 0.35, 0.35, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="3_right_panel"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="InventoryUI" type="Control" unique_id=219044315]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ui")
+
+[node name="Background" type="PanelContainer" parent="." unique_id=1972433555]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -300.0
+offset_right = 480.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("2_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=111111111]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBox" type="HBoxContainer" parent="Background/MarginContainer" unique_id=1873915253]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftPanel" type="VBoxContainer" parent="Background/MarginContainer/HBox" unique_id=489384653]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Background/MarginContainer/HBox/LeftPanel" unique_id=145435088]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "INVENTORY"
+
+[node name="SortRow" type="HBoxContainer" parent="Background/MarginContainer/HBox/LeftPanel" unique_id=2052538728]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SortByType" type="Button" parent="Background/MarginContainer/HBox/LeftPanel/SortRow" unique_id=1201984994]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("5_button_normal")
+theme_override_styles/hover = SubResource("6_button_hover")
+text = "By Type"
+
+[node name="SortByUsed" type="Button" parent="Background/MarginContainer/HBox/LeftPanel/SortRow" unique_id=921676613]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("5_button_normal")
+theme_override_styles/hover = SubResource("6_button_hover")
+text = "Most Used"
+
+[node name="Scroll" type="ScrollContainer" parent="Background/MarginContainer/HBox/LeftPanel" unique_id=1570495012]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="Background/MarginContainer/HBox/LeftPanel/Scroll" unique_id=416989655]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 5
+
+[node name="RightPanel" type="PanelContainer" parent="Background/MarginContainer/HBox" unique_id=285391749]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("3_right_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Background/MarginContainer/HBox/RightPanel" unique_id=476588343]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=1703845595]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=827683578]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="CountLabel" type="Label" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=1407027574]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="Description" type="Label" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=809905444]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+
+[node name="CraftingLabel" type="Label" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=333333333]
+modulate = Color(0.6, 0.6, 0.6, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "AUTO-CRAFTING"
+
+[node name="CraftingRow" type="HBoxContainer" parent="Background/MarginContainer/HBox/RightPanel/VBox" unique_id=444444444]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1

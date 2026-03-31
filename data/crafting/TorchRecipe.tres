@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3 uid="uid://bdd4ddk7o8t10"]
+
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_6ehtw"]
+[ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="1_ulfl3"]
+[ext_resource type="Resource" path="res://data/items/StickItem.tres" id="2_grt1v"]
+[ext_resource type="Resource" path="res://data/items/CoalItem.tres" id="3_6ehtw"]
+[ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="4_a8in7"]
+
+[resource]
+script = ExtResource("1_ulfl3")
+label = "Torch"
+icon = ExtResource("1_6ehtw")
+output_item = ExtResource("4_a8in7")
+craft_interval = 5.0
+ingredient_items = Array[Resource]([ExtResource("2_grt1v"), ExtResource("3_6ehtw")])
+ingredient_amounts = Array[int]([1, 1])
+metadata/_custom_type_script = "uid://dtqve2lokywk"

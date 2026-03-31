@@ -78,9 +78,9 @@ func deal_damage_on_affected_rocks(rocks: Array[Rock], damage, tier, main_rock):
 			shake_target(rock)
 
 			if rock == main_rock:
-				rock.take_damage(damage)
+				rock.take_damage(damage, tool_raycast.get_collision_point())
 			else:
-				rock.take_damage(damage / 4.0) # quarter damage to neighboring rocks
+				rock.take_damage(damage / 4.0)
 
 func play_particles(collision_point: Vector3):
 	#spawn hit particles

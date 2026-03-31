@@ -6,6 +6,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
+	if player.in_water:
+		finished.emit(SWIM)
+		return
 	player.velocity.y -= (player.gravity * delta);
 
 	player.velocity.x = move_toward(player.velocity.x, player.direction.x * player.SPRINT_SPEED, player.acceleration * delta)

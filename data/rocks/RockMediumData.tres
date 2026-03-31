@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_u4lyi")
 tier = 2
-max_health = 25
+max_health = 12
 value = 20
 metadata/_custom_type_script = "uid://ctf3qjah02bo1"

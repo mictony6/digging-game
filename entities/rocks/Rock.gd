@@ -5,7 +5,10 @@ class_name Rock
 @export var rock_data: RockData
 @export var break_particles: PackedScene
 @export var mesh: MeshInstance3D
+@export var drops: Array[RockDrop] = []
+@export var pickup_scene: PackedScene
 @onready var health: HasHealth = $HasHealth
+var _last_hit_position: Vector3
 
 func _ready():
 	health.max_health = rock_data.max_health
@@ -22,8 +25,10 @@ func _ready():
 	set_process(false)
 
 
-func take_damage(damage: float):
+func take_damage(damage: float, hit_position: Vector3 = Vector3.ZERO):
 	if rock_data.is_destructible:
+		if hit_position != Vector3.ZERO:
+			_last_hit_position = hit_position
 		health.take_damage(damage)
 		set_process(true)
 
@@ -35,7 +40,32 @@ func destroy():
 	particles_instance.global_position = global_position
 	particles_instance.emitting = true
 	particles_instance.finished.connect(particles_instance.queue_free)
+	_spawn_drops()
 	queue_free()
+
+func _spawn_drops() -> void:
+	if pickup_scene == null or drops.is_empty():
+		return
+	for drop: RockDrop in drops:
+		if drop.item == null:
+			continue
+		var qty := randi_range(drop.min_qty, drop.max_qty)
+		if qty <= 0:
+			continue
+		# var pickup = pickup_scene.instantiate()
+		# pickup.item_data = drop.item
+		# pickup.quantity = qty
+
+		for i in range(qty):
+			var pickup: PickupItem = pickup_scene.instantiate()
+			pickup.item_data = drop.item
+			pickup.quantity = 1
+
+			# Set position before add_child so _ready() captures the correct _start_y for bobbing
+			var spawn_base := _last_hit_position if _last_hit_position != Vector3.ZERO else global_position
+			var offset := Vector3(randf_range(-0.2, 0.2), randf_range(0.1, 0.3), randf_range(-0.2, 0.2))
+			pickup.position = spawn_base + offset
+			get_tree().current_scene.add_child(pickup)
 
 func _process(delta: float) -> void:
 	#update crack shader based on health
