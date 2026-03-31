@@ -4,11 +4,26 @@
 [ext_resource type="Resource" uid="uid://bh663u14iqe7m" path="res://data/rocks/RockMediumData.tres" id="2_80551"]
 [ext_resource type="PackedScene" uid="uid://b64267mpxut34" path="res://effects/break_mediumrock_particles.tscn" id="3_hx5n2"]
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="4_8vqsr"]
+[ext_resource type="Script" uid="uid://dweflgqsflsfm" path="res://data/rocks/RockDrop.gd" id="4_b6mgl"]
+[ext_resource type="ArrayMesh" uid="uid://bgax2slj6oscl" path="res://assets/meshes/medium_rock/rockgold_rock.res" id="4_v73oy"]
 [ext_resource type="Material" uid="uid://ba5b3ds4jaarl" path="res://shaders/materials/mediun_rock.material" id="4_yvf3x"]
-[ext_resource type="ArrayMesh" uid="uid://dlcdqwojx4p17" path="res://assets/meshes/medium_rock/medium_rock_rock_003.res" id="6_eeilx"]
+[ext_resource type="Resource" uid="uid://d17i5hy2dc0ru" path="res://data/items/IronItem.tres" id="5_l1ubf"]
+[ext_resource type="PackedScene" uid="uid://dwpasbtc1ikic" path="res://entities/pickup/PickupItem.tscn" id="6_80551"]
+[ext_resource type="Resource" uid="uid://c6bc3j51enqri" path="res://data/items/GunpowderItem.tres" id="6_l1ubf"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l1ubf"]
-points = PackedVector3Array(-1.5205452, 1.7937866, -0.48043752, -1.1315324, 1.6498327, -0.38446492, -0.63909256, -0.47613814, 0.6488621, 1.2589413, -0.06444443, -1.096882, 0.7578596, -1.0034714, 0.5079806, -1.1052831, 1.1198334, -1.6669371, 0.8160026, -1.3771659, -1.5765214, -1.434409, -0.6978275, -1.9965185, 0.11842841, 1.3119524, -0.68520194, -1.5784106, -0.0675736, -0.32405052, -0.7951239, 0.5517701, 0.5493622, 1.5390385, -0.58841044, -0.2714741, 0.3323633, 0.3435725, -1.6526704, -0.5423183, -1.1638225, 0.042859595, -1.8032303, 1.4500864, -0.53031564, 0.12325434, 1.3346347, -1.0839208, 0.4506247, -1.4312202, -0.26884547, -0.74968785, -1.2651486, -2.0401366, 1.2522144, -0.2675425, -0.0745459, -1.491404, 1.6109104, -1.2127405, -1.3212069, -1.0559665, -1.2068868, -1.2580807, -0.22010276, 0.29128492, 1.4945759, -0.9052847, -0.5827965, -1.5730836, 0.8634699, -1.7210873, -0.6393972, -0.3224506, -1.9719564, 1.0644094, -0.73946285, -1.5144881, 1.1364521, 0.29184118, -0.7871419, -1.6905965, 0.29607832, -1.4698023, -0.75112396, -1.3726517, -1.6780186, 0.99016756, 0.14041969, -1.4469565, -1.2652303, 0.60612786, 0.3491853, 0.34212852, -0.9505354, 0.6630079)
+[sub_resource type="Resource" id="Resource_rsken"]
+script = ExtResource("4_b6mgl")
+item = ExtResource("5_l1ubf")
+max_qty = 4
+
+[sub_resource type="Resource" id="Resource_80551"]
+script = ExtResource("4_b6mgl")
+item = ExtResource("6_l1ubf")
+max_qty = 2
+metadata/_custom_type_script = "uid://dweflgqsflsfm"
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yvf3x"]
+points = PackedVector3Array(0.22625804, 0.62730515, 0.3305452, -0.21449454, -0.6529107, -0.34077844, -0.088937744, -0.65602624, -0.34245867, 0.43905243, -0.48760897, 0.5441328, 0.54124075, 0.10314505, -0.5083591, -0.5943739, 0.1457413, -0.23653573, -0.29560426, 0.24794824, 0.5780936, -0.004053182, 0.14327332, -0.58373237, 0.5405628, -0.52558196, -0.17233664, 0.4761409, 0.24890475, 0.4754907, -0.23390159, 0.540958, -0.1298467, -0.046508685, -0.46410137, -0.5933114, -0.20944989, -0.3301709, 0.2831615, 0.45692536, 0.45966217, -0.2563965, -0.066991135, 0.604952, 0.58089113, 0.61856765, 0.18518925, -0.046072893, 0.20654713, 0.20911556, 0.6913234, -0.4422688, 0.019210303, -0.50515485, -0.5457172, -0.1890453, -0.19205202, 0.605907, -0.40168962, 0.31066623, -0.31873363, 0.5222533, 0.37232453, -0.024419637, -0.0425016, 0.652745, 0.35214728, 0.54347295, 0.4354397, 0.09964434, 0.37222984, -0.46148705, -0.08558173, -0.5938089, 0.09774654, 0.20462601, -0.08514047, -0.65219957, -0.3177406, -0.52403164, -0.46439812, 0.37531653, -0.5717018, 0.39600086, -0.3793346, 0.37347442, 0.49541578, 0.60630673, 0.08244646, -0.40511495, -0.25652874, -0.06467515, -0.61408097, -0.04561237, 0.6615414, 0.32683605)
 
 [node name="Rock" type="StaticBody3D" unique_id=1731680115 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.15085721, 0, -0.9524744, 0, 0.9643472, 0, 0.9524744, 0, 0.15085721, 0, 0, 0)
@@ -17,15 +32,17 @@ script = ExtResource("1_l1ubf")
 rock_data = ExtResource("2_80551")
 break_particles = ExtResource("3_hx5n2")
 mesh = NodePath("MeshInstance3D")
+drops = Array[ExtResource("4_b6mgl")]([SubResource("Resource_rsken"), SubResource("Resource_80551")])
+pickup_scene = ExtResource("6_80551")
 metadata/_custom_type_script = "uid://q53tm1dyumsd"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1865963393]
-transform = Transform3D(0.29405755, 0, -1.1175871e-08, 0, 0.29405755, 0, 1.1175871e-08, 0, 0.29405755, -1.1175871e-08, 0, 0.2940478)
+transform = Transform3D(0.5121279, -0.38147503, 0.1212503, 0.32590145, 0.28305733, -0.48597, 0.23240712, 0.44368377, 0.41428444, 0, 0, 0)
 material_override = ExtResource("4_yvf3x")
-mesh = ExtResource("6_eeilx")
+mesh = ExtResource("4_v73oy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=10026332]
-transform = Transform3D(0.29405758, 0, -1.1175871e-08, 0, 0.29405758, 0, 1.1175871e-08, 0, 0.29405758, -1.1175871e-08, 0, 0.2940478)
-shape = SubResource("ConvexPolygonShape3D_l1ubf")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1735961387]
+transform = Transform3D(0.5121279, -0.38147503, 0.1212503, 0.32590145, 0.28305733, -0.48597, 0.23240712, 0.44368377, 0.41428444, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_yvf3x")
 
 [node name="HasHealth" parent="." unique_id=1565073669 instance=ExtResource("4_8vqsr")]

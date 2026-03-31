@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bylx3df6noyt8"
-path="res://.godot/imported/medium_rock.glb-d34704bc454f328692f1c855f059168a.scn"
+uid="uid://8auhewfy3ma7"
+path="res://.godot/imported/rockgold.glb-8810f1c247771cafbd76f14510affcde.scn"
 
 [deps]
 
-source_file="res://assets/meshes/medium_rock/medium_rock.glb"
-dest_files=["res://.godot/imported/medium_rock.glb-d34704bc454f328692f1c855f059168a.scn"]
+source_file="res://assets/meshes/medium_rock/rockgold.glb"
+dest_files=["res://.godot/imported/rockgold.glb-8810f1c247771cafbd76f14510affcde.scn"]
 
 [params]
 
@@ -39,14 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"medium_rock_rock_003": {
+"rockgold_rock": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/meshes/medium_rock/medium_rock_rock_003.res",
-"save_to_file/path": "uid://dlcdqwojx4p17"
+"save_to_file/fallback_path": "res://assets/meshes/medium_rock/rockgold_rock.res",
+"save_to_file/path": "uid://bgax2slj6oscl"
 }
 }
 }

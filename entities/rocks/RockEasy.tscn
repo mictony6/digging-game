@@ -5,7 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="3_e1dj2"]
 [ext_resource type="Material" uid="uid://bm6c54hoh2ybs" path="res://shaders/materials/RockEasy1.material" id="4_cxmus"]
 [ext_resource type="ArrayMesh" uid="uid://dqcwhjnqtyg8w" path="res://assets/meshes/rocks/Easy1/RockEasy1_rock_003.res" id="4_r8uvd"]
+[ext_resource type="Script" uid="uid://dweflgqsflsfm" path="res://data/rocks/RockDrop.gd" id="4_rr552"]
+[ext_resource type="Resource" path="res://data/items/CoalItem.tres" id="5_0exme"]
+[ext_resource type="PackedScene" uid="uid://dwpasbtc1ikic" path="res://entities/pickup/PickupItem.tscn" id="6_0c3hv"]
+[ext_resource type="Resource" path="res://data/items/StickItem.tres" id="6_ljfkj"]
 [ext_resource type="PackedScene" uid="uid://t27wsbwa8oer" path="res://systems/health/has_health.tscn" id="10_0exme"]
+
+[sub_resource type="Resource" id="Resource_ljfkj"]
+script = ExtResource("4_rr552")
+item = ExtResource("5_0exme")
+max_qty = 2
+
+[sub_resource type="Resource" id="Resource_f7tjr"]
+script = ExtResource("4_rr552")
+item = ExtResource("6_ljfkj")
+max_qty = 4
+metadata/_custom_type_script = "uid://dweflgqsflsfm"
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r8uvd"]
 points = PackedVector3Array(0.1427427, -0.0332417, 0.32911178, -0.018140486, -0.50424355, -0.49869823, -0.04971962, 0.16068959, -0.18413569, -0.48060206, -0.4734711, 0.108274825, 0.5236609, -0.52138984, 0.009190464, -0.18202497, -0.3568941, 0.48448434, 0.50101465, -0.30664736, -0.21797465, -0.44433773, -0.43879154, -0.4497837, -0.30864295, -0.015449245, 0.13823774, 0.063648246, -0.6025298, 0.1238156, 0.42857322, -0.49088052, -0.4707864, 0.16214898, -0.4225803, 0.40276614, -0.0013438594, 0.15871187, 0.16877751, 0.1919281, 0.09695821, -0.13612923, 0.3088006, -0.14414418, 0.30326337, 0.31883225, -0.28942183, -0.4555401, -0.47190893, -0.22550519, 0.073859386, -0.39325476, -0.5520387, -0.03978876, -0.03422744, -0.5354097, 0.36780962, -0.03451935, -0.07825212, 0.43565753, -0.3738765, -0.16096726, -0.28239834, -0.09806539, -0.00018247838, -0.31310874, -0.28126693, -0.27517647, 0.4202528, 0.53146833, -0.3224271, -0.0072063804, 0.3910722, -0.5858463, -0.03979902, -0.14771238, 0.11519931, 0.20378824, 0.21243618, -0.35772505, -0.501926, -0.17888568, 0.12922508, -0.05551465, 0.43777108, -0.45359787, 0.18804745, -0.4857741, -0.49292365, -0.30739948, 0.23817784, 0.046077885, 0.040644184, -0.44086674, -0.24191141, 0.22048238)
@@ -18,6 +33,8 @@ script = ExtResource("1_1o8al")
 rock_data = ExtResource("2_hxsg1")
 break_particles = ExtResource("3_e1dj2")
 mesh = NodePath("RockType1")
+drops = Array[ExtResource("4_rr552")]([SubResource("Resource_ljfkj"), SubResource("Resource_f7tjr")])
+pickup_scene = ExtResource("6_0c3hv")
 
 [node name="RockType1" type="MeshInstance3D" parent="." unique_id=1439687345]
 transform = Transform3D(0.9999997, 0, 1.0430813e-07, 0, 0.9999995, 0, -1.0430813e-07, 0, 0.9999997, 0, 0.33266845, 0)
