@@ -77,10 +77,17 @@ func generate_rungs():
 	var mm: MultiMesh = rung_multimesh.multimesh
 	mm.instance_count = count
 	mm.mesh = rung_mesh
+	var rand = RandomNumberGenerator.new()
+	rand.seed = 42
+
 	for i in range(count):
 		var t = Transform3D()
+		var is_flipped_x: bool = (rand.randi() % 2 == 0)
 		t.origin = Vector3(0, (i + 1) * spacing, 0)
-		t.basis = Basis(Vector3.RIGHT, deg_to_rad(-90))
+
+		t.basis = Basis().rotated(Vector3.RIGHT, deg_to_rad(-90))
+		if is_flipped_x:
+			t.basis = t.basis.rotated(Vector3.UP, deg_to_rad(180))
 		mm.set_instance_transform(i, t)
 
 

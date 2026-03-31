@@ -239,7 +239,7 @@ transform = Transform3D(-0.015794713, 0.647489, -0.020311495, -0.39517593, 0.006
 
 [node name="LadderGenerator" parent="LevelLoader/OverWorld/Marker3D" unique_id=1611220197 instance=ExtResource("15_xqdkm")]
 transform = Transform3D(0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660254, 10.241647, 0.0076942444, -0.55604935)
-height = 4.1
+height = 4.4
 
 [node name="StaticBody3D" parent="LevelLoader/OverWorld" unique_id=1524283683 instance=ExtResource("39_gmj64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.967155, -42)
@@ -351,7 +351,7 @@ support_mesh_height = 1.051
 rail_segments = 64
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
-transform = Transform3D(0.5112369, 0.022863697, -0.85908484, 0, 0.999601, 0.02660346, 0.8593896, -0.013601242, 0.5110556, 9.414451, -1.3386872, -18.182697)
+transform = Transform3D(0.5112369, 0.022863692, -0.85908484, 0, 0.9996008, 0.02660346, 0.8593896, -0.013601239, 0.5110556, 9.414451, -1.3386872, -18.182697)
 rotation_mode = 2
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
@@ -587,7 +587,7 @@ transform = Transform3D(1.3643179, 0, 0, 0, 1.3643179, 0, 0, 0, 1.3643179, -0.64
 transform = Transform3D(-1.2009414, -0.17267488, -0.71519774, -0.09835793, 1.3944511, -0.17151134, 0.72914344, -0.0963007, -1.2011082, 7.820919, -31.030403, -26.58658)
 
 [node name="LadderGenerator" parent="." unique_id=770318594 instance=ExtResource("15_xqdkm")]
-transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 15.229507, -25.403849, -24.259983)
+transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 15.229507, -25.129438, -24.259983)
 height = 2.0
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
