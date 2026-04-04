@@ -10,6 +10,7 @@ const FALL = "Fall";
 const RIDING_MINECART = "RidingMinecart"
 const SWIM = "Swim";
 const CLIMB = "Climb";
+const VAULT = "Vault";
 
 var player: Player;
 
