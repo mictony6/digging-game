@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7tnwhvuba4n4"]
+
+[ext_resource type="Texture2D" uid="uid://bu64yygaqyptv" path="res://assets/meshes/planks/Planks_baseColor.png" id="1_i3xt1"]
+[ext_resource type="Texture2D" uid="uid://dkdiurf0yn6w2" path="res://assets/meshes/planks/Planks_occlusionRoughnessMetallic.png" id="2_5exh6"]
+[ext_resource type="Texture2D" uid="uid://7r0r1h273obn" path="res://assets/meshes/planks/Planks_normal.png" id="3_442a0"]
+
+[resource]
+resource_name = "Planks"
+albedo_texture = ExtResource("1_i3xt1")
+metallic = 1.0
+metallic_texture = ExtResource("2_5exh6")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_5exh6")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_442a0")
+ao_enabled = true
+ao_texture = ExtResource("2_5exh6")
+texture_filter = 5

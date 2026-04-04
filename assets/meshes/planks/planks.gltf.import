@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfwyeqbydk0rg"
-path="res://.godot/imported/Planks.glb-4dd85e096d1c2b36b4332ab19e376560.scn"
+uid="uid://dplmfgrf4xcvu"
+path="res://.godot/imported/planks.gltf-0f90d981118743b31edc22d3d5b73744.scn"
 
 [deps]
 
-source_file="res://assets/meshes/planks/Planks.glb"
-dest_files=["res://.godot/imported/Planks.glb-4dd85e096d1c2b36b4332ab19e376560.scn"]
+source_file="res://assets/meshes/planks/planks.gltf"
+dest_files=["res://.godot/imported/planks.gltf-0f90d981118743b31edc22d3d5b73744.scn"]
 
 [params]
 
@@ -39,30 +39,30 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Planks.003": {
+"Planks": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://shaders/materials/Planks.003.tres",
-"use_external/path": "uid://dbvn1onij818m"
+"use_external/fallback_path": "res://shaders/materials/Planks.tres",
+"use_external/path": "uid://c7tnwhvuba4n4"
 }
 },
 "meshes": {
-"Planks_Plane_007": {
+"planks_Plane": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/meshes/planks/Planks_Plane_007.res",
-"save_to_file/path": "uid://d2f8vnc6p054g"
+"save_to_file/fallback_path": "res://assets/meshes/planks/planks_Plane.res",
+"save_to_file/path": "uid://djp73xclvjbpm"
 },
-"Planks_Plane_008": {
+"planks_Plane_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/meshes/planks/Planks_Plane_008.res",
-"save_to_file/path": "uid://b8i31sabxpmj6"
+"save_to_file/fallback_path": "res://assets/meshes/planks/planks_Plane_001.res",
+"save_to_file/path": "uid://btmiyenh228jp"
 }
 }
 }

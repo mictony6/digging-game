@@ -337,8 +337,8 @@ transform = Transform3D(1.1313335e-08, 0.9659258, 0.25881895, 4.2221963e-08, -0.
 transform = Transform3D(-1.9167919e-08, -0.8402353, -0.5422215, 1.10327825e-07, -0.54222155, 0.8402354, -1, -2.9802317e-08, 1.0430813e-07, 0.26969814, -26.696056, -34.093468)
 
 [node name="Decal" type="Decal" parent="LevelLoader/OverWorld" unique_id=1359596358]
-transform = Transform3D(-0.21233112, 0, -0.97719777, 0, 1, 0, 0.97719777, 0, -0.21233112, 3.4999409, -29.24928, -23.253933)
-size = Vector3(2, 0.32987595, 2)
+transform = Transform3D(0.08301701, 0, -0.99654824, 0, 1, 0, 0.99654824, 0, 0.08301701, 3.495679, -29.158234, -23.00565)
+size = Vector3(2, 0.54787254, 2)
 texture_albedo = ExtResource("26_4ksiy")
 cull_mask = 1048573
 
@@ -351,7 +351,7 @@ support_mesh_height = 1.051
 rail_segments = 64
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
-transform = Transform3D(0.5112369, 0.022863686, -0.85908484, 0, 0.9996006, 0.02660346, 0.8593896, -0.013601236, 0.5110556, 9.414451, -1.3386872, -18.182697)
+transform = Transform3D(0.5112369, 0.022863662, -0.85908484, 0, 0.99959946, 0.02660346, 0.8593896, -0.01360122, 0.5110556, 9.414451, -1.3386872, -18.182697)
 rotation_mode = 2
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("22_8a51t")]
@@ -589,6 +589,25 @@ transform = Transform3D(-1.2009414, -0.17267488, -0.71519774, -0.09835793, 1.394
 [node name="LadderGenerator" parent="." unique_id=770318594 instance=ExtResource("15_xqdkm")]
 transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 15.229507, -25.129438, -24.259983)
 height = 2.0
+
+[node name="WoodenBridgeBeam" parent="." unique_id=1909480845 instance=ExtResource("35_m8nfy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0695928, -28.54704, -31.759062)
+
+[node name="WoodenBridgeBeam2" parent="." unique_id=1839347537 instance=ExtResource("35_m8nfy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9006398, -29.250856, -37.45851)
+
+[node name="WoodenBridgeBeam5" parent="." unique_id=1730684878 instance=ExtResource("35_m8nfy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.9006398, -29.250856, -37.45851)
+
+[node name="WoodenBridgeBeam3" parent="." unique_id=1602071420 instance=ExtResource("35_m8nfy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9006398, -27.250856, -37.45851)
+
+[node name="WoodenBridgeBeam4" parent="." unique_id=1163290938 instance=ExtResource("35_m8nfy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.9006398, -27.250856, -37.45851)
+
+[node name="LadderGenerator2" parent="." unique_id=469972099 instance=ExtResource("15_xqdkm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.0197096, -29.915993, -38.02123)
+height = 2.8
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

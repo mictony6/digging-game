@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn02l318vum1f"
-path.s3tc="res://.godot/imported/Planks_RoughnessMap_1250x1250_ThiagoCarneiro.png-a69fa734e160eab45b4587e0f8f1ebad.s3tc.ctex"
+uid="uid://cn61lskrhsmos"
+path.s3tc="res://.godot/imported/Planks_Image_0.png-f5116fdddb8bcf239661c4cf625dcac2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "0ef3a83813d51d42b90b63cbb50f1871"
+"md5": "6eacfe503f228e2e049f189c4ea23996"
 }
 
 [deps]
 
-source_file="res://assets/meshes/planks/Planks_RoughnessMap_1250x1250_ThiagoCarneiro.png"
-dest_files=["res://.godot/imported/Planks_RoughnessMap_1250x1250_ThiagoCarneiro.png-a69fa734e160eab45b4587e0f8f1ebad.s3tc.ctex"]
+source_file="res://assets/meshes/planks/Planks_Image_0.png"
+dest_files=["res://.godot/imported/Planks_Image_0.png-f5116fdddb8bcf239661c4cf625dcac2.s3tc.ctex"]
 
 [params]
 
