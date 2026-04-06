@@ -73,18 +73,8 @@ func _ready() -> void:
 	swim_area.area_entered.connect(_on_water_entered)
 	swim_area.area_exited.connect(_on_water_exited)
 
-	var ladder_detector := Area3D.new()
-	ladder_detector.name = "LadderDetector"
-	ladder_detector.collision_layer = 0
-	ladder_detector.collision_mask = 256
-	var ld_shape := CollisionShape3D.new()
-	var ld_box := BoxShape3D.new()
-	ld_box.size = Vector3(0.8, 1.6, 0.8)
-	ld_shape.shape = ld_box
-	ladder_detector.add_child(ld_shape)
-	add_child(ladder_detector)
-	ladder_detector.area_entered.connect(_on_ladder_entered)
-	ladder_detector.area_exited.connect(_on_ladder_exited)
+	%LadderDetector.area_entered.connect(_on_ladder_entered)
+	%LadderDetector.area_exited.connect(_on_ladder_exited)
 
 func _input(event: InputEvent) -> void:
 	#full screen toggle

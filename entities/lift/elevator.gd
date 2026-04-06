@@ -42,6 +42,7 @@ func close():
 	animating = false
 	if !player_in: return
 	await play_fade_out()
+	if !player_in: return
 	var p_relative_pos: Vector3 = player.global_position - global_position
 	if !is_at_end:
 		global_position = end_point.global_position

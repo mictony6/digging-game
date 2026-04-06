@@ -126,7 +126,7 @@ func _vault_to_top() -> void:
 	q.collision_mask = 4 | 2 | 32
 	var hit := space.intersect_ray(q)
 
-	var land_pos: Vector3 = hit.position + Vector3.UP * 0.8 if not hit.is_empty() \
+	var land_pos: Vector3 = hit.position + Vector3.UP * 1.0 if not hit.is_empty() \
 		else _ladder.get_top_position() + forward * 0.2
 
 	var tween := player.create_tween()

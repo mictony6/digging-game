@@ -34,7 +34,8 @@
 [ext_resource type="Script" uid="uid://bpwquu00ir5mf" path="res://systems/crafting/crafting_manager.gd" id="29_5qbdv"]
 [ext_resource type="Script" uid="uid://qpy4mtbuiq1y" path="res://entities/player/states/swim.gd" id="30_swim1"]
 [ext_resource type="Script" uid="uid://bjonpc24rtpna" path="res://entities/player/states/climb.gd" id="31_climb1"]
-[ext_resource type="Script" path="res://entities/player/states/vault.gd" id="32_vault1"]
+[ext_resource type="Script" uid="uid://clqo0gjw1haik" path="res://entities/player/states/vault.gd" id="32_vault1"]
+[ext_resource type="Script" uid="uid://dbxv5n2op4qxm" path="res://entities/player/water_effects.gd" id="36_ck0hy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -274,6 +275,12 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_wbbrj"]
 radius = 0.2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ck0hy"]
+radius = 0.15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ladder1"]
+size = Vector3(0.8, 1.6, 0.8)
+
 [node name="Player" type="CharacterBody3D" unique_id=1047360223 node_paths=PackedStringArray("head")]
 collision_mask = 103
 script = ExtResource("1_ak4un")
@@ -321,7 +328,7 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.095526144, -0.014453307, 0.025802754, 0.02303208, 0.09108559, -0.034248088, -0.018552542, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552612, -0.014453307, 0.025802754, 0.023032075, 0.09108559, -0.034248088, -0.018552538, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -359,7 +366,6 @@ light_color = Color(0.91715086, 0.30366266, 0.2268546, 1)
 light_volumetric_fog_energy = 0.0
 omni_attenuation = 2.0
 script = ExtResource("11_ax5yc")
-enabled = true
 
 [node name="HeadLamp" type="SpotLight3D" parent="Head" unique_id=1319693506]
 visible = false
@@ -456,3 +462,28 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("SphereShape3D_wbbrj")
 debug_color = Color(0.7802687, 0.4375185, 7.70092e-07, 0.41960785)
+
+[node name="WaterEffects" type="Node" parent="." unique_id=403787566]
+script = ExtResource("36_ck0hy")
+
+[node name="FeetArea" type="Area3D" parent="." unique_id=320258413]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064973086, 0)
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FeetArea" unique_id=1440426750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5078567, 0)
+shape = SubResource("SphereShape3D_ck0hy")
+debug_color = Color(0.9788137, 0.14692938, 3.85046e-07, 0.41960785)
+
+[node name="LadderDetector" type="Area3D" parent="." unique_id=420000001]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LadderDetector" unique_id=420000002]
+shape = SubResource("BoxShape3D_ladder1")
+debug_color = Color(0.72590554, 0.47649008, 1.92523e-07, 0.41960785)

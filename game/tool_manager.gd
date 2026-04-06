@@ -9,15 +9,23 @@ class_name ToolManager
 @export var break_particles: PackedScene
 @onready var beam: Node3D = $Beam
 
-@onready var flicker: OmniLight3D = $ToolFlicker
+@onready var flicker: ToolFlicker = $ToolFlicker
 
-var particle_instances: Array[GPUParticles3D] = []
+const PARTICLE_POOL_SIZE = 5
+var _particle_pool: Array[GPUParticles3D] = []
+var _particle_index: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tool_area3d.body_entered.connect(_on_body_entered)
 	tool_area3d.body_exited.connect(_on_body_exited)
 	tool_raycast.enabled = false
+	for i in PARTICLE_POOL_SIZE:
+		var p: GPUParticles3D = hit_particles.instantiate()
+		add_child(p)
+		p.top_level = true
+		p.emitting = false
+		_particle_pool.append(p)
 	
 var bodies_in_aoe: Array[Rock] = []
 
@@ -46,12 +54,10 @@ func _physics_process(delta: float) -> void:
 		deal_damage_on_affected_rocks(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
 		play_particles(collision_point)
 
-		#activate flicker light
-		flicker.show()
 		flicker.global_position = collision_point
+		flicker.flash()
 		tool_current_cooldown = tool_max_cooldown
 	else:
-		flicker.hide()
 		beam.hide()
 
 
@@ -83,22 +89,14 @@ func deal_damage_on_affected_rocks(rocks: Array[Rock], damage, tier, main_rock):
 				rock.take_damage(damage / 4.0)
 
 func play_particles(collision_point: Vector3):
-	#spawn hit particles
-	var particles_instance: GPUParticles3D = hit_particles.instantiate()
-	get_tree().current_scene.add_child(particles_instance)
-	particle_instances.append(particles_instance)
-	particles_instance.global_position = collision_point
-	particles_instance.emitting = true
-	particles_instance.finished.connect(particles_instance.queue_free)
-	
-	if particle_instances.size() > 5:
-		var oldest_particle = particle_instances.pop_front()
-		if oldest_particle != null:
-			oldest_particle.queue_free()
+	var p := _particle_pool[_particle_index]
+	_particle_index = (_particle_index + 1) % PARTICLE_POOL_SIZE
 
-	#align particles to surface normal
+	p.global_position = collision_point
 	var collision_normal = tool_raycast.get_collision_normal()
-	particles_instance.look_at(particles_instance.global_position + collision_normal, Vector3.UP)
+	var up = Vector3.RIGHT if collision_normal.is_equal_approx(Vector3.UP) else Vector3.UP
+	p.look_at(collision_point + collision_normal, up)
+	p.restart()
 
 
 func shake_target(target: Node3D):

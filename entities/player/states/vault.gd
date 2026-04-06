@@ -15,8 +15,11 @@ const VAULT_DURATION := 0.5
 # Collision mask matching terrain / static bodies
 const COLLISION_MASK := 4 | 2 | 32
 
+var _fallback_state: String = MOVE
 
-func enter(_previous_state_path: String, _data := {}) -> void:
+
+func enter(previous_state_path: String, _data := {}) -> void:
+	_fallback_state = previous_state_path  # "Swim", "Move", "Sprint", etc.
 	player.velocity = Vector3.ZERO
 	player.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	_do_vault()
@@ -49,7 +52,7 @@ func _do_vault() -> void:
 	wall_q.exclude = exclude
 	if not space.intersect_ray(wall_q).is_empty():
 		# It's a solid wall — bail back to Move
-		finished.emit(MOVE)
+		finished.emit(_fallback_state)
 		return
 
 	# Ray 2: from above-forward downward — find ledge surface.
@@ -61,13 +64,13 @@ func _do_vault() -> void:
 	var ledge_hit := space.intersect_ray(ledge_q)
 
 	if ledge_hit.is_empty():
-		finished.emit(MOVE)
+		finished.emit(_fallback_state)
 		return
 
-	var land_pos: Vector3 = ledge_hit.position + Vector3.UP * 0.8
+	var land_pos: Vector3 = ledge_hit.position + Vector3.UP * 1.0
 	if land_pos.y <= player.global_position.y + 0.1:
 		# Surface isn't higher than us
-		finished.emit(MOVE)
+		finished.emit(_fallback_state)
 		return
 
 	# Clearance check: ray upward from just above landing floor to player full height
@@ -84,7 +87,7 @@ func _do_vault() -> void:
 
 	if clearance < player.height * 0.5 - 0.05:
 		# Less than half height — would get stuck, abort
-		finished.emit(MOVE)
+		finished.emit(_fallback_state)
 		return
 
 	var force_crouch: bool = clearance < player.height

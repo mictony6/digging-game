@@ -171,7 +171,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oc4ur"]
 flip_faces = true
-size = Vector3(1.72, 3.435, 1.09)
+size = Vector3(1.72, 2, 1.09)
 
 [node name="Elevator" type="Node3D" unique_id=1038308039]
 script = ExtResource("1_7domg")
