@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and can_rotate:
+	if event is InputEventMouseMotion and can_rotate and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var x_rot = event.relative.y * (MOUSE_SENSITIVITY * MOUSE_X_SENSITIVITY)
 		var y_rot = event.relative.x * (MOUSE_SENSITIVITY * MOUSE_Y_SENSITIVITY)
 
