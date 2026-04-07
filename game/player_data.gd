@@ -1,6 +1,7 @@
 extends Node
 
 var coins: int = 0
+var coins_earned_today: int = 0
 
 # upgradeables
 var depletion_rate: float = 1.0
@@ -13,9 +14,11 @@ signal coins_changed(val: int)
 
 
 func add_coins(value: int):
-    coins += value
-    coins_changed.emit(coins)
+	coins += value
+	coins_earned_today += value
+	coins_changed.emit(coins)
 
 func remove_coins(value: int):
-    coins -= value
-    coins_changed.emit(coins)
+	coins -= value
+	coins_earned_today = max(0, coins_earned_today - value)
+	coins_changed.emit(coins)

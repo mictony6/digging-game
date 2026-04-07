@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://8r7p8wjs2y1n"]
+
+[ext_resource type="Script" uid="uid://wv4yfsmmkca3" path="res://ui/day_end_screen.gd" id="1_epjge"]
+
+[node name="DayEndScreen" type="Control" unique_id=395937947]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_epjge")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1373062714]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1563076713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=866394204]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=984782889]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=184088726]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1204272062]
+layout_mode = 2
+text = "END OF SHIFT"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1378019384]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1562821974]
+unique_name_in_owner = true
+layout_mode = 2
+text = "DAY 1"
+
+[node name="Spacer1" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=118382468]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="EarningsHeader" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1975030059]
+layout_mode = 2
+text = "EARNINGS"
+
+[node name="OreRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1164073675]
+layout_mode = 2
+
+[node name="OreLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OreRow" unique_id=1824823497]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Ore sold"
+
+[node name="OreValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OreRow" unique_id=1615214754]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+0 c"
+horizontal_alignment = 2
+
+[node name="QuotaBonusRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=-2060406062]
+layout_mode = 2
+
+[node name="QuotaBonusLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuotaBonusRow" unique_id=-2060406061]
+modulate = Color(1, 0.85, 0.1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Quota bonus"
+
+[node name="QuotaBonusValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuotaBonusRow" unique_id=-2060406060]
+unique_name_in_owner = true
+modulate = Color(1, 0.85, 0.1, 1)
+layout_mode = 2
+text = "+0 c"
+horizontal_alignment = 2
+
+[node name="Spacer2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1761394608]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="DeductionsHeader" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=41639305]
+layout_mode = 2
+text = "DEDUCTIONS"
+
+[node name="FoodRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1330268370]
+layout_mode = 2
+
+[node name="FoodLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FoodRow" unique_id=183161128]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Food & water"
+
+[node name="FoodValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FoodRow" unique_id=949652190]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="AccommodationRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=298390454]
+layout_mode = 2
+
+[node name="AccommodationLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AccommodationRow" unique_id=18489019]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Accommodation"
+
+[node name="AccommodationValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AccommodationRow" unique_id=1060499287]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="HospitalRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=458780143]
+layout_mode = 2
+
+[node name="HospitalLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HospitalRow" unique_id=783814552]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Maria's hospital"
+
+[node name="HospitalValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HospitalRow" unique_id=1624650071]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="ToolRepairRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2053313569]
+layout_mode = 2
+
+[node name="ToolRepairLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ToolRepairRow" unique_id=1417817968]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Tool repair"
+
+[node name="ToolRepairValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ToolRepairRow" unique_id=80881744]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="TaxRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1785714562]
+layout_mode = 2
+
+[node name="TaxLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TaxRow" unique_id=913016119]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Company tax (10%)"
+
+[node name="TaxValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TaxRow" unique_id=454492032]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="TotalRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1529425128]
+layout_mode = 2
+
+[node name="TotalLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TotalRow" unique_id=70155756]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Total deducted"
+
+[node name="TotalValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TotalRow" unique_id=2112048747]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-0 c"
+horizontal_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=723852886]
+layout_mode = 2
+
+[node name="NetLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1343717788]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NET THIS DAY      +0 c"
+horizontal_alignment = 2
+
+[node name="WalletLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1052021631]
+unique_name_in_owner = true
+layout_mode = 2
+text = "WALLET TOTAL    0 c"
+horizontal_alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1406194635]
+layout_mode = 2
+
+[node name="NextBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=788335747]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NEXT DAY"
