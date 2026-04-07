@@ -20,6 +20,8 @@ func _ready() -> void:
 	tool_area3d.body_entered.connect(_on_body_entered)
 	tool_area3d.body_exited.connect(_on_body_exited)
 	tool_raycast.enabled = false
+	current_durability = _get_max_durability()
+	DateManager.day_passed.connect(func(_days): repair())
 	for i in PARTICLE_POOL_SIZE:
 		var p: GPUParticles3D = hit_particles.instantiate()
 		add_child(p)
@@ -34,6 +36,28 @@ var tool_current_cooldown: float = 0.0
 
 var _pressing: bool = false
 
+var current_durability: float = 100.0
+signal durability_changed(current: float, max_val: float)
+
+func _get_max_durability() -> float:
+	return current_tool.tool_data.max_durability if current_tool and current_tool.tool_data else 100.0
+
+func repair() -> void:
+	current_durability = _get_max_durability()
+	durability_changed.emit(current_durability, _get_max_durability())
+
+func upgrade_max_durability(amount: float) -> void:
+	current_tool.tool_data.max_durability += amount
+	current_durability += amount
+	durability_changed.emit(current_durability, _get_max_durability())
+
+func upgrade_tier() -> void:
+	current_tool.tool_data.tier_upgrade += 1
+
+func upgrade_strength() -> void:
+	var td := current_tool.tool_data
+	td.strength_upgrade += (td.tier + td.tier_upgrade) * 0.05
+
 func _process(_delta: float) -> void:
 	_pressing = Input.is_action_pressed("action")
 
@@ -43,6 +67,9 @@ func _physics_process(delta: float) -> void:
 		return
 	if _pressing:
 		tool_raycast.force_raycast_update()
+	if _pressing and current_durability <= 0:
+		beam.hide()
+		return
 	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
 		var collision_point = tool_raycast.get_collision_point()
 
@@ -57,6 +84,9 @@ func _physics_process(delta: float) -> void:
 		flicker.global_position = collision_point
 		flicker.flash()
 		tool_current_cooldown = tool_max_cooldown
+
+		current_durability = max(current_durability - 1.0, 0.0)
+		durability_changed.emit(current_durability, _get_max_durability())
 	else:
 		beam.hide()
 

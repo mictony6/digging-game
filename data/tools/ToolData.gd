@@ -5,6 +5,7 @@ class_name ToolData
 @export var name: String = "New Tool"
 @export var tier: int = 1
 @export var strength: float = 1.0
+@export var max_durability: float = 100.0
 
 @export_category("Upgrades")
 @export var tier_upgrade: int = 0
