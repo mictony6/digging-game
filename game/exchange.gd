@@ -8,5 +8,5 @@ func _on_is_selectable_selected(_player, _tool) -> void:
 
 
 func _exchange(value: int, rate: float):
-	QuotaManager.reset()
+	QuotaManager.sell()
 	return value * rate
