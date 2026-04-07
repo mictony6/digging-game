@@ -17,7 +17,7 @@ Two interlocking loops drive the experience:
 **The Grind**
 `Dig → Meet Quota → Sell → Pay Expenses → Upgrade → Repeat`
 
-Each day you descend into the mine. Break rock, manage your oxygen, and haul enough ore to meet the company's quota before heading back up. At day's end a full expense report lands on the table — food, rent, hospital, tax — and whatever's left is yours to spend on upgrades that let you go deeper tomorrow.
+Each day you descend into the mine. Break rock, manage your oxygen, and haul enough ore to meet the company's quota before heading back up. At day's end a full expense report lands on the table and whatever's left is yours to spend on upgrades that let you go deeper tomorrow.
 
 **The Mystery**
 `Dig → Discover Notes & Clues → Reach Hidden POIs → Uncover the Story → Earn Rewards`
