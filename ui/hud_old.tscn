@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://rlt13eerpop6"]
+
+[ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="1_jwve4"]
+[ext_resource type="Script" uid="uid://b608we0ij00bo" path="res://game/coordinates.gd" id="2_g0u1u"]
+
+[node name="HUD" type="Control" unique_id=249484984 node_paths=PackedStringArray("death_screen", "player", "eod_screen", "tool_manager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+script = ExtResource("1_jwve4")
+death_screen = NodePath("")
+player = NodePath("")
+eod_screen = NodePath("")
+tool_manager = NodePath("")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1504423445]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.25
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 74.0
+grow_vertical = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1854095827]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1915261319]
+layout_mode = 2
+allow_greater = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=662874624]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuotaLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=900236991]
+layout_mode = 2
+text = "Score:"
+
+[node name="QuotaValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=570698686]
+layout_mode = 2
+text = "0"
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=618611553]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=1114849628]
+layout_mode = 2
+text = "+"
+
+[node name="Coordinates" type="VBoxContainer" parent="." unique_id=1295798126 node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = 42.0
+offset_bottom = 119.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("2_g0u1u")
+player = NodePath("")
+
+[node name="X" type="Label" parent="Coordinates" unique_id=680789773]
+layout_mode = 2
+text = "X"
+horizontal_alignment = 2
+
+[node name="Y" type="Label" parent="Coordinates" unique_id=342547056]
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 2
+
+[node name="Z" type="Label" parent="Coordinates" unique_id=1106488085]
+layout_mode = 2
+text = "Z"
+horizontal_alignment = 2
+
+[node name="CoinAmountLabel" type="Label" parent="." unique_id=1844045727]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 81.0
+offset_bottom = 35.0
+text = "Coins: 0"
+
+[node name="OxygenLevel" type="ProgressBar" parent="." unique_id=1728397220]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -356.0
+offset_right = 57.0
+offset_bottom = -138.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 3
+
+[node name="HealthDisplay" type="ProgressBar" parent="." unique_id=318260230]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = -356.0
+offset_right = 108.0
+offset_bottom = -138.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 3
+
+[node name="DurabilityBar" type="ProgressBar" parent="." unique_id=1840864128]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 134.0
+offset_top = -356.0
+offset_right = 159.0
+offset_bottom = -138.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 3
