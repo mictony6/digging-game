@@ -1,4 +1,4 @@
-# Digging Game
+# Sunk Cost
 
 > *Every swing of the pickaxe is for her.*
 
