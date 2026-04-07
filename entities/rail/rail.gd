@@ -60,6 +60,10 @@ class_name Rail
 	set(value):
 		rail_segments = value
 		build_rails()
+@export var rail_y_offset: float = 0.0:
+	set(value):
+		rail_y_offset = value
+		build_rails()
 
 
 func _ready() -> void:
@@ -150,6 +154,7 @@ func build_rails() -> void:
 
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	st.set_smooth_group(-1)
 
 	_extrude_rail(st, -rail_gauge * 0.5)
 	_extrude_rail(st, rail_gauge * 0.5)
@@ -206,7 +211,7 @@ func _extrude_rail(st: SurfaceTool, x_offset: float) -> void:
 			up = Vector3.FORWARD
 
 		var rail_basis := Basis.looking_at(tangent, up)
-		var center := pos + rail_basis.x * x_offset
+		var center := pos + rail_basis.x * x_offset + rail_basis.y * rail_y_offset
 
 		var ring: Array[Vector3] = []
 		for p in profile:
