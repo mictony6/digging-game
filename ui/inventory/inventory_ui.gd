@@ -2,14 +2,15 @@ class_name InventoryUI
 extends Control
 
 
-@onready var _grid: GridContainer = $Background/MarginContainer/HBox/LeftPanel/Scroll/Grid
-@onready var _detail_icon: TextureRect = $Background/MarginContainer/HBox/RightPanel/VBox/Icon
-@onready var _detail_name: Label = $Background/MarginContainer/HBox/RightPanel/VBox/ItemName
-@onready var _detail_desc: Label = $Background/MarginContainer/HBox/RightPanel/VBox/Description
-@onready var _detail_count: Label = $Background/MarginContainer/HBox/RightPanel/VBox/CountLabel
-@onready var _sort_type_btn: Button = $Background/MarginContainer/HBox/LeftPanel/SortRow/SortByType
-@onready var _sort_used_btn: Button = $Background/MarginContainer/HBox/LeftPanel/SortRow/SortByUsed
-@onready var _crafting_row = $Background/MarginContainer/HBox/RightPanel/VBox/CraftingRow
+@onready var _blur_rect: ColorRect = $BlurRect
+@onready var _grid: GridContainer = $Background/OuterVBox/ContentMargin/HBox/LeftPanel/Scroll/Grid
+@onready var _detail_icon: TextureRect = $Background/OuterVBox/ContentMargin/HBox/RightPanel/RightMargin/VBox/Icon
+@onready var _detail_name: Label = $Background/OuterVBox/ContentMargin/HBox/RightPanel/RightMargin/VBox/ItemName
+@onready var _detail_desc: Label = $Background/OuterVBox/ContentMargin/HBox/RightPanel/RightMargin/VBox/Description
+@onready var _detail_count: Label = $Background/OuterVBox/ContentMargin/HBox/RightPanel/RightMargin/VBox/CountLabel
+@onready var _sort_type_btn: Button = $Background/OuterVBox/TopBar/TopBarMargin/TopBarHBox/SortByType
+@onready var _sort_used_btn: Button = $Background/OuterVBox/TopBar/TopBarMargin/TopBarHBox/SortByUsed
+@onready var _crafting_row = $Background/OuterVBox/ContentMargin/HBox/RightPanel/RightMargin/VBox/CraftingRow
 
 const SLOT_SCENE := preload("res://ui/inventory/InventorySlotUI.tscn")
 const TIMER_SCENE := preload("res://ui/inventory/CraftingTimerUI.tscn")
@@ -60,15 +61,16 @@ func open(inventory) -> void:
 	_inventory.changed.connect(_refresh)
 	_build_crafting_timers()
 	_refresh()
+	_blur_rect.modulate.a = 0.0
 	show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var t := create_tween()
+	t.tween_property(_blur_rect, "modulate:a", 1.0, 0.18)
 
 func close() -> void:
 	if _inventory and _inventory.changed.is_connected(_refresh):
 		_inventory.changed.disconnect(_refresh)
 	_clear_detail()
 	hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _refresh() -> void:
 	for child in _grid.get_children():
