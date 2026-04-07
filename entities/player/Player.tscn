@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_ak4un"]
+[ext_resource type="Script" path="res://entities/player/pickup_component.gd" id="99_pickup"]
 [ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
 [ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
 [ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="3_5qbdv"]
@@ -487,3 +488,6 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LadderDetector" unique_id=420000002]
 shape = SubResource("BoxShape3D_ladder1")
 debug_color = Color(0.72590554, 0.47649008, 1.92523e-07, 0.41960785)
+
+[node name="PickupComponent" type="Node" parent="."]
+script = ExtResource("99_pickup")
