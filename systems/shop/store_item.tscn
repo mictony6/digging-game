@@ -1,39 +1,85 @@
 [gd_scene format=3 uid="uid://drxwqodp3plus"]
 
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_52aqx"]
+[ext_resource type="Script" uid="uid://c9storeitem1gd" path="res://systems/shop/store_item.gd" id="2_storeitem"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmxiq"]
-bg_color = Color(0.318761, 0.31876105, 0.31876102, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+[sub_resource type="StyleBoxFlat" id="item_bg"]
+bg_color = Color(0.04, 0.03, 0.02, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.50, 0.40, 0.35)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+bg_color = Color(0.06, 0.05, 0.03, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.50, 0.40, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+bg_color = Color(0.10, 0.08, 0.04, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.90, 0.82, 0.60, 1.0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="btn_focus"]
 
 [node name="StoreItem" type="PanelContainer" unique_id=993386656]
-custom_minimum_size = Vector2(200, 200)
-theme_override_styles/panel = SubResource("StyleBoxFlat_qmxiq")
+custom_minimum_size = Vector2(160, 180)
+script = ExtResource("2_storeitem")
+theme_override_styles/panel = SubResource("item_bg")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=143054762]
+[node name="Margin" type="MarginContainer" parent="." unique_id=9100001]
 layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=676088669]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin" unique_id=676088669]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1908785924]
+[node name="TextureRect" type="TextureRect" parent="Margin/VBoxContainer" unique_id=798653887]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Torch"
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=798653887]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
+size_flags_vertical = 3
 texture = ExtResource("1_52aqx")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1455836400]
+[node name="Label" type="Label" parent="Margin/VBoxContainer" unique_id=1908785924]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Buy"
+theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1.0)
+theme_override_font_sizes/font_size = 16
+text = "Torch"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Margin/VBoxContainer" unique_id=1455836400]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.60, 0.50, 0.85)
+theme_override_colors/font_hover_color = Color(0.92, 0.88, 0.78, 1.0)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/hover = SubResource("btn_hover")
+theme_override_styles/pressed = SubResource("btn_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "BUY"
