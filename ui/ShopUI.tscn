@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://500eky0vi3qs"]
+
+[ext_resource type="PackedScene" uid="uid://dl8rloc1873ka" path="res://ui/UpgradeItem.tscn" id="1_upgrade"]
+[ext_resource type="PackedScene" uid="uid://drxwqodp3plus" path="res://systems/shop/store_item.tscn" id="2_store"]
+[ext_resource type="Shader" uid="uid://oafpupbfk11v" path="res://assets/shaders/screen_blur.gdshader" id="3_blur"]
+[ext_resource type="Script" uid="uid://f477dpm26o55" path="res://ui/shop_ui.gd" id="4_shopui"]
+[ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="5_cl8rv"]
+[ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="6_ijwp2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("3_blur")
+shader_parameter/blur_strength = 2.5
+shader_parameter/tint_color = Color(0, 0, 0, 0.45)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.04, 0.03, 0.02, 0.72)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.5, 0.4, 0.35)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.06, 0.05, 0.03, 0.92)
+border_width_bottom = 1
+border_color = Color(0.55, 0.5, 0.4, 0.4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exit"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hbhm7"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_n586u"]
+events = [SubResource("InputEventKey_hbhm7")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.06, 0.05, 0.03, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.5, 0.4, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.1, 0.08, 0.04, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9, 0.82, 0.6, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ShopUI" type="Control" unique_id=303738837]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_shopui")
+
+[node name="BlurRect" type="ColorRect" parent="." unique_id=2142855834]
+material = SubResource("ShaderMaterial_blur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=1119829850]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1855236051]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -300.0
+offset_right = 420.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="OuterVBox" type="VBoxContainer" parent="Panel" unique_id=1299514609]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="PanelContainer" parent="Panel/OuterVBox" unique_id=835634272]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="TopBarMargin" type="MarginContainer" parent="Panel/OuterVBox/TopBar" unique_id=961242104]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="TopBarHBox" type="HBoxContainer" parent="Panel/OuterVBox/TopBar/TopBarMargin" unique_id=26566403]
+layout_mode = 2
+
+[node name="TitleVBox" type="VBoxContainer" parent="Panel/OuterVBox/TopBar/TopBarMargin/TopBarHBox" unique_id=1074180461]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="ShopTitle" type="Label" parent="Panel/OuterVBox/TopBar/TopBarMargin/TopBarHBox/TitleVBox" unique_id=123856356]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 20
+text = "MINING SHOP"
+
+[node name="ShopSubtitle" type="Label" parent="Panel/OuterVBox/TopBar/TopBarMargin/TopBarHBox/TitleVBox" unique_id=1399715082]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.6, 0.5, 0.85)
+theme_override_font_sizes/font_size = 13
+text = "Upgrade your equipment and boost your earnings"
+
+[node name="ExitButton" type="Button" parent="Panel/OuterVBox/TopBar/TopBarMargin/TopBarHBox" unique_id=547147843]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.65, 0.6, 0.5, 0.85)
+theme_override_colors/font_hover_color = Color(0.92, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_exit")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_exit")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_exit")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_exit")
+shortcut = SubResource("Shortcut_n586u")
+text = "✕"
+flat = true
+
+[node name="ContentMargin" type="MarginContainer" parent="Panel/OuterVBox" unique_id=1881616136]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="TabContainer" type="TabContainer" parent="Panel/OuterVBox/ContentMargin" unique_id=266315627]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_selected_color = Color(0.92, 0.88, 0.78, 1)
+theme_override_colors/font_unselected_color = Color(0.65, 0.6, 0.5, 0.55)
+theme_override_font_sizes/font_size = 14
+current_tab = 0
+
+[node name="Upgrades" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=136286217]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades" unique_id=64873000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradeParent" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer" unique_id=203495106]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="TierUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=481479941 instance=ExtResource("1_upgrade")]
+layout_mode = 2
+cost = 100
+
+[node name="StrengthUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=965015791 instance=ExtResource("1_upgrade")]
+layout_mode = 2
+upgrade = 1
+cost = 50
+
+[node name="DurabilityUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=965015792 instance=ExtResource("1_upgrade")]
+layout_mode = 2
+upgrade = 2
+cost = 75
+
+[node name="Sell" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=1443683913]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Add100Coins" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Sell" unique_id=1226350546]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_exit")
+text = "+100 coins"
+
+[node name="Buy" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=19823653]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_tab_index = 2
+
+[node name="StoreItemGrid" type="GridContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Buy" unique_id=2111810313]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="StoreItem" parent="Panel/OuterVBox/ContentMargin/TabContainer/Buy/StoreItemGrid" unique_id=1602656045 instance=ExtResource("2_store")]
+layout_mode = 2
+item = ExtResource("5_cl8rv")
+
+[node name="StoreItem2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Buy/StoreItemGrid" unique_id=1344251063 instance=ExtResource("2_store")]
+layout_mode = 2
+item = ExtResource("6_ijwp2")

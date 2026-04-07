@@ -3,57 +3,114 @@
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_2ib3c"]
 [ext_resource type="Script" uid="uid://c7hcepwiic7nx" path="res://ui/UpgradeItem.gd" id="1_hrcar"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmxiq"]
-content_margin_left = 6.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 6.0
-bg_color = Color(0.77991056, 0.6777373, 0.4106813, 1)
+[sub_resource type="StyleBoxFlat" id="item_bg"]
+bg_color = Color(0.04, 0.03, 0.02, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.50, 0.40, 0.35)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+bg_color = Color(0.06, 0.05, 0.03, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.50, 0.40, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+bg_color = Color(0.10, 0.08, 0.04, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.90, 0.82, 0.60, 1.0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+bg_color = Color(1, 1, 1, 0.10)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="bar_fill"]
+bg_color = Color(0.90, 0.82, 0.60, 1.0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="btn_focus"]
+
 [node name="UpgradeItem" type="PanelContainer" unique_id=1251296680]
-theme_override_styles/panel = SubResource("StyleBoxFlat_qmxiq")
+custom_minimum_size = Vector2(0, 72)
+theme_override_styles/panel = SubResource("item_bg")
 script = ExtResource("1_hrcar")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1873896952]
+[node name="Margin" type="MarginContainer" parent="." unique_id=9000001]
 layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=2020971672]
-custom_minimum_size = Vector2(64, 64)
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin" unique_id=1873896952]
 layout_mode = 2
-size_flags_horizontal = 2
+theme_override_constants/separation = 14
+
+[node name="TextureRect" type="TextureRect" parent="Margin/HBoxContainer" unique_id=2020971672]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("1_2ib3c")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="UpgradeName" type="Label" parent="HBoxContainer" unique_id=2053924459]
-layout_mode = 2
-text = "Laser Tool"
-horizontal_alignment = 1
-
-[node name="Spacer5" type="Control" parent="HBoxContainer" unique_id=1827861766]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer" unique_id=2109177142]
+[node name="InfoVBox" type="VBoxContainer" parent="Margin/HBoxContainer" unique_id=9000002]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 5.0
+theme_override_constants/separation = 4
+
+[node name="UpgradeName" type="Label" parent="Margin/HBoxContainer/InfoVBox" unique_id=2053924459]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1.0)
+theme_override_font_sizes/font_size = 16
+text = "TIER UPGRADE"
+
+[node name="ProgressBar" type="ProgressBar" parent="Margin/HBoxContainer/InfoVBox" unique_id=2109177142]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 20.0
 step = 1.0
-rounded = true
+show_percentage = false
+theme_override_styles/background = SubResource("bar_bg")
+theme_override_styles/fill = SubResource("bar_fill")
 
-[node name="Spacer6" type="Control" parent="HBoxContainer" unique_id=2088586848]
+[node name="ActionButton" type="Button" parent="Margin/HBoxContainer" unique_id=1523171554]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
-
-[node name="ActionButton" type="Button" parent="HBoxContainer" unique_id=1523171554]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "UPGRADE
-100 Coins"
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.65, 0.60, 0.50, 0.85)
+theme_override_colors/font_hover_color = Color(0.92, 0.88, 0.78, 1.0)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/hover = SubResource("btn_hover")
+theme_override_styles/pressed = SubResource("btn_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "UPGRADE\n100 coins"
