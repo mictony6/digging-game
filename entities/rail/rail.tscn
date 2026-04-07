@@ -19,6 +19,8 @@ mesh = ExtResource("2_dhy4e")
 spacing = 0.5
 support_spacing = 0.5
 rail_segments = 24
+rail_y_offset = null
+rail_smooth_angle = null
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=178434704]
 

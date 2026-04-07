@@ -2,9 +2,11 @@
 
 [ext_resource type="Environment" uid="uid://bo22vvl5ev0to" path="res://data/environment/main.tres" id="1_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://dmujhjwc5ylgy" path="res://entities/player/Player.tscn" id="1_r4e4k"]
-[ext_resource type="Script" uid="uid://b608we0ij00bo" path="res://game/coordinates.gd" id="4_6g8e2"]
+[ext_resource type="Script" uid="uid://b4mdwbcbecch1" path="res://data/shop/shop_item_entry.gd" id="5_mteop"]
+[ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="6_slyy5"]
+[ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="7_6k6bt"]
 [ext_resource type="Texture2D" uid="uid://df2hdtir30aw3" path="res://GreyboxTextures/greybox_green_solid.png" id="7_kyecp"]
-[ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="8_2grjb"]
+[ext_resource type="Script" uid="uid://diaivb40i7ypx" path="res://data/shop/upgrade_entry.gd" id="8_7nn5j"]
 [ext_resource type="PackedScene" uid="uid://bb8q5e8g11qb6" path="res://systems/shop/Shop.tscn" id="13_drwxn"]
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
 [ext_resource type="PackedScene" uid="uid://cibqp30ke24fh" path="res://entities/ladder/ladder_generator.tscn" id="15_xqdkm"]
@@ -24,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://gq6av05p0bv4" path="res://environment/mound/rock_pile.tscn" id="32_mjxbh"]
 [ext_resource type="PackedScene" uid="uid://btl12hu81c37h" path="res://environment/lightpost/torch.tscn" id="33_0v7wf"]
 [ext_resource type="PackedScene" uid="uid://b62ceimsar2op" path="res://assets/meshes/tree/tree.glb" id="33_4ksiy"]
+[ext_resource type="PackedScene" uid="uid://dqdxyibkcyjar" path="res://ui/player_hud.tscn" id="34_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://b2bxcey8u4o" path="res://entities/rail/rail.tscn" id="35_1ijy3"]
 [ext_resource type="PackedScene" uid="uid://bqdbh0mi2jvo8" path="res://environment/stalagmite/stalagmite_medium.tscn" id="35_krped"]
 [ext_resource type="PackedScene" uid="uid://bdslp2bfm771l" path="res://entities/planks/WoodenPlanks2.tscn" id="35_m8nfy"]
@@ -34,10 +37,39 @@
 [ext_resource type="PackedScene" uid="uid://dmxt2kujrceq0" path="res://entities/planks/WoodenPlanks.tscn" id="36_m8nfy"]
 [ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="36_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="37_01s5a"]
-[ext_resource type="Script" uid="uid://crjiivy1niwso" path="res://game/date_manager.gd" id="37_xqdkm"]
+[ext_resource type="PackedScene" uid="uid://8r7p8wjs2y1n" path="res://ui/day_end_screen.tscn" id="37_gmj64"]
+[ext_resource type="PackedScene" uid="uid://500eky0vi3qs" path="res://ui/ShopUI.tscn" id="38_shopui"]
 [ext_resource type="PackedScene" uid="uid://bfsg057gh6mku" path="res://entities/pot/Pot1.tscn" id="39_gmj64"]
 [ext_resource type="PackedScene" uid="uid://sx0awbrt80do" path="res://entities/lift/Elevator.tscn" id="39_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://bxcsf7he164iw" path="res://environment/cave_tunnel/cave_tunnel.tscn" id="40_gmj64"]
+[ext_resource type="Script" uid="uid://nc530jhrkgdl" path="res://game/rest_point.gd" id="40_j3o6a"]
+[ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="40_uoqfl"]
+
+[sub_resource type="Resource" id="Resource_fywoe"]
+script = ExtResource("5_mteop")
+item = ExtResource("6_slyy5")
+metadata/_custom_type_script = "uid://b4mdwbcbecch1"
+
+[sub_resource type="Resource" id="Resource_clpq5"]
+script = ExtResource("5_mteop")
+item = ExtResource("7_6k6bt")
+metadata/_custom_type_script = "uid://b4mdwbcbecch1"
+
+[sub_resource type="Resource" id="Resource_kl5js"]
+script = ExtResource("8_7nn5j")
+base_cost = 100
+metadata/_custom_type_script = "uid://diaivb40i7ypx"
+
+[sub_resource type="Resource" id="Resource_1wu2q"]
+script = ExtResource("8_7nn5j")
+upgrade_type = 1
+base_cost = 75
+metadata/_custom_type_script = "uid://diaivb40i7ypx"
+
+[sub_resource type="Resource" id="Resource_4c3pj"]
+script = ExtResource("8_7nn5j")
+upgrade_type = 2
+metadata/_custom_type_script = "uid://diaivb40i7ypx"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
 size = Vector3(10, 5, 2)
@@ -80,6 +112,10 @@ font = SubResource("SystemFont_1w0m8")
 font_size = 45
 font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
 
+[sub_resource type="SphereMesh" id="SphereMesh_j3o6a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u2lxf"]
+
 [node name="Main" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
@@ -110,8 +146,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 
 [node name="Exchange" parent="LevelLoader/OverWorld" unique_id=542972572 instance=ExtResource("20_u1nm5")]
 transform = Transform3D(0.09638426, 0, 0.99534416, 0, 1, 0, -0.99534416, 0, 0.09638426, -10.94757, -25.221527, -2.7884583)
 
-[node name="Shop" parent="LevelLoader/OverWorld" unique_id=30838348 instance=ExtResource("13_drwxn")]
+[node name="Shop" parent="LevelLoader/OverWorld" unique_id=30838348 node_paths=PackedStringArray("shop_ui") instance=ExtResource("13_drwxn")]
 transform = Transform3D(-4.827799e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -4.827799e-08, -5.5, -25.454784, 3)
+shop_ui = NodePath("../../../HudLayer/ShopUI")
+items_for_sale = Array[ExtResource("5_mteop")]([SubResource("Resource_fywoe"), SubResource("Resource_clpq5")])
+upgrades_available = Array[ExtResource("8_7nn5j")]([SubResource("Resource_kl5js"), SubResource("Resource_1wu2q"), SubResource("Resource_4c3pj")])
 
 [node name="LowOxygenArea" type="Area3D" parent="LevelLoader/OverWorld" unique_id=1042252791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -2.8509083, 19)
@@ -382,7 +421,11 @@ curve = SubResource("Curve3D_m8nfy")
 tie_rotation_offset = Vector3(-90, 0, 0)
 support_mesh = ExtResource("28_01s5a")
 support_mesh_height = 1.051
+rail_gauge = 0.96
+rail_width = 0.08
+rail_height = 0.12
 rail_segments = 64
+rail_y_offset = 0.07
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
 transform = Transform3D(-0.9840795, 0.02427144, 0.17559162, 0, 0.99046016, -0.13691913, -0.17726092, -0.13474502, -0.9748122, 4.367672, -1.4130743, -29.843206)
@@ -400,133 +443,12 @@ transform = Transform3D(1, 0, 0, 0, 0.9994805, -0.03223066, 0, 0.03223066, 0.999
 [node name="StonePlatform2" parent="LevelLoader" unique_id=1128614540 instance=ExtResource("28_0v7wf")]
 transform = Transform3D(0.22840177, -0.014316632, -0.44396222, 0, 0.499215, -0.016098391, 0.44419298, 0.0073615396, 0.2282831, 3.1758697, -29.637026, -25.90784)
 
-[node name="Player" parent="." unique_id=856414097 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_r4e4k")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 13.983446, -27.687815, -17.750813)
+[node name="Player" parent="." unique_id=856414097 node_paths=PackedStringArray("inventory_ui", "shop_ui") instance=ExtResource("1_r4e4k")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.8893862, -25.740543, 1.2597508)
 inventory_ui = NodePath("../CanvasLayer/InventoryUI")
+shop_ui = NodePath("../HudLayer/ShopUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
-
-[node name="HUD" type="Control" parent="CanvasLayer" unique_id=192495585 node_paths=PackedStringArray("death_screen", "player", "eod_screen")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-script = ExtResource("8_2grjb")
-death_screen = NodePath("../DeathScreen")
-player = NodePath("../../Player")
-eod_screen = NodePath("../EODUI")
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD" unique_id=1785891940]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 0.25
-anchor_bottom = 1.0
-offset_top = -66.0
-offset_right = 74.0
-grow_vertical = 0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer" unique_id=352445232]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer" unique_id=1172594507]
-layout_mode = 2
-allow_greater = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer" unique_id=854622434]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="QuotaLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer" unique_id=919107011]
-layout_mode = 2
-text = "Score:"
-
-[node name="QuotaValueLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer" unique_id=702570457]
-layout_mode = 2
-text = "0"
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/HUD" unique_id=1929997614]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/HUD/CenterContainer" unique_id=139434102]
-layout_mode = 2
-text = "+"
-
-[node name="Coordinates" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=187882786 node_paths=PackedStringArray("player")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -10.0
-offset_top = 42.0
-offset_bottom = 119.0
-grow_horizontal = 0
-mouse_filter = 2
-script = ExtResource("4_6g8e2")
-player = NodePath("../../../Player")
-
-[node name="X" type="Label" parent="CanvasLayer/HUD/Coordinates" unique_id=1903764707]
-layout_mode = 2
-text = "X"
-horizontal_alignment = 2
-
-[node name="Y" type="Label" parent="CanvasLayer/HUD/Coordinates" unique_id=985469745]
-layout_mode = 2
-text = "Y"
-horizontal_alignment = 2
-
-[node name="Z" type="Label" parent="CanvasLayer/HUD/Coordinates" unique_id=506404762]
-layout_mode = 2
-text = "Z"
-horizontal_alignment = 2
-
-[node name="CoinAmountLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1731782165]
-layout_mode = 1
-offset_left = 20.0
-offset_top = 12.0
-offset_right = 81.0
-offset_bottom = 35.0
-text = "Coins: 0"
-
-[node name="OxygenLevel" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=2020922117]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -356.0
-offset_right = 57.0
-offset_bottom = -138.0
-grow_vertical = 0
-value = 100.0
-fill_mode = 3
-
-[node name="HealthDisplay" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=1862382662]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 83.0
-offset_top = -356.0
-offset_right = 108.0
-offset_bottom = -138.0
-grow_vertical = 0
-value = 100.0
-fill_mode = 3
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=1799864921]
 visible = false
@@ -607,14 +529,42 @@ text = "Your qouta was not met."
 
 [node name="InventoryUI" parent="CanvasLayer" unique_id=219044315 instance=ExtResource("35_xqdkm")]
 
-[node name="DateManager" type="Node" parent="." unique_id=131097900]
-script = ExtResource("37_xqdkm")
+[node name="DayEndScreen" parent="CanvasLayer" unique_id=395937947 instance=ExtResource("37_gmj64")]
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=1641123564]
+layer = 2
+
+[node name="ShopUI" parent="HudLayer" unique_id=410000001 instance=ExtResource("38_shopui")]
+visible = true
+
+[node name="HUD" parent="HudLayer" unique_id=536596338 node_paths=PackedStringArray("death_screen", "player", "eod_screen", "inventory_ui", "shop_ui") instance=ExtResource("34_xqdkm")]
+death_screen = NodePath("../../CanvasLayer/DeathScreen")
+player = NodePath("../../Player")
+eod_screen = NodePath("../../CanvasLayer/DayEndScreen")
+inventory_ui = NodePath("../../CanvasLayer/InventoryUI")
+shop_ui = NodePath("../ShopUI")
 
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1761730934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3370378, -26.650867, -37.72174)
 size = Vector3(17.645468, 9.979639, 17.717957)
 data = ExtResource("27_8m07d")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=650285197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.904036, 0)
+script = ExtResource("40_j3o6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=495315696]
+mesh = SubResource("SphereMesh_j3o6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=182568236]
+shape = SubResource("SphereShape3D_u2lxf")
+
+[node name="IsSelectable" parent="StaticBody3D" unique_id=453905894 node_paths=PackedStringArray("target_mesh") instance=ExtResource("40_uoqfl")]
+target_mesh = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D/IsSelectable" unique_id=1020582890]
+shape = SubResource("SphereShape3D_u2lxf")
+
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]
-[connection signal="day_passed" from="DateManager" to="CanvasLayer/HUD" method="_on_date_manager_day_passed"]
+[connection signal="selected" from="StaticBody3D/IsSelectable" to="StaticBody3D" method="_on_is_selectable_selected"]

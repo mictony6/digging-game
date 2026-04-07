@@ -154,7 +154,6 @@ func build_rails() -> void:
 
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	st.set_smooth_group(-1)
 
 	_extrude_rail(st, -rail_gauge * 0.5)
 	_extrude_rail(st, rail_gauge * 0.5)
@@ -223,6 +222,7 @@ func _extrude_rail(st: SurfaceTool, x_offset: float) -> void:
 				var u0 := u_coords[j]
 				var u1 := u_coords[j + 1]
 
+				st.set_smooth_group(j)
 				st.set_uv(Vector2(u0, prev_v)); st.add_vertex(prev_ring[j])
 				st.set_uv(Vector2(u1, prev_v)); st.add_vertex(prev_ring[j_next])
 				st.set_uv(Vector2(u0, offset)); st.add_vertex(ring[j])
