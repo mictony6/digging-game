@@ -48,6 +48,7 @@ func _ready() -> void:
 		var static_col := CollisionShape3D.new()
 		static_col.shape = _climb_shape
 		_static_body = StaticBody3D.new()
+		set_static_collision_enabled(true)
 		_static_body.add_child(static_col)
 		add_child(_static_body)
 
@@ -105,7 +106,7 @@ func generate_rungs():
 
 func set_static_collision_enabled(enabled: bool) -> void:
 	if _static_body:
-		_static_body.collision_layer = 1 if enabled else 0
+		_static_body.collision_layer = 32 if enabled else 0
 
 
 func get_top_position() -> Vector3:

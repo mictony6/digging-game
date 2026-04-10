@@ -63,7 +63,6 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="ShopUI" type="Control" unique_id=303738837]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,9 +170,10 @@ size_flags_vertical = 3
 theme_override_colors/font_selected_color = Color(0.92, 0.88, 0.78, 1)
 theme_override_colors/font_unselected_color = Color(0.65, 0.6, 0.5, 0.55)
 theme_override_font_sizes/font_size = 14
-current_tab = 0
+current_tab = 1
 
 [node name="Upgrades" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=136286217]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -207,7 +207,6 @@ upgrade = 2
 cost = 75
 
 [node name="Sell" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=1443683913]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

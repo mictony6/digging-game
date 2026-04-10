@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqdxyibkcyjar"]
 
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://4k6kfetj34wt" path="res://ui/vitals_arc.gd" id="2_vitals_arc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
 bg_color = Color(1, 1, 1, 0.12)
@@ -9,22 +10,22 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dur_fill"]
+bg_color = Color(0.9, 0.72, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
-bg_color = Color(0.16, 0.84, 0.34, 1)
+bg_color = Color(0.88, 0.22, 0.14, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxygen_fill"]
-bg_color = Color(0.12, 0.68, 0.92, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dur_fill"]
-bg_color = Color(0.9, 0.72, 0.12, 1)
+bg_color = Color(0.22, 0.68, 0.88, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -62,6 +63,7 @@ vertical_alignment = 1
 
 [node name="DayLabel" type="Label" parent="." unique_id=910304340]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = 20.0
 offset_top = 18.0
@@ -76,144 +78,69 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = -191.0
-offset_right = 370.0
-offset_bottom = -19.0
+offset_left = 40.0
+offset_top = -86.0
+offset_right = 280.0
+offset_bottom = -36.0
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 8
 
-[node name="HealthRow" type="HBoxContainer" parent="VitalsGroup" unique_id=561456725]
-unique_name_in_owner = true
+[node name="HealthRow" type="HBoxContainer" parent="VitalsGroup" unique_id=2600000001]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="HealthIcon" type="Label" parent="VitalsGroup/HealthRow" unique_id=1126337028]
-custom_minimum_size = Vector2(20, 0)
+[node name="HealthIcon" type="Label" parent="VitalsGroup/HealthRow" unique_id=2600000002]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.16, 0.84, 0.34, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.88, 0.22, 0.14, 1.0)
+theme_override_font_sizes/font_size = 14
 text = "♥"
 vertical_alignment = 1
 
-[node name="HealthContent" type="VBoxContainer" parent="VitalsGroup/HealthRow" unique_id=293061726]
+[node name="HealthBar" type="ProgressBar" parent="VitalsGroup/HealthRow" unique_id=2600000003]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 2
-
-[node name="HealthTitleRow" type="HBoxContainer" parent="VitalsGroup/HealthRow/HealthContent" unique_id=1060429597]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HealthTitle" type="Label" parent="VitalsGroup/HealthRow/HealthContent/HealthTitleRow" unique_id=1764619395]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.55, 0.78, 0.88, 0.65)
-theme_override_font_sizes/font_size = 12
-text = "INTEGRITY"
-
-[node name="HealthPctLabel" type="Label" parent="VitalsGroup/HealthRow/HealthContent/HealthTitleRow" unique_id=917443443]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.16, 0.84, 0.34, 0.9)
-theme_override_font_sizes/font_size = 12
-text = "100%"
-horizontal_alignment = 2
-
-[node name="HealthBar" type="ProgressBar" parent="VitalsGroup/HealthRow/HealthContent" unique_id=183563278]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
 value = 100.0
 show_percentage = false
 
-[node name="OxygenRow" type="HBoxContainer" parent="VitalsGroup" unique_id=2117689356]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="OxygenIcon" type="Label" parent="VitalsGroup/OxygenRow" unique_id=1403163591]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.68, 0.92, 1)
-theme_override_font_sizes/font_size = 15
-text = "≋"
-vertical_alignment = 1
-
-[node name="OxygenContent" type="VBoxContainer" parent="VitalsGroup/OxygenRow" unique_id=30086432]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 2
-
-[node name="OxygenTitleRow" type="HBoxContainer" parent="VitalsGroup/OxygenRow/OxygenContent" unique_id=1074694657]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="OxygenTitle" type="Label" parent="VitalsGroup/OxygenRow/OxygenContent/OxygenTitleRow" unique_id=1214399673]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.55, 0.78, 0.88, 0.65)
-theme_override_font_sizes/font_size = 12
-text = "O2 RESERVES"
-
-[node name="OxygenPctLabel" type="Label" parent="VitalsGroup/OxygenRow/OxygenContent/OxygenTitleRow" unique_id=442895640]
+[node name="HealthPctLabel" type="Label" parent="VitalsGroup/HealthRow" unique_id=917443443]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.68, 0.92, 0.9)
+theme_override_colors/font_color = Color(0.92, 0.85, 0.75, 0.85)
 theme_override_font_sizes/font_size = 12
 text = "100%"
-horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="OxygenBar" type="ProgressBar" parent="VitalsGroup/OxygenRow/OxygenContent" unique_id=567251605]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 5)
+[node name="OxygenRow" type="HBoxContainer" parent="VitalsGroup" unique_id=2600000004]
 layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="OxygenIcon" type="Label" parent="VitalsGroup/OxygenRow" unique_id=2600000005]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.68, 0.88, 1.0)
+theme_override_font_sizes/font_size = 14
+text = "~"
+vertical_alignment = 1
+
+[node name="OxygenBar" type="ProgressBar" parent="VitalsGroup/OxygenRow" unique_id=2600000006]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oxygen_fill")
 value = 100.0
 show_percentage = false
-
-[node name="QuotaRow" type="HBoxContainer" parent="VitalsGroup" unique_id=1157782466]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 14
-
-[node name="QuotaPctLabel" type="Label" parent="VitalsGroup/QuotaRow" unique_id=2027836812]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(52, 52)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.75, 0.1, 1)
-theme_override_font_sizes/font_size = 19
-text = "0%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="QuotaInfo" type="VBoxContainer" parent="VitalsGroup/QuotaRow" unique_id=791865345]
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/separation = 4
-
-[node name="QuotaTitle" type="Label" parent="VitalsGroup/QuotaRow/QuotaInfo" unique_id=1941308690]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.55, 0.78, 0.88, 0.9)
-theme_override_font_sizes/font_size = 19
-text = "CURRENT QUOTA"
-
-[node name="QuotaValueLabel" type="Label" parent="VitalsGroup/QuotaRow/QuotaInfo" unique_id=1120594343]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 1, 1, 1)
-theme_override_font_sizes/font_size = 28
-text = "0 / 300 SC"
 
 [node name="InfoGroup" type="VBoxContainer" parent="." unique_id=842652148]
 unique_name_in_owner = true
@@ -302,7 +229,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -300.0
-offset_top = -280.0
+offset_top = -340.0
 offset_right = -20.0
 offset_bottom = -195.0
 grow_horizontal = 0
@@ -312,7 +239,6 @@ theme_override_constants/separation = 3
 
 [node name="StatSepTop" type="HSeparator" parent="PickaxeStatsPanel" unique_id=1042589305]
 layout_mode = 2
-theme_override_colors/separator_color = Color(0.55, 0.50, 0.40, 0.35)
 
 [node name="StatsGrid" type="GridContainer" parent="PickaxeStatsPanel" unique_id=1042589306]
 layout_mode = 2
@@ -330,7 +256,7 @@ text = "TIER"
 [node name="StatTier" type="Label" parent="PickaxeStatsPanel/StatsGrid" unique_id=1042589308]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 1.0, 1.0, 1.0)
+theme_override_colors/font_color = Color(0.95, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 text = "1"
 horizontal_alignment = 2
@@ -345,7 +271,7 @@ text = "POWER"
 [node name="StatPower" type="Label" parent="PickaxeStatsPanel/StatsGrid" unique_id=1042589310]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 1.0, 1.0, 1.0)
+theme_override_colors/font_color = Color(0.95, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 text = "1.00"
 horizontal_alignment = 2
@@ -360,14 +286,52 @@ text = "MAX DUR"
 [node name="StatMaxDur" type="Label" parent="PickaxeStatsPanel/StatsGrid" unique_id=1042589312]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 1.0, 1.0, 1.0)
+theme_override_colors/font_color = Color(0.95, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 text = "100"
 horizontal_alignment = 2
 
 [node name="StatSepBottom" type="HSeparator" parent="PickaxeStatsPanel" unique_id=1042589313]
 layout_mode = 2
-theme_override_colors/separator_color = Color(0.55, 0.50, 0.40, 0.35)
+
+[node name="QuotaSep" type="HSeparator" parent="PickaxeStatsPanel" unique_id=-1894967286]
+layout_mode = 2
+
+[node name="QuotaGrid" type="GridContainer" parent="PickaxeStatsPanel" unique_id=-1894967285]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="QuotaKey" type="Label" parent="PickaxeStatsPanel/QuotaGrid" unique_id=-1894967284]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.78, 0.88, 0.65)
+theme_override_font_sizes/font_size = 12
+text = "QUOTA"
+
+[node name="QuotaValueLabel" type="Label" parent="PickaxeStatsPanel/QuotaGrid" unique_id=1120594343]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "0 / 300 SC"
+horizontal_alignment = 2
+
+[node name="QuotaPctKey" type="Label" parent="PickaxeStatsPanel/QuotaGrid" unique_id=-1894967283]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.78, 0.88, 0.65)
+theme_override_font_sizes/font_size = 12
+text = "PROGRESS"
+
+[node name="QuotaPctLabel" type="Label" parent="PickaxeStatsPanel/QuotaGrid" unique_id=2027836812]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "0%"
+horizontal_alignment = 2
 
 [node name="CoinPopupLabel" type="Label" parent="." unique_id=1605454847]
 unique_name_in_owner = true

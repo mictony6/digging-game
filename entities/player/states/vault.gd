@@ -34,8 +34,6 @@ func exit() -> void:
 	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
 
-# --- Internal ---
-
 func _do_vault() -> void:
 	var cam_forward := -player.head.global_transform.basis.z
 	cam_forward.y = 0.0

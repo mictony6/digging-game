@@ -8,10 +8,8 @@ extends Control
 
 @onready var day_label: Label = %DayLabel
 @onready var health_bar: ProgressBar = %HealthBar
-@onready var health_pct_label: Label = %HealthPctLabel
-@onready var health_row: HBoxContainer = %HealthRow
 @onready var oxygen_bar: ProgressBar = %OxygenBar
-@onready var oxygen_pct_label: Label = %OxygenPctLabel
+@onready var health_pct_label: Label = %HealthPctLabel
 @onready var quota_pct_label: Label = %QuotaPctLabel
 @onready var quota_value_label: Label = %QuotaValueLabel
 @onready var info_group: VBoxContainer = %InfoGroup
@@ -141,10 +139,12 @@ func _on_inventory_visibility_changed() -> void:
 		_force_info_visible()
 		_refresh_stats()
 		_stats_panel.show()
+		day_label.show()
 		crosshair.hide()
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		_stats_panel.hide()
+		day_label.hide()
 		crosshair.show()
 		if not _should_keep_info_visible():
 			_info_hide_timer = INFO_SHOW_DURATION
@@ -156,10 +156,12 @@ func _on_shop_visibility_changed() -> void:
 		_force_info_visible()
 		_refresh_stats()
 		_stats_panel.show()
+		day_label.show()
 		crosshair.hide()
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		_stats_panel.hide()
+		day_label.hide()
 		crosshair.show()
 		if not _should_keep_info_visible():
 			_info_hide_timer = INFO_SHOW_DURATION
@@ -175,14 +177,11 @@ func _refresh_stats() -> void:
 
 
 func _on_oxygen_changed(current: float, max_value: float) -> void:
-	oxygen_bar.max_value = max_value
-	oxygen_bar.value = current
-	oxygen_pct_label.text = "%d%%" % int(current / max_value * 100)
+	oxygen_bar.value = current / max_value * 100.0
 
 
 func _on_health_changed(current: float, max_value: float) -> void:
-	health_bar.max_value = max_value
-	health_bar.value = current
+	health_bar.value = current / max_value * 100.0
 	health_pct_label.text = "%d%%" % int(current / max_value * 100)
 	_health_is_low = (current / max_value) <= 0.25
 	if _health_is_low:
@@ -196,15 +195,15 @@ func _start_health_flash() -> void:
 	if _health_flash_tween and _health_flash_tween.is_running():
 		return
 	_health_flash_tween = create_tween().set_loops()
-	_health_flash_tween.tween_property(health_row, "modulate:a", 0.25, 0.7)
-	_health_flash_tween.tween_property(health_row, "modulate:a", 1.0, 0.7)
+	_health_flash_tween.tween_property(health_bar, "modulate", Color(2.0, 0.4, 0.3, 1.0), 0.55)
+	_health_flash_tween.tween_property(health_bar, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.55)
 
 
 func _stop_health_flash() -> void:
 	if _health_flash_tween:
 		_health_flash_tween.kill()
 		_health_flash_tween = null
-	health_row.modulate.a = 1.0
+	health_bar.modulate = Color.WHITE
 
 
 func _on_player_death() -> void:
