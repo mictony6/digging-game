@@ -5,6 +5,7 @@ extends Path3D
 @export var count: int = 25
 @export var rock_scene: PackedScene
 @export var seed: int = 0
+@export var self_collision: bool = false
 ## Controls vertical bias of ray direction. Higher = rocks higher on walls, lower = rocks lower. Avoid going below -0.5 or rocks will land on the floor.
 @export_range(-0.5, 0.8, 0.05) var vertical_bias: float = 0.2
 var gen: RandomNumberGenerator
@@ -15,7 +16,12 @@ const BATCH_SIZE := 25
 @export_tool_button("Clear") var clear_button: Callable = clear_generated
 signal generated
 
+var _gen_id := 0
+
 func generate():
+	_gen_id += 1
+	var my_id := _gen_id
+
 	if gen == null:
 		gen = RandomNumberGenerator.new()
 	gen.seed = seed
@@ -27,7 +33,10 @@ func generate():
 
 	var space_state = get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.new()
-	query.collision_mask = 0b101
+	if self_collision:
+		query.collision_mask = 0b110
+	else:
+		query.collision_mask = 0b100
 
 	generated.emit()
 	var total_length = curve.get_baked_length()
@@ -40,6 +49,8 @@ func generate():
 	for i in range(count):
 		if i % BATCH_SIZE == 0:
 			await get_tree().process_frame
+			if _gen_id != my_id:
+				return
 
 		# jitter the sample position along the curve for natural spread
 		var curve_distance = clampf(interval * i + gen.randf_range(-jitter, jitter), 0.0, total_length)
@@ -96,6 +107,4 @@ func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3, norm
 func clear_generated():
 	for child in get_children():
 		if child is Rock:
-			child.queue_free()
-
-	await get_tree().process_frame
+			child.free()

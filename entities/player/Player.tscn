@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://dmujhjwc5ylgy"]
 
 [ext_resource type="Script" uid="uid://bnobrcsf3x0xq" path="res://entities/player/Player.gd" id="1_ak4un"]
-[ext_resource type="Script" path="res://entities/player/pickup_component.gd" id="99_pickup"]
-[ext_resource type="Script" uid="uid://dy74hoyrm4gls" path="res://entities/player/head.gd" id="2_fmb3c"]
+[ext_resource type="Script" uid="uid://dy6lyng5cxxx8" path="res://entities/player/head.gd" id="2_fmb3c"]
 [ext_resource type="PackedScene" uid="uid://bplpbwh5ifues" path="res://systems/interaction/object_selector.tscn" id="3_2a181"]
 [ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="3_5qbdv"]
 [ext_resource type="Script" uid="uid://cn7v6lcljin14" path="res://game/bomb_manager.gd" id="3_mq27t"]
@@ -37,6 +36,7 @@
 [ext_resource type="Script" uid="uid://bjonpc24rtpna" path="res://entities/player/states/climb.gd" id="31_climb1"]
 [ext_resource type="Script" uid="uid://clqo0gjw1haik" path="res://entities/player/states/vault.gd" id="32_vault1"]
 [ext_resource type="Script" uid="uid://dbxv5n2op4qxm" path="res://entities/player/water_effects.gd" id="36_ck0hy"]
+[ext_resource type="Script" uid="uid://ccrwpm8sylp4r" path="res://entities/player/pickup_component.gd" id="99_pickup"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -295,7 +295,6 @@ recipes = Array[ExtResource("3_5qbdv")]([ExtResource("4_m3vrt"), ExtResource("4_
 metadata/_custom_type_script = "uid://bpwquu00ir5mf"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
-visible = false
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("CapsuleMesh_lkjt4")
@@ -329,7 +328,7 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552612, -0.014453307, 0.025802754, 0.023032075, 0.09108559, -0.034248088, -0.018552538, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526114, -0.014453307, 0.025802754, 0.023032073, 0.09108559, -0.034248088, -0.018552536, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -489,5 +488,5 @@ monitorable = false
 shape = SubResource("BoxShape3D_ladder1")
 debug_color = Color(0.72590554, 0.47649008, 1.92523e-07, 0.41960785)
 
-[node name="PickupComponent" type="Node" parent="."]
+[node name="PickupComponent" type="Node" parent="." unique_id=658435465]
 script = ExtResource("99_pickup")

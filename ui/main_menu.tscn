@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ts3py830pc11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0q7"]
+bg_color = Color(0.2252653, 0.22526532, 0.2252652, 1)
+
+[sub_resource type="Theme" id="Theme_t7e0r"]
+
+[node name="MainMenu" type="Control" unique_id=193702937]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1920044541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.059688687, 0.059688687, 0.05968868, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1585638353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gl0q7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1177823966]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+
+[node name="GameTitle" type="Label" parent="PanelContainer/VBoxContainer" unique_id=430258774]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "Sunk Cost"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1905583639]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1178024135]
+layout_mode = 2
+theme = SubResource("Theme_t7e0r")
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1888718927]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "New Game"
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1928977244]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=311076599]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Exit
+"
