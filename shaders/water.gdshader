@@ -30,9 +30,14 @@ uniform float beersLaw : hint_range(0.0, 20.0, 0.1) = 12.0;
 uniform float waterTransparency : hint_range(0.0, 1.0, 0.01) = 0.05;
 group_uniforms Ripples;
 uniform vec2 ripple_origin = vec2(99999.0, 99999.0);
+uniform float ripple_origin_scale : hint_range(0.0, 1.0, 0.01) = 1.0;
+uniform vec2 ripple_trail_pos[12];
+uniform float ripple_trail_age[12];
+uniform float ripple_trail_lifetime : hint_range(0.5, 5.0, 0.1) = 2.5;
 uniform float ripple_speed : hint_range(0.5, 12.0, 0.1) = 4.0;
 uniform float ripple_frequency : hint_range(1.0, 30.0, 0.5) = 9.0;
 uniform float ripple_amplitude : hint_range(0.0, 0.15, 0.001) = 0.018;
+uniform float ripple_trail_scale : hint_range(0.0, 1.0, 0.01) = 0.4;
 uniform float ripple_falloff : hint_range(0.1, 5.0, 0.05) = 1.2;
 
 varying vec2 uvMovement;
@@ -56,9 +61,22 @@ vec3 reorientNormals(vec3 n1, vec3 n2) {
 }
 
 float ripple_height(vec2 pos) {
-	float dist = length(pos - ripple_origin);
-	float falloff = exp(-dist * ripple_falloff);
-	return sin(dist * ripple_frequency - TIME * ripple_speed) * ripple_amplitude * falloff;
+	// Continuous ripple at current player position — always animated via TIME
+	float dist0 = length(pos - ripple_origin);
+	float falloff0 = exp(-dist0 * ripple_falloff);
+	float live = sin(dist0 * ripple_frequency - TIME * ripple_speed) * ripple_amplitude * falloff0 * ripple_origin_scale;
+
+	// Trail wake — each point expands from where it was born, fades over lifetime
+	float trail = 0.0;
+	for (int i = 0; i < 12; i++) {
+		float age = ripple_trail_age[i];
+		float fade = 1.0 - smoothstep(0.5, 1.0, age / ripple_trail_lifetime);
+		if (fade <= 0.0) continue;
+		float dist = length(pos - ripple_trail_pos[i]);
+		float falloff = exp(-dist * ripple_falloff);
+		trail += sin(dist * ripple_frequency - age * ripple_speed) * ripple_amplitude * ripple_trail_scale * falloff * fade;
+	}
+	return live + trail;
 }
 
 void vertex() {
