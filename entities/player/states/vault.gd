@@ -19,7 +19,7 @@ var _fallback_state: String = MOVE
 
 
 func enter(previous_state_path: String, _data := {}) -> void:
-	_fallback_state = previous_state_path  # "Swim", "Move", "Sprint", etc.
+	_fallback_state = previous_state_path # "Swim", "Move", "Sprint", etc.
 	player.velocity = Vector3.ZERO
 	player.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	_do_vault()
