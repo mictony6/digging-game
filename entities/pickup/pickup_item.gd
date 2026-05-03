@@ -15,8 +15,18 @@ const WAVE_AMP := 0.35 # metres of lateral offset
 var _attracting := false
 var _wave_time := 0.0
 var _target: Node3D = null
+@onready var glow_effect: Node3D = %GlowEffect
+@onready var top_glow: MeshInstance3D = %GlowEffectTop # adjust node name
+
+var offset: Vector3
 
 func _ready() -> void:
+	offset = glow_effect.global_position - global_position
+	glow_effect.top_level = true
+
+	top_glow.set_instance_shader_parameter("time_offset", randf_range(0.0, 100.0))
+	top_glow.set_instance_shader_parameter("uv_offset", Vector2(randf(), randf()))
+
 	add_to_group("pickups")
 	angular_velocity = Vector3(
 		randf_range(-3.0, 3.0),
@@ -24,7 +34,11 @@ func _ready() -> void:
 		randf_range(-3.0, 3.0)
 	)
 
+	DateManager.day_passed.connect(func(d): queue_free())
+
 func _physics_process(delta: float) -> void:
+	glow_effect.global_position = global_position + offset
+
 	if _target == null:
 		return
 

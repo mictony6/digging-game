@@ -1,24 +1,91 @@
 [gd_scene format=3 uid="uid://dwpasbtc1ikic"]
 
 [ext_resource type="Script" uid="uid://blysjfl8meia6" path="res://entities/pickup/pickup_item.gd" id="1_pickup"]
+[ext_resource type="Shader" uid="uid://cma1hvxk5r7ou" path="res://shaders/pickup_glow_top.gdshader" id="2_kkhr0"]
+[ext_resource type="Shader" uid="uid://51o37w0nnld6" path="res://shaders/pickup_glow_bottom.gdshader" id="3_rxg7v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg7v"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="2_mesh"]
-radius = 0.12
-height = 0.24
+radius = 0.075
+height = 0.15
+radial_segments = 5
+rings = 3
 
-[sub_resource type="SphereShape3D" id="3_shape"]
-radius = 0.15
+[sub_resource type="Gradient" id="Gradient_kkhr0"]
+offsets = PackedFloat32Array(0.48526424, 0.83079267)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rxg7v"]
+frequency = 0.0033
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p6fyd"]
+noise = SubResource("FastNoiseLite_rxg7v")
+color_ramp = SubResource("Gradient_kkhr0")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxg7v"]
+render_priority = 0
+shader = ExtResource("2_kkhr0")
+shader_parameter/color = Color(0.5898966, 0.8953766, 0.98699456, 1)
+shader_parameter/speed = 0.10000000149012
+shader_parameter/wibble_strength = 0.12
+shader_parameter/smoke_scale = 3.0
+shader_parameter/opacity = 1.8
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_p6fyd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkhr0"]
+size = Vector2(0.12, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6fyd"]
+render_priority = 0
+shader = ExtResource("3_rxg7v")
+shader_parameter/color = Color(0.23903158, 0.5481229, 0.5891257, 1)
+shader_parameter/speed = 0.75000003236512
+shader_parameter/swirl_strength = 2.242000106495
+shader_parameter/opacity = 1.5
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_p6fyd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rxg7v"]
+size = Vector2(0.3, 0.3)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rxg7v"]
+size = Vector3(0.14233398, 0.10574341, 0.15014648)
 
 [node name="PickupItem" type="RigidBody3D" unique_id=457395879]
 collision_layer = 16
-collision_mask = 55
-mass = 0.3
+collision_mask = 54
 linear_damp = 0.5
 angular_damp = 5.0
 script = ExtResource("1_pickup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=666371642]
+material_override = SubResource("StandardMaterial3D_rxg7v")
 mesh = SubResource("2_mesh")
 
+[node name="GlowEffect" type="Node3D" parent="." unique_id=1816054995]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GlowEffect" unique_id=344999151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3649763, 0)
+light_energy = 0.025
+omni_range = 0.5
+omni_attenuation = 2.0
+
+[node name="GlowEffectTop" type="MeshInstance3D" parent="GlowEffect" unique_id=1681781915]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_rxg7v")
+mesh = SubResource("QuadMesh_kkhr0")
+
+[node name="GlowEffectBase" type="MeshInstance3D" parent="GlowEffect" unique_id=734323056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4828067, 0)
+material_override = SubResource("ShaderMaterial_p6fyd")
+mesh = SubResource("QuadMesh_rxg7v")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1406843177]
-shape = SubResource("3_shape")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034655735, 0)
+shape = SubResource("BoxShape3D_rxg7v")
