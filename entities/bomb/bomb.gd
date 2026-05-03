@@ -35,9 +35,10 @@ func explode():
 	$MeshInstance3D.visible = false
 	var bodies_in_aoe = area.get_overlapping_bodies()
 	for body in bodies_in_aoe:
-		if body is Rock:
-			if body.rock_data.is_destructible:
-				body.destroy()
+		var mineable: IsMineable = body.get_node_or_null("IsMineable")
+		var kb: IsKnockbacked = body.get_node_or_null("IsKnockbacked")
+		if mineable != null:
+			mineable.destroy()
 		elif body is Player:
 			# raycast to player to allow hiding from explosion
 			var space_state = get_world_3d().direct_space_state
@@ -46,12 +47,9 @@ func explode():
 			var result = space_state.intersect_ray(query)
 
 			if result and result.collider == body:
-				if body.has_node("IsKnockbacked"):
-					var kb = body.get_node("IsKnockbacked") as IsKnockbacked
-					kb.start(global_position)
+				kb.start(global_position)
 				body.health.take_damage(damage)
-		elif body.has_node("IsKnockbacked"):
-			var kb = body.get_node("IsKnockbacked") as IsKnockbacked
+		elif kb != null:
 			kb.start(global_position)
 
 	await $AnimationPlayer.animation_finished

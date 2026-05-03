@@ -28,8 +28,8 @@ func _ready() -> void:
 		p.top_level = true
 		p.emitting = false
 		_particle_pool.append(p)
-	
-var bodies_in_aoe: Array[Rock] = []
+
+var bodies_in_aoe: Array[Node3D] = []
 
 var tool_max_cooldown: float = 0.25
 var tool_current_cooldown: float = 0.0
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		tool_area3d.global_position = tool_raycast.get_collider().global_position
 		tool_area3d.monitoring = true
 
-		deal_damage_on_affected_rocks(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
+		deal_damage_on_affected_bodies(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
 		play_particles(collision_point)
 
 		flicker.global_position = collision_point
@@ -92,14 +92,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is Rock and body not in bodies_in_aoe:
+	if body.get_node_or_null("IsMineable") != null and body not in bodies_in_aoe:
 		bodies_in_aoe.append(body)
-		# body.destroyed.connect(_on_rock_destroyed)
 
 func _on_body_exited(body: Node) -> void:
-	if body is Rock and body in bodies_in_aoe:
+	if body in bodies_in_aoe:
 		bodies_in_aoe.erase(body)
-		# body.destroyed.disconnect(_on_rock_destroyed)
 
 
 func get_total_damage():
@@ -108,15 +106,15 @@ func get_total_damage():
 func get_total_tier():
 	return current_tool.tool_data.tier + current_tool.tool_data.tier_upgrade
 
-func deal_damage_on_affected_rocks(rocks: Array[Rock], damage, tier, main_rock):
-	for rock in rocks:
-		if rock.rock_data.tier <= tier:
-			shake_target(rock)
-
-			if rock == main_rock:
-				rock.take_damage(damage, tool_raycast.get_collision_point())
+func deal_damage_on_affected_bodies(bodies: Array[Node3D], damage: float, tier: int, main_body: Node):
+	for body in bodies:
+		var mineable: IsMineable = body.get_node_or_null("IsMineable")
+		if mineable:
+			shake_target(body)
+			if body == main_body:
+				mineable.mine(damage, tool_raycast.get_collision_point(), tier)
 			else:
-				rock.take_damage(damage / 4.0)
+				mineable.mine(damage / 4.0, Vector3.ZERO, tier)
 
 func play_particles(collision_point: Vector3):
 	var p := _particle_pool[_particle_index]
