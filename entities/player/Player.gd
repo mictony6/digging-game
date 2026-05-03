@@ -28,6 +28,7 @@ var height: float = 1.5
 # Water / swimming
 var in_water: bool = false
 var _water_area_count: int = 0
+var water_surface_y: float = -INF  # set by water_effects when feet touch water
 
 # Ladders
 var overlapping_ladders: Array = []

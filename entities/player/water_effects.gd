@@ -38,6 +38,9 @@ func _on_water_entered(area: Area3D) -> void:
 			_fade_tween.kill()
 			_fade_tween = null
 		var player: CharacterBody3D = get_parent()
+		# WaterVolume is a child of WaterArea which is a child of the water root.
+		# The root's global Y is the visible water surface.
+		player.water_surface_y = area.get_parent().get_parent().global_position.y
 		var impact: float = clamp(abs(player.velocity.y) / 15.0, 0.0, 1.0)
 		_water_mat.set_shader_parameter("ripple_amplitude", _base_ripple_amplitude * impact * 3.0)
 		_spawn_splash()
@@ -49,6 +52,7 @@ func _on_water_exited(area: Area3D) -> void:
 	_area_count -= 1
 	if _area_count <= 0:
 		_area_count = 0
+		get_parent().water_surface_y = -INF
 		_fade_tween = create_tween()
 		_fade_tween.tween_method(
 			func(v: float) -> void: _water_mat.set_shader_parameter("ripple_amplitude", v),
