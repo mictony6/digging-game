@@ -15,11 +15,11 @@ render_priority = 0
 shader = ExtResource("1_y6i73")
 shader_parameter/UVScale = 5.000000074506
 shader_parameter/albedo = ExtResource("10_j0r41")
-shader_parameter/tint = Color(0.60837203, 0.38639957, 0.2243419, 1)
+shader_parameter/tint = Color(0, 0, 0, 1)
 shader_parameter/ORM_texture = ExtResource("5_ajaql")
 shader_parameter/normalMapA = ExtResource("2_3m3jj")
 shader_parameter/normalMapB = ExtResource("8_iunov")
-shader_parameter/ratio = 0.5000000074506
+shader_parameter/ratio = 0.5
 
 [node name="CaveTunnel" type="Node3D" unique_id=71517295]
 
@@ -32,5 +32,4 @@ shape = SubResource("ConcavePolygonShape3D_wridl")
 
 [node name="Plane" type="MeshInstance3D" parent="." unique_id=240848844]
 material_override = SubResource("ShaderMaterial_jtlwa")
-cast_shadow = 2
 mesh = ExtResource("5_82s1h")

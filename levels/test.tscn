@@ -160,7 +160,7 @@ point_count = 2
 [node name="Main" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
-transform = Transform3D(1, 0, 0, 0, -0.33051443, 0.94380105, 0, -0.94380105, -0.33051443, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5615636, 0.82743347, 0, -0.82743347, 0.5615636, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2016625581]
@@ -238,7 +238,7 @@ size = Vector3(2.5490723, 9.4062195, 2.5488281)
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 32, 0, -42)
 
 [node name="Temple" parent="LevelLoader/OverWorld" unique_id=1459980554 instance=ExtResource("37_01s5a")]
-transform = Transform3D(0.9423615, 0, -0.33459654, 0, 1, 0, 0.33459654, 0, 0.9423615, 11.668313, -18.077847, 15.84643)
+transform = Transform3D(0.9423615, 0, -0.33459654, 0, 1, 0, 0.33459654, 0, 0.9423615, 6.9294567, -24.487646, 17.077396)
 
 [node name="WoodenCrate" parent="LevelLoader/OverWorld" unique_id=132977324 instance=ExtResource("36_1ijy3")]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -1, -25.431196, 5.5)
@@ -346,6 +346,21 @@ transform = Transform3D(-4.1227646, 1.2126331, 1.7498385, 1.1286561, 4.4786353, 
 [node name="CaveTunnel7" parent="LevelLoader/OverWorld" unique_id=1855846429 instance=ExtResource("40_gmj64")]
 transform = Transform3D(-4.1227646, 1.2126331, 1.7498385, 1.1286561, 4.4786353, -0.44447458, -1.8051453, 0.030711561, -4.274355, 7.3296623, -33.00084, -70.18108)
 
+[node name="CaveTunnel8" parent="LevelLoader/OverWorld" unique_id=576233198 instance=ExtResource("40_gmj64")]
+transform = Transform3D(0.85624206, -4.4183636, 1.1289399, -0.2652846, 1.0984626, 4.50029, -4.5525904, -0.89500564, -0.049908333, 8.629033, -33.020035, -80.955864)
+
+[node name="CaveTunnel10" parent="LevelLoader/OverWorld" unique_id=256936034 instance=ExtResource("40_gmj64")]
+transform = Transform3D(1.6275331, -0.6895219, 4.2901387, 0.4446565, 4.583585, 0.56799847, -4.322388, 0.21189633, 1.6738226, 8.640466, -36.925694, -98.153496)
+
+[node name="CaveTunnel9" parent="LevelLoader/OverWorld" unique_id=2143668997 instance=ExtResource("40_gmj64")]
+transform = Transform3D(-0.17259838, 4.070033, -2.221403, -0.31975263, 2.2072015, 4.0688596, 4.6257515, 0.3044348, 0.19837189, 16.66286, -33.00084, -79.82919)
+
+[node name="CaveTunnel11" parent="LevelLoader/OverWorld" unique_id=747530562 instance=ExtResource("40_gmj64")]
+transform = Transform3D(-4.6318355, 0.008169886, -0.2750332, 0.026317798, 4.629844, -0.30568826, 0.27389297, -0.30671054, -4.6217437, 12.682806, -33.436546, -88.82809)
+
+[node name="CaveTunnel12" parent="LevelLoader/OverWorld" unique_id=349597353 instance=ExtResource("40_gmj64")]
+transform = Transform3D(-3.8035853, -0.15354961, -2.6530683, 0.02631776, 4.6298437, -0.3056883, 2.6573782, -0.26563257, -3.794388, 12.682806, -33.802776, -93.76668)
+
 [node name="CaveTunnel6" parent="LevelLoader/OverWorld" unique_id=1504137514 instance=ExtResource("40_gmj64")]
 transform = Transform3D(-3.6855133, -2.1245368, 1.8528186, -2.2744274, 4.0427895, 0.11151904, -1.6654056, -0.81963253, -4.2525563, 7.5364065, -31.23734, -63.08169)
 
@@ -356,9 +371,9 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=384727343]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 12.98163, -34.27907, -84.83135)
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 13.851812, -34.27907, -84.59819)
 material_override = SubResource("StandardMaterial3D_6k6bt")
-size = Vector3(6, 1, 26)
+size = Vector3(7.801758, 1, 26)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=2142472755]
 transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, -0.048727363, -34.27907, -98.67737)
@@ -426,7 +441,7 @@ transform = Transform3D(1.710085, 0, 1.6323667, 0, 2.364109, 0, -1.6323667, 0, 1
 transform = Transform3D(3.4777982, 1.0272356e-07, -1.7241254, 0.87461907, 3.3451803, 1.764227, 1.4858161, -1.969125, 2.997096, 7.745785, -34.249176, -71.68605)
 
 [node name="Mound10" parent="LevelLoader/OverWorld" unique_id=1099259391 instance=ExtResource("28_mfah6")]
-transform = Transform3D(1.9195973, 0.41308668, 2.4161, -0.8749037, 2.9821568, 0.18524641, -2.2896993, -0.7931787, 1.9547832, 10.213849, -30.605843, -17.178108)
+transform = Transform3D(0.6572192, 0.0010110587, 2.6307793, -0.58333623, 2.6441844, 0.14471251, -2.5652907, -0.6010174, 0.64108986, 8.459126, -30.394474, -17.07241)
 
 [node name="Mound11" parent="LevelLoader/OverWorld" unique_id=590582591 instance=ExtResource("28_mfah6")]
 transform = Transform3D(-0.33794177, 1.067451, -2.9050598, 0.045998678, 2.923736, 1.0689627, 3.0946271, 0.0731101, -0.33312958, 9.292244, -31.261026, -13.930016)
@@ -498,6 +513,9 @@ transform = Transform3D(0.7701042, 2.1071382, -0.45622158, -2.1348586, 0.6776815
 [node name="StalagmiteMedium4" parent="LevelLoader/OverWorld" unique_id=1845612425 instance=ExtResource("35_krped")]
 transform = Transform3D(1.0279924, 0, 0, 0, 1.0279924, 0, 0, 0, 1.0279924, 8.625081, -30.711496, -67.48824)
 
+[node name="StalagmiteMedium5" parent="LevelLoader/OverWorld" unique_id=1614581109 instance=ExtResource("35_krped")]
+transform = Transform3D(2.2351003, 0, 0, 0, 2.2351003, 0, 0, 0, 2.2351003, 10.893743, -29.370043, -80.586975)
+
 [node name="StalagmiteMedium2" parent="LevelLoader/OverWorld" unique_id=500676219 instance=ExtResource("35_krped")]
 transform = Transform3D(-1.2009414, -0.17267488, -0.71519774, -0.09835793, 1.3944511, -0.17151134, 0.72914344, -0.0963007, -1.2011082, 7.820919, -31.030403, -26.58658)
 
@@ -553,7 +571,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9994805, -0.03223066, 0, 0.03223066, 0.999
 transform = Transform3D(0.22840177, -0.014316632, -0.44396222, 0, 0.499215, -0.016098391, 0.44419298, 0.0073615396, 0.2282831, 3.1758697, -29.637026, -25.90784)
 
 [node name="Player" parent="." unique_id=856414097 node_paths=PackedStringArray("shop_ui") instance=ExtResource("1_r4e4k")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6.959175, -32.62848, -99.118965)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 3.299646, -28.765297, -30.547039)
 shop_ui = NodePath("../HudLayer/ShopUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1641123563]
@@ -653,7 +671,6 @@ shop_ui = NodePath("../ShopUI")
 
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1761730934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9449587, -27.542706, -53.187737)
-visible = false
 subdiv = 2
 size = Vector3(22.86131, 13.559534, 48.64995)
 data = ExtResource("27_8m07d")
@@ -675,13 +692,16 @@ target_mesh = NodePath("../MeshInstance3D")
 shape = SubResource("SphereShape3D_u2lxf")
 
 [node name="3DCursor" parent="." unique_id=1316528881 instance=ExtResource("49_kl5js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.959175, -33.7791, -99.118965)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.299646, -29.563679, -30.547039)
 metadata/cursor_id = 0
 metadata/size_scale = 1.0
 metadata/show_title_label = true
 metadata/show_number_label = true
 metadata/scale_affect_labels = true
 metadata/_edit_lock_ = true
+
+[node name="WoodenCrate" parent="." unique_id=1399184605 instance=ExtResource("36_1ijy3")]
+transform = Transform3D(2.9802322e-08, 0, -1, 0.009389736, 0.999956, 2.7983593e-10, 0.999956, -0.009389736, 2.980101e-08, -5.5261703, -33.775314, -103.33792)
 
 [node name="RockSpawner" parent="." unique_id=1885774608 instance=ExtResource("23_krped")]
 transform = Transform3D(2.9802322e-08, 0, -1, 0.009389734, 0.9999559, 2.7983588e-10, 0.9999559, -0.009389734, 2.9801008e-08, -7.904011, -32.948967, -105.71191)
@@ -692,7 +712,13 @@ self_collision = true
 transform = Transform3D(-0.97597766, 0, 0.21787062, 0, 1, 0, -0.21787062, 0, -0.97597766, -9.917978, -34.2285, -104.58168)
 
 [node name="RockWall2" parent="." unique_id=29345358 instance=ExtResource("50_kl5js")]
-transform = Transform3D(-0.93501145, 0, 0.35461754, 0, 1, 0, -0.35461754, 0, -0.93501145, -5.7224755, -34.11471, -105.53522)
+transform = Transform3D(-0.93501145, 0, 0.35461754, 0, 1, 0, -0.35461754, 0, -0.93501145, -5.7224755, -33.172356, -105.53522)
+
+[node name="cave_pillar" parent="." unique_id=735012055 instance=ExtResource("36_xqdkm")]
+transform = Transform3D(0.29661727, 0, -1.401004, 0, 1.4320593, 0, 1.401004, 0, 0.29661727, 11.64021, -33.207962, -86.79294)
+
+[node name="cave_pillar2" parent="." unique_id=1658962233 instance=ExtResource("36_xqdkm")]
+transform = Transform3D(1.043942, -1.5840837, -4.0736856, -1.260261, 3.9013014, -1.8400111, 4.1852093, 1.5698975, 0.46205488, 16.577288, -35.134018, -74.730255)
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]
