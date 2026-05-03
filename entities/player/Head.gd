@@ -52,6 +52,12 @@ func _physics_process(delta: float) -> void:
 	if bob_enabled:
 		_update_bob(delta)
 
+	# Clamp camera above water surface when feet are in shallow water (not fully swimming)
+	var player := get_parent() as Player
+	if not player.in_water and player.water_surface_y > -INF:
+		var min_local_y: float = player.water_surface_y - player.global_position.y + 0.25
+		position.y = maxf(position.y, min_local_y)
+
 
 func _update_bob(delta: float) -> void:
 	var player := get_parent() as Player
