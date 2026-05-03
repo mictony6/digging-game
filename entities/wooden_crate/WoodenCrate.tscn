@@ -1,19 +1,47 @@
 [gd_scene format=3 uid="uid://d2sruleu4iip6"]
 
 [ext_resource type="ArrayMesh" uid="uid://c17naltkx41mc" path="res://assets/meshes/wooden_crate/WoodenCrate_Cube_001.res" id="1_iclv1"]
+[ext_resource type="Script" uid="uid://dds4o604ms3ex" path="res://systems/mineable/has_drops.gd" id="2_3mb5x"]
+[ext_resource type="Script" uid="uid://dxj7xehg3jdrx" path="res://systems/mineable/drop_data.gd" id="3_5pgyl"]
+[ext_resource type="Resource" uid="uid://domi23ux8ofsu" path="res://data/items/StickItem.tres" id="4_mt516"]
+[ext_resource type="PackedScene" uid="uid://dwpasbtc1ikic" path="res://entities/pickup/PickupItem.tscn" id="5_aqflm"]
+[ext_resource type="Script" uid="uid://b3usssf8jsfah" path="res://systems/health/has_health.gd" id="6_5pgyl"]
+[ext_resource type="Script" uid="uid://cifltgjkh0p2q" path="res://systems/mineable/is_mineable.gd" id="6_i2v07"]
+[ext_resource type="PackedScene" uid="uid://buxr6qhn67k7e" path="res://effects/break_rock_particles.tscn" id="8_mt516"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r3g4c"]
 data = PackedVector3Array(-1, -1, 1.0797056, -1, 1, -1.0797056, -1, 1, 1.0797056, -1, -1, 1.0797056, -1, -1, -1.0797056, -1, 1, -1.0797056, -1, -1, -1.0797056, 1, 1, -1.0797056, -1, 1, -1.0797056, -1, -1, -1.0797056, 1, -1, -1.0797056, 1, 1, -1.0797056, 1, -1, -1.0797056, 1, 1, 1.0797056, 1, 1, -1.0797056, 1, -1, -1.0797056, 1, -1, 1.0797056, 1, 1, 1.0797056, 1, -1, 1.0797056, -1, 1, 1.0797056, 1, 1, 1.0797056, 1, -1, 1.0797056, -1, -1, 1.0797056, -1, 1, 1.0797056, -1, -1, -1.0797056, 1, -1, 1.0797056, 1, -1, -1.0797056, -1, -1, -1.0797056, -1, -1, 1.0797056, 1, -1, 1.0797056, -0.90000343, 1, 0.9821965, 0.9000035, -0.93687695, 0.9821965, 0.9000035, 1, 0.9821965, -0.90000343, 1, 0.9821965, -0.90000343, -0.93687695, 0.9821965, 0.9000035, -0.93687695, 0.9821965, -0.90000343, 1, 0.9821965, -1, 1, -1.0797056, -0.90000343, 1, -0.98219657, -0.90000343, 1, 0.9821965, -1, 1, 1.0797056, -1, 1, -1.0797056, -0.90000343, 1, -0.98219657, 1, 1, -1.0797056, 0.9000035, 1, -0.98219657, -0.90000343, 1, -0.98219657, -1, 1, -1.0797056, 1, 1, -1.0797056, 0.9000035, 1, -0.98219657, 1, 1, 1.0797056, 0.9000035, 1, 0.9821965, 0.9000035, 1, -0.98219657, 1, 1, -1.0797056, 1, 1, 1.0797056, 0.9000035, 1, 0.9821965, -1, 1, 1.0797056, -0.90000343, 1, 0.9821965, 0.9000035, 1, 0.9821965, 1, 1, 1.0797056, -1, 1, 1.0797056, 0.9000035, -0.93687695, -0.98219657, -0.90000343, -0.93687695, 0.9821965, -0.90000343, -0.93687695, -0.98219657, 0.9000035, -0.93687695, -0.98219657, 0.9000035, -0.93687695, 0.9821965, -0.90000343, -0.93687695, 0.9821965, 0.9000035, 1, -0.98219657, -0.90000343, -0.93687695, -0.98219657, -0.90000343, 1, -0.98219657, 0.9000035, 1, -0.98219657, 0.9000035, -0.93687695, -0.98219657, -0.90000343, -0.93687695, -0.98219657, 0.9000035, 1, 0.9821965, 0.9000035, -0.93687695, -0.98219657, 0.9000035, 1, -0.98219657, 0.9000035, 1, 0.9821965, 0.9000035, -0.93687695, 0.9821965, 0.9000035, -0.93687695, -0.98219657, -0.90000343, 1, -0.98219657, -0.90000343, -0.93687695, 0.9821965, -0.90000343, 1, 0.9821965, -0.90000343, 1, -0.98219657, -0.90000343, -0.93687695, -0.98219657, -0.90000343, -0.93687695, 0.9821965)
 
-[node name="WoodenCrate" type="Node3D" unique_id=132977324]
+[sub_resource type="Resource" id="Resource_i451s"]
+script = ExtResource("3_5pgyl")
+item = ExtResource("4_mt516")
+max_qty = 5
+metadata/_custom_type_script = "uid://dxj7xehg3jdrx"
+
+[node name="WoodenCrate" type="StaticBody3D" unique_id=179076459]
+collision_layer = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=803583014]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.4, -1.1175871e-08)
+shape = SubResource("ConcavePolygonShape3D_r3g4c")
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=2122819278]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.4, -1.1175871e-08)
 mesh = ExtResource("1_iclv1")
 
-[node name="_StaticBody3D_215164" type="StaticBody3D" parent="Cube" unique_id=313106378]
-collision_layer = 32
-collision_mask = 0
+[node name="HasDrops" type="Node" parent="." unique_id=110866433]
+script = ExtResource("2_3mb5x")
+drops = Array[ExtResource("3_5pgyl")]([SubResource("Resource_i451s")])
+pickup_scene = ExtResource("5_aqflm")
+metadata/_custom_type_script = "uid://dds4o604ms3ex"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/_StaticBody3D_215164" unique_id=803583014]
-shape = SubResource("ConcavePolygonShape3D_r3g4c")
+[node name="HasHealth" type="Node" parent="." unique_id=1871261253]
+script = ExtResource("6_5pgyl")
+max_health = 1.0
+current_health = 1.0
+metadata/_custom_type_script = "uid://b3usssf8jsfah"
+
+[node name="IsMineable" type="Node" parent="." unique_id=297879332]
+script = ExtResource("6_i2v07")
+break_particles = ExtResource("8_mt516")
+metadata/_custom_type_script = "uid://cifltgjkh0p2q"

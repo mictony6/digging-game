@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://systems/mineable/is_mineable.gd" id="1_ismine"]
+
+[node name="IsMineable" type="Node"]
+script = ExtResource("1_ismine")
