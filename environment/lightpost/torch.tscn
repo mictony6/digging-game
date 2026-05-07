@@ -18,7 +18,7 @@ transform = Transform3D(0.17836253, 0, 0, 0, -0.089181274, 0.15446648, 0, -0.154
 mesh = ExtResource("1_kaek3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1900822967]
-transform = Transform3D(1, 0, 0, 0, -0.5, 0.8660253, 0, -0.8660253, -0.5, 0, -0.16146427, -0.16811389)
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.8660253, 0, -0.8660253, -0.5, 0, -0.2786579, -0.37109926)
 light_color = Color(0.8471728, 0.60802686, 0.41517365, 1)
 light_bake_mode = 1
 omni_attenuation = 2.0

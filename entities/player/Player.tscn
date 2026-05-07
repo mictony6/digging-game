@@ -291,7 +291,7 @@ FALL_GRAVITY_MULTIPLIER = 1.1
 [node name="CraftingManager" type="Node" parent="." unique_id=432815612 node_paths=PackedStringArray("player_inventory")]
 script = ExtResource("29_5qbdv")
 player_inventory = NodePath("../HasInventory")
-recipes = Array[ExtResource("3_5qbdv")]([ExtResource("4_m3vrt"), ExtResource("4_i3i7k")])
+recipes = Array[ExtResource("3_5qbdv")]([ExtResource("4_i3i7k"), ExtResource("4_m3vrt")])
 metadata/_custom_type_script = "uid://bpwquu00ir5mf"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=851199332]
@@ -314,10 +314,6 @@ hit_from_inside = true
 _player = NodePath("../../..")
 _tool = NodePath("../../ToolManager/Tool")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Head/Camera3D" unique_id=1553713972]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17)
-visible = false
-
 [node name="TorchManager" type="Node3D" parent="Head" unique_id=1101061011 node_paths=PackedStringArray("player_inventory")]
 script = ExtResource("4_d168t")
 torch_scene = ExtResource("5_oj2y3")
@@ -332,7 +328,7 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.095526084, -0.014453307, 0.025802754, 0.023032064, 0.09108559, -0.034248088, -0.018552529, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552608, -0.014453307, 0.025802754, 0.023032062, 0.09108559, -0.034248088, -0.018552529, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
