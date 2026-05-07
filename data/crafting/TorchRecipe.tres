@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_6ehtw"]
 [ext_resource type="Script" uid="uid://dtqve2lokywk" path="res://data/crafting/CraftingRecipe.gd" id="1_ulfl3"]
-[ext_resource type="Resource" path="res://data/items/StickItem.tres" id="2_grt1v"]
-[ext_resource type="Resource" path="res://data/items/CoalItem.tres" id="3_6ehtw"]
+[ext_resource type="Resource" uid="uid://domi23ux8ofsu" path="res://data/items/StickItem.tres" id="2_grt1v"]
+[ext_resource type="Script" uid="uid://nnw7orwbb1w6" path="res://data/items/ItemData.gd" id="2_gxx8t"]
+[ext_resource type="Resource" uid="uid://cve3qyhijjkgn" path="res://data/items/CoalItem.tres" id="3_6ehtw"]
 [ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="4_a8in7"]
 
 [resource]
@@ -12,6 +13,6 @@ label = "Torch"
 icon = ExtResource("1_6ehtw")
 output_item = ExtResource("4_a8in7")
 craft_interval = 5.0
-ingredient_items = Array[Resource]([ExtResource("2_grt1v"), ExtResource("3_6ehtw")])
+ingredient_items = Array[ExtResource("2_gxx8t")]([ExtResource("2_grt1v"), ExtResource("3_6ehtw")])
 ingredient_amounts = Array[int]([1, 1])
 metadata/_custom_type_script = "uid://dtqve2lokywk"
