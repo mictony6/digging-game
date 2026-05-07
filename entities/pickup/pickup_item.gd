@@ -10,7 +10,7 @@ const ATTRACT_RADIUS := 2.5 # distance at which attraction starts
 const COLLECT_RADIUS := 0.4 # distance at which it is collected
 const ATTRACT_SPEED := 8.0 # lerp speed toward player
 const WAVE_FREQ := 6.0 # sine oscillations per second
-const WAVE_AMP := 0.35 # metres of lateral offset
+const WAVE_AMP := 0.35 # metres of lateral glow_effect_offset
 
 var _attracting := false
 var _wave_time := 0.0
@@ -18,10 +18,10 @@ var _target: Node3D = null
 @onready var glow_effect: Node3D = %GlowEffect
 @onready var top_glow: MeshInstance3D = %GlowEffectTop # adjust node name
 
-var offset: Vector3
-
+var glow_effect_offset: Vector3
+var spawn_pos: Vector3
 func _ready() -> void:
-	offset = glow_effect.global_position - global_position
+	glow_effect_offset = glow_effect.global_position - global_position
 	glow_effect.top_level = true
 
 	top_glow.set_instance_shader_parameter("time_offset", randf_range(0.0, 100.0))
@@ -37,8 +37,9 @@ func _ready() -> void:
 	DateManager.day_passed.connect(func(d): queue_free())
 
 func _physics_process(delta: float) -> void:
-	glow_effect.global_position = global_position + offset
-
+	glow_effect.global_position = global_position + glow_effect_offset
+	if abs(global_position.y - spawn_pos.y) > 100:
+		queue_free()
 	if _target == null:
 		return
 
@@ -69,9 +70,15 @@ func _physics_process(delta: float) -> void:
 	if global_position.distance_to(_target.global_position) < COLLECT_RADIUS:
 		collect()
 
+
 func attract_to(target: Node3D) -> void:
 	_target = target
 
 func collect() -> void:
 	picked_up.emit(item_data, quantity)
 	queue_free()
+
+
+func set_pickup_spawn(pos: Vector3):
+	position = pos
+	spawn_pos = pos
