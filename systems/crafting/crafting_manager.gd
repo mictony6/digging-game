@@ -1,6 +1,8 @@
 class_name CraftingManager
 extends Node
 
+signal item_crafted(item: ItemData, qty: int)
+
 @export var player_inventory: HasInventory
 @export var recipes: Array[CraftingRecipe] = [] # Array of CraftingRecipe
 
@@ -29,7 +31,7 @@ func can_craft(recipe: CraftingRecipe) -> bool:
 		return false
 	if recipe.ingredient_items.is_empty():
 		return false
-	if player_inventory.get_count(recipe.output_item) >= recipe.output_item.max_stack:
+	if player_inventory.get_count(recipe.output_item) + recipe.output_amount > recipe.output_item.max_stack:
 		return false
 	for i in recipe.ingredient_items.size():
 		var amount: int = recipe.ingredient_amounts[i] if i < recipe.ingredient_amounts.size() else 1
@@ -46,6 +48,7 @@ func _do_craft(recipe: CraftingRecipe) -> void:
 	var current := player_inventory.get_count(recipe.output_item)
 	var to_add := mini(recipe.output_amount, recipe.output_item.max_stack - current)
 	player_inventory.add_item(recipe.output_item, to_add)
+	item_crafted.emit(recipe.output_item, to_add)
 
 func timer_remaining(index: int) -> float:
 	if index >= _timers.size() or index >= recipes.size():

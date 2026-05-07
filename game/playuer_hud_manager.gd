@@ -5,6 +5,7 @@ extends Control
 @export var eod_screen: Control
 @export var inventory_ui: Control
 @export var shop_ui: Control
+@export var toast_scene: PackedScene
 
 @onready var day_label: Label = %DayLabel
 @onready var health_bar: ProgressBar = %HealthBar
@@ -20,15 +21,18 @@ extends Control
 @onready var durability_bar: ProgressBar = %DurabilityBar
 @onready var durability_pct_label: Label = %DurabilityPctLabel
 @onready var crosshair: Label = %Crosshair
-@onready var _stats_panel: Control    = %PickaxeStatsPanel
-@onready var _stat_tier: Label        = %StatTier
-@onready var _stat_power: Label       = %StatPower
-@onready var _stat_maxdur: Label      = %StatMaxDur
+@onready var item_toasts: VBoxContainer = %ItemToasts
+@onready var _stats_panel: Control = %PickaxeStatsPanel
+@onready var _stat_tier: Label = %StatTier
+@onready var _stat_power: Label = %StatPower
+@onready var _stat_maxdur: Label = %StatMaxDur
 
 var _pending_report: Dictionary = {}
 var _tool_manager: ToolManager
 
-const COLOR_READY  := Color(0.16, 0.84, 0.34, 1.0)
+const MAX_TOASTS := 3
+
+const COLOR_READY := Color(0.16, 0.84, 0.34, 1.0)
 const COLOR_BROKEN := Color(0.90, 0.20, 0.10, 1.0)
 
 # Coin lerp
@@ -71,6 +75,13 @@ func _ready() -> void:
 	quota_value_label.text = "0 / %d SC" % QuotaManager.required_quota
 	quota_pct_label.text = "0%"
 	day_label.text = "DAY %d" % (DateManager.days_passed + 1)
+
+	var pickup_component := player.get_node_or_null("PickupComponent") as PickupComponent
+	if pickup_component:
+		pickup_component.item_collected.connect(_on_item_collected)
+
+	for node in get_tree().get_nodes_in_group("crafting_manager"):
+		(node as CraftingManager).item_crafted.connect(_on_item_collected)
 
 	_tool_manager = player.get_node_or_null("Head/ToolManager") as ToolManager
 	if _tool_manager:
@@ -171,8 +182,8 @@ func _refresh_stats() -> void:
 	if _tool_manager == null or _tool_manager.current_tool == null:
 		return
 	var td := _tool_manager.current_tool.tool_data
-	_stat_tier.text   = str(td.tier + td.tier_upgrade)
-	_stat_power.text  = "%.2f" % (td.strength + td.strength_upgrade)
+	_stat_tier.text = str(td.tier + td.tier_upgrade)
+	_stat_power.text = "%.2f" % (td.strength + td.strength_upgrade)
 	_stat_maxdur.text = str(int(td.max_durability))
 
 
@@ -283,6 +294,28 @@ func _on_eod_confirmed() -> void:
 	day_label.text = "DAY %d" % (DateManager.days_passed + 1)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	show()
+
+
+func _on_item_collected(item: Resource, qty: int) -> void:
+	if item is ItemData:
+		push_item_toast(item.name, item.icon, qty)
+
+
+func push_item_toast(item_name: String, texture: Texture2D, qty: int = 1) -> void:
+	if toast_scene == null:
+		return
+	for child in item_toasts.get_children():
+		var existing := child as ItemToast
+		if existing and existing.item_key == item_name:
+			item_toasts.move_child(existing, 0)
+			existing.accumulate(qty)
+			return
+	if item_toasts.get_child_count() >= MAX_TOASTS:
+		item_toasts.get_child(item_toasts.get_child_count() - 1).dismiss()
+	var toast := toast_scene.instantiate() as ItemToast
+	item_toasts.add_child(toast)
+	item_toasts.move_child(toast, 0)
+	toast.setup(item_name, texture, qty)
 
 
 func _fmt(value: int) -> String:
