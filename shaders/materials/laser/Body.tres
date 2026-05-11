@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nbffhqto6ydm"]
+
+[ext_resource type="Texture2D" uid="uid://cx4hr0a8no7le" path="res://assets/meshes/laser_tool/Body_baseColor.png" id="1_70m84"]
+[ext_resource type="Texture2D" uid="uid://b8w8yyow2qrt7" path="res://assets/meshes/laser_tool/Body_occlusionRoughnessMetallic.png" id="2_1oe3c"]
+[ext_resource type="Texture2D" uid="uid://cuuae4gmkoylk" path="res://assets/meshes/laser_tool/Body_normal.png" id="3_7iujc"]
+
+[resource]
+resource_name = "Body"
+albedo_texture = ExtResource("1_70m84")
+metallic = 1.0
+metallic_texture = ExtResource("2_1oe3c")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_1oe3c")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_7iujc")
+ao_enabled = true
+ao_texture = ExtResource("2_1oe3c")

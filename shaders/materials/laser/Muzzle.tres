@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cw25eep2qutx"]
+
+[ext_resource type="Texture2D" uid="uid://bsir47dxat0u1" path="res://assets/meshes/laser_tool/Muzzle_baseColor.png" id="1_oblgc"]
+[ext_resource type="Texture2D" uid="uid://01bb357ubb8l" path="res://assets/meshes/laser_tool/Muzzle_occlusionRoughnessMetallic.png" id="2_33rty"]
+[ext_resource type="Texture2D" uid="uid://2fhhwba6s47c" path="res://assets/meshes/laser_tool/Muzzle_normal.png" id="3_tno4j"]
+
+[resource]
+resource_name = "Muzzle"
+albedo_texture = ExtResource("1_oblgc")
+metallic = 1.0
+metallic_texture = ExtResource("2_33rty")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_33rty")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_tno4j")
+ao_enabled = true
+ao_texture = ExtResource("2_33rty")

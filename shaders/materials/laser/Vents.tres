@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bqh1av11afybw"]
+
+[ext_resource type="Texture2D" uid="uid://3jkuf01pgiai" path="res://assets/meshes/laser_tool/Vents_baseColor.png" id="1_4d6sn"]
+[ext_resource type="Texture2D" uid="uid://ddu8q8rfhb00i" path="res://assets/meshes/laser_tool/Vents_occlusionRoughnessMetallic.png" id="2_846du"]
+[ext_resource type="Texture2D" uid="uid://bet12tkd0eydp" path="res://assets/meshes/laser_tool/Vents_normal.png" id="3_j3kmg"]
+
+[resource]
+resource_name = "Vents"
+albedo_texture = ExtResource("1_4d6sn")
+metallic = 1.0
+metallic_texture = ExtResource("2_846du")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_846du")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_j3kmg")
+ao_enabled = true
+ao_texture = ExtResource("2_846du")

@@ -7,7 +7,10 @@ class_name ToolManager
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
-@onready var beam: Node3D = $Beam
+@onready var beam: Node3D = $Tool/Beam
+@onready var animation_player: AnimationPlayer = %ToolAnimations
+
+var _tool_centered: bool = false
 
 @onready var flicker: ToolFlicker = $ToolFlicker
 
@@ -73,6 +76,9 @@ func _physics_process(delta: float) -> void:
 	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
 		var collision_point = tool_raycast.get_collision_point()
 
+		if !_tool_centered:
+			animate_tool()
+
 		beam.show()
 
 		tool_area3d.global_position = tool_raycast.get_collider().global_position
@@ -89,6 +95,9 @@ func _physics_process(delta: float) -> void:
 		durability_changed.emit(current_durability, _get_max_durability())
 	else:
 		beam.hide()
+		if _tool_centered:
+			animation_player.play_backwards("center_tool")
+			_tool_centered = false
 
 
 func _on_body_entered(body: Node) -> void:
@@ -136,3 +145,8 @@ func shake_target(target: Node3D):
 
 	tween.tween_property(target, "global_position", base + push, 0.03)
 	tween.tween_property(target, "global_position", base, 0.06)
+
+func animate_tool():
+	#center the tool in the screen
+	animation_player.play("center_tool")
+	_tool_centered = true

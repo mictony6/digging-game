@@ -162,6 +162,50 @@ shadow_mesh = SubResource("ArrayMesh_fmgue")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u45fp"]
 
+[sub_resource type="Animation" id="Animation_fs2qx"]
+resource_name = "RESET"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tool")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tool:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g3kjw"]
+resource_name = "center_tool"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tool:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.065, -0.034, 0), Vector3(-0.17, 0.02, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2vir"]
+_data = {
+&"RESET": SubResource("Animation_fs2qx"),
+&"center_tool": SubResource("Animation_g3kjw")
+}
+
 [sub_resource type="Animation" id="Animation_4fbvh"]
 resource_name = "AimBomb"
 loop_mode = 1
@@ -328,7 +372,8 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552608, -0.014453307, 0.025802754, 0.023032062, 0.09108559, -0.034248088, -0.018552529, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.09552606, -0.014453307, 0.025802754, 0.02303206, 0.09108559, -0.034248088, -0.018552525, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+visible = false
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
 cast_shadow = 0
@@ -343,7 +388,11 @@ hit_particles = ExtResource("4_q57vx")
 break_particles = ExtResource("5_ak4un")
 
 [node name="Tool" parent="Head/ToolManager" unique_id=665250785 instance=ExtResource("6_1ms0h")]
+transform = Transform3D(0.9981348, -0.01102043, 0.060045604, 0, 0.98357147, 0.18051915, -0.06104854, -0.18018244, 0.9817369, 0, 0, 0)
 debug_mode = true
+
+[node name="Beam" parent="Head/ToolManager/Tool" unique_id=1253000187 instance=ExtResource("11_3uni3")]
+transform = Transform3D(-0.41811305, 0.0034462858, 0.02703203, 0.00832957, 0.41190588, 0.0763226, -0.025946608, 0.07669839, -0.4111023, 0.21301329, -0.03706658, -0.6254767)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager" unique_id=1059309043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
@@ -358,15 +407,16 @@ collision_mask = 34
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision" unique_id=90150752]
 shape = SubResource("SphereShape3D_u45fp")
 
-[node name="Beam" parent="Head/ToolManager" unique_id=1253000187 instance=ExtResource("11_3uni3")]
-transform = Transform3D(-0.14213985, 0.00020530418, -0.021602463, -0.0006503581, 0.14365979, 0.005644528, 0.021593668, 0.005678153, -0.14202787, 0.4288089, -0.10097474, -0.48478693)
-
 [node name="ToolFlicker" type="OmniLight3D" parent="Head/ToolManager" unique_id=1094896208]
 visible = false
 light_color = Color(0.91715086, 0.30366266, 0.2268546, 1)
 light_volumetric_fog_energy = 0.0
 omni_attenuation = 2.0
 script = ExtResource("11_ax5yc")
+
+[node name="ToolAnimations" type="AnimationPlayer" parent="Head/ToolManager" unique_id=1943622784]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_f2vir")
 
 [node name="HeadLamp" type="SpotLight3D" parent="Head" unique_id=1319693506]
 visible = false
