@@ -1,0 +1,89 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://qpl0ialm4b8m"
+path="res://.godot/imported/last_tool.gltf-756ee3f594cd143ecfd910efd8a1c019.scn"
+
+[deps]
+
+source_file="res://assets/meshes/laser_tool/last_tool.gltf"
+dest_files=["res://.godot/imported/last_tool.gltf-756ee3f594cd143ecfd910efd8a1c019.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://shaders/materials/laser/Body.tres",
+"use_external/path": "uid://nbffhqto6ydm"
+},
+"Muzzle": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://shaders/materials/laser/Muzzle.tres",
+"use_external/path": "uid://cw25eep2qutx"
+},
+"Vents": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://shaders/materials/laser/Vents.tres",
+"use_external/path": "uid://bqh1av11afybw"
+}
+},
+"meshes": {
+"last_tool_Body": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/meshes/laser_tool/last_tool_Body.res",
+"save_to_file/path": "uid://dkvsrkyqlfam"
+},
+"last_tool_Muzzle": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/meshes/laser_tool/last_tool_Muzzle.res",
+"save_to_file/path": "uid://c7n12kjejw2ob"
+},
+"last_tool_Vents": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/meshes/laser_tool/last_tool_Vents.res",
+"save_to_file/path": "uid://bunlyu85jq5df"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

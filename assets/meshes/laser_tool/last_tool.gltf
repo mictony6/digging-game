@@ -1,0 +1,508 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 24720,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 4630,
+      "max": [
+        0.170485869050026,
+        0.191695883870125,
+        0.355899155139923
+      ],
+      "min": [
+        -0.170485883951187,
+        -0.530155420303345,
+        -0.233169078826904
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 4630,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 4630,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 4630,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5125,
+      "count": 2688,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 575,
+      "max": [
+        0.0587990842759609,
+        0.05879907310009,
+        0.143934726715088
+      ],
+      "min": [
+        -0.0587990842759609,
+        -0.05879907310009,
+        0.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5126,
+      "count": 575,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 8,
+      "componentType": 5126,
+      "count": 575,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 9,
+      "componentType": 5126,
+      "count": 575,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 10,
+      "componentType": 5125,
+      "count": 3840,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 11,
+      "componentType": 5126,
+      "count": 776,
+      "max": [
+        0.248835980892181,
+        0.0697466433048248,
+        0.0875995755195618
+      ],
+      "min": [
+        -0.248835951089859,
+        -0.0697465837001801,
+        -0.0566736496984959
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 12,
+      "componentType": 5126,
+      "count": 776,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 13,
+      "componentType": 5126,
+      "count": 776,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 14,
+      "componentType": 5126,
+      "count": 776,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Adobe Substance 3D Painter 12.0.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 98880,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 55560,
+      "byteOffset": 98880,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 55560,
+      "byteOffset": 154440,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 74080,
+      "byteOffset": 210000,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 37040,
+      "byteOffset": 284080,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 10752,
+      "byteOffset": 321120,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 6900,
+      "byteOffset": 331872,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 6900,
+      "byteOffset": 338772,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9200,
+      "byteOffset": 345672,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4600,
+      "byteOffset": 354872,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 15360,
+      "byteOffset": 359472,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9312,
+      "byteOffset": 374832,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9312,
+      "byteOffset": 384144,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 12416,
+      "byteOffset": 393456,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 6208,
+      "byteOffset": 405872,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 412080,
+      "uri": "last_tool.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "Body_baseColor.png"
+    },
+    {
+      "uri": "Body_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "Body_normal.png"
+    },
+    {
+      "uri": "Muzzle_baseColor.png"
+    },
+    {
+      "uri": "Muzzle_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "Muzzle_normal.png"
+    },
+    {
+      "uri": "Vents_baseColor.png"
+    },
+    {
+      "uri": "Vents_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "Vents_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "OPAQUE",
+      "name": "Body",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "alphaMode": "OPAQUE",
+      "name": "Muzzle",
+      "normalTexture": {
+        "index": 5
+      },
+      "occlusionTexture": {
+        "index": 4
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicRoughnessTexture": {
+          "index": 4
+        }
+      }
+    },
+    {
+      "alphaMode": "OPAQUE",
+      "name": "Vents",
+      "normalTexture": {
+        "index": 8
+      },
+      "occlusionTexture": {
+        "index": 7
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 6
+        },
+        "metallicRoughnessTexture": {
+          "index": 7
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Body",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TANGENT": 3,
+            "TEXCOORD_0": 4
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Muzzle",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6,
+            "TANGENT": 8,
+            "TEXCOORD_0": 9
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Vents",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 12,
+            "POSITION": 11,
+            "TANGENT": 13,
+            "TEXCOORD_0": 14
+          },
+          "indices": 10,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1,
+        3,
+        5
+      ],
+      "name": "RootNode",
+      "scale": [
+        0.00999999977648258,
+        0.00999999977648258,
+        0.00999999977648258
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "Body",
+      "rotation": [
+        -0.707106828689575,
+        0.0,
+        0.0,
+        0.707106709480286
+      ],
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "translation": [
+        0.0,
+        91.9823379516602,
+        0.0
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "Body"
+    },
+    {
+      "children": [
+        4
+      ],
+      "name": "Muzzle",
+      "rotation": [
+        2.1855694143369e-08,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "translation": [
+        0.0,
+        119.168090820312,
+        53.0155372619629
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "Muzzle"
+    },
+    {
+      "children": [
+        6
+      ],
+      "name": "Vents",
+      "rotation": [
+        -0.419741243124008,
+        0.0,
+        0.0,
+        0.907643795013428
+      ],
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "translation": [
+        0.0,
+        117.380592346191,
+        -5.30515336990356
+      ]
+    },
+    {
+      "mesh": 2,
+      "name": "Vents"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    },
+    {
+      "sampler": 0,
+      "source": 6
+    },
+    {
+      "sampler": 0,
+      "source": 7
+    },
+    {
+      "sampler": 0,
+      "source": 8
+    }
+  ]
+}

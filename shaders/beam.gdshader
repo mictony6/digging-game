@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled, depth_test_disabled;
+render_mode cull_disabled, blend_add, depth_test_disabled;
 uniform sampler2D main_tex : source_color, filter_linear_mipmap_anisotropic;
 uniform vec4 base_color : source_color;
 uniform float brightness : hint_range(0.0, 10.0, 0.1) = 1.0;

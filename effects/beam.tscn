@@ -26,6 +26,7 @@ script = ExtResource("1_xn531")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=162666064]
 transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, 0, 0, 10)
+visible = false
 material_override = ExtResource("1_kkdtw")
 mesh = SubResource("QuadMesh_e7wm1")
 
@@ -41,6 +42,7 @@ mesh = SubResource("QuadMesh_e7wm1")
 
 [node name="BeamStart" type="MeshInstance3D" parent="." unique_id=1899163318]
 transform = Transform3D(0.76657736, 0, 0, 0, 0.76657736, 0, 0, 0, 3.7926688, 0, 0, 1.4595256)
+visible = false
 material_override = SubResource("ShaderMaterial_xn531")
 mesh = SubResource("SphereMesh_p6cgm")
 

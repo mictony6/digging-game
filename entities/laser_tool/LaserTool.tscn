@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://du0vtp13ykrea"]
 
+[ext_resource type="ArrayMesh" uid="uid://dul65uillfqor" path="res://assets/meshes/laser_tool/last_tool_Body.res" id="1_82dk1"]
 [ext_resource type="ArrayMesh" uid="uid://oayamxo0lqio" path="res://assets/meshes/laser_tool/mesh1.res" id="1_xc8d0"]
 [ext_resource type="ArrayMesh" uid="uid://dd2mq26i2rpwf" path="res://assets/meshes/laser_tool/mesh2.res" id="2_hnwkv"]
+[ext_resource type="ArrayMesh" uid="uid://dbr4x7fdeotby" path="res://assets/meshes/laser_tool/last_tool_Muzzle.res" id="2_v1p2d"]
+[ext_resource type="ArrayMesh" uid="uid://bh45c16u0qvq4" path="res://assets/meshes/laser_tool/last_tool_Vents.res" id="3_8ofd2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xc8d0"]
 render_priority = 1
@@ -36,13 +39,35 @@ z_clip_scale = 0.85
 [node name="LaserTool" type="Node3D" unique_id=978511806]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
+[node name="Node3D" type="Node3D" parent="." unique_id=45077184]
+
+[node name="Body" type="Node3D" parent="Node3D" unique_id=2117970672]
+transform = Transform3D(1, 0, 0, 0, -1.192093e-07, 1, 0, -1, -1.192093e-07, 0, -0.17481816, -0.15967852)
+
+[node name="Body2" type="MeshInstance3D" parent="Node3D/Body" unique_id=667181661]
+mesh = ExtResource("1_82dk1")
+
+[node name="Muzzle" type="Node3D" parent="Node3D" unique_id=352520851]
+transform = Transform3D(1, 0, 0, 0, 1, -4.371139e-08, 0, 4.371139e-08, 1, 0, 0.0970394, 0.37047684)
+
+[node name="Muzzle2" type="MeshInstance3D" parent="Node3D/Muzzle" unique_id=578819357]
+mesh = ExtResource("2_v1p2d")
+
+[node name="Vents" type="Node3D" parent="Node3D" unique_id=996957005]
+transform = Transform3D(1, 0, 0, 0, 0.64763457, 0.761951, 0, -0.761951, 0.64763457, 0, 0.079164445, -0.21273005)
+
+[node name="Vents2" type="MeshInstance3D" parent="Node3D/Vents" unique_id=82598288]
+mesh = ExtResource("3_8ofd2")
+
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=1570464307]
+visible = false
 layers = 2
 mesh = ExtResource("1_xc8d0")
 surface_material_override/0 = SubResource("StandardMaterial3D_ybjws")
 
 [node name="Cube_001" type="MeshInstance3D" parent="." unique_id=1373628562]
 transform = Transform3D(0.25579977, 0, 0, 0, 0, -0.25579977, 0, 0.25579977, 0, 0, 1.1434436, 0.19197425)
+visible = false
 layers = 2
 mesh = ExtResource("2_hnwkv")
 surface_material_override/0 = SubResource("StandardMaterial3D_bqd44")
