@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6gmiu2dgeqxd"]
+
+[ext_resource type="Texture2D" uid="uid://ckng7abg1exa1" path="res://assets/meshes/laser_tool/Tool_baseColor.png" id="1_xrmfc"]
+[ext_resource type="Texture2D" uid="uid://c0ho00vlnb4s6" path="res://assets/meshes/laser_tool/Tool_occlusionRoughnessMetallic.png" id="2_c7ugi"]
+[ext_resource type="Texture2D" uid="uid://r2kqsduh7tcu" path="res://assets/meshes/laser_tool/Tool_normal.png" id="3_nmnw1"]
+
+[resource]
+resource_name = "Tool"
+albedo_texture = ExtResource("1_xrmfc")
+metallic = 1.0
+metallic_texture = ExtResource("2_c7ugi")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_c7ugi")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_nmnw1")
+ao_enabled = true
+ao_texture = ExtResource("2_c7ugi")
+texture_filter = 5
+use_z_clip_scale = true
+z_clip_scale = 0.9
