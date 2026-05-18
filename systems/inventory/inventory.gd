@@ -8,7 +8,7 @@ var _use_counts: Dictionary = {}
 
 # Compare two item resources — uses path if available so different instances
 # of the same .tres file still match.
-func _same_item(a: Resource, b: Resource) -> bool:
+func _same_item(a: ItemData, b: ItemData) -> bool:
 	if a == null or b == null:
 		return false
 	if a == b:
@@ -18,7 +18,7 @@ func _same_item(a: Resource, b: Resource) -> bool:
 	return false
 
 # Add items to inventory. Returns how many could NOT be added (overflow).
-func add_item(item: Resource, amount: int = 1) -> int:
+func add_item(item: ItemData, amount: int = 1) -> int:
 	var remaining := amount
 
 	# Fill existing stacks first
@@ -44,7 +44,7 @@ func add_item(item: Resource, amount: int = 1) -> int:
 	return 0
 
 # Remove items from inventory. Returns true if successful.
-func remove_item(item: Resource, amount: int = 1) -> bool:
+func remove_item(item: ItemData, amount: int = 1) -> bool:
 	if not has_items(item, amount):
 		return false
 
@@ -65,10 +65,10 @@ func remove_item(item: Resource, amount: int = 1) -> bool:
 	changed.emit()
 	return true
 
-func has_items(item: Resource, amount: int = 1) -> bool:
+func has_items(item: ItemData, amount: int = 1) -> bool:
 	return get_count(item) >= amount
 
-func get_count(item: Resource) -> int:
+func get_count(item: ItemData) -> int:
 	var total := 0
 	for slot in slots:
 		if _same_item(slot.item, item):
