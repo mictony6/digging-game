@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://du0vtp13ykrea"]
 
-[ext_resource type="ArrayMesh" uid="uid://bjxic8vn1yo1v" path="res://assets/meshes/laser_tool/laser_tool_2_Barrel.res" id="1_8ofd2"]
-[ext_resource type="ArrayMesh" uid="uid://ck01rbdemk0ag" path="res://assets/meshes/laser_tool/laser_tool_2_Chassis.res" id="2_gfb4t"]
-[ext_resource type="ArrayMesh" uid="uid://d1em1qm8ra5vu" path="res://assets/meshes/laser_tool/laser_tool_2_Side.res" id="3_p347g"]
-[ext_resource type="ArrayMesh" uid="uid://da4v355mi3oq" path="res://assets/meshes/laser_tool/laser_tool_2_Vents.res" id="4_4nxj1"]
+[ext_resource type="ArrayMesh" uid="uid://d3jbejnvkcxuk" path="res://assets/meshes/laser_tool/laser_tool_2_Barrel.res" id="1_8ofd2"]
+[ext_resource type="ArrayMesh" uid="uid://b1e8uc7i3ogag" path="res://assets/meshes/laser_tool/laser_tool_2_Chassis.res" id="2_gfb4t"]
+[ext_resource type="ArrayMesh" uid="uid://c338cl5tf45l0" path="res://assets/meshes/laser_tool/laser_tool_2_Side.res" id="3_p347g"]
+[ext_resource type="ArrayMesh" uid="uid://cfppxvf4dfomw" path="res://assets/meshes/laser_tool/laser_tool_2_Vents.res" id="4_4nxj1"]
 
 [node name="LaserTool" type="Node3D" unique_id=978511806]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

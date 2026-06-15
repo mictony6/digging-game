@@ -11,10 +11,10 @@
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="14_rmkky"]
 [ext_resource type="PackedScene" uid="uid://cibqp30ke24fh" path="res://entities/ladder/ladder_generator.tscn" id="15_xqdkm"]
 [ext_resource type="PackedScene" uid="uid://uiig5ud3kjxl" path="res://greyboxing/exchange.tscn" id="20_u1nm5"]
+[ext_resource type="Texture2D" uid="uid://kh774j3rc7vw" path="res://GreyboxTextures/greybox_grey_solid_2.png" id="22_1wu2q"]
 [ext_resource type="PackedScene" uid="uid://cdlfx6d6pumlb" path="res://levels/terrain.tscn" id="22_8a51t"]
 [ext_resource type="Texture2D" uid="uid://duxxlaxmbq2hl" path="res://GreyboxTextures/greybox_light_grid.png" id="22_kl5js"]
 [ext_resource type="PackedScene" uid="uid://ry7ojknmwfcr" path="res://entities/rocks/RockMedium.tscn" id="22_mfah6"]
-[ext_resource type="Texture2D" uid="uid://ix3gofijte7i" path="res://GreyboxTextures/greybox_blue_solid.png" id="22_slyy5"]
 [ext_resource type="Texture2D" uid="uid://kcgxc04wwpoy" path="res://assets/textures/rock_face/rock_face_03_diff_2k.png" id="23_clpq5"]
 [ext_resource type="PackedScene" uid="uid://nx4nj5ft54fa" path="res://game/RockSpawner.tscn" id="23_krped"]
 [ext_resource type="Texture2D" uid="uid://bg42783a62meg" path="res://assets/textures/rock_face/rock_face_03_nor_gl_2k.png" id="24_kl5js"]
@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="40_uoqfl"]
 [ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="49_kl5js"]
 [ext_resource type="PackedScene" uid="uid://cd8eju1cig105" path="res://entities/rocks/RockWall.tscn" id="50_kl5js"]
+[ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_1wu2q"]
 
 [sub_resource type="Resource" id="Resource_fywoe"]
 script = ExtResource("5_mteop")
@@ -84,6 +85,11 @@ size = Vector3(10, 5, 2)
 albedo_texture = ExtResource("7_kyecp")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k6bt"]
+albedo_texture = ExtResource("22_1wu2q")
+uv1_triplanar = true
+texture_filter = 5
+
 [sub_resource type="Gradient" id="Gradient_1wu2q"]
 offsets = PackedFloat32Array(0.025914634, 0.46900406)
 
@@ -106,11 +112,6 @@ uv2_scale = Vector3(0.5, 0.5, 0.5)
 uv2_triplanar = true
 texture_filter = 5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k6bt"]
-albedo_texture = ExtResource("22_slyy5")
-uv1_triplanar = true
-texture_filter = 5
-
 [sub_resource type="Curve3D" id="Curve3D_mfah6"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.092041, -4.085926, -4.179667, 0, 0, 0, 0, 0, 0, -24.405655, -4.1917725, -3.0551941, 0, 0, 0, 0, 0, 0, -34.943012, -5.002762, -6.657741, 0, 0, 0, 0, 0, 0, -41.08508, -4.615923, -6.8059688),
@@ -127,10 +128,10 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_m8nfy"]
 _data = {
-"points": PackedVector3Array(-4.1825333, 0.23034859, -0.63508797, 4.1825333, -0.23034859, 0.63508797, 9.345332, -1.9319744, -18.63783, -4.617, 0, -6.259, 4.617, 0, 6.259, 21.865265, -0.8482685, -16.586508, 0, 0, 0, 0, 0, 0, 27.643, 0.751, 6.509),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(-4.1825333, 0.23034859, -0.63508797, 4.1825333, -0.23034859, 0.63508797, 9.345332, -1.9319744, -18.63783, -4.617, 0, -6.259, 4.617, 0, 6.259, 21.865265, -0.8482685, -16.586508, -1.3813591, -0.44374847, -3.1764219, 1.3813591, 0.44374847, 3.1764219, 28.729105, 4.209488, -6.0962267, -0.047597885, -0.07077789, -1.8865409, 0.047597885, 0.07077789, 1.8865409, 31.606133, 6.9238815, 5.970996, 1.2503738, 0.08072853, -2.3656063, -1.2503738, -0.08072853, 2.3656063, 28.561808, 7.976263, 16.983013, 1.6554613, -0.16832066, -1.1419582, -1.6554613, 0.16832066, 1.1419582, 11.274461, 12.162696, 30.57422, 0.90927553, -0.42004204, -0.60710144, -0.90927553, 0.42004204, 0.60710144, -5.220537, 21.84622, 32.260258, 1.7427387, 0.017026901, -2.4960785, -1.7427387, -0.017026901, 2.4960785, -17.128061, 27.66763, 37.376785, 0, 0, 0, 0, 0, 0, -21.29589, 27.514832, 46.50118),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 3
+point_count = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nm5"]
 bg_color = Color(0.18378875, 0.090516694, 0.053865835, 1)
@@ -145,9 +146,11 @@ font = SubResource("SystemFont_1w0m8")
 font_size = 45
 font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_j3o6a"]
+[sub_resource type="BoxMesh" id="BoxMesh_kl5js"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u2lxf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1wu2q"]
 
 [sub_resource type="Curve3D" id="Curve3D_4c3pj"]
 _data = {
@@ -354,21 +357,18 @@ transform = Transform3D(-3.8035853, -0.15354961, -2.6530683, 0.02631776, 4.62984
 [node name="CaveTunnel6" parent="LevelLoader/OverWorld" unique_id=1504137514 instance=ExtResource("40_gmj64")]
 transform = Transform3D(-3.6855133, -2.1245368, 1.8528186, -2.2744274, 4.0427895, 0.11151904, -1.6654056, -0.81963253, -4.2525563, 7.5364065, -31.23734, -63.08169)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld" unique_id=384727343]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 7.33551, -34.27907, -96.81645)
+material_override = SubResource("StandardMaterial3D_6k6bt")
+use_collision = true
+collision_mask = 0
+size = Vector3(96, 1, 82)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=1616004500]
 material_override = SubResource("StandardMaterial3D_thpaw")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=384727343]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 13.851812, -34.27907, -84.59819)
-material_override = SubResource("StandardMaterial3D_6k6bt")
-size = Vector3(7.801758, 1, 26)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=2142472755]
-transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, -0.048727363, -34.27907, -98.67737)
-material_override = SubResource("StandardMaterial3D_6k6bt")
-size = Vector3(6, 1, 26.4)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=1201741460]
 transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, -7.672108, -30.779072, -106.93171)
@@ -384,16 +384,6 @@ size = Vector3(6, 5, 25.5)
 transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 2.7889915, -26.94698, -98.23492)
 material_override = SubResource("StandardMaterial3D_6k6bt")
 size = Vector3(7, 5.6641846, 16)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=508200414]
-transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, -7.672108, -34.77907, -106.93171)
-material_override = SubResource("StandardMaterial3D_6k6bt")
-size = Vector3(6, 2, 7)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=694670777]
-transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, -6.1191936, -34.77907, -112.727264)
-material_override = SubResource("StandardMaterial3D_6k6bt")
-size = Vector3(6, 2, 3)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D" unique_id=902307914]
 transform = Transform3D(-0.8660255, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660255, -4.7275662, -34.096195, -114.984634)
@@ -426,9 +416,6 @@ visible = false
 
 [node name="LightPost" parent="LevelLoader/OverWorld" unique_id=795842710 instance=ExtResource("35_uoqfl")]
 transform = Transform3D(0.087155685, 0, -0.99619484, 0, 1, 0, 0.99619484, 0, 0.087155685, 4.6835537, -29.97977, -41.055946)
-
-[node name="Mound" parent="LevelLoader/OverWorld" unique_id=2055529303 instance=ExtResource("28_mfah6")]
-transform = Transform3D(1.2041004, 0, 1.2778944, 0, 1.7558107, 0, -1.2778944, 0, 1.2041004, -12.123533, -25.87873, -3.9599485)
 
 [node name="Mound6" parent="LevelLoader/OverWorld" unique_id=2125545552 instance=ExtResource("28_mfah6")]
 transform = Transform3D(1.2041004, 0, 1.2778944, 0, 1.7558107, 0, -1.2778944, 0, 1.2041004, -7.465071, -25.29723, 9.023762)
@@ -553,7 +540,6 @@ support_mesh_height = 1.051
 rail_gauge = 0.96
 rail_width = 0.08
 rail_height = 0.12
-rail_segments = 64
 rail_y_offset = 0.07
 
 [node name="MinecartPathFollow" parent="LevelLoader/OverWorld/Rail" unique_id=2019470595 instance=ExtResource("28_1ijy3")]
@@ -681,11 +667,11 @@ size = Vector3(22.86131, 13.559534, 48.64995)
 data = ExtResource("27_8m07d")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=650285197]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.904036, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.548815, -24.073336, 1.1361938)
 script = ExtResource("40_j3o6a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=495315696]
-mesh = SubResource("SphereMesh_j3o6a")
+mesh = SubResource("BoxMesh_kl5js")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=182568236]
 shape = SubResource("SphereShape3D_u2lxf")
@@ -694,10 +680,10 @@ shape = SubResource("SphereShape3D_u2lxf")
 target_mesh = NodePath("../MeshInstance3D")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D/IsSelectable" unique_id=1020582890]
-shape = SubResource("SphereShape3D_u2lxf")
+shape = SubResource("BoxShape3D_1wu2q")
 
 [node name="3DCursor" parent="." unique_id=1316528881 instance=ExtResource("49_kl5js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8842883, -29.779099, -103.6496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.756867, -25.943272, -3.610351)
 metadata/cursor_id = 0
 metadata/size_scale = 1.0
 metadata/show_title_label = true
@@ -713,6 +699,9 @@ transform = Transform3D(2.9802322e-08, 0, -1, 0.009389734, 0.9999559, 2.7983588e
 curve = SubResource("Curve3D_4c3pj")
 self_collision = true
 
+[node name="Node3D" type="Node3D" parent="." unique_id=798283961]
+transform = Transform3D(-0.97597766, 0, 0.21787062, 0, 1, 0, -0.21787062, 0, -0.97597766, -10.468048, -25.9048, -7.3203354)
+
 [node name="RockWall" parent="." unique_id=1742819580 instance=ExtResource("50_kl5js")]
 transform = Transform3D(-0.97597766, 0, 0.21787062, 0, 1, 0, -0.21787062, 0, -0.97597766, -9.917978, -34.2285, -104.58168)
 
@@ -725,6 +714,9 @@ transform = Transform3D(1.043942, -1.5840837, -4.0736856, -1.260261, 3.9013014, 
 [node name="LadderGenerator" parent="." unique_id=1711934509 instance=ExtResource("15_xqdkm")]
 transform = Transform3D(-0.9848077, 0, 0.1736481, 0, 1, 0, -0.1736481, 0, -0.9848077, 1.8842883, -29.779074, -102.349594)
 height = 6.0
+
+[node name="Crawler" parent="." unique_id=2023624991 instance=ExtResource("51_1wu2q")]
+transform = Transform3D(0.27170542, 0, 0, 0, 0.27170542, 0, 0, 0, 0.27170542, -7.5661697, -25.999144, -7.8931026)
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

@@ -56,9 +56,13 @@ class_name Rail
 	set(value):
 		rail_height = value
 		build_rails()
-@export var rail_segments: int = 64:
+@export var rail_segments_min: int = 8:
 	set(value):
-		rail_segments = value
+		rail_segments_min = value
+		build_rails()
+@export var rail_segments_max: int = 128:
+	set(value):
+		rail_segments_max = value
 		build_rails()
 @export var rail_y_offset: float = 0.0:
 	set(value):
@@ -148,15 +152,33 @@ func build_multimesh() -> void:
 
 # --- Rail bars (extruded along path) ---
 
+func _compute_rail_segments() -> int:
+	var total_length := curve.get_baked_length()
+	# Sample densely so curvature measurement is accurate regardless of min/max values
+	var sample_count := 64
+	var total_angle := 0.0
+	var prev_tangent := Vector3.ZERO
+	for i in sample_count + 1:
+		var offset := total_length * i / sample_count
+		var t := (curve.sample_baked(minf(offset + 0.01, total_length)) - curve.sample_baked(maxf(offset - 0.01, 0.0))).normalized()
+		if prev_tangent != Vector3.ZERO:
+			total_angle += acos(clamp(prev_tangent.dot(t), -1.0, 1.0))
+		prev_tangent = t
+	# Target ~3 degrees of angular change per segment for smooth appearance
+	var needed := int(total_angle / deg_to_rad(3.0))
+	return clamp(needed, rail_segments_min, rail_segments_max)
+
+
 func build_rails() -> void:
 	if not rail_mesh_instance or curve.get_baked_length() == 0.0:
 		return
 
+	var segments: int = _compute_rail_segments()
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	_extrude_rail(st, -rail_gauge * 0.5)
-	_extrude_rail(st, rail_gauge * 0.5)
+	_extrude_rail(st, -rail_gauge * 0.5, segments)
+	_extrude_rail(st, rail_gauge * 0.5, segments)
 
 	st.generate_normals()
 	rail_mesh_instance.mesh = st.commit()
@@ -168,9 +190,9 @@ func build_rails() -> void:
 		body.add_child(col)
 
 
-func _extrude_rail(st: SurfaceTool, x_offset: float) -> void:
+func _extrude_rail(st: SurfaceTool, x_offset: float, segments: int) -> void:
 	var total_length := curve.get_baked_length()
-	var step: float = total_length / rail_segments
+	var step: float = total_length / segments
 
 	# Rectangle cross-section: bottom-left, bottom-right, top-right, top-left
 	var hw := rail_width * 0.5
@@ -196,7 +218,7 @@ func _extrude_rail(st: SurfaceTool, x_offset: float) -> void:
 	var prev_ring: Array[Vector3] = []
 	var prev_v := 0.0
 
-	for i in rail_segments + 1:
+	for i in segments + 1:
 		var offset: float = step * i
 		var pos := curve.sample_baked(offset)
 

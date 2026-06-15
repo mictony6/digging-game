@@ -1,7 +1,7 @@
 [gd_resource type="Environment" format=3 uid="uid://bo22vvl5ev0to"]
 
 [sub_resource type="Curve" id="Curve_m8nfy"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.43392074, 0.2865169), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.43392074, 0.2865169), 2.5116317, 2.5116317, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_1ijy3"]
@@ -43,5 +43,6 @@ volumetric_fog_density = 0.0149
 volumetric_fog_albedo = Color(0.3902776, 0.47929376, 0.40840918, 1)
 volumetric_fog_emission = Color(0.011342637, 0.12900913, 0.2510323, 1)
 adjustment_brightness = 1.1
-adjustment_contrast = 0.85
+adjustment_contrast = 0.75
+adjustment_saturation = 0.9
 adjustment_color_correction = SubResource("CurveXYZTexture_xqdkm")

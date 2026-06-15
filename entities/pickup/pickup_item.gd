@@ -9,7 +9,7 @@ signal picked_up(item: Resource, qty: int)
 const ATTRACT_RADIUS := 2.5 # distance at which attraction starts
 const COLLECT_RADIUS := 0.4 # distance at which it is collected
 const ATTRACT_SPEED := 8.0 # lerp speed toward player
-const WAVE_FREQ := 6.0 # sine oscillations per second
+const WAVE_FREQ := 12.0 # sine oscillations per second
 const WAVE_AMP := 0.35 # metres of lateral glow_effect_offset
 
 var _attracting := false

@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b7magdlarjyq0"]
+
+[ext_resource type="Texture2D" uid="uid://bwwep57wyq2f3" path="res://assets/meshes/crawler/textures/Crawler_baseColor.png" id="1_a7gq8"]
+[ext_resource type="Texture2D" uid="uid://cequuwp37spsh" path="res://assets/meshes/crawler/textures/Crawler_occlusionRoughnessMetallic.png" id="2_kdvl3"]
+[ext_resource type="Texture2D" uid="uid://dafwxfewi1vcd" path="res://assets/meshes/crawler/textures/Crawler_normal.png" id="3_sfuy0"]
+
+[resource]
+resource_name = "Crawler"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_a7gq8")
+metallic = 1.0
+metallic_texture = ExtResource("2_kdvl3")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_kdvl3")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_sfuy0")
+ao_enabled = true
+ao_texture = ExtResource("2_kdvl3")
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+texture_filter = 5
