@@ -28,7 +28,7 @@ var height: float = 1.5
 # Water / swimming
 var in_water: bool = false
 var _water_area_count: int = 0
-var water_surface_y: float = -INF  # set by water_effects when feet touch water
+var water_surface_y: float = - INF # set by water_effects when feet touch water
 
 # Ladders
 var overlapping_ladders: Array = []
@@ -59,8 +59,6 @@ func _ready() -> void:
 		head = get_node("Head");
 	gravity = (2 * JUMP_HEIGHT) / (pow(JUMP_HALF_TIME, 2))
 	JUMP_FORCE = sqrt(2 * gravity * JUMP_HEIGHT)
-
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	pickup_component.item_collected.connect(func(item, qty): inventory.add_item(item, qty))
 

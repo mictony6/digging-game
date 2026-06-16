@@ -22,6 +22,7 @@ PlayerData="*res://game/player_data.gd"
 GlobalInput="*res://game/global_input.gd"
 ExpenseManager="*uid://cxi4xlfrmlq26"
 DateManager="*uid://crjiivy1niwso"
+PauseStateManager="*uid://duvp4bfarcoft"
 
 [display]
 

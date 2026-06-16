@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://4qw1jjikrdet"]
+
+[ext_resource type="Theme" uid="uid://dwmbjwg333xdc" path="res://ui/themes/start_menu_theme.tres" id="1_4hcbv"]
+[ext_resource type="Script" uid="uid://vre1qgkbratv" path="res://ui/start_menu.gd" id="1_tqkr4"]
+
+[sub_resource type="SystemFont" id="SystemFont_hby2y"]
+font_names = PackedStringArray("Alternate Gothic ATF")
+font_weight = 800
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hcbv"]
+font = SubResource("SystemFont_hby2y")
+font_size = 120
+
+[node name="StartMenu" type="Control" unique_id=1070769777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqkr4")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=636388893]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer" unique_id=1879849211]
+layout_mode = 2
+alignment = 1
+
+[node name="GameLabel" type="Label" parent="PanelContainer/VBoxContainer2" unique_id=1780499790]
+layout_mode = 2
+text = "SUNK COST"
+label_settings = SubResource("LabelSettings_4hcbv")
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PanelContainer/VBoxContainer2" unique_id=664779305]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer2/Buttons" unique_id=21664990]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4hcbv")
+text = "Start"
+
+[node name="LoadButton" type="Button" parent="PanelContainer/VBoxContainer2/Buttons" unique_id=1186812748]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4hcbv")
+text = "Load"
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer2/Buttons" unique_id=1602067357]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4hcbv")
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer2/Buttons" unique_id=217808514]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4hcbv")
+text = "Quit"

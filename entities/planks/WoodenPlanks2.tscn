@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdslp2bfm771l"]
 
 [ext_resource type="PackedScene" uid="uid://dmxt2kujrceq0" path="res://entities/planks/WoodenPlanks.tscn" id="1_fbaof"]
-[ext_resource type="ArrayMesh" uid="uid://cyhb541at32od" path="res://assets/meshes/planks/planks_Plane_001.res" id="2_wli4s"]
+[ext_resource type="ArrayMesh" uid="uid://btmiyenh228jp" path="res://assets/meshes/planks/planks_Plane_001.res" id="2_wli4s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yfhgo"]
 radius = 0.1

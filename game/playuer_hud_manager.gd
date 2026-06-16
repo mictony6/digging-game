@@ -6,6 +6,7 @@ extends Control
 @export var inventory_ui: Control
 @export var shop_ui: Control
 @export var toast_scene: PackedScene
+@export var start_menu: Control
 
 @onready var day_label: Label = %DayLabel
 @onready var health_bar: ProgressBar = %HealthBar
@@ -26,6 +27,7 @@ extends Control
 @onready var _stat_tier: Label = %StatTier
 @onready var _stat_power: Label = %StatPower
 @onready var _stat_maxdur: Label = %StatMaxDur
+
 
 var _pending_report: Dictionary = {}
 var _tool_manager: ToolManager
@@ -55,6 +57,8 @@ var _dur_flash_tween: Tween
 
 
 func _ready() -> void:
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
+	# connecting signals
 	player.health.health_changed.connect(_on_health_changed)
 	player.health.death.connect(_on_player_death)
 	player.oxygen.oxygen_changed.connect(_on_oxygen_changed)
@@ -62,6 +66,10 @@ func _ready() -> void:
 	PlayerData.coins_changed.connect(_on_coins_changed)
 	DateManager.day_passed.connect(_on_date_manager_day_passed)
 	eod_screen.connect("confirmed", _on_eod_confirmed)
+	start_menu.start_pressed.connect(_on_start_pressed)
+	start_menu.quit_pressed.connect(_on_quit_pressed)
+
+
 	if inventory_ui:
 		inventory_ui.visibility_changed.connect(_on_inventory_visibility_changed)
 		player.inventory_opened.connect(func(data): inventory_ui.open(data))
@@ -69,9 +77,10 @@ func _ready() -> void:
 	if shop_ui:
 		shop_ui.visibility_changed.connect(_on_shop_visibility_changed)
 
+	# this initializes hud information and statistics
 	_coin_target = PlayerData.coins
 	_coin_display = float(_coin_target)
-	coin_label.text = _fmt(_coin_target)
+	coin_label.text = _fmt(_coin_target) # formats to add thousands comma
 	quota_value_label.text = "0 / %d SC" % QuotaManager.required_quota
 	quota_pct_label.text = "0%"
 	day_label.text = "DAY %d" % (DateManager.days_passed + 1)
@@ -98,6 +107,9 @@ func _ready() -> void:
 
 	death_screen.hide()
 	eod_screen.hide()
+	self.hide()
+	start_menu.show()
+	PauseStateManager.set_paused(true, self )
 
 
 func _process(delta: float) -> void:
@@ -322,3 +334,12 @@ func _fmt(value: int) -> String:
 	if value >= 1000:
 		return "%d,%03d" % [int(value / 1000.0), value % 1000]
 	return str(value)
+
+func _on_start_pressed() -> void:
+	start_menu.hide()
+	show()
+	PauseStateManager.set_paused(false, self )
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

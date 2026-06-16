@@ -1,5 +1,7 @@
 extends Node
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed:
 		return

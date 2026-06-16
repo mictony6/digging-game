@@ -1,4 +1,5 @@
 extends Node
+#stores coin data and vitals of player
 
 var coins: int = 0
 var coins_earned_today: int = 0
