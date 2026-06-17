@@ -372,7 +372,7 @@ player_inventory = NodePath("../../HasInventory")
 bomb_item = ExtResource("3_wbbrj")
 
 [node name="AimingPreview" type="MeshInstance3D" parent="Head/BombManager" unique_id=535970999]
-transform = Transform3D(0.09552606, -0.014453307, 0.025802754, 0.02303206, 0.09108559, -0.034248088, -0.018552525, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
+transform = Transform3D(0.095526055, -0.014453307, 0.025802754, 0.023032058, 0.09108559, -0.034248088, -0.018552523, 0.03865895, 0.0903398, -0.335, -0.131, -0.44)
 visible = false
 layers = 2
 material_overlay = SubResource("ShaderMaterial_npcl8")
@@ -393,6 +393,7 @@ debug_mode = true
 
 [node name="Beam" parent="Head/ToolManager/Tool" unique_id=1253000187 instance=ExtResource("11_3uni3")]
 transform = Transform3D(-0.41811305, 0.0034462858, 0.02703203, 0.00832957, 0.41190588, 0.0763226, -0.025946608, 0.07669839, -0.4111023, 0.21301329, -0.03706658, -0.6254767)
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager" unique_id=1059309043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)

@@ -2,34 +2,32 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfisbw16bv311"
-path="res://.godot/imported/rockgold_2.png-72231f3e8e996ac9dd4c9ed8c8b368cf.ctex"
+uid="uid://bsqfgxa325p2p"
+path.s3tc="res://.godot/imported/RockGoldTInged_baseColor.png-9b3c831bd48ef9ab56130d74f78c9484.s3tc.ctex"
 metadata={
-"vram_texture": false
-}
-generator_parameters={
-"md5": "996b88a3b6bc7130ddefdcbe1beab443"
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/meshes/medium_rock/rockgold_2.png"
-dest_files=["res://.godot/imported/rockgold_2.png-72231f3e8e996ac9dd4c9ed8c8b368cf.ctex"]
+source_file="res://assets/meshes/medium_rock/RockGoldTInged_baseColor.png"
+dest_files=["res://.godot/imported/RockGoldTInged_baseColor.png-9b3c831bd48ef9ab56130d74f78c9484.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=true
+compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/meshes/medium_rock/rockgold_2.png"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

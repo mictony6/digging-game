@@ -3,10 +3,8 @@ render_mode diffuse_burley, depth_draw_opaque, cull_back;
 
 uniform sampler2D rock_albedo : source_color, filter_linear_mipmap_anisotropic;
 uniform sampler2D rock_rougness : hint_roughness_gray, filter_linear_mipmap_anisotropic;
-uniform sampler2D rock_normal : hint_normal, filter_linear_mipmap;
+uniform sampler2D rock_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D crack_map : source_color, filter_linear_mipmap_anisotropic;
-
-
 
 instance uniform float damage : hint_range(0.0, 1.0) = 0.0;
 uniform vec3 crack_color : source_color = vec3(1.0, 0.3, 0.0);
@@ -105,4 +103,5 @@ void fragment() {
     vec2 rim_tex = texture(texture_rim, UV).xy;
     RIM = rim * rim_tex.x;
     RIM_TINT = rim_tint * rim_tex.y;
+	
 }

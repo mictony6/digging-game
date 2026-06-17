@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://q53tm1dyumsd" path="res://entities/rocks/rock.gd" id="1_l1ubf"]
 [ext_resource type="Resource" uid="uid://bh663u14iqe7m" path="res://data/rocks/RockMediumData.tres" id="2_80551"]
 [ext_resource type="PackedScene" uid="uid://b64267mpxut34" path="res://effects/break_mediumrock_particles.tscn" id="3_hx5n2"]
-[ext_resource type="Script" path="res://systems/mineable/drop_data.gd" id="4_b6mgl"]
+[ext_resource type="Script" uid="uid://dxj7xehg3jdrx" path="res://systems/mineable/drop_data.gd" id="4_b6mgl"]
 [ext_resource type="ArrayMesh" uid="uid://bgax2slj6oscl" path="res://assets/meshes/medium_rock/rockgold_rock.res" id="4_v73oy"]
 [ext_resource type="Material" uid="uid://ba5b3ds4jaarl" path="res://shaders/materials/mediun_rock.material" id="4_yvf3x"]
 [ext_resource type="Resource" uid="uid://d17i5hy2dc0ru" path="res://data/items/IronItem.tres" id="5_l1ubf"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://dds4o604ms3ex" path="res://systems/mineable/has_drops.gd" id="12_hsdro"]
 [ext_resource type="Script" uid="uid://b3usssf8jsfah" path="res://systems/health/has_health.gd" id="12_rsken"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yvf3x"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rsken"]
 points = PackedVector3Array(0.22625804, 0.62730515, 0.3305452, -0.21449454, -0.6529107, -0.34077844, -0.088937744, -0.65602624, -0.34245867, 0.43905243, -0.48760897, 0.5441328, 0.54124075, 0.10314505, -0.5083591, -0.5943739, 0.1457413, -0.23653573, -0.29560426, 0.24794824, 0.5780936, -0.004053182, 0.14327332, -0.58373237, 0.5405628, -0.52558196, -0.17233664, 0.4761409, 0.24890475, 0.4754907, -0.23390159, 0.540958, -0.1298467, -0.046508685, -0.46410137, -0.5933114, -0.20944989, -0.3301709, 0.2831615, 0.45692536, 0.45966217, -0.2563965, -0.066991135, 0.604952, 0.58089113, 0.61856765, 0.18518925, -0.046072893, 0.20654713, 0.20911556, 0.6913234, -0.4422688, 0.019210303, -0.50515485, -0.5457172, -0.1890453, -0.19205202, 0.605907, -0.40168962, 0.31066623, -0.31873363, 0.5222533, 0.37232453, -0.024419637, -0.0425016, 0.652745, 0.35214728, 0.54347295, 0.4354397, 0.09964434, 0.37222984, -0.46148705, -0.08558173, -0.5938089, 0.09774654, 0.20462601, -0.08514047, -0.65219957, -0.3177406, -0.52403164, -0.46439812, 0.37531653, -0.5717018, 0.39600086, -0.3793346, 0.37347442, 0.49541578, 0.60630673, 0.08244646, -0.40511495, -0.25652874, -0.06467515, -0.61408097, -0.04561237, 0.6615414, 0.32683605)
 
 [sub_resource type="Resource" id="Resource_rsken"]
@@ -31,17 +31,17 @@ transform = Transform3D(0.15085721, 0, -0.9524744, 0, 0.9643472, 0, 0.9524744, 0
 collision_layer = 2
 script = ExtResource("1_l1ubf")
 rock_data = ExtResource("2_80551")
-mesh = NodePath("MeshInstance3D")
+mesh = NodePath("rock2")
 metadata/_custom_type_script = "uid://q53tm1dyumsd"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1865963393]
-transform = Transform3D(0.5121279, -0.38147503, 0.1212503, 0.32590145, 0.28305733, -0.48597, 0.23240712, 0.44368377, 0.41428444, 0, 0, 0)
+[node name="rock2" type="MeshInstance3D" parent="." unique_id=708967263]
+transform = Transform3D(-0.21328142, 0.44094187, 0.44678405, 0.60146815, 0.27860883, 0.012156979, -0.17967136, 0.4092456, -0.48966414, 0, 0, 0)
 material_override = ExtResource("4_yvf3x")
 mesh = ExtResource("4_v73oy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1735961387]
-transform = Transform3D(0.5121279, -0.38147503, 0.1212503, 0.32590145, 0.28305733, -0.48597, 0.23240712, 0.44368377, 0.41428444, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_yvf3x")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=219050150]
+transform = Transform3D(-0.21328142, 0.44094187, 0.44678405, 0.60146815, 0.27860883, 0.012156979, -0.17967136, 0.4092456, -0.48966414, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_rsken")
 
 [node name="HasDrops" type="Node" parent="." unique_id=315580939]
 script = ExtResource("12_hsdro")

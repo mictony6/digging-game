@@ -17,31 +17,32 @@ curve_x = SubResource("Curve_m8nfy")
 curve_y = SubResource("Curve_1ijy3")
 curve_z = SubResource("Curve_01s5a")
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qptwq"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qptwq"]
 
 [sub_resource type="Sky" id="Sky_q0qwx"]
-sky_material = SubResource("PhysicalSkyMaterial_qptwq")
+sky_material = SubResource("ProceduralSkyMaterial_qptwq")
 
 [resource]
 background_mode = 2
 sky = SubResource("Sky_q0qwx")
 ambient_light_color = Color(0.549925, 0.3333693, 0.15485796, 1)
-ambient_light_sky_contribution = 0.51
+ambient_light_sky_contribution = 0.5
 tonemap_mode = 4
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
-sdfgi_use_occlusion = true
 sdfgi_y_scale = 0
 glow_enabled = true
 glow_normalized = true
-fog_light_color = Color(0.73559326, 0.34947005, 0.12739012, 1)
-fog_sky_affect = 0.168
+fog_light_color = Color(0.8397517, 0.43073025, 0.18321544, 1)
+fog_density = 0.001
+fog_sky_affect = 0.188
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0149
-volumetric_fog_albedo = Color(0.3902776, 0.47929376, 0.40840918, 1)
-volumetric_fog_emission = Color(0.011342637, 0.12900913, 0.2510323, 1)
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.8192675, 0.55196184, 0.11675864, 1)
+volumetric_fog_emission = Color(0.11150526, 0.2913793, 0.5159316, 1)
+volumetric_fog_sky_affect = 0.15
 adjustment_brightness = 1.1
 adjustment_contrast = 0.75
 adjustment_saturation = 0.9

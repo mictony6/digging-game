@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://cibqp30ke24fh" path="res://entities/ladder/ladder_generator.tscn" id="19_dkyla"]
 [ext_resource type="PackedScene" uid="uid://bfsg057gh6mku" path="res://entities/pot/Pot1.tscn" id="20_ind46"]
 [ext_resource type="PackedScene" uid="uid://bxcsf7he164iw" path="res://environment/cave_tunnel/cave_tunnel.tscn" id="21_yysmg"]
-[ext_resource type="Texture2D" uid="uid://kh774j3rc7vw" path="res://GreyboxTextures/greybox_grey_solid_2.png" id="22_mvop6"]
 [ext_resource type="Texture2D" uid="uid://duxxlaxmbq2hl" path="res://GreyboxTextures/greybox_light_grid.png" id="23_5l3b2"]
 [ext_resource type="Texture2D" uid="uid://kcgxc04wwpoy" path="res://assets/textures/rock_face/rock_face_03_diff_2k.png" id="24_uoqly"]
 [ext_resource type="Texture2D" uid="uid://bg42783a62meg" path="res://assets/textures/rock_face/rock_face_03_nor_gl_2k.png" id="25_nb4ii"]
@@ -86,7 +85,7 @@ albedo_texture = ExtResource("11_4ehf2")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k6bt"]
-albedo_texture = ExtResource("22_mvop6")
+albedo_texture = ExtResource("23_5l3b2")
 uv1_triplanar = true
 texture_filter = 5
 
@@ -357,12 +356,125 @@ transform = Transform3D(-3.8035853, -0.15354961, -2.6530683, 0.02631776, 4.62984
 [node name="CaveTunnel6" parent="LevelLoader/OverWorld" unique_id=1504137514 instance=ExtResource("21_yysmg")]
 transform = Transform3D(-3.6855133, -2.1245368, 1.8528186, -2.2744274, 4.0427895, 0.11151904, -1.6654056, -0.81963253, -4.2525563, 7.5364065, -31.23734, -63.08169)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld" unique_id=384727343]
+[node name="Floor" type="CSGBox3D" parent="LevelLoader/OverWorld" unique_id=384727343]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 7.33551, -34.27907, -96.81645)
 material_override = SubResource("StandardMaterial3D_6k6bt")
 use_collision = true
+collision_layer = 4
 collision_mask = 0
 size = Vector3(96, 1, 82)
+metadata/_edit_lock_ = true
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=570165904]
+material_override = SubResource("StandardMaterial3D_6k6bt")
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1354894370]
+transform = Transform3D(-0.16778404, 0, -0.98582387, 0, 1, 0, 0.98582387, 0, -0.16778404, 5.298345, -31.512777, -78.559875)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(6.788574, 5, 5)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1560508889]
+transform = Transform3D(0.09713122, 0.30855602, -0.9462341, 0.958952, 0.22547756, 0.17196228, 0.26641452, -0.9240958, -0.27398944, 6.5634055, -29.303488, -74.89692)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(2.2324219, 2.5257568, 1.6865234)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=274916489]
+transform = Transform3D(-0.16778404, 0, -0.98582387, 0, 1, 0, 0.98582387, 0, -0.16778404, 7.2261124, -30.747175, -85.31283)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(8.668457, 7.1137695, 5)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=309154541]
+transform = Transform3D(-0.0862516, 0.18190213, -0.9795266, -0.35563684, 0.9127934, 0.20082492, 0.9306358, 0.36567712, -0.014038771, 8.96994, -31.031286, -83.3852)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1.7827148, 3.1307373, 2.5239258)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1549099318]
+transform = Transform3D(0.39274412, -0.36622268, -0.8435835, -0.1850746, 0.8670483, -0.4625739, 0.90083265, 0.337799, 0.27274963, 16.81699, -33.32968, -88.84856)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1.7827148, 2.4207153, 2.9678955)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1063612512]
+transform = Transform3D(-0.115398206, 0.48972186, 0.8642083, 0.29092234, 0.8485326, -0.44199187, -0.94976187, 0.2004126, -0.24039012, 8.96994, -31.031286, -86.51381)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1.7827148, 3.1307373, 2.5239258)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=560055590]
+transform = Transform3D(0.9131251, -0.31582716, 0.25779015, 0.24263021, 0.9291589, 0.2789163, -0.32761735, -0.19213778, 0.92506754, 19.331545, -32.03993, -89.10499)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(6.022949, 7.321289, 6.617462)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=700975347]
+transform = Transform3D(-0.16778404, 0, -0.98582387, 0, 1, 0, 0.98582387, 0, -0.16778404, 20.145313, -30.747175, -83.5046)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(5, 7.1137695, 5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1368922645]
+transform = Transform3D(-0.37335056, -0.25337252, -0.8924191, -0.13453566, 0.9665977, -0.2181491, 0.9178832, 0.038616095, -0.39496744, 14.833327, -30.924442, -75.01731)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(7.635254, 7.1137695, 5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=2010319150]
+transform = Transform3D(-0.16778404, 0, -0.98582387, 0, 1, 0, 0.98582387, 0, -0.16778404, 18.646877, -30.747177, -79.83869)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(5.3720703, 7.1137695, 5)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=803759394]
+transform = Transform3D(0.09684542, -0.3983735, -0.91209626, 0.03492754, 0.9171997, -0.39689407, 0.9946864, 0.0065800655, 0.10274078, 18.646877, -26.706142, -79.83869)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(2.3320313, 2.2614746, 2.225586)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1921758444]
+transform = Transform3D(0.09684542, -0.3983735, -0.91209626, 0.03492754, 0.9171997, -0.39689407, 0.9946864, 0.0065800655, 0.10274078, 18.651428, -26.7045, -82.79194)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(4.2785645, 2.2614746, 2.225586)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=775502928]
+transform = Transform3D(0.09684542, -0.3983735, -0.91209626, 0.03492754, 0.9171997, -0.39689407, 0.9946864, 0.0065800655, 0.10274078, 18.584908, -26.728493, -86.2494)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(3.6118164, 2.2614746, 2.225586)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1658004306]
+transform = Transform3D(0.11867798, -0.3134966, -0.94214404, -0.48417947, 0.8101246, -0.33055758, 0.8668828, 0.49539667, -0.055644743, 18.719595, -27.547071, -90.86022)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(6.150635, 6.040985, 2.225586)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1997932075]
+transform = Transform3D(-0.0787244, -0.22141004, -0.971998, -0.031654302, 0.9750876, -0.21955016, 0.99639374, 0.013483964, -0.083771735, 10.204807, -26.665344, -82.60732)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(23.040283, 2.9274902, 16.047363)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=1616004500]
 material_override = SubResource("StandardMaterial3D_thpaw")
@@ -584,9 +696,6 @@ transform = Transform3D(-0.97597766, 0, 0.21787062, 0, 1, 0, -0.21787062, 0, -0.
 [node name="RockWall2" parent="LevelLoader/OverWorld" unique_id=29345358 instance=ExtResource("50_tdx0c")]
 transform = Transform3D(-0.93501145, 0, 0.35461754, 0, 1, 0, -0.35461754, 0, -0.93501145, -5.7224755, -33.172356, -105.53522)
 
-[node name="cave_pillar2" parent="LevelLoader/OverWorld" unique_id=1658962233 instance=ExtResource("26_vbpnr")]
-transform = Transform3D(1.043942, -1.5840837, -4.0736856, -1.260261, 3.9013014, -1.8400111, 4.1852093, 1.5698975, 0.46205488, 16.577288, -35.134018, -74.730255)
-
 [node name="LadderGenerator3" parent="LevelLoader/OverWorld" unique_id=1711934509 instance=ExtResource("19_dkyla")]
 transform = Transform3D(-0.9848077, 0, 0.1736481, 0, 1, 0, -0.1736481, 0, -0.9848077, 1.8842883, -29.779074, -102.349594)
 height = 6.0
@@ -596,6 +705,7 @@ transform = Transform3D(0.27170542, 0, 0, 0, 0.27170542, 0, 0, 0, 0.27170542, -7
 
 [node name="Terrain" parent="LevelLoader" unique_id=718331278 instance=ExtResource("39_cfr66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7284026e-05, 0.00018692017, 0.00018131733)
+metadata/_edit_lock_ = true
 
 [node name="Level1" type="Node3D" parent="LevelLoader" unique_id=69558858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5, 0, 0)
@@ -710,6 +820,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9449587, -27.542706, -53.18
 subdiv = 2
 size = Vector3(22.86131, 13.559534, 48.64995)
 data = ExtResource("46_lwooh")
+metadata/_edit_lock_ = true
+
+[node name="Torch" parent="." unique_id=623213117 instance=ExtResource("33_7677j")]
+transform = Transform3D(-0.30840272, 0, 0.95125586, 0, 0.99999994, 0, -0.95125586, 0, -0.30840272, 15.143559, -31.398848, -90.756584)
+
+[node name="Torch2" parent="." unique_id=1842593830 instance=ExtResource("33_7677j")]
+transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 0.9999999, 0, 0.8660254, 0, -0.50000006, 9.3937435, -32.721672, -82.49561)
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgiqe6kqdm21x"
-path.s3tc="res://.godot/imported/RockGoldTInged_Roughness.png-1307d1491d68cb68082c94a6163c1cf2.s3tc.ctex"
+uid="uid://comi6bhqr5051"
+path.bptc="res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,23 +11,23 @@ metadata={
 
 [deps]
 
-source_file="res://assets/meshes/medium_rock/RockGoldTInged_Roughness.png"
-dest_files=["res://.godot/imported/RockGoldTInged_Roughness.png-1307d1491d68cb68082c94a6163c1cf2.s3tc.ctex"]
+source_file="res://assets/meshes/medium_rock/RockGoldTInged_normal.png"
+dest_files=["res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/meshes/medium_rock/RockGoldTInged_normal.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
