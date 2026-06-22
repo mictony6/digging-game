@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blysjfl8meia6" path="res://entities/pickup/pickup_item.gd" id="1_pickup"]
 [ext_resource type="Shader" uid="uid://cma1hvxk5r7ou" path="res://shaders/pickup_glow_top.gdshader" id="2_kkhr0"]
 [ext_resource type="Shader" uid="uid://51o37w0nnld6" path="res://shaders/pickup_glow_bottom.gdshader" id="3_rxg7v"]
+[ext_resource type="Texture2D" uid="uid://c7xfg5xl8bpdi" path="res://assets/textures/ui/stick.svg" id="4_p6fyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg7v"]
 emission_enabled = true
@@ -30,7 +31,7 @@ seamless = true
 render_priority = 0
 shader = ExtResource("2_kkhr0")
 shader_parameter/color = Color(0.5898966, 0.8953766, 0.98699456, 1)
-shader_parameter/speed = 0.10000000149012
+shader_parameter/speed = 0.38100001483762
 shader_parameter/wibble_strength = 0.33200001577
 shader_parameter/smoke_scale = 3.0
 shader_parameter/opacity = 1.8
@@ -73,7 +74,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="GlowEffect" unique_id=344999151]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3649763, 0)
 light_energy = 0.025
-omni_range = 0.5
+light_bake_mode = 0
+distance_fade_enabled = true
+distance_fade_begin = 10.0
+omni_range = 2.0
 omni_attenuation = 2.0
 
 [node name="GlowEffectTop" type="MeshInstance3D" parent="GlowEffect" unique_id=1681781915]
@@ -89,3 +93,10 @@ mesh = SubResource("QuadMesh_rxg7v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1406843177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034655735, 0)
 shape = SubResource("BoxShape3D_rxg7v")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=764823604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45833188, 0)
+billboard = 1
+double_sided = false
+render_priority = 1
+texture = ExtResource("4_p6fyd")

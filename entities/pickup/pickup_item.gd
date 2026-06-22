@@ -1,7 +1,7 @@
 class_name PickupItem
 extends RigidBody3D
 
-@export var item_data: Resource # ItemData
+@export var item_data: ItemData # ItemData
 @export var quantity: int = 1
 
 signal picked_up(item: Resource, qty: int)
@@ -17,10 +17,21 @@ var _wave_time := 0.0
 var _target: Node3D = null
 @onready var glow_effect: Node3D = %GlowEffect
 @onready var top_glow: MeshInstance3D = %GlowEffectTop # adjust node name
-
+@onready var sprite: Sprite3D = $Sprite3D
 var glow_effect_offset: Vector3
+var sprite_offset: Vector3
 var spawn_pos: Vector3
 func _ready() -> void:
+	if item_data.icon:
+		sprite.texture = item_data.icon
+	sprite_offset = sprite.global_position - global_position
+	sprite.top_level = true
+
+	const TARGET_WORLD_SIZE := 0.15 # metres the sprite occupies in its largest dimension
+	var size = sprite.texture.get_size()
+	sprite.pixel_size = TARGET_WORLD_SIZE / maxf(size.x, size.y)
+
+	
 	glow_effect_offset = glow_effect.global_position - global_position
 	glow_effect.top_level = true
 
@@ -34,10 +45,12 @@ func _ready() -> void:
 		randf_range(-3.0, 3.0)
 	)
 
+
 	DateManager.day_passed.connect(func(d): queue_free())
 
 func _physics_process(delta: float) -> void:
 	glow_effect.global_position = global_position + glow_effect_offset
+	sprite.global_position = global_position + sprite_offset
 	if abs(global_position.y - spawn_pos.y) > 100:
 		queue_free()
 	if _target == null:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmxt2kujrceq0"]
 
-[ext_resource type="ArrayMesh" uid="uid://cdadkxqpy2vsp" path="res://assets/meshes/planks/planks_Plane.res" id="3_6wyhl"]
-[ext_resource type="ArrayMesh" uid="uid://cyhb541at32od" path="res://assets/meshes/planks/planks_Plane_001.res" id="4_kljsf"]
+[ext_resource type="ArrayMesh" uid="uid://djp73xclvjbpm" path="res://assets/meshes/planks/planks_Plane.res" id="3_6wyhl"]
+[ext_resource type="ArrayMesh" uid="uid://btmiyenh228jp" path="res://assets/meshes/planks/planks_Plane_001.res" id="4_kljsf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jhtk8"]
 rough = true

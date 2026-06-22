@@ -12,7 +12,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9522629, 1.7742827, 1.7926
 
 [node name="crawler_rigged2" parent="." unique_id=527311151 instance=ExtResource("1_lam4l")]
 
-[node name="TwoBoneIK3D" type="TwoBoneIK3D" parent="crawler_rigged2/Armature/Skeleton3D" parent_id_path=PackedInt32Array(527311151, 924987717) index="2" unique_id=144490248]
+[node name="TwoBoneIK3D" type="TwoBoneIK3D" parent="crawler_rigged2/Armature/Skeleton3D" parent_id_path=PackedInt32Array(527311151, 1935154011) index="2" unique_id=144490248]
 influence = 0.0
 setting_count = 1
 settings/0/target_node = NodePath("../../../../Marker3D")
@@ -27,7 +27,7 @@ settings/0/end_bone = 6
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=1281704870]
+[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=1982796754]
 root_motion_track = NodePath("Armature/Skeleton3D:Root")
 autoplay = &"Idle"
 speed_scale = 0.75

@@ -189,7 +189,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 
 transform = Transform3D(0.09638426, 0, 0.99534416, 0, 1, 0, -0.99534416, 0, 0.09638426, -10.94757, -25.221527, -2.7884583)
 
 [node name="Shop" parent="LevelLoader/OverWorld" unique_id=30838348 instance=ExtResource("4_sywx7")]
-transform = Transform3D(-4.827799e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -4.827799e-08, -5.5, -25.454784, 3)
+transform = Transform3D(-0.318198, 0, -0.31819806, 0, 0.45, 0, 0.31819806, 0, -0.318198, 5.5886607, -29.605986, -31.128265)
 items_for_sale = Array[ExtResource("5_toxdh")]([SubResource("Resource_fywoe"), SubResource("Resource_clpq5")])
 upgrades_available = Array[ExtResource("8_38p13")]([SubResource("Resource_kl5js"), SubResource("Resource_1wu2q"), SubResource("Resource_4c3pj")])
 
@@ -245,7 +245,7 @@ transform = Transform3D(0.9423615, 0, -0.33459654, 0, 1, 0, 0.33459654, 0, 0.942
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -1, -25.431196, 5.5)
 
 [node name="WoodenCrate2" parent="LevelLoader/OverWorld" unique_id=530048680 instance=ExtResource("14_p3kna")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -1, -25, 8.5)
+transform = Transform3D(0.40664238, 0.03561388, 0.91289294, -0.0435638, 0.99885917, -0.01956229, -0.9125482, -0.03181427, 0.40772992, -1, -24.838406, 8.5)
 
 [node name="WaterArea" parent="LevelLoader/OverWorld" unique_id=941027867 instance=ExtResource("15_mwqh4")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -12.479779)
@@ -269,7 +269,7 @@ transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17
 transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17364821, 0.478392, 0, 5.962005)
 
 [node name="StaticBody3D11" parent="LevelLoader/OverWorld/Marker3D" unique_id=1573113585 instance=ExtResource("17_ennu3")]
-transform = Transform3D(-0.612783, 0, -0.79025126, 0, 1, 0, 0.79025126, 0, -0.612783, 17.489082, 5.765669, -0.5627067)
+transform = Transform3D(-0.612783, 0, -0.79025126, 0, 1, 0, 0.79025126, 0, -0.612783, 17.489082, 5.765669, -0.562706)
 
 [node name="StaticBody3D12" parent="LevelLoader/OverWorld/Marker3D" unique_id=281132451 instance=ExtResource("17_ennu3")]
 transform = Transform3D(-0.6427877, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, -0.6427877, 19.107164, 5.765669, 0.7895503)
@@ -281,7 +281,7 @@ transform = Transform3D(-0.4772662, 0, -0.87875867, 0, 1, 0, 0.87875867, 0, -0.4
 transform = Transform3D(-0.4772662, 0, -0.87875867, 0, 1, 0, 0.87875867, 0, -0.4772662, 12.2882185, 3.995781, -1.8717079)
 
 [node name="StaticBody3D14" parent="LevelLoader/OverWorld/Marker3D" unique_id=1386352581 instance=ExtResource("17_ennu3")]
-transform = Transform3D(-0.5347801, 0, -0.84499115, 0, 1, 0, 0.84499115, 0, -0.5347801, 15.751147, 5.765669, -1.874897)
+transform = Transform3D(-0.5347801, 0, -0.84499115, 0, 1, 0, 0.84499115, 0, -0.5347801, 15.751148, 5.765669, -1.874897)
 
 [node name="StaticBody3D5" parent="LevelLoader/OverWorld/Marker3D" unique_id=881741225 instance=ExtResource("17_ennu3")]
 transform = Transform3D(0.17364834, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364834, -2.1858163, 0, 9.553939)
@@ -535,7 +535,7 @@ transform = Transform3D(0.087155685, 0, -0.99619484, 0, 1, 0, 0.99619484, 0, 0.0
 transform = Transform3D(1.2041004, 0, 1.2778944, 0, 1.7558107, 0, -1.2778944, 0, 1.2041004, -7.465071, -25.29723, 9.023762)
 
 [node name="Mound2" parent="LevelLoader/OverWorld/Mounds" unique_id=1486261878 instance=ExtResource("28_kpuk4")]
-transform = Transform3D(1.2041004, 0, 1.2778944, 0, 1.7558107, 0, -1.2778944, 0, 1.2041004, 1.9637008, -24.983356, 9.720988)
+transform = Transform3D(1.4771488, -0.09225637, 0.9446654, -0.020047843, 1.744075, 0.20167533, -0.9489479, -0.1804539, 1.466222, 1.9637008, -24.983356, 9.720988)
 
 [node name="Mound3" parent="LevelLoader/OverWorld/Mounds" unique_id=673554156 instance=ExtResource("28_kpuk4")]
 transform = Transform3D(-1.9529408, -0.21107712, -0.64978665, -0.06531698, 2.0164492, -0.45871416, 0.68008083, -0.4124698, -1.9100034, 3.4353056, -30.527777, -29.439592)
@@ -624,7 +624,7 @@ transform = Transform3D(-1.2009414, -0.17267488, -0.71519774, -0.09835793, 1.394
 
 [node name="LadderGenerator" parent="LevelLoader/OverWorld" unique_id=770318594 instance=ExtResource("19_dkyla")]
 transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 15.229507, -25.129438, -24.259983)
-height = 2.0
+height = 1.9
 
 [node name="WoodenBridgeBeam" parent="LevelLoader/OverWorld" unique_id=1909480845 instance=ExtResource("16_wnmfb")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0695928, -28.54704, -31.759062)
