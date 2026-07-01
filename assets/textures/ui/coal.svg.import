@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7vndwf20xq0c"
-path.s3tc="res://.godot/imported/rock_06_rough_1k.png-6afb4e04ef11fc6dfecbc09d4965a29b.s3tc.ctex"
+uid="uid://2uas5ujpbdrt"
+path.s3tc="res://.godot/imported/coal.svg-0bff1632f6a14657cadd3ea152515814.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/rock_06/rock_06_rough_1k.png"
-dest_files=["res://.godot/imported/rock_06_rough_1k.png-6afb4e04ef11fc6dfecbc09d4965a29b.s3tc.ctex"]
+source_file="res://assets/textures/ui/coal.svg"
+dest_files=["res://.godot/imported/coal.svg-0bff1632f6a14657cadd3ea152515814.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/textures/rock_06/rock_06_rough_1k.png"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
@@ -39,3 +39,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=5.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

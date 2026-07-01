@@ -3,7 +3,7 @@ render_mode diffuse_burley, depth_draw_opaque, cull_back;
 
 uniform sampler2D rock_albedo : source_color, filter_linear_mipmap_anisotropic;
 uniform sampler2D rock_rougness : hint_roughness_gray, filter_linear_mipmap_anisotropic;
-uniform sampler2D rock_normal : hint_roughness_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rock_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D crack_map : source_color, filter_linear_mipmap_anisotropic;
 
 instance uniform float damage : hint_range(0.0, 1.0) = 0.0;
@@ -31,7 +31,7 @@ void vertex() {
 
 vec3 triplanar_weights(vec3 normal) {
     vec3 w = abs(normal);
-    w = pow(w, vec3(4.0));
+    w *= w; w *= w;
     return w / (w.x + w.y + w.z);
 }
 
@@ -57,13 +57,12 @@ void fragment() {
 
     // Crack normals via finite differences in local space
     float eps = 0.01 / crack_scale;
-    float c  = get_crack_triplanar(local_pos, weights);
     float cx = get_crack_triplanar(local_pos + vec3(eps, 0.0, 0.0), weights);
     float cy = get_crack_triplanar(local_pos + vec3(0.0, eps, 0.0), weights);
     float cz = get_crack_triplanar(local_pos + vec3(0.0, 0.0, eps), weights);
 
     // Local-space gradient
-    vec3 local_grad = vec3(cx - c, cy - c, cz - c) / eps;
+    vec3 local_grad = vec3(cx - crack_mask, cy - crack_mask, cz - crack_mask) / eps;
 
     // Project onto tangent frame for tangent-space perturbation
     float grad_t = dot(local_grad, v_tangent);

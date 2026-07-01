@@ -1,16 +1,12 @@
 extends Node3D
 class_name ToolManager
 
-
 @export var current_tool: Tool
 @export var tool_raycast: RayCast3D
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
 @onready var beam: Node3D = $Tool/Beam
-@onready var animation_player: AnimationPlayer = %ToolAnimations
-
-var _tool_centered: bool = false
 
 @onready var flicker: ToolFlicker = $ToolFlicker
 
@@ -18,12 +14,16 @@ const PARTICLE_POOL_SIZE = 5
 var _particle_pool: Array[GPUParticles3D] = []
 var _particle_index: int = 0
 
+@export var arm_animations: AnimationTree
+var _arm_playback: AnimationNodeStateMachinePlayback
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tool_area3d.body_entered.connect(_on_body_entered)
 	tool_area3d.body_exited.connect(_on_body_exited)
 	tool_raycast.enabled = false
 	current_durability = _get_max_durability()
+	_arm_playback = arm_animations.get("parameters/playback")
 	DateManager.day_passed.connect(func(_days): repair())
 	for i in PARTICLE_POOL_SIZE:
 		var p: GPUParticles3D = hit_particles.instantiate()
@@ -37,7 +37,7 @@ var bodies_in_aoe: Array[Node3D] = []
 var tool_max_cooldown: float = 0.25
 var tool_current_cooldown: float = 0.0
 
-var _pressing: bool = false
+var is_pressing: bool = false
 
 var current_durability: float = 100.0
 signal durability_changed(current: float, max_val: float)
@@ -62,43 +62,37 @@ func upgrade_strength() -> void:
 	td.strength_upgrade += (td.tier + td.tier_upgrade) * 0.05
 
 func _process(_delta: float) -> void:
-	_pressing = Input.is_action_pressed("action")
+	is_pressing = Input.is_action_pressed("action")
 
-func _physics_process(delta: float) -> void:
-	tool_current_cooldown = max(tool_current_cooldown - delta, 0.0)
-	if tool_current_cooldown > 0:
-		return
-	if _pressing:
-		tool_raycast.force_raycast_update()
-	if _pressing and current_durability <= 0:
-		beam.hide()
-		return
-	if _pressing and tool_raycast.is_colliding() and tool_raycast.get_collider() != null:
-		var collision_point = tool_raycast.get_collision_point()
+## True when the tool is aimed at something mineable and ready to swing.
+func can_hit() -> bool:
+	return is_pressing and current_durability > 0 and tool_raycast.is_colliding() and tool_raycast.get_collider() != null
 
-		if !_tool_centered:
-			animate_tool()
+## Executes a single swing: damage, particles, flicker, durability, cooldown.
+func perform_hit() -> void:
+	var collision_point := tool_raycast.get_collision_point()
 
-		beam.show()
+	beam.show()
 
-		tool_area3d.global_position = tool_raycast.get_collider().global_position
-		tool_area3d.monitoring = true
+	tool_area3d.global_position = tool_raycast.get_collider().global_position
+	tool_area3d.monitoring = true
 
-		deal_damage_on_affected_bodies(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
-		play_particles(collision_point)
+	deal_damage_on_affected_bodies(bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
+	play_particles(collision_point)
 
-		flicker.global_position = collision_point
-		flicker.flash()
-		tool_current_cooldown = tool_max_cooldown
+	flicker.global_position = collision_point
+	flicker.flash()
+	tool_current_cooldown = tool_max_cooldown
 
-		current_durability = max(current_durability - 1.0, 0.0)
-		durability_changed.emit(current_durability, _get_max_durability())
-	else:
-		beam.hide()
-		if _tool_centered:
-			animation_player.play_backwards("center_tool")
-			_tool_centered = false
+	current_durability = max(current_durability - 1.0, 0.0)
+	durability_changed.emit(current_durability, _get_max_durability())
 
+func stop_tool() -> void:
+	beam.hide()
+	travel_arm("HoldTool_IDLE")
+
+func travel_arm(state_name: String) -> void:
+	_arm_playback.travel(state_name)
 
 func _on_body_entered(body: Node) -> void:
 	if body.get_node_or_null("IsMineable") != null and body not in bodies_in_aoe:
@@ -145,8 +139,3 @@ func shake_target(target: Node3D):
 
 	tween.tween_property(target, "global_position", base + push, 0.03)
 	tween.tween_property(target, "global_position", base, 0.06)
-
-func animate_tool():
-	#center the tool in the screen
-	animation_player.play("center_tool")
-	_tool_centered = true

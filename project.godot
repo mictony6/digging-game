@@ -24,6 +24,7 @@ GlobalInput="*res://game/global_input.gd"
 ExpenseManager="*uid://cxi4xlfrmlq26"
 DateManager="*uid://crjiivy1niwso"
 PauseStateManager="*uid://duvp4bfarcoft"
+QuestManager="*uid://mq0wa0d3p20p"
 
 [display]
 
@@ -38,6 +39,10 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_3d_cursor/plugin.cfg")
+
+[global_group]
+
+Head=""
 
 [input]
 

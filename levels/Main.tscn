@@ -48,7 +48,9 @@
 [ext_resource type="Script" uid="uid://nc530jhrkgdl" path="res://game/rest_point.gd" id="47_mcjdd"]
 [ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="48_1x8ku"]
 [ext_resource type="PackedScene" uid="uid://4qw1jjikrdet" path="res://ui/Start Menu.tscn" id="48_ckrxx"]
+[ext_resource type="Shader" uid="uid://dlixatvj40nn8" path="res://shaders/DarknessEffect.gdshader" id="50_3al37"]
 [ext_resource type="PackedScene" uid="uid://cd8eju1cig105" path="res://entities/rocks/RockWall.tscn" id="50_tdx0c"]
+[ext_resource type="Script" uid="uid://335lniljc8nv" path="res://systems/Darkness.gd" id="51_ckrxx"]
 [ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_qwv1t"]
 
 [sub_resource type="Resource" id="Resource_fywoe"]
@@ -157,6 +159,17 @@ subpixel_positioning = 0
 font = SubResource("SystemFont_1w0m8")
 font_size = 45
 font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5onfr"]
+shader = ExtResource("50_3al37")
+shader_parameter/darkness = 0.999999977648
+shader_parameter/dark_threshold = 0.05
+shader_parameter/bright_threshold = 0.499999988824
+shader_parameter/peripheral_strength = 0.499999988824
+shader_parameter/blur_amount = 0.5000000074506
+shader_parameter/camera_basis = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
+shader_parameter/fov_tan = 0.577
+shader_parameter/aspect_ratio = 1.777
 
 [node name="Main" type="Node3D" unique_id=217525979]
 
@@ -290,7 +303,7 @@ transform = Transform3D(0.17364834, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.1736
 transform = Transform3D(0.17364828, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364828, -2.8804095, 0, 13.49317)
 
 [node name="StaticBody3D18" parent="LevelLoader/OverWorld/Marker3D" unique_id=180255995 instance=ExtResource("17_ennu3")]
-transform = Transform3D(0.17364828, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364828, -3.8804095, 1, 19.49317)
+transform = Transform3D(0.17364828, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364828, -3.9376116, 1, 19.434748)
 
 [node name="StaticBody3D8" parent="LevelLoader/OverWorld/Marker3D" unique_id=431905984 instance=ExtResource("17_ennu3")]
 transform = Transform3D(-0.17364821, 0, -0.9848078, 0, 1, 0, 0.9848078, 0, -0.17364821, -0.91079366, 0, 13.840468)
@@ -815,12 +828,25 @@ inventory_ui = NodePath("../../CanvasLayer/InventoryUI")
 shop_ui = NodePath("../ShopUI")
 start_menu = NodePath("../../CanvasLayer/StartMenu")
 
+[node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1219701611]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="PostProcessing" unique_id=1787420846]
+visible = false
+material = SubResource("ShaderMaterial_5onfr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("51_ckrxx")
+
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1761730934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9449587, -27.542706, -53.187737)
 subdiv = 2
 size = Vector3(22.86131, 13.559534, 48.64995)
 data = ExtResource("46_lwooh")
-metadata/_edit_lock_ = true
 
 [node name="Torch" parent="." unique_id=623213117 instance=ExtResource("33_7677j")]
 transform = Transform3D(-0.30840272, 0, 0.95125586, 0, 0.99999994, 0, -0.95125586, 0, -0.30840272, 15.143559, -31.398848, -90.756584)

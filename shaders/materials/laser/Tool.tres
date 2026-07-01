@@ -17,5 +17,4 @@ normal_texture = ExtResource("3_nmnw1")
 ao_enabled = true
 ao_texture = ExtResource("2_c7ugi")
 texture_filter = 5
-use_z_clip_scale = true
 z_clip_scale = 0.9
