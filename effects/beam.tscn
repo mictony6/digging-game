@@ -1,49 +1,101 @@
 [gd_scene format=3 uid="uid://dqirpkxa6qinr"]
 
-[ext_resource type="Material" uid="uid://hx5tgy2lh20r" path="res://shaders/materials/laser_beam.material" id="1_kkdtw"]
-[ext_resource type="Shader" uid="uid://b8xpidc6ju3vf" path="res://shaders/beam_start.gdshader" id="1_p6cgm"]
 [ext_resource type="Script" uid="uid://dfeyrlkr7wj50" path="res://effects/beam.gd" id="1_xn531"]
+[ext_resource type="Shader" uid="uid://b2lt3o4ynoga4" path="res://shaders/laser_beam.gdshader" id="2_laser"]
+[ext_resource type="Shader" uid="uid://hqbfc8i4n0ks" path="res://shaders/impact_halo.gdshader" id="3_halo"]
+[ext_resource type="Texture2D" uid="uid://duptosd4hdsek" path="res://assets/textures/flame/pngwing.com.png" id="4_dm037"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_e7wm1"]
-size = Vector2(1, 20)
-subdivide_depth = 24
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xn531"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_laser"]
 render_priority = 0
-shader = ExtResource("1_p6cgm")
-shader_parameter/color = Color(0.42554617, 0.40065682, 0.81636906, 1)
-shader_parameter/radius = 0.2510000119225
-shader_parameter/softness = 0.4310000204725
-shader_parameter/falloff = 2.22400010238012
-shader_parameter/emission_energy = 5.0
+shader = ExtResource("2_laser")
+shader_parameter/color = Color(0.9639767, 0.4452321, 0.33586192, 1)
+shader_parameter/core_color = Color(0.9961465, 0.95826787, 0.9788628, 1)
+shader_parameter/beam_width = 0.05
+shader_parameter/core_size = 0.24300001084398
+shader_parameter/emission_energy = 6.0
+shader_parameter/pulse_speed = 26.5630012617425
+shader_parameter/pulse_frequency = 4.0
+shader_parameter/pulse_strength = 0.61600002926
+shader_parameter/flicker_strength = 0.3410000161975
+shader_parameter/impact_boost = 2.0
+shader_parameter/curve_arc = -0.11499995796249995
+shader_parameter/wave_amplitude = 0.0310000014725
+shader_parameter/wave_amplitude_vertical = 0.01600000076
+shader_parameter/wave_frequency = 0.930000044175
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_tip_fade = 0.4
+shader_parameter/launch_strength = 0.5
 
-[sub_resource type="SphereMesh" id="SphereMesh_p6cgm"]
-radial_segments = 32
-rings = 16
+[sub_resource type="QuadMesh" id="QuadMesh_laser"]
+subdivide_depth = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_halo"]
+render_priority = 1
+shader = ExtResource("3_halo")
+shader_parameter/color = Color(0.9639767, 0.4452321, 0.33586192, 1)
+shader_parameter/core_color = Color(0.9961465, 0.95826787, 0.9788628, 1)
+shader_parameter/intensity = 4.0
+shader_parameter/core_size = 0.18
+shader_parameter/halo_falloff = 3.5
+shader_parameter/flicker_strength = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_halo"]
+size = Vector2(0.35, 0.35)
+
+[sub_resource type="Gradient" id="Gradient_flames"]
+offsets = PackedFloat32Array(0, 0.3, 0.65, 1)
+colors = PackedColorArray(1, 0.95, 0.75, 1, 0.96, 0.55, 0.25, 1, 0.85, 0.28, 0.12, 0.7, 0.35, 0.06, 0.02, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_flames"]
+gradient = SubResource("Gradient_flames")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flames"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 0)
+spread = 40.0
+initial_velocity_min = 0.25
+initial_velocity_max = 0.7
+gravity = Vector3(0, 0.9, 0)
+damping_min = 0.4
+damping_max = 0.9
+scale_min = 0.4
+color_ramp = SubResource("GradientTexture1D_flames")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flames"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_dm037")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_flames"]
+material = SubResource("StandardMaterial3D_flames")
+size = Vector2(0.06, 0.06)
 
 [node name="Beam" type="Node3D" unique_id=1253000187]
 script = ExtResource("1_xn531")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=162666064]
-transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, 0, 0, 10)
-visible = false
-material_override = ExtResource("1_kkdtw")
-mesh = SubResource("QuadMesh_e7wm1")
+[node name="BeamMesh" type="MeshInstance3D" parent="." unique_id=248301711]
+material_override = SubResource("ShaderMaterial_laser")
+cast_shadow = 0
+extra_cull_margin = 4.0
+mesh = SubResource("QuadMesh_laser")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=144947194]
-transform = Transform3D(0.70710677, 3.090862e-08, -0.70710677, 0.70710677, -3.090862e-08, 0.70710677, 0, -1, -4.371139e-08, 0, 0, 10)
-material_override = ExtResource("1_kkdtw")
-mesh = SubResource("QuadMesh_e7wm1")
+[node name="ImpactHalo" type="MeshInstance3D" parent="." unique_id=248301712]
+material_override = SubResource("ShaderMaterial_halo")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_halo")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=159314252]
-transform = Transform3D(0.70710677, -3.0908613e-08, 0.7071067, -0.70710677, -3.0908613e-08, 0.7071067, 0, -0.9999999, -4.371138e-08, 0, 0, 10)
-material_override = ExtResource("1_kkdtw")
-mesh = SubResource("QuadMesh_e7wm1")
-
-[node name="BeamStart" type="MeshInstance3D" parent="." unique_id=1899163318]
-transform = Transform3D(0.76657736, 0, 0, 0, 0.76657736, 0, 0, 0, 3.7926688, 0, 0, 1.4595256)
-visible = false
-material_override = SubResource("ShaderMaterial_xn531")
-mesh = SubResource("SphereMesh_p6cgm")
+[node name="ImpactFlames" type="GPUParticles3D" parent="." unique_id=248301713]
+amount = 14
+lifetime = 0.55
+process_material = SubResource("ParticleProcessMaterial_flames")
+draw_pass_1 = SubResource("QuadMesh_flames")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

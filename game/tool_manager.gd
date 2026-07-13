@@ -6,9 +6,10 @@ class_name ToolManager
 @export var tool_area3d: Area3D
 @export var hit_particles: PackedScene
 @export var break_particles: PackedScene
-@onready var beam: Node3D = $Tool/Beam
+@onready var beam: LaserBeam = current_tool.get_node("Beam")
 
 @onready var flicker: ToolFlicker = $ToolFlicker
+@onready var player: Player = owner as Player
 
 const PARTICLE_POOL_SIZE = 5
 var _particle_pool: Array[GPUParticles3D] = []
@@ -64,6 +65,14 @@ func upgrade_strength() -> void:
 func _process(_delta: float) -> void:
 	is_pressing = Input.is_action_pressed("action")
 
+func _physics_process(_delta: float) -> void:
+	if beam.visible and tool_raycast.is_colliding():
+		beam.aim(tool_raycast.get_collision_point(), tool_raycast.get_collision_normal())
+
+## True when the player has movement input held down.
+func is_player_moving() -> bool:
+	return player.direction.length_squared() > 0.001
+
 ## True when the tool is aimed at something mineable and ready to swing.
 func can_hit() -> bool:
 	return is_pressing and current_durability > 0 and tool_raycast.is_colliding() and tool_raycast.get_collider() != null
@@ -72,6 +81,7 @@ func can_hit() -> bool:
 func perform_hit() -> void:
 	var collision_point := tool_raycast.get_collision_point()
 
+	beam.aim(collision_point, tool_raycast.get_collision_normal())
 	beam.show()
 
 	tool_area3d.global_position = tool_raycast.get_collider().global_position
