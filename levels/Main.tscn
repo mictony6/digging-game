@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://diaivb40i7ypx" path="res://data/shop/upgrade_entry.gd" id="8_38p13"]
 [ext_resource type="Script" uid="uid://b672f2q5s64b7" path="res://systems/oxygen/low_oxygen_area.gd" id="9_vn0ol"]
 [ext_resource type="PackedScene" uid="uid://8dmx8arlhau2" path="res://environment/boundary]/boundary.tscn" id="10_e0qn1"]
-[ext_resource type="Texture2D" uid="uid://df2hdtir30aw3" path="res://GreyboxTextures/greybox_green_solid.png" id="11_4ehf2"]
 [ext_resource type="PackedScene" uid="uid://b62ceimsar2op" path="res://assets/meshes/tree/tree.glb" id="12_5pxyo"]
 [ext_resource type="PackedScene" uid="uid://bax3vsa7q054y" path="res://environment/temple/temple.tscn" id="13_ftq3d"]
 [ext_resource type="PackedScene" uid="uid://d2sruleu4iip6" path="res://entities/wooden_crate/WoodenCrate.tscn" id="14_p3kna"]
@@ -81,10 +80,6 @@ metadata/_custom_type_script = "uid://diaivb40i7ypx"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
 size = Vector3(10, 5, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xn4c"]
-albedo_texture = ExtResource("11_4ehf2")
-uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k6bt"]
 albedo_texture = ExtResource("23_5l3b2")
@@ -241,12 +236,6 @@ transform = Transform3D(0.31199998, 0, 0, 0, 0.31199998, 0, 0, 0, 0.31199998, 1.
 
 [node name="BoundaryWall8" parent="LevelLoader/OverWorld/bigwalls" unique_id=1426365396 instance=ExtResource("10_e0qn1")]
 transform = Transform3D(0.28145674, 0, -0.10244186, 0, 0.29952, 0, 0.10244186, 0, 0.28145674, 7.8205814, -29, -43.199997)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="LevelLoader/OverWorld/bigwalls" unique_id=509311357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.888624, -34.713684, -40.21827)
-material_override = SubResource("StandardMaterial3D_2xn4c")
-flip_faces = true
-size = Vector3(2.5490723, 9.4062195, 2.5488281)
 
 [node name="AuxScene" parent="LevelLoader/OverWorld" unique_id=753142831 instance=ExtResource("12_5pxyo")]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 32, 0, -42)
