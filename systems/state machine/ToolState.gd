@@ -3,6 +3,7 @@ class_name ToolState
 
 const IDLE = "Idle"
 const MINING = "Mining"
+const WALKING = "Walking"
 
 var tool: ToolManager
 

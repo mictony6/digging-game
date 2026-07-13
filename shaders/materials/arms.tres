@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bidwd5s1c3d13"]
+
+[ext_resource type="Texture2D" uid="uid://ba4lgpdsejwss" path="res://assets/textures/arms/Hands_baseColor.png" id="1_di4r4"]
+[ext_resource type="Texture2D" uid="uid://rgcqhdsj34ub" path="res://assets/textures/arms/Hands_occlusionRoughnessMetallic.png" id="2_hc7ct"]
+[ext_resource type="Texture2D" uid="uid://dadis0enx8k1u" path="res://assets/textures/arms/Hands_normal.png" id="3_iqt01"]
+
+[resource]
+albedo_texture = ExtResource("1_di4r4")
+metallic = 1.0
+metallic_texture = ExtResource("2_hc7ct")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_hc7ct")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_iqt01")
+ao_enabled = true
+ao_texture = ExtResource("2_hc7ct")
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+texture_filter = 5
+z_clip_scale = 0.9

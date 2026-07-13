@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	# Calculate velocity
 	velocity = (global_position - last_position) / delta
 	last_position = global_position
-	sway_tool(delta)
+	# sway_tool(delta)
 
 
 func load_tool() -> void:
