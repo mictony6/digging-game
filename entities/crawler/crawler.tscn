@@ -4,32 +4,11 @@
 
 [node name="Crawler" type="Node3D" unique_id=2023624991]
 
-[node name="Marker3D" type="Marker3D" parent="." unique_id=823443585]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9765242, -0.7618519, 1.8203709)
-
-[node name="Marker3D2" type="Marker3D" parent="." unique_id=1785986475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9522629, 1.7742827, 1.792691)
-
 [node name="crawler_rigged2" parent="." unique_id=527311151 instance=ExtResource("1_lam4l")]
 
-[node name="TwoBoneIK3D" type="TwoBoneIK3D" parent="crawler_rigged2/Armature/Skeleton3D" parent_id_path=PackedInt32Array(527311151, 1935154011) index="2" unique_id=144490248]
-influence = 0.0
-setting_count = 1
-settings/0/target_node = NodePath("../../../../Marker3D")
-settings/0/pole_node = NodePath("../../../../Marker3D2")
-settings/0/root_bone_name = "LegA0_Left"
-settings/0/root_bone = 4
-settings/0/middle_bone_name = "LegaA1_Left"
-settings/0/middle_bone = 5
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "LegaA3_Left"
-settings/0/end_bone = 6
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = false
-
-[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=1982796754]
+[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=496661546]
 root_motion_track = NodePath("Armature/Skeleton3D:Root")
 autoplay = &"Idle"
-speed_scale = 0.75
+speed_scale = 0.5
 
 [editable path="crawler_rigged2"]
