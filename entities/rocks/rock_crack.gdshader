@@ -50,7 +50,13 @@ float get_crack_triplanar(vec3 pos, vec3 weights) {
 
 void fragment() {
     vec4 base = texture(rock_albedo, UV);
-    vec3 rock_n = texture(rock_normal, UV).rgb;
+    // Reconstruct Z from XY instead of trusting the sampled blue channel:
+    // low-quality-imported normal maps store an unreliable/lossy Z, which
+    // throws off the RNM blend below and makes the surface render too dark.
+    vec2 rock_n_xy = texture(rock_normal, UV).rg * 2.0 - 1.0;
+    float rock_n_z = sqrt(max(0.0, 1.0 - dot(rock_n_xy, rock_n_xy)));
+    vec3 base_unpack = vec3(rock_n_xy, rock_n_z);
+    vec3 rock_n = base_unpack * 0.5 + 0.5;
     vec3 weights = triplanar_weights(local_normal);
 
     float crack_mask = get_crack_triplanar(local_pos, weights);
@@ -77,7 +83,6 @@ void fragment() {
     vec3 crack_n = crack_ts * 0.5 + 0.5;
 
     // RNM blend rock + crack normals
-    vec3 base_unpack = rock_n * 2.0 - 1.0;
     vec3 crack_unpack = crack_n * 2.0 - 1.0;
     vec3 t = base_unpack + vec3(0.0, 0.0, 1.0);
     vec3 u = crack_unpack * vec3(-1.0, -1.0, 1.0);

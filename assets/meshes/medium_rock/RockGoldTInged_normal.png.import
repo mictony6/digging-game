@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://comi6bhqr5051"
-path.bptc="res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.bptc.ctex"
+path.s3tc="res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://assets/meshes/medium_rock/RockGoldTInged_normal.png"
-dest_files=["res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.bptc.ctex"]
+dest_files=["res://.godot/imported/RockGoldTInged_normal.png-5e76bd9a22ae2a10df4d65b1fad5f7fd.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
