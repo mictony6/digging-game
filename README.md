@@ -15,8 +15,6 @@ Dig deeper. Find better ore. Upgrade your tools. Come back up before the oxygen 
 ## Built With
 
 - [Godot 4.6](https://godotengine.org/) — Forward+ renderer
-- GDScript
-
 ---
 
 ## Status
