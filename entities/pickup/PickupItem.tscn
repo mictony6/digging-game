@@ -83,6 +83,8 @@ omni_attenuation = 2.0
 [node name="GlowEffectTop" type="MeshInstance3D" parent="GlowEffect" unique_id=1681781915]
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_rxg7v")
+instance_shader_parameters/time_offset = 0.0
+instance_shader_parameters/uv_offset = Vector2(0, 0)
 mesh = SubResource("QuadMesh_kkhr0")
 
 [node name="GlowEffectBase" type="MeshInstance3D" parent="GlowEffect" unique_id=734323056]

@@ -46,6 +46,7 @@ func _on_action_button_pressed():
 		PlayerData.remove_coins(cost)
 		cost = roundi(float(cost) * cost_multiplier)
 		times_upgraded += 1
+		_tool_manager.record_upgrade(upgrade)
 		update_text()
 
 func has_enough_coins():
@@ -53,6 +54,12 @@ func has_enough_coins():
 
 func set_tool(_tool: Tool, tool_manager: ToolManager) -> void:
 	_tool_manager = tool_manager
+	# This widget is recreated on every shop open; restore purchase count
+	# and replay the per-purchase rounding so the price matches exactly.
+	times_upgraded = tool_manager.get_upgrade_count(upgrade)
+	for i in times_upgraded:
+		cost = roundi(float(cost) * cost_multiplier)
+	update_text()
 
 func update_text():
 	var capped := times_upgraded >= MAX_UPGRADES

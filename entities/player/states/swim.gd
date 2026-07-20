@@ -39,7 +39,10 @@ func physics_update(delta: float) -> void:
 
 	# Climb out: Space + W while near a ledge
 	if Input.is_action_just_pressed("jump") and Input.is_action_pressed("move_forward"):
-		finished.emit(VAULT)
+		var data := {}
+		if player.is_on_wall():
+			data["wall_normal"] = player.get_wall_normal()
+		finished.emit(VAULT, data)
 
 func exit() -> void:
 	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED

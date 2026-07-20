@@ -18,11 +18,11 @@ const COLLISION_MASK := 4 | 2 | 32
 var _fallback_state: String = MOVE
 
 
-func enter(previous_state_path: String, _data := {}) -> void:
+func enter(previous_state_path: String, data := {}) -> void:
 	_fallback_state = previous_state_path # "Swim", "Move", "Sprint", etc.
 	player.velocity = Vector3.ZERO
 	player.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
-	_do_vault()
+	_do_vault(data.get("wall_normal", Vector3.ZERO))
 
 
 func physics_update(_delta: float) -> void:
@@ -34,33 +34,14 @@ func exit() -> void:
 	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
 
-func _do_vault() -> void:
-	var cam_forward := -player.head.global_transform.basis.z
-	cam_forward.y = 0.0
-	cam_forward = cam_forward.normalized()
+func _do_vault(wall_normal: Vector3) -> void:
+	var cam_forward := _vault_forward(wall_normal)
 
-	var space := player.get_world_3d().direct_space_state
-	var exclude := [player.get_rid()]
-
-	# Ray 1: forward from eye level.  Hit = full wall → can't vault.
-	var eye_pos := player.global_position + Vector3.UP * EYE_HEIGHT
-	var wall_q := PhysicsRayQueryParameters3D.create(eye_pos, eye_pos + cam_forward * WALL_RAY_LENGTH)
-	wall_q.collide_with_bodies = true
-	wall_q.collision_mask = COLLISION_MASK
-	wall_q.exclude = exclude
-	if not space.intersect_ray(wall_q).is_empty():
-		# It's a solid wall — bail back to Move
+	if _is_wall_blocking(cam_forward):
 		finished.emit(_fallback_state)
 		return
 
-	# Ray 2: from above-forward downward — find ledge surface.
-	var cast_from := player.global_position + cam_forward * FORWARD_PROBE + Vector3.UP * LEDGE_RAY_HEIGHT
-	var ledge_q := PhysicsRayQueryParameters3D.create(cast_from, cast_from + Vector3.DOWN * LEDGE_RAY_DEPTH)
-	ledge_q.collide_with_bodies = true
-	ledge_q.collision_mask = COLLISION_MASK
-	ledge_q.exclude = exclude
-	var ledge_hit := space.intersect_ray(ledge_q)
-
+	var ledge_hit := _find_ledge(cam_forward)
 	if ledge_hit.is_empty():
 		finished.emit(_fallback_state)
 		return
@@ -71,25 +52,61 @@ func _do_vault() -> void:
 		finished.emit(_fallback_state)
 		return
 
-	# Clearance check: ray upward from just above landing floor to player full height
-	var clearance_start: Vector3 = ledge_hit.position + Vector3.UP * 0.05
-	var clearance_q := PhysicsRayQueryParameters3D.create(
-		clearance_start, clearance_start + Vector3.UP * player.height)
-	clearance_q.collide_with_bodies = true
-	clearance_q.collision_mask = COLLISION_MASK
-	clearance_q.exclude = exclude
-	var clearance_hit := space.intersect_ray(clearance_q)
-
-	var clearance: float = player.height if clearance_hit.is_empty() \
-		else clearance_hit.position.y - ledge_hit.position.y
-
+	var clearance := _measure_clearance(ledge_hit.position)
 	if clearance < player.height * 0.5 - 0.05:
 		# Less than half height — would get stuck, abort
 		finished.emit(_fallback_state)
 		return
 
-	var force_crouch: bool = clearance < player.height
+	_tween_to_ledge(land_pos, clearance < player.height)
 
+
+# Probe direction: straight into the wall when we know its normal, so vaulting
+# works at shallow approach angles; camera forward otherwise (e.g. from Swim).
+func _vault_forward(wall_normal: Vector3) -> Vector3:
+	var into_wall := -wall_normal
+	into_wall.y = 0.0
+	if into_wall.length() > 0.1:
+		return into_wall.normalized()
+	return _flat_camera_forward()
+
+
+func _flat_camera_forward() -> Vector3:
+	var cam_forward := -player.head.global_transform.basis.z
+	cam_forward.y = 0.0
+	return cam_forward.normalized()
+
+
+func _raycast(from: Vector3, to: Vector3) -> Dictionary:
+	var query := PhysicsRayQueryParameters3D.create(from, to)
+	query.collide_with_bodies = true
+	query.collision_mask = COLLISION_MASK
+	query.exclude = [player.get_rid()]
+	return player.get_world_3d().direct_space_state.intersect_ray(query)
+
+
+# Forward from eye level.  Hit = full wall → can't vault.
+func _is_wall_blocking(cam_forward: Vector3) -> bool:
+	var eye_pos := player.global_position + Vector3.UP * EYE_HEIGHT
+	return not _raycast(eye_pos, eye_pos + cam_forward * WALL_RAY_LENGTH).is_empty()
+
+
+# From above-forward downward — find ledge surface.
+func _find_ledge(cam_forward: Vector3) -> Dictionary:
+	var cast_from := player.global_position + cam_forward * FORWARD_PROBE + Vector3.UP * LEDGE_RAY_HEIGHT
+	return _raycast(cast_from, cast_from + Vector3.DOWN * LEDGE_RAY_DEPTH)
+
+
+# Ray upward from just above landing floor to player full height
+func _measure_clearance(ledge_pos: Vector3) -> float:
+	var clearance_start := ledge_pos + Vector3.UP * 0.05
+	var clearance_hit := _raycast(clearance_start, clearance_start + Vector3.UP * player.height)
+	if clearance_hit.is_empty():
+		return player.height
+	return clearance_hit.position.y - ledge_pos.y
+
+
+func _tween_to_ledge(land_pos: Vector3, force_crouch: bool) -> void:
 	var tween := player.create_tween()
 	tween.tween_property(player, "global_position", land_pos, VAULT_DURATION) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

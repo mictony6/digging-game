@@ -6,6 +6,11 @@ extends Path3D
 @export var rock_scene: PackedScene
 @export var seed: int = 0
 @export var self_collision: bool = false
+
+@export var min_scale: float = 0.8
+@export var max_scale: float = 1.1
+## How far rocks are pushed into the surface to hide gaps where the collision shape doesn't match the visual mesh.
+@export_range(0.0, 0.5, 0.01) var embed_depth: float = 0.0
 ## Controls vertical bias of ray direction. Higher = rocks higher on walls, lower = rocks lower. Avoid going below -0.5 or rocks will land on the floor.
 @export_range(-0.5, 0.8, 0.05) var vertical_bias: float = 0.2
 var gen: RandomNumberGenerator
@@ -87,7 +92,7 @@ func _ready() -> void:
 func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3, normal: Vector3):
 	var instance: Rock = _rock_scene.instantiate()
 	add_child(instance)
-	instance.global_position = instance_position
+	instance.global_position = instance_position - normal * embed_depth
 	# var target_pos = instance.global_transform.origin + normal
 	# instance.look_at(target_pos, Vector3.UP)
 
@@ -101,7 +106,7 @@ func instantiate_rock(_rock_scene: PackedScene, instance_position: Vector3, norm
 	instance.rotation_degrees.y = gen.randi() % 360
 
 	#random scale variation
-	var scale_variation = gen.randf_range(0.9, 1.1)
+	var scale_variation = gen.randf_range(min_scale, max_scale)
 	instance.scale = Vector3.ONE * scale_variation
 
 func clear_generated():

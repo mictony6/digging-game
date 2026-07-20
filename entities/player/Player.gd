@@ -76,8 +76,9 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	$Control/StateLabel.text = state_machine.state.name
 
-	if inventory_open:
+	if is_input_locked():
 		direction = Vector3.ZERO
+		buffered_jump_timer = 0.0
 		pickup_component.reset()
 		return
 
@@ -137,8 +138,14 @@ func determine_suffocation(status: bool, difficulty: int):
 	is_suffocating = status
 	active_depletion_rate_multiplier = float(difficulty) if is_suffocating else 1.0
 
+## True while a UI has the mouse (inventory, shop, EOD screen, menus), so
+## gameplay input must be ignored. Same gate the camera uses in Head.gd.
+func is_input_locked() -> bool:
+	return inventory_open or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED
+
 func _toggle_inventory() -> void:
-	if shop_ui != null and shop_ui.visible:
+	# Never open on top of another UI (shop, EOD screen); closing is always allowed.
+	if not inventory_open and is_input_locked():
 		return
 	inventory_open = !inventory_open
 	if inventory_open:

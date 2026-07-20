@@ -4,7 +4,9 @@ extends Node3D
 ## Seconds for the beam to extend from the tool tip to the target when shown.
 @export var grow_time: float = 0.08
 
-@onready var _mesh: MeshInstance3D = $BeamMesh
+# One node per braided strand; each has its own strand_phase / color mix set
+# in the scene, and all of them get the same per-frame beam parameters.
+@onready var _meshes: Array[MeshInstance3D] = [$BeamMesh, $BeamMesh2]
 @onready var _halo: MeshInstance3D = $ImpactHalo
 @onready var _flames: GPUParticles3D = $ImpactFlames
 
@@ -24,8 +26,9 @@ func aim(target: Vector3, normal: Vector3 = Vector3.ZERO) -> void:
 	_length = local_target.length()
 	if _length < 0.001:
 		return
-	_mesh.set_instance_shader_parameter("target_local", local_target)
-	_mesh.set_instance_shader_parameter("beam_length", _length)
+	for mesh in _meshes:
+		mesh.set_instance_shader_parameter("target_local", local_target)
+		mesh.set_instance_shader_parameter("beam_length", _length)
 	_halo.global_position = end
 	_flames.global_position = end
 
@@ -33,13 +36,16 @@ func _process(delta: float) -> void:
 	if not visible:
 		return
 	_progress = move_toward(_progress, 1.0, delta / maxf(grow_time, 0.001))
-	_mesh.set_instance_shader_parameter("progress", _progress)
+	for mesh in _meshes:
+		mesh.set_instance_shader_parameter("progress", _progress)
 
 func _on_visibility_changed() -> void:
-	if _mesh == null:
+	if _meshes.is_empty():
 		return
 	if _flames:
+		_flames.restart()
 		_flames.emitting = is_visible_in_tree()
 	if is_visible_in_tree():
 		_progress = 0.0
-		_mesh.set_instance_shader_parameter("progress", 0.0)
+		for mesh in _meshes:
+			mesh.set_instance_shader_parameter("progress", 0.0)

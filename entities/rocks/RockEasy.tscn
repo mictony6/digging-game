@@ -38,6 +38,7 @@ mesh = NodePath("RockType1")
 [node name="RockType1" type="MeshInstance3D" parent="." unique_id=1439687345]
 transform = Transform3D(0.9999997, 0, 1.0430813e-07, 0, 0.9999995, 0, -1.0430813e-07, 0, 0.9999997, 0, 0.33266845, 0)
 material_override = ExtResource("4_cxmus")
+instance_shader_parameters/damage = 0.0
 mesh = ExtResource("4_r8uvd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=822168430]

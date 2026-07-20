@@ -50,6 +50,16 @@ func repair() -> void:
 	current_durability = _get_max_durability()
 	durability_changed.emit(current_durability, _get_max_durability())
 
+# Shop UI widgets are rebuilt each time the shop opens, so purchase counts
+# live here where they survive across opens.
+var upgrade_counts: Dictionary = {}
+
+func get_upgrade_count(type: UpgradeItem.UpgradeType) -> int:
+	return upgrade_counts.get(type, 0)
+
+func record_upgrade(type: UpgradeItem.UpgradeType) -> void:
+	upgrade_counts[type] = get_upgrade_count(type) + 1
+
 func upgrade_max_durability(amount: float) -> void:
 	current_tool.tool_data.max_durability += amount
 	current_durability += amount
@@ -63,7 +73,9 @@ func upgrade_strength() -> void:
 	td.strength_upgrade += (td.tier + td.tier_upgrade) * 0.05
 
 func _process(_delta: float) -> void:
-	is_pressing = Input.is_action_pressed("action")
+	# Ignore the action while a UI has the mouse (inventory, shop, EOD, menus).
+	is_pressing = Input.is_action_pressed("action") \
+		and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(_delta: float) -> void:
 	if beam.visible and tool_raycast.is_colliding():
@@ -100,6 +112,7 @@ func perform_hit() -> void:
 func stop_tool() -> void:
 	beam.hide()
 	travel_arm("HoldTool_IDLE")
+	flicker.hide()
 
 func travel_arm(state_name: String) -> void:
 	_arm_playback.travel(state_name)
@@ -134,9 +147,9 @@ func play_particles(collision_point: Vector3):
 	_particle_index = (_particle_index + 1) % PARTICLE_POOL_SIZE
 
 	p.global_position = collision_point
-	var collision_normal = tool_raycast.get_collision_normal()
-	var up = Vector3.RIGHT if collision_normal.is_equal_approx(Vector3.UP) else Vector3.UP
-	p.look_at(collision_point + collision_normal, up)
+	var collision_normal := tool_raycast.get_collision_normal()
+	# Particles emit along local +Y, so rotate +Y onto the surface normal.
+	p.global_basis = Basis(Quaternion(Vector3.UP, collision_normal))
 	p.restart()
 
 

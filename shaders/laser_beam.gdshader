@@ -24,10 +24,20 @@ uniform float wave_tip_fade : hint_range(0.0, 2.0) = 0.4;     // meters before t
 
 uniform float launch_strength : hint_range(0.0, 2.0) = 0.5;  // how far it commits to the emitter's direction before bending
 
+// Braided-strand look: each mesh instance is one thin ribbon orbiting the
+// shared spine, so strands twist around each other like Magnesis strips.
+uniform vec4 color_alt : source_color = vec4(1.0, 0.8, 0.35, 1.0); // tint of strands with strand_color_mix = 1
+uniform float strand_radius : hint_range(0.0, 0.5) = 0.06;  // how far strands orbit the spine, meters
+uniform float strand_twist : hint_range(0.0, 8.0) = 2.0;    // full turns around the spine over the beam
+uniform float strand_spin : hint_range(-10.0, 10.0) = 2.0;  // orbit speed, radians per second
+
 // Set per-frame from beam.gd via set_instance_shader_parameter().
 instance uniform float beam_length = 1.0;
 instance uniform vec3 target_local = vec3(0.0, 0.0, -1.0);    // hit point in the beam node's space
 instance uniform float progress : hint_range(0.0, 1.0) = 1.0; // grow-out reveal on show
+// Per-strand identity, set in beam.tscn on each BeamMesh instance.
+instance uniform float strand_phase = 0.0;     // degrees around the spine (0, 180, ... for evenly spaced strands)
+instance uniform float strand_color_mix = 0.0; // 0 = color, 1 = color_alt
 
 varying float side; // -1..1 across the beam
 varying float dist; // world-space meters along the beam
@@ -70,6 +80,14 @@ void vertex() {
 	float tip_env = smoothstep(0.0, max(wave_tip_fade, 0.001), beam_length - dist);
 	bend += (side_horiz * wh * wave_amplitude + up_local * wv * wave_amplitude_vertical) * env * tip_env;
 
+	// Braid: this strand orbits the spine at strand_phase, twisting along the
+	// length and spinning over time. The spread envelope is pinched to zero at
+	// both ends so all strands still meet at the tool tip and the hit point,
+	// with a sqrt-ish curve so they separate quickly after leaving the tool.
+	float helix = t * TAU * strand_twist + TIME * strand_spin + radians(strand_phase);
+	float spread = pow(max(env, 0.0), 0.4);
+	bend += (cos(helix) * side_horiz + sin(helix) * up_local) * strand_radius * spread;
+
 	pos += bend * len_scale;
 
 	// Billboard around the local tangent of the curve toward the camera.
@@ -102,7 +120,7 @@ void fragment() {
 	// Grow-out reveal: the front edge sweeps from emitter to target on show.
 	float reveal = 1.0 - smoothstep(progress * beam_length - 0.05, progress * beam_length + 0.15, dist);
 
-	vec3 col = mix(color.rgb, core_color.rgb, core);
+	vec3 col = mix(mix(color.rgb, color_alt.rgb, strand_color_mix), core_color.rgb, core);
 	float intensity = (glow * 0.6 + core) * pulse * flicker * head * reveal;
 
 	// EMISSION is ignored in unshaded mode: output HDR color through ALBEDO

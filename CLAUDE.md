@@ -25,13 +25,15 @@ There is no build/lint/test CLI for this project. Development happens entirely i
 | `GlobalInput` | `game/global_input.gd` | F11 fullscreen, F1 cursor toggle |
 | `ExpenseManager` | `game/expense_manager.gd` | End-of-day deductions (food, housing, hospital, tax, repair) |
 | `DateManager` | `game/date_manager.gd` | Day counter, `end_day()` signal that triggers expense calculation |
-| `PauseStateManager` | (uid ref) | Pause/resume state |
+| `PauseStateManager` | `game/pause_state_manager.gd` | Pause/resume state |
+| `QuestManager` | `game/quest_manager.gd` | Quest lifecycle (`QuestState` enum: NOT_STARTED/ACTIVE/COMPLETED/FAILED) |
 
 ### State Machine
 
-Generic state machine in `systems/state machine/`. `StateMachine.gd` holds the active state; states emit `finished(target_state_path, data)` to transition.
+Generic state machine in `systems/state machine/`. `StateMachine.gd` holds the active state; states emit `finished(target_state_path, data)` to transition. Base classes: `State`, `PlayerState`, `ToolState`.
 
 - **Player states** (`entities/player/states/`): Idle, Move, Sprint, Jump, Fall, Crouch, Climb, Swim, Vault, RidingMinecart
+- **Tool states** (`game/tool_states/`): Idle, Walking, Mining — drive the mining loop and arm animation transitions (`travel_arm()`)
 - **Turret states**: Idle, Alert, LockedIn, Attacking, CoolDown
 - Each state implements `enter()`, `exit()`, `_input()`, `_process()`, `_physics_process()` as needed.
 
@@ -51,11 +53,14 @@ Entities are built by attaching reusable child components rather than deep inher
 
 ### Tool & Mining Loop
 
-`game/tool_manager.gd` drives the pickaxe:
+`game/tool_manager.gd` drives the laser mining tool (`entities/laser_tool/LaserTool.tscn`), running the tool state machine above:
 - RayCast3D detects hits on rocks; Area3D applies splash (100% primary, 25% nearby)
-- Durability depletes per swing; repaired at day boundary
+- Durability depletes while firing; repaired at day boundary
 - Hit FX use a **5-pool** of particles (reused, not instantiated per hit)
-- Upgrades: `tier` (unlocks harder rocks), `strength` (damage), `max_durability`
+- Upgrades: `tier` (unlocks harder rocks), `strength` (damage), `max_durability`; purchase counts persist on ToolManager (shop widgets are rebuilt per open)
+- Visuals: `effects/beam.gd` (`LaserBeam`) — braided beam meshes curved to the target by `shaders/laser_beam.gdshader`, plus impact halo and flame particles; arm animations via an `AnimationTree` state machine, procedural weight/lag from `entities/player/arms_sway.gd`
+
+`game/torch_manager.gd` (T key) raycasts forward and places a torch from inventory on the hit surface.
 
 `entities/rocks/rock.gd` links to a `RockData` resource and updates the `damage` shader parameter (0–1) as the rock takes hits, driving the crack shader.
 
@@ -71,9 +76,10 @@ Entities are built by attaching reusable child components rather than deep inher
 
 Shaders live in `shaders/` (and some co-located with entities):
 
-- **`rock_crack.gdshader`** — triplanar damage cracks with emission; driven by `damage` instance parameter on each `MeshInstance3D`
-- **`beam.gdshader`** — mining tool beam with sway, ripple, vibration vertex displacement
+- **Rock crack shader** — triplanar damage cracks with emission; driven by `damage` instance parameter on each `MeshInstance3D`; reconstructs normal Z to avoid dark shading
+- **`laser_beam.gdshader`** — mining beam; vertex-curves the mesh from the emitter to a `target_local` instance parameter with grow `progress` (see `effects/beam.gd`); `impact_halo.gdshader` renders the hit flash
 - **`water.gdshader` / `water_ssr.gdshader`** — water surface with depth fade and screen-space reflections
+- **`DarknessEffect.gdshader`** — fullscreen ColorRect effect (`systems/Darkness.gd` feeds camera basis/FOV each frame)
 
 Use `set_instance_shader_parameter()` on the `MeshInstance3D` node directly to set per-instance shader parameters (no `duplicate()` needed). Use `ALPHA_HASH_SCALE` built-in for alpha hashing rather than implementing manually.
 
@@ -83,7 +89,7 @@ Use `set_instance_shader_parameter()` on the `MeshInstance3D` node directly to s
 Main (Node3D)
 ├── WorldEnvironment / DirectionalLight3D
 ├── LevelLoader
-│   └── OverWorld  ← all gameplay content: cave, elevator, exchange, shop, rocks, enemies
+│   └── OverWorld  ← all gameplay content: cave, elevator, exchange, shop, rocks, enemies (turret, crawler)
 ├── Player (CharacterBody3D)
 ├── CanvasLayer (layer 0) ← DeathScreen, EODUI, InventoryUI, StartMenu
 └── HudLayer (layer 2) ← ShopUI, HUD (PlayerHUD)
@@ -100,6 +106,8 @@ Game content is defined as Godot Resources in `data/`:
 - `data/tools/` — `ToolData` (tier, strength, durability)
 - `data/crafting/` — `CraftingRecipe` (Bomb, Torch recipes)
 - `data/shop/` — `ShopItemEntry`, `UpgradeEntry`
+- `data/questing/` — `QuestData` (id, title, description, state, rewards), `QuestReward`
+- `data/environment/` — environment/sky settings resources
 
 ### Interaction System
 

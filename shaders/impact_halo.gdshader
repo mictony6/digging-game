@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_add, unshaded, cull_disabled;
+render_mode blend_add, unshaded, cull_disabled, depth_test_disabled;
 
 // Procedural impact halo: a camera-facing radial glow placed at the beam's
 // hit point. Purely fragment-driven — no texture.
