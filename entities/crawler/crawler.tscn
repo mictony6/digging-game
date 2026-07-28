@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://bbrqv8t6ts2r7"]
 
+[ext_resource type="Script" uid="uid://1putqdug6bus" path="res://entities/crawler/crawler.gd" id="1_1kkq2"]
 [ext_resource type="PackedScene" uid="uid://dsc6lqrp4fagq" path="res://assets/meshes/crawler/crawler_rigged.gltf" id="1_lam4l"]
+[ext_resource type="Script" uid="uid://b3usssf8jsfah" path="res://systems/health/has_health.gd" id="3_045k0"]
 
 [node name="Crawler" type="Node3D" unique_id=2023624991]
+script = ExtResource("1_1kkq2")
 
 [node name="crawler_rigged2" parent="." unique_id=527311151 instance=ExtResource("1_lam4l")]
 
-[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=496661546]
+[node name="AnimationPlayer" parent="crawler_rigged2" index="1" unique_id=237656937]
 root_motion_track = NodePath("Armature/Skeleton3D:Root")
 autoplay = &"Idle"
 speed_scale = 0.5
+
+[node name="HasHealth" type="Node" parent="." unique_id=747237081]
+script = ExtResource("3_045k0")
+metadata/_custom_type_script = "uid://b3usssf8jsfah"
 
 [editable path="crawler_rigged2"]

@@ -14,7 +14,6 @@ var cooldown_timer: float = 0.0
 const COOLDOWN: float = 3.0
 
 var has_played_ready_animation: bool = false
-var has_played_aim_animation: bool = false
 
 func _ready():
 	aiming_preview.visible = false
@@ -42,10 +41,8 @@ func aim():
 		animation.queue("AimBomb")
 		has_played_ready_animation = true
 
-	
 func release():
 	has_played_ready_animation = false
-	has_played_aim_animation = false
 	aiming_preview.visible = false
 
 	if player_inventory != null and bomb_item != null:
@@ -65,7 +62,7 @@ func release():
 	)
 	q.collide_with_bodies = true
 	q.collide_with_areas = false
-	q.collision_mask = 4  # layer 3 — environment
+	q.collision_mask = 4 # layer 3 — environment
 	var hit := space.intersect_ray(q)
 	var safe_offset := desired_offset
 	if not hit.is_empty():

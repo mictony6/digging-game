@@ -42,7 +42,7 @@ func _ready() -> void:
 	_prev_head_rotation = Vector2(_head.rotation.x, _head.rotation.y)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var head_rotation := Vector2(_head.rotation.x, _head.rotation.y)
 	var angular_velocity := Vector2(
 		angle_difference(_prev_head_rotation.x, head_rotation.x),

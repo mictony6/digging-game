@@ -68,6 +68,7 @@ color_ramp = SubResource("GradientTexture1D_doehb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm037"]
 blend_mode = 1
+cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.7246815, 0.3903851, 0.22085112, 1)
 albedo_texture = ExtResource("5_e7wm1")
@@ -146,9 +147,8 @@ cast_shadow = 0
 mesh = SubResource("QuadMesh_halo")
 
 [node name="Sparks" type="GPUParticles3D" parent="ImpactHalo" unique_id=394574309]
-amount = 4
 lifetime = 0.1
-speed_scale = 4.0
+speed_scale = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_doehb")
 draw_pass_1 = SubResource("PlaneMesh_5onfr")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b56ky3wnk5r1q"]
+
+[ext_resource type="Shader" uid="uid://btt5hy15lksey" path="res://shaders/test.gdshader" id="1_rhtp5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwgeb"]
+render_priority = 0
+shader = ExtResource("1_rhtp5")
+shader_parameter/density_steps = 8
+shader_parameter/darkmatter_amount = 0.65
+shader_parameter/star_brightness = 0.0008
+shader_parameter/parallax_scale = 0.02
+
+[sub_resource type="SphereMesh" id="SphereMesh_07871"]
+
+[node name="Node3D" type="Node3D" unique_id=383049216]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=730114019]
+material_override = SubResource("ShaderMaterial_lwgeb")
+mesh = SubResource("SphereMesh_07871")

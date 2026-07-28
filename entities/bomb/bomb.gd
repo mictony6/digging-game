@@ -16,11 +16,10 @@ var _exploding: bool = false
 func _ready() -> void:
 	get_tree().create_timer(FUSE_DURATION).timeout.connect(explode)
 
-func _flash_light() -> void:
+func _flash_light(t: float) -> void:
 	if _light_tween:
 		_light_tween.kill()
 	bomb_light.light_energy = 2.0
-	var t = clamp(1.0 - (_time_remaining / FUSE_DURATION), 0.0, 1.0)
 	var fade = lerp(0.5, 0.06, t)
 	_light_tween = create_tween()
 	_light_tween.tween_property(bomb_light, "light_energy", 0.0, fade)
@@ -46,7 +45,7 @@ func explode():
 			query.collision_mask = 0b100111 # Layers 1, 2, 3, 6
 			var result = space_state.intersect_ray(query)
 
-			if result and result.collider == body:
+			if result and result.collider == body and kb != null:
 				kb.start(global_position)
 				body.health.take_damage(damage)
 		elif kb != null:
@@ -62,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	_time_remaining -= delta
 	_flash_timer -= delta
 	if _flash_timer <= 0.0:
-		_flash_light()
 		var t = clamp(1.0 - (_time_remaining / FUSE_DURATION), 0.0, 1.0)
+		_flash_light(t)
 		_flash_timer = lerp(0.6, 0.07, t)
+

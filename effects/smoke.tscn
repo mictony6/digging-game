@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://b8dw51gf6sxlv"]
+
+[ext_resource type="Texture2D" uid="uid://bkmq7attbio5d" path="res://assets/textures/smoke/cloud.png" id="1_by6y2"]
+[ext_resource type="Shader" uid="uid://dfalc0wpnvaea" path="res://shaders/ground_dust.gdshader" id="2_to018"]
+
+[sub_resource type="Curve" id="Curve_of7i3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.31341243, 1), 0.0, 0.0, 0, 0, Vector2(0.8608577, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lwgeb"]
+curve = SubResource("Curve_of7i3")
+
+[sub_resource type="Curve" id="Curve_by6y2"]
+_data = [Vector2(0, 0.040982366), 0.0, 0.0, 0, 0, Vector2(0.82801104, 0.068097115), 0.0, 0.0, 0, 0, Vector2(1, 0.15764928), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_by6y2"]
+curve = SubResource("Curve_by6y2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5onfr"]
+emission_shape_scale = Vector3(2, 0.1, 2)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+initial_velocity_min = -0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0.04, 0)
+radial_accel_min = -1.0000023
+radial_accel_max = 0.99999774
+radial_accel_curve = SubResource("CurveTexture_by6y2")
+scale_min = 2.5
+scale_max = 5.0
+alpha_curve = SubResource("CurveTexture_lwgeb")
+
+[sub_resource type="Gradient" id="Gradient_ui87d"]
+offsets = PackedFloat32Array(0.20071138, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1enih"]
+noise_type = 2
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_07871"]
+noise = SubResource("FastNoiseLite_1enih")
+color_ramp = SubResource("Gradient_ui87d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbtkv"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_by6y2")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+backlight_texture = SubResource("NoiseTexture2D_07871")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_420xn"]
+material = SubResource("StandardMaterial3D_xbtkv")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7gent"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_to018"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_7gent")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwgeb"]
+render_priority = 0
+shader = ExtResource("2_to018")
+shader_parameter/base_texture = SubResource("NoiseTexture2D_to018")
+shader_parameter/uv_scale = 1.0
+shader_parameter/radius = 0.53
+shader_parameter/edge_softness = 0.805
+
+[sub_resource type="QuadMesh" id="QuadMesh_xbtkv"]
+
+[node name="Node3D" type="Node3D" unique_id=1691771548]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1550298291]
+visible = false
+amount = 24
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_5onfr")
+draw_pass_1 = SubResource("PlaneMesh_420xn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1413405533]
+material_override = SubResource("ShaderMaterial_lwgeb")
+mesh = SubResource("QuadMesh_xbtkv")

@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_rotation.y = clampf(target_rotation.y, yaw_min, yaw_max)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	# Smoothly interpolate towards the target rotation
 	rotation_degrees.x = lerpf(rotation_degrees.x, target_rotation.x, smoothing_factor)
 	rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation.y, smoothing_factor)

@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://cd8eju1cig105" path="res://entities/rocks/RockWall.tscn" id="50_tdx0c"]
 [ext_resource type="Script" uid="uid://335lniljc8nv" path="res://systems/Darkness.gd" id="51_ckrxx"]
 [ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_qwv1t"]
+[ext_resource type="PackedScene" uid="uid://brlxtksdnsnue" path="res://environment/Rock_08/rock_08.tscn" id="52_ckrxx"]
 
 [sub_resource type="Resource" id="Resource_fywoe"]
 script = ExtResource("5_toxdh")
@@ -843,6 +844,30 @@ transform = Transform3D(-0.30840272, 0, 0.95125586, 0, 0.99999994, 0, -0.9512558
 
 [node name="Torch2" parent="." unique_id=1842593830 instance=ExtResource("33_7677j")]
 transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 0.9999999, 0, 0.8660254, 0, -0.50000006, 9.3937435, -32.721672, -82.49561)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1204208163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.738946, -31.26573, -82.72642)
+
+[node name="Rock_08" parent="Node3D" unique_id=152973938 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63972, -2.837349, -7.8649554)
+
+[node name="Rock_09" parent="Node3D" unique_id=750680980 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.026513, -0.57509804, -4.985391)
+
+[node name="Rock_10" parent="Node3D" unique_id=932948665 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(-0.84174186, 0, -0.5398802, 0, 1, 0, 0.5398802, 0, -0.84174186, 0.0830574, -0.009363174, -4.6810474)
+
+[node name="Rock_11" parent="Node3D" unique_id=145023021 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(-0.6606826, -0.39395833, -0.63898003, 0.16034922, 0.7575056, -0.63283, 0.7333394, -0.5205597, -0.43729955, -2.2255387, -2.4303627, -6.9897256)
+
+[node name="Rock_12" parent="Node3D" unique_id=1449230400 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(-0.4673958, -0.506421, -0.7246234, 0.1603492, 0.7575055, -0.63282996, 0.86938447, -0.41197485, -0.2728504, -2.2255387, -2.4303627, -4.43931)
+
+[node name="Rock_13" parent="Node3D" unique_id=1246599081 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(0.8834611, -0.3563617, -0.30414268, 0.37030748, 0.9288233, -0.0126413945, 0.28700012, -0.101458214, 0.9525428, -0.704216, -1.9311275, -2.6728063)
+
+[node name="Rock_14" parent="Node3D" unique_id=1969105362 instance=ExtResource("52_ckrxx")]
+transform = Transform3D(0.5822327, -0.14570238, 0.79986036, 0.17435537, 0.9832981, 0.052200977, -0.7941068, 0.109066725, 0.59791195, 2.8123522, -1.9311275, -3.6296718)
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]
