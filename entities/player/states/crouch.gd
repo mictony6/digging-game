@@ -37,7 +37,7 @@ func exit() -> void:
 	collider.position.y = 0.0
 
 
-func physics_update(delta: float) -> void:
+func update(delta: float) -> void:
 	if player.in_water:
 		finished.emit(SWIM)
 		return

@@ -7,7 +7,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	player.velocity = Vector3.ZERO
 
 
-func physics_update(_delta: float) -> void:
+func update(_delta: float) -> void:
 	if cart == null:
 		finished.emit(FALL)
 		return

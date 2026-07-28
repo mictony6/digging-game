@@ -6,7 +6,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	player.velocity.y = player.JUMP_FORCE
 
 
-func physics_update(delta):
+func update(delta):
 	if player.in_water:
 		finished.emit(SWIM)
 		return
@@ -27,7 +27,7 @@ func physics_update(delta):
 	horizontal += accel
 
 	# Light air drag (prevents infinite momentum stacking)
-	horizontal *= 0.995
+	horizontal *= pow(0.995, delta * 60.0)
 
 	var max_air_speed = player.SPRINT_SPEED * 1.1
 	if horizontal.length() > max_air_speed:

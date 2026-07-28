@@ -2,9 +2,19 @@ extends PlayerState
 
 const SWIM_SPEED := 1.8
 
+# Water entry is detected via an Area3D signal, which only resolves once per
+# physics tick. Movement now runs every render frame, so a fast fall can
+# punch several frames deeper than the surface before the signal fires.
+# Rather than leaving the player stuck too deep, settle back up to a normal
+# entry depth at a bounded speed once we notice the overshoot.
+const EXPECTED_ENTRY_DEPTH := 0.2
+const MAX_ENTRY_CORRECTION := 3.0
+const ENTRY_CORRECTION_SPEED := 6.0
+
 const TrailScene := preload("res://effects/water_trail.tscn")
 
 var _trail: GPUParticles3D = null
+var _entry_correction_target_y: float = - INF
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	player.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -15,13 +25,23 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	else:
 		player.velocity.y = 0.0
 
+	var target_y := player.water_surface_y - EXPECTED_ENTRY_DEPTH
+	var overshoot := clampf(target_y - player.global_position.y, 0.0, MAX_ENTRY_CORRECTION)
+	_entry_correction_target_y = target_y if overshoot > 0.0 else -INF
+
 	# Continuous trail parented to player so it follows movement
 	_trail = TrailScene.instantiate()
 	player.add_child(_trail)
 	_trail.position = Vector3(0, 0.2, 0)
 	_trail.emitting = true
 
-func physics_update(delta: float) -> void:
+func update(delta: float) -> void:
+	#move player y to expected level because update tends to overshoot after the physics detects player is in water
+	if _entry_correction_target_y > -INF:
+		player.global_position.y = move_toward(player.global_position.y, _entry_correction_target_y, ENTRY_CORRECTION_SPEED * delta)
+		if is_equal_approx(player.global_position.y, _entry_correction_target_y):
+			_entry_correction_target_y = - INF
+
 	player.velocity.y = move_toward(player.velocity.y, 0.0, 1.0 * delta)
 
 	player.velocity.x = move_toward(player.velocity.x, player.direction.x * SWIM_SPEED, 10.0 * delta)

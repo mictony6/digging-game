@@ -45,9 +45,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	# Smoothly interpolate towards the target rotation
-	rotation_degrees.x = lerpf(rotation_degrees.x, target_rotation.x, smoothing_factor)
-	rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation.y, smoothing_factor)
+	# Smoothly interpolate towards the target rotation (framerate-independent:
+	# equivalent to applying `smoothing_factor` once per 1/60s tick)
+	var rot_t := 1.0 - pow(1.0 - smoothing_factor, delta * 60.0)
+	rotation_degrees.x = lerpf(rotation_degrees.x, target_rotation.x, rot_t)
+	rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation.y, rot_t)
 
 	if bob_enabled:
 		_update_bob(delta)
@@ -82,8 +84,10 @@ func _update_bob(delta: float) -> void:
 		var amp_mult := 1.0 if is_swimming else lerpf(1.0, bob_sprint_amplitude_multiplier, clampf(speed_ratio - 1.0, 0.0, 1.0))
 		var bob_y := sin(_bob_time) * amp_y * amp_mult
 		var bob_x := sin(_bob_time * 0.5) * amp_x * amp_mult
-		position.y = lerpf(position.y, base_position.y + bob_y, 0.15)
-		position.x = lerpf(position.x, base_position.x + bob_x, 0.15)
+		var bob_t := 1.0 - pow(1.0 - 0.15, delta * 60.0)
+		position.y = lerpf(position.y, base_position.y + bob_y, bob_t)
+		position.x = lerpf(position.x, base_position.x + bob_x, bob_t)
 	else:
-		position.y = lerpf(position.y, base_position.y, 0.1)
-		position.x = lerpf(position.x, base_position.x, 0.1)
+		var settle_t := 1.0 - pow(1.0 - 0.1, delta * 60.0)
+		position.y = lerpf(position.y, base_position.y, settle_t)
+		position.x = lerpf(position.x, base_position.x, settle_t)

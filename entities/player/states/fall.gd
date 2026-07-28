@@ -3,14 +3,12 @@ extends PlayerState
 func enter(previous_state_path: String, data := {}) -> void:
 	player.acceleration = player.air_acceleration
 
-## Called by the state machine on the engine's physics update tick.
-func physics_update(delta: float) -> void:
+## Called by the state machine on the engine's main loop tick.
+func update(delta: float) -> void:
 	if player.in_water:
 		finished.emit(SWIM)
 		return
 	player.velocity.y -= (player.gravity * player.FALL_GRAVITY_MULTIPLIER * delta)
-	# player.velocity.x = move_toward(player.velocity.x, player.direction.x * player.SPEED, player.acceleration * delta)
-	# player.velocity.z = move_toward(player.velocity.z, player.direction.z * player.SPEED, player.acceleration * delta)
 
 	var horizontal = Vector3(player.velocity.x, 0, player.velocity.z)
 	var input_dir = player.direction
@@ -23,7 +21,7 @@ func physics_update(delta: float) -> void:
 	var difference = target_velocity - horizontal
 	var accel = difference.limit_length(player.acceleration * delta)
 	horizontal += accel
-	horizontal *= 0.995 # optional light air drag
+	horizontal *= pow(0.995, delta * 60.0) # optional light air drag
 	player.velocity.x = horizontal.x
 	player.velocity.z = horizontal.z
 	

@@ -27,7 +27,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	_play_entry_tween(facing_yaw, snap_pos)
 
 
-func physics_update(_delta: float) -> void:
+func update(_delta: float) -> void:
 	if _vaulting or _entering:
 		return
 

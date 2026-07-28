@@ -35,7 +35,7 @@ func add_speed(addtl_speed: float):
 	target_speed = clamp(target_speed + addtl_speed, -MAX_SPEED, MAX_SPEED, )
 
 
-func _physics_process(delta):
+func _process(delta):
 	speed = move_toward(speed, target_speed, delta * 5.0)
 	progress += speed * delta
 	if progress_ratio == 0 or progress_ratio == 1.0:

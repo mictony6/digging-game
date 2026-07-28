@@ -25,7 +25,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	_do_vault(data.get("wall_normal", Vector3.ZERO))
 
 
-func physics_update(_delta: float) -> void:
+func update(_delta: float) -> void:
 	# All logic is tween-driven from enter(); nothing to do here.
 	pass
 

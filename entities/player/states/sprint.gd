@@ -5,7 +5,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	player.acceleration = player.ground_acceleration
 
 
-func physics_update(delta: float) -> void:
+func update(delta: float) -> void:
 	if player.in_water:
 		finished.emit(SWIM)
 		return

@@ -341,11 +341,11 @@ texture_filter = 5
 text = "Sprinting Jump Distance"
 
 [node name="Rail" parent="." unique_id=1200198046 instance=ExtResource("5_yxv7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020002544, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020002544, 2.803876)
 curve = SubResource("Curve3D_yxv7j")
 
 [node name="MinecartPathFollow" parent="Rail" unique_id=2019470595 instance=ExtResource("6_kyw6u")]
-transform = Transform3D(-0.016602503, 0.6549683, 0.7554868, 0, 0.75561845, -0.6550347, -0.9998165, -0.01087611, -0.0125452755, 1.0806917, 0.6267729, 3.007397)
+transform = Transform3D(-0.016602505, 0.6549684, 0.7554868, 0, 0.7556186, -0.6550347, -0.99981654, -0.010876111, -0.0125452755, 1.0806917, 0.6267729, 3.007397)
 progress = 11.660282
 
 [node name="LadderGenerator" parent="." unique_id=1611220197 instance=ExtResource("7_ssmx2")]
