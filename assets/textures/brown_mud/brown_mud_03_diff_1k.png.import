@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxraaqhnk4np3"
-path="res://.godot/imported/Over.png-76b70162afd342837cd3d5ef8f357f7c.ctex"
+uid="uid://b56qbqvipvtfh"
+path.s3tc="res://.godot/imported/brown_mud_03_diff_1k.png-e9e55d6ff8403390aaa08dc5f08faed8.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/Over.png"
-dest_files=["res://.godot/imported/Over.png-76b70162afd342837cd3d5ef8f357f7c.ctex"]
+source_file="res://assets/textures/brown_mud/brown_mud_03_diff_1k.png"
+dest_files=["res://.godot/imported/brown_mud_03_diff_1k.png-e9e55d6ff8403390aaa08dc5f08faed8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

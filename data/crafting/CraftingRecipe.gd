@@ -2,7 +2,7 @@ class_name CraftingRecipe
 extends Resource
 
 @export var label: String = ""
-@export var icon: Texture2D
+# @export var icon: Texture2D
 @export var output_item: ItemData
 @export var output_amount: int = 1
 @export var craft_interval: float = 15.0

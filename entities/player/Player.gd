@@ -53,7 +53,6 @@ signal inventory_opened(inventory_data)
 signal inventory_closed()
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	assert(health != null, "Player must have health component")
 	assert(oxygen != null, "Player must have oxygen component")
 	if head == null:

@@ -37,6 +37,7 @@ metadata/_custom_type_script = "uid://q53tm1dyumsd"
 [node name="rock2" type="MeshInstance3D" parent="." unique_id=708967263]
 transform = Transform3D(-0.21328142, 0.44094187, 0.44678405, 0.60146815, 0.27860883, 0.012156979, -0.17967136, 0.4092456, -0.48966414, 0, 0, 0)
 material_override = ExtResource("4_yvf3x")
+instance_shader_parameters/damage = 0.0
 mesh = ExtResource("4_v73oy")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=219050150]

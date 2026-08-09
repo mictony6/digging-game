@@ -35,7 +35,7 @@ func _build_crafting_timers() -> void:
 		var recipe = cm.recipes[i]
 		var widget = TIMER_SCENE.instantiate()
 		_crafting_row.add_child(widget)
-		widget.setup(recipe.label, recipe.icon)
+		widget.setup(recipe.label, recipe.output_item.icon)
 		_timer_widgets.append(widget)
 
 func _process(_delta: float) -> void:

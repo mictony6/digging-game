@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxraaqhnk4np3"
-path="res://.godot/imported/Over.png-76b70162afd342837cd3d5ef8f357f7c.ctex"
+uid="uid://b8wy718hhk85j"
+path="res://.godot/imported/torch.svg-5b0cc93c8cd51fecf58378113fe024bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/Over.png"
-dest_files=["res://.godot/imported/Over.png-76b70162afd342837cd3d5ef8f357f7c.ctex"]
+source_file="res://assets/textures/ui/torch.svg"
+dest_files=["res://.godot/imported/torch.svg-5b0cc93c8cd51fecf58378113fe024bb.ctex"]
 
 [params]
 
@@ -21,9 +21,9 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +37,7 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
