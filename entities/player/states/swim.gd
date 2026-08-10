@@ -62,7 +62,7 @@ func update(delta: float) -> void:
 		var data := {}
 		if player.is_on_wall():
 			data["wall_normal"] = player.get_wall_normal()
-		finished.emit(VAULT, data)
+			finished.emit(VAULT, data)
 
 func exit() -> void:
 	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
