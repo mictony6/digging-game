@@ -14,9 +14,8 @@ const QUEST_LIST_CARD_SCENE: PackedScene = preload("res://ui/Quest/quest_list_ca
 @onready var _add_coins_button: Button = $Panel/OuterVBox/ContentMargin/TabContainer/Sell/Add100Coins
 @onready var _available_quest_list: VBoxContainer = %AvailableQuests
 @onready var _active_quest_list: VBoxContainer = %ActiveQuests
-@onready var _quest_detail_title: Label = %QuestDetailTitle
-@onready var _quest_detail_desc: Label = %QuestDetailDesc
-
+@onready var _quest_scroll: SmoothScrollContainer = %QuestScrollPanel
+@onready var _quest_detail_panel: QuestDetailPanel = %QuestDetailPanel
 var _upgrades: Array[UpgradeItem] = []
 var _store_items: Array[StoreItem] = []
 var _inventory: Inventory
@@ -25,6 +24,8 @@ func _ready() -> void:
 	add_to_group("shop_ui")
 	_exit_button.pressed.connect(_on_exit_pressed)
 	_add_coins_button.pressed.connect(func(): PlayerData.add_coins(100))
+	QuestManager.quest_started.connect(_on_quest_list_changed)
+	QuestManager.quest_completed.connect(_on_quest_list_changed)
 	hide()
 
 func open(player: Player, current_tool: Tool, tool_manager: ToolManager,
@@ -32,18 +33,13 @@ func open(player: Player, current_tool: Tool, tool_manager: ToolManager,
 	_inventory = player.inventory.get_inventory()
 	_populate_store(items)
 	_populate_upgrades(upgrades, current_tool, tool_manager)
-	_populate_quest_list(QuestManager.active, QuestManager.available_quest())
-
-	var first_quest: QuestListCard = _active_quest_list.get_child(0)
-	if first_quest == null:
-		first_quest = _available_quest_list.get_child(0)
-	first_quest.selected.emit(first_quest.quest_data)
-
+	_refresh_quest_list()
 
 	_blur_rect.modulate.a = 0.0
 	show()
 	var t := create_tween()
 	t.tween_property(_blur_rect, "modulate:a", 1.0, 0.18)
+
 
 func _populate_store(items: Array) -> void:
 	for child in _store_grid.get_children():
@@ -69,6 +65,22 @@ func _populate_upgrades(upgrades: Array, current_tool: Tool, tool_manager: ToolM
 		widget.set_tool(current_tool, tool_manager)
 		_upgrades.append(widget)
 
+
+func _on_quest_list_changed(_quest: QuestData) -> void:
+	if not visible:
+		return
+	_refresh_quest_list()
+
+func _refresh_quest_list() -> void:
+	_populate_quest_list(QuestManager.active, QuestManager.available_quest())
+
+	var monitored_quest: QuestData = QuestManager.get_monitored()
+	if monitored_quest != null:
+		var card := _find_quest_card(monitored_quest.id)
+		if card != null:
+			card.button_pressed = true
+			_scroll_to_card(card)
+		_on_quest_card_selected(monitored_quest)
 
 func _populate_quest_list(active_quests: Array[QuestData], available_quests: Array[QuestData]):
 	#popoulate active quests
@@ -109,5 +121,20 @@ func _make_card(quest: QuestData, list: VBoxContainer) -> void:
 	card.selected.connect(_on_quest_card_selected)
 
 func _on_quest_card_selected(quest: QuestData):
-	_quest_detail_title.text = quest.title
-	_quest_detail_desc.text = quest.description
+	_quest_detail_panel.show_quest_detail(quest)
+	QuestManager.set_monitored(quest)
+
+func _find_quest_card(id: String) -> QuestListCard:
+	for child in _active_quest_list.get_children() + _available_quest_list.get_children():
+		if child is QuestListCard and child.quest_data.id == id:
+			return child
+	return null
+
+func _scroll_to_card(card: QuestListCard) -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	if not is_instance_valid(card):
+		return
+
+	_quest_scroll.ensure_control_visible_smooth(card)

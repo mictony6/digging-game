@@ -7,8 +7,11 @@
 [ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="5_cl8rv"]
 [ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="6_ijwp2"]
 [ext_resource type="Texture2D" uid="uid://dfayrh7w71l84" path="res://assets/textures/ui/button_borders.svg" id="7_6knug"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="7_7wr3j"]
 [ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="7_emsos"]
 [ext_resource type="PackedScene" uid="uid://borhjuliilna3" path="res://ui/Quest/quest_list_card.tscn" id="7_ijwp2"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="8_8k8f5"]
+[ext_resource type="Script" uid="uid://cf6216y7q4g5v" path="res://ui/Quest/quest_detail_panel.gd" id="9_3w5fi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("3_blur")
@@ -65,8 +68,15 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Resource" id="Resource_bf0xk"]
+script = ExtResource("8_8k8f5")
+
+[sub_resource type="Resource" id="Resource_t12wf"]
+script = ExtResource("8_8k8f5")
+
 [sub_resource type="SystemFont" id="SystemFont_emsos"]
 font_names = PackedStringArray("Marlett")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emsos"]
 texture = ExtResource("7_6knug")
@@ -232,20 +242,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="TierUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=481479941 instance=ExtResource("1_upgrade")]
 layout_mode = 2
+mouse_filter = 1
 cost = 100
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="StrengthUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=965015791 instance=ExtResource("1_upgrade")]
 layout_mode = 2
+mouse_filter = 1
 upgrade = 1
 cost = 50
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="DurabilityUpgrade" parent="Panel/OuterVBox/ContentMargin/TabContainer/Upgrades/ScrollContainer/UpgradeParent" unique_id=965015792 instance=ExtResource("1_upgrade")]
 layout_mode = 2
+mouse_filter = 1
 upgrade = 2
 cost = 75
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="Sell" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer" unique_id=1443683913]
 visible = false
@@ -312,59 +329,94 @@ theme_override_constants/margin_bottom = 8
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer" unique_id=1238192342]
 layout_mode = 2
 
-[node name="QuestScrollPanel" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1218702494]
+[node name="QuestScrollPanel" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1008778228]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+follow_focus = true
+scroll_hint_mode = 2
+script = ExtResource("7_7wr3j")
+speed = 500.0
+wheel_scroll_damper = SubResource("Resource_bf0xk")
+dragging_scroll_damper = SubResource("Resource_t12wf")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="QuestList" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel" unique_id=427128693]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="FoldableContainer" type="FoldableContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1445345663]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = SubResource("SystemFont_emsos")
 theme_override_font_sizes/font_size = 20
 title = "Active"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="ActiveQuests" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer" unique_id=1693999363]
 unique_name_in_owner = true
 layout_mode = 2
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1948552263 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1266497965 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1722575442 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="FoldableContainer2" type="FoldableContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=187437988]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = SubResource("SystemFont_emsos")
 theme_override_font_sizes/font_size = 20
 title = "Available"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="AvailableQuests" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2" unique_id=430789286]
 unique_name_in_owner = true
 layout_mode = 2
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=1238641978 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=2139311588 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=1492153634 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="BottomSpacer" type="Control" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1256732349]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="QuestDetailPanel" type="PanelContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1256732348]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_emsos")
+script = ExtResource("9_3w5fi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel" unique_id=558737781]
 layout_mode = 2
@@ -407,13 +459,15 @@ size_flags_vertical = 3
 label_settings = SubResource("LabelSettings_jgdsy")
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2083639716]
+[node name="QuestButtons" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2083639716]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1394712074]
+[node name="QuestStartButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/QuestButtons" unique_id=1394712074]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
-[node name="Button2" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=618877883]
+[node name="QuestCompleteButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/QuestButtons" unique_id=618877883]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Complete"

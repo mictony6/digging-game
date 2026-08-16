@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="QuestData" format=3 uid="uid://jwv8q1oc7w30"]
+
+[ext_resource type="Script" uid="uid://byvqofaga6wkp" path="res://data/questing/objectives/quest_objective.gd" id="1_gyyue"]
+[ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_s0ppp"]
+[ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_d11oo"]
+
+[sub_resource type="Resource" id="Resource_oieyt"]
+script = ExtResource("1_gyyue")
+action = 4
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_7wr3j"]
+script = ExtResource("2_s0ppp")
+type = 1
+metadata/_custom_type_script = "uid://cp2re62jdt75v"
+
+[resource]
+script = ExtResource("3_d11oo")
+id = "011"
+title = "Test"
+description = "asdasdasd"
+objectives = Array[ExtResource("1_gyyue")]([SubResource("Resource_oieyt")])
+rewards = Array[ExtResource("2_s0ppp")]([SubResource("Resource_7wr3j")])
+required_flags = Array[StringName]([&"first_step"])
+metadata/_custom_type_script = "uid://cgbwkn18h07dv"

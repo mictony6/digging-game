@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="QuestData" format=3 uid="uid://cf7c31y6spwc"]
+
+[ext_resource type="Script" uid="uid://byvqofaga6wkp" path="res://data/questing/objectives/quest_objective.gd" id="1_t2w5x"]
+[ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_t2w5x"]
+[ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_t2w5x"]
+
+[sub_resource type="Resource" id="Resource_t2w5x1"]
+script = ExtResource("1_t2w5x")
+action = 4
+target = 4
+amount = 25
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_t2w5x2"]
+script = ExtResource("2_t2w5x")
+type = 1
+amount = 2500
+metadata/_custom_type_script = "uid://cp2re62jdt75v"
+
+[resource]
+script = ExtResource("3_t2w5x")
+id = "005"
+title = "Epic Excavation"
+description = "Placeholder quest — mine some epic rocks for a coin reward."
+objectives = Array[ExtResource("1_t2w5x")]([SubResource("Resource_t2w5x1")])
+rewards = Array[ExtResource("2_t2w5x")]([SubResource("Resource_t2w5x2")])
+required_flags = Array[StringName]([&"first_step"])
+metadata/_custom_type_script = "uid://cgbwkn18h07dv"

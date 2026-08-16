@@ -12,6 +12,8 @@ var active: Array[QuestData] = []
 var completed: Array[StringName] = []
 var flags: Dictionary = {} # current player flags "boss_killed" / "level_5_reached" -> true
 
+var _monitored_quest_id: String = "" # quest the player last focused on, e.g. in the quest UI
+
 func _ready() -> void:
 	load_flags()
 
@@ -37,12 +39,17 @@ func notify(action: QuestActions.Type, target: TargetIds.Id, amount := 1) -> voi
 				active.erase(quest)
 				_grant(quest)
 				quest_completed.emit(quest)
+				if quest.id == _monitored_quest_id:
+					set_monitored(null)
 
 func get_active(id: String) -> QuestData:
 	for q in active:
 		if q.id == id:
 			return q
 	return null
+
+func is_active(quest: QuestData):
+	return active.any(func(a): return a.id == quest.id)
 
 
 # in QuestManager
@@ -97,3 +104,27 @@ func load_flags(path := "res://save/slot01/progress.json") -> void:
 
 	flags = data.get("flags", {})
 	print("Loaded flags: ", QuestManager.flags)
+
+func set_monitored(quest: QuestData):
+	if quest != null:
+		_monitored_quest_id = quest.id
+	else:
+		_monitored_quest_id = ""
+
+func get_monitored() -> QuestData:
+	var monitored := active.filter(func(a): return a.id == _monitored_quest_id)
+	if monitored.size() > 0:
+		return monitored[0]
+
+	for quest in available_quest():
+		if quest.id == _monitored_quest_id:
+			return quest
+
+	if active.size() > 0:
+		return active[0]
+
+	var avail: Array[QuestData] = available_quest()
+	if avail.size() > 0:
+		return avail[0]
+
+	return null

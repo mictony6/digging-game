@@ -4,8 +4,17 @@
 [ext_resource type="Script" uid="uid://bmpykchmkwvwp" path="res://data/questing/quest_database/quest_database.gd" id="2_gjjq3"]
 [ext_resource type="Resource" uid="uid://dci16k3m4xdx6" path="res://data/questing/quests/Mine5EasyRocks.tres" id="2_tscn5"]
 [ext_resource type="Resource" uid="uid://24demmdbtomw" path="res://data/questing/quests/Mine10MediumRocks.tres" id="3_tscn5"]
+[ext_resource type="Resource" uid="uid://b3h7lam2vwxq1" path="res://data/questing/quests/Mine15HardRocks.tres" id="4_tscn5"]
+[ext_resource type="Resource" uid="uid://dap4q8r1nwky2" path="res://data/questing/quests/Mine20PristineRocks.tres" id="5_tscn5"]
+[ext_resource type="Resource" uid="uid://cf7c31y6spwc" path="res://data/questing/quests/Mine25EpicRocks.tres" id="6_tscn5"]
+[ext_resource type="Resource" uid="uid://5u6p1fusxjfn" path="res://data/questing/quests/Mine30EasyRocksII.tres" id="7_tscn5"]
+[ext_resource type="Resource" uid="uid://b6v7q2gvtykgi" path="res://data/questing/quests/Mine35MediumRocksII.tres" id="8_tscn5"]
+[ext_resource type="Resource" uid="uid://c7w8r3hwu0fhj" path="res://data/questing/quests/Mine40HardRocksII.tres" id="9_tscn5"]
+[ext_resource type="Resource" uid="uid://eke72lo5tkqs" path="res://data/questing/quests/Mine45PristineRocksII.tres" id="10_tscn5"]
+[ext_resource type="Resource" uid="uid://bflf83gp6ulht" path="res://data/questing/quests/Mine50EpicRocksII.tres" id="11_tscn5"]
+[ext_resource type="Resource" uid="uid://jwv8q1oc7w30" path="res://data/questing/quests/Test.tres" id="12_oigyg"]
 
 [resource]
 script = ExtResource("2_gjjq3")
-quests = Array[ExtResource("1_8srnh")]([ExtResource("2_tscn5"), ExtResource("3_tscn5")])
+quests = Array[ExtResource("1_8srnh")]([ExtResource("2_tscn5"), ExtResource("3_tscn5"), ExtResource("4_tscn5"), ExtResource("5_tscn5"), ExtResource("6_tscn5"), ExtResource("7_tscn5"), ExtResource("8_tscn5"), ExtResource("9_tscn5"), ExtResource("10_tscn5"), ExtResource("11_tscn5"), ExtResource("12_oigyg")])
 metadata/_custom_type_script = "uid://bmpykchmkwvwp"

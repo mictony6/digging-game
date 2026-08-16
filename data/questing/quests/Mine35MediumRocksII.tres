@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="QuestData" format=3 uid="uid://b6v7q2gvtykgi"]
+
+[ext_resource type="Script" uid="uid://byvqofaga6wkp" path="res://data/questing/objectives/quest_objective.gd" id="1_f2b3c"]
+[ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_f2b3c"]
+[ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_f2b3c"]
+
+[sub_resource type="Resource" id="Resource_f2b3c1"]
+script = ExtResource("1_f2b3c")
+action = 4
+target = 1
+amount = 35
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_f2b3c2"]
+script = ExtResource("2_f2b3c")
+type = 1
+amount = 3500
+metadata/_custom_type_script = "uid://cp2re62jdt75v"
+
+[resource]
+script = ExtResource("3_f2b3c")
+id = "007"
+title = "Medium Grind"
+description = "Placeholder quest — mine some medium rocks for a coin reward."
+objectives = Array[ExtResource("1_f2b3c")]([SubResource("Resource_f2b3c1")])
+rewards = Array[ExtResource("2_f2b3c")]([SubResource("Resource_f2b3c2")])
+required_flags = Array[StringName]([&"first_step"])
+metadata/_custom_type_script = "uid://cgbwkn18h07dv"

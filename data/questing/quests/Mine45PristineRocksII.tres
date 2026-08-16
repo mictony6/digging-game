@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="QuestData" format=3 uid="uid://eke72lo5tkqs"]
+
+[ext_resource type="Script" uid="uid://byvqofaga6wkp" path="res://data/questing/objectives/quest_objective.gd" id="1_h4d5e"]
+[ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_h4d5e"]
+[ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_h4d5e"]
+
+[sub_resource type="Resource" id="Resource_h4d5e1"]
+script = ExtResource("1_h4d5e")
+action = 4
+target = 3
+amount = 45
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_h4d5e2"]
+script = ExtResource("2_h4d5e")
+type = 1
+amount = 4500
+metadata/_custom_type_script = "uid://cp2re62jdt75v"
+
+[resource]
+script = ExtResource("3_h4d5e")
+id = "009"
+title = "Pristine Plus"
+description = "Placeholder quest — mine some pristine rocks for a coin reward."
+objectives = Array[ExtResource("1_h4d5e")]([SubResource("Resource_h4d5e1")])
+rewards = Array[ExtResource("2_h4d5e")]([SubResource("Resource_h4d5e2")])
+required_flags = Array[StringName]([&"first_step"])
+metadata/_custom_type_script = "uid://cgbwkn18h07dv"
