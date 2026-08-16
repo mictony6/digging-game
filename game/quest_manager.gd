@@ -2,7 +2,7 @@ extends Node
 
 signal quest_started(quest: QuestData)
 signal quest_updated(quest: QuestData)
-signal quest_completed(quest: QuestData)
+signal quest_turned_in(quest: QuestData)
 signal flags_changed
 
 
@@ -35,12 +35,12 @@ func notify(action: QuestActions.Type, target: TargetIds.Id, amount := 1) -> voi
 
 		if touched:
 			quest_updated.emit(quest)
-			if quest.is_complete():
-				active.erase(quest)
-				_grant(quest)
-				quest_completed.emit(quest)
-				if quest.id == _monitored_quest_id:
-					set_monitored(null)
+			# if quest.is_complete():
+			# 	active.erase(quest)
+			# 	_grant(quest)
+			# 	quest_turned_in.emit(quest)
+			# 	if quest.id == _monitored_quest_id:
+			# 		set_monitored(null)
 
 func get_active(id: String) -> QuestData:
 	for q in active:
@@ -52,14 +52,13 @@ func is_active(quest: QuestData):
 	return active.any(func(a): return a.id == quest.id)
 
 
-# in QuestManager
 func _grant(quest: QuestData) -> void:
 	for reward in quest.rewards:
 		match reward.type:
 			QuestReward.RewardType.ITEM:
 				pass # TODO: Inventory.add(reward.item, reward.amount)
 			QuestReward.RewardType.COINS:
-				pass # TODO: Wallet.add_coins(reward.amount)
+				PlayerData.add_coins(reward.amount)
 			QuestReward.RewardType.DURABILITY:
 				pass # TODO: repair equipped tool by reward.amount
 			QuestReward.RewardType.UNLOCK_QUEST:
@@ -128,3 +127,14 @@ func get_monitored() -> QuestData:
 		return avail[0]
 
 	return null
+
+
+func turn_in(quest: QuestData) -> void:
+	if not quest.is_complete() or not active.has(quest):
+		return
+	active.erase(quest)
+	completed.append(quest.id)
+	_grant(quest)
+	quest_turned_in.emit(quest)
+	if quest.id == _monitored_quest_id:
+		set_monitored(null)

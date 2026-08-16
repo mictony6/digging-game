@@ -8,6 +8,8 @@ var _quest: QuestData
 
 func _ready() -> void:
 	_start_quest_button.pressed.connect(_on_start_press)
+	_complete_quest_button.pressed.connect(_on_complete_press)
+
 
 func show_quest_detail(q: QuestData):
 	_quest = q
@@ -28,3 +30,7 @@ func show_quest_detail(q: QuestData):
 func _on_start_press():
 	QuestManager.start(_quest)
 	_start_quest_button.hide()
+
+func _on_complete_press():
+	QuestManager.turn_in(_quest)
+	_complete_quest_button.hide()

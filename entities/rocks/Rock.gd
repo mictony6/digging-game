@@ -3,12 +3,13 @@ class_name Rock
 
 @export var rock_data: RockData
 @export var mesh: MeshInstance3D
+@export var target_id: TargetIds.Id
 @onready var health: HasHealth = $HasHealth
 
 func _ready():
 	health.max_health = rock_data.max_health
 	health.current_health = rock_data.max_health
-	health.death.connect(func(): QuotaManager.add_to_quota(rock_data.value))
+	health.death.connect(_on_rock_death)
 	mesh.set_instance_shader_parameter("damage", 0.0)
 	set_process(false)
 	health.health_changed.connect(func(_c, _m): set_process(true))
@@ -28,3 +29,7 @@ func get_drops() -> Array[DropData]:
 	if drops != null:
 		return drops.drops
 	return []
+
+func _on_rock_death():
+	QuotaManager.add_to_quota(rock_data.value)
+	QuestManager.notify(QuestActions.Type.MINE, target_id, 1)

@@ -25,7 +25,8 @@ func _ready() -> void:
 	_exit_button.pressed.connect(_on_exit_pressed)
 	_add_coins_button.pressed.connect(func(): PlayerData.add_coins(100))
 	QuestManager.quest_started.connect(_on_quest_list_changed)
-	QuestManager.quest_completed.connect(_on_quest_list_changed)
+	QuestManager.quest_updated.connect(_on_quest_list_changed)
+	QuestManager.quest_turned_in.connect(_on_quest_list_changed)
 	hide()
 
 func open(player: Player, current_tool: Tool, tool_manager: ToolManager,
@@ -87,8 +88,6 @@ func _populate_quest_list(active_quests: Array[QuestData], available_quests: Arr
 	for child in _active_quest_list.get_children():
 		child.free()
 	for quest in active_quests:
-		if quest.is_complete():
-			continue
 		_make_card(quest, _active_quest_list)
 
 	#populate available quests
