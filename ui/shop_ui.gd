@@ -12,7 +12,10 @@ const QUEST_LIST_CARD_SCENE: PackedScene = preload("res://ui/Quest/quest_list_ca
 @onready var _upgrade_parent: VBoxContainer = %UpgradeParent
 @onready var _store_grid: GridContainer = $Panel/OuterVBox/ContentMargin/TabContainer/Buy/StoreItemGrid
 @onready var _add_coins_button: Button = $Panel/OuterVBox/ContentMargin/TabContainer/Sell/Add100Coins
-@onready var _quest_list_box: VBoxContainer = %QuestList
+@onready var _available_quest_list: VBoxContainer = %AvailableQuests
+@onready var _active_quest_list: VBoxContainer = %ActiveQuests
+@onready var _quest_detail_title: Label = %QuestDetailTitle
+@onready var _quest_detail_desc: Label = %QuestDetailDesc
 
 var _upgrades: Array[UpgradeItem] = []
 var _store_items: Array[StoreItem] = []
@@ -30,6 +33,12 @@ func open(player: Player, current_tool: Tool, tool_manager: ToolManager,
 	_populate_store(items)
 	_populate_upgrades(upgrades, current_tool, tool_manager)
 	_populate_quest_list(QuestManager.active, QuestManager.available_quest())
+
+	var first_quest: QuestListCard = _active_quest_list.get_child(0)
+	if first_quest == null:
+		first_quest = _available_quest_list.get_child(0)
+	first_quest.selected.emit(first_quest.quest_data)
+
 
 	_blur_rect.modulate.a = 0.0
 	show()
@@ -62,20 +71,21 @@ func _populate_upgrades(upgrades: Array, current_tool: Tool, tool_manager: ToolM
 
 
 func _populate_quest_list(active_quests: Array[QuestData], available_quests: Array[QuestData]):
-	for child in _quest_list_box.get_children():
-		child.queue_free()
+	#popoulate active quests
+	for child in _active_quest_list.get_children():
+		child.free()
 	for quest in active_quests:
 		if quest.is_complete():
-			continue ;
-		var quest_list_card: QuestListCard = QUEST_LIST_CARD_SCENE.instantiate()
-		quest_list_card.quest_data = quest
-		_quest_list_box.add_child(quest_list_card)
+			continue
+		_make_card(quest, _active_quest_list)
+
+	#populate available quests
+	for child in _available_quest_list.get_children():
+		child.free()
 	for quest in available_quests:
 		if quest.is_complete():
-			continue ;
-		var quest_list_card: QuestListCard = QUEST_LIST_CARD_SCENE.instantiate()
-		quest_list_card.quest_data = quest
-		_quest_list_box.add_child(quest_list_card)
+			continue
+		_make_card(quest, _available_quest_list)
 		
 
 func close() -> void:
@@ -90,3 +100,14 @@ func _on_purchase_requested(item: ItemData, cost: int) -> void:
 		return
 	PlayerData.remove_coins(cost)
 	_inventory.add_item(item)
+
+
+func _make_card(quest: QuestData, list: VBoxContainer) -> void:
+	var card: QuestListCard = QUEST_LIST_CARD_SCENE.instantiate()
+	list.add_child(card)
+	card.setup(quest)
+	card.selected.connect(_on_quest_card_selected)
+
+func _on_quest_card_selected(quest: QuestData):
+	_quest_detail_title.text = quest.title
+	_quest_detail_desc.text = quest.description

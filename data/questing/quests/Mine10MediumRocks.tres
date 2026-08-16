@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="QuestData" format=3 uid="uid://24demmdbtomw"]
+
+[ext_resource type="Script" uid="uid://byvqofaga6wkp" path="res://data/questing/objectives/quest_objective.gd" id="1_vnvmn"]
+[ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_w0mrb"]
+[ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_paqg0"]
+
+[sub_resource type="Resource" id="Resource_emsos"]
+script = ExtResource("1_vnvmn")
+action = 4
+target = 1
+amount = 10
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_qx8c0"]
+script = ExtResource("2_w0mrb")
+type = 1
+amount = 1000
+metadata/_custom_type_script = "uid://cp2re62jdt75v"
+
+[resource]
+script = ExtResource("3_paqg0")
+id = "002"
+title = "Mining Harder!"
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet pulvinar dui eu tempus. Vivamus dignissim eleifend nunc, eget imperdiet elit ullamcorper fermentum. Curabitur vestibulum magna dui, id molestie mauris euismod vitae. Integer non libero ex. Suspendisse consequat justo mi, nec sagittis lorem dictum id. Aliquam pretium porttitor porta. Suspendisse consectetur mauris quis sem dignissim, eu maximus velit venenatis. Nam sed tincidunt est, quis lobortis turpis. Donec fermentum ut tellus a scelerisque. Curabitur gravida porta lacus non semper."
+objectives = Array[ExtResource("1_vnvmn")]([SubResource("Resource_emsos")])
+rewards = Array[ExtResource("2_w0mrb")]([SubResource("Resource_qx8c0")])
+required_flags = Array[StringName]([&"first_step"])
+metadata/_custom_type_script = "uid://cgbwkn18h07dv"

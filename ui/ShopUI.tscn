@@ -65,6 +65,9 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="SystemFont" id="SystemFont_emsos"]
+font_names = PackedStringArray("Marlett")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emsos"]
 texture = ExtResource("7_6knug")
 texture_margin_left = 20.0
@@ -319,17 +322,42 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=448869814]
+[node name="FoldableContainer" type="FoldableContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1445345663]
 layout_mode = 2
-text = "Active Quests"
+theme_override_fonts/font = SubResource("SystemFont_emsos")
+theme_override_font_sizes/font_size = 20
+title = "Active"
 
-[node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1948552263 instance=ExtResource("7_ijwp2")]
+[node name="ActiveQuests" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer" unique_id=1693999363]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1266497965 instance=ExtResource("7_ijwp2")]
+[node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1948552263 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
 
-[node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1722575442 instance=ExtResource("7_ijwp2")]
+[node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1266497965 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer/ActiveQuests" unique_id=1722575442 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="FoldableContainer2" type="FoldableContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=187437988]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_emsos")
+theme_override_font_sizes/font_size = 20
+title = "Available"
+
+[node name="AvailableQuests" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2" unique_id=430789286]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=1238641978 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=2139311588 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList/FoldableContainer2/AvailableQuests" unique_id=1492153634 instance=ExtResource("7_ijwp2")]
 layout_mode = 2
 
 [node name="QuestDetailPanel" type="PanelContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1256732348]
@@ -358,11 +386,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="QuestTitle" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1584454534]
+[node name="QuestDetailTitle" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1584454534]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "Test in Title Case"
+text = "Select a quest."
 label_settings = SubResource("LabelSettings_emsos")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1653735812]
@@ -371,14 +399,11 @@ size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 4
 
-[node name="QuestDesc" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=554190604]
+[node name="QuestDetailDesc" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=554190604]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia vel leo aliquam luctus. Proin accumsan tellus nisi, eu imperdiet felis fermentum at.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia vel leo aliquam luctus. Proin accumsan tellus nisi, eu imperdiet felis fermentum at."
 label_settings = SubResource("LabelSettings_jgdsy")
 autowrap_mode = 3
 

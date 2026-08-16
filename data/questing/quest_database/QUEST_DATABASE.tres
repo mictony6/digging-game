@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="1_8srnh"]
 [ext_resource type="Script" uid="uid://bmpykchmkwvwp" path="res://data/questing/quest_database/quest_database.gd" id="2_gjjq3"]
 [ext_resource type="Resource" uid="uid://dci16k3m4xdx6" path="res://data/questing/quests/Mine5EasyRocks.tres" id="2_tscn5"]
+[ext_resource type="Resource" uid="uid://24demmdbtomw" path="res://data/questing/quests/Mine10MediumRocks.tres" id="3_tscn5"]
 
 [resource]
 script = ExtResource("2_gjjq3")
-quests = Array[ExtResource("1_8srnh")]([ExtResource("2_tscn5")])
+quests = Array[ExtResource("1_8srnh")]([ExtResource("2_tscn5"), ExtResource("3_tscn5")])
 metadata/_custom_type_script = "uid://bmpykchmkwvwp"
