@@ -9,9 +9,9 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func physics_update(delta: float) -> void:
 	if not tick_cooldown(delta):
 		return
-	if tool.is_pressing:
+	if tool.pressed:
 		tool.tool_raycast.force_raycast_update()
-	if tool.is_pressing and tool.current_durability <= 0:
+	if tool.pressed and tool.current_durability <= 0:
 		tool.beam.hide()
 		finished.emit(IDLE)
 		return

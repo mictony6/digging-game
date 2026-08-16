@@ -52,7 +52,6 @@
 [ext_resource type="Script" uid="uid://335lniljc8nv" path="res://systems/Darkness.gd" id="51_ckrxx"]
 [ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_qwv1t"]
 [ext_resource type="PackedScene" uid="uid://brlxtksdnsnue" path="res://environment/Rock_08/rock_08.tscn" id="52_ckrxx"]
-[ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="53_toxdh"]
 
 [sub_resource type="Resource" id="Resource_fywoe"]
 script = ExtResource("5_toxdh")
@@ -171,8 +170,9 @@ shader_parameter/aspect_ratio = 1.777
 [node name="Main" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
-transform = Transform3D(1, 0, 0, 0, 0.5615636, 0.82743347, 0, -0.82743347, 0.5615636, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7660444, 0.6427875, 0, -0.6427875, 0.7660443, 0, 0, 0)
 shadow_enabled = true
+shadow_blur = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2016625581]
 environment = ExtResource("1_3al37")
@@ -251,10 +251,10 @@ transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.965
 [node name="WoodenCrate2" parent="LevelLoader/OverWorld" unique_id=530048680 instance=ExtResource("14_p3kna")]
 transform = Transform3D(0.40664238, 0.03561388, 0.91289294, -0.0435638, 0.99885917, -0.01956229, -0.9125482, -0.03181427, 0.40772992, -1, -24.838406, 8.5)
 
-[node name="WaterArea" parent="LevelLoader/OverWorld" unique_id=941027867 instance=ExtResource("15_mwqh4")]
+[node name="WaterArea2" parent="LevelLoader/OverWorld" unique_id=2035181480 instance=ExtResource("15_mwqh4")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -12.479779)
 
-[node name="WaterArea2" parent="LevelLoader/OverWorld" unique_id=576836525 instance=ExtResource("15_mwqh4")]
+[node name="WaterArea3" parent="LevelLoader/OverWorld" unique_id=836876503 instance=ExtResource("15_mwqh4")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -12.48)
 
 [node name="Marker3D" type="Marker3D" parent="LevelLoader/OverWorld" unique_id=1582798423]
@@ -277,6 +277,9 @@ transform = Transform3D(-0.612783, 0, -0.79025126, 0, 1, 0, 0.79025126, 0, -0.61
 
 [node name="StaticBody3D12" parent="LevelLoader/OverWorld/Marker3D" unique_id=281132451 instance=ExtResource("17_ennu3")]
 transform = Transform3D(-0.6427877, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, -0.6427877, 19.107164, 5.765669, 0.7895503)
+
+[node name="StaticBody3D17" parent="LevelLoader/OverWorld/Marker3D" unique_id=287093563 instance=ExtResource("17_ennu3")]
+transform = Transform3D(-0.94644773, 0, -0.32285738, 0, 1, 0, 0.32285738, 0, -0.94644773, 24.831038, 7.747774, 7.511416)
 
 [node name="StaticBody3D13" parent="LevelLoader/OverWorld/Marker3D" unique_id=49331200 instance=ExtResource("17_ennu3")]
 transform = Transform3D(-0.4772662, 0, -0.87875867, 0, 1, 0, 0.87875867, 0, -0.4772662, 13.940022, 5.765669, -2.9631882)
@@ -584,7 +587,7 @@ transform = Transform3D(1.2041004, 0, 1.2778944, 0, 1.7558107, 0, -1.2778944, 0,
 transform = Transform3D(1.4771488, -0.09225637, 0.9446654, -0.020047843, 1.744075, 0.20167533, -0.9489479, -0.1804539, 1.466222, 1.9637008, -24.983356, 9.720988)
 
 [node name="Mound3" parent="LevelLoader/OverWorld/Mounds" unique_id=673554156 instance=ExtResource("28_kpuk4")]
-transform = Transform3D(-1.9529408, -0.21107712, -0.64978665, -0.06531698, 2.0164492, -0.45871416, 0.68008083, -0.4124698, -1.9100034, 3.4353056, -30.527777, -29.439592)
+transform = Transform3D(-1.4535124, -0.15709805, -0.48361576, -0.048613373, 1.5007797, -0.34140652, 0.50616276, -0.3069883, -1.4215554, 3.4353056, -30.274597, -29.439592)
 
 [node name="Mound4" parent="LevelLoader/OverWorld/Mounds" unique_id=1031395071 instance=ExtResource("28_kpuk4")]
 transform = Transform3D(1.710085, 0, 1.6323667, 0, 2.364109, 0, -1.6323667, 0, 1.710085, -2.1374369, -29.69603, -36.274258)
@@ -655,8 +658,8 @@ transform = Transform3D(1.1313335e-08, 0.9659258, 0.25881895, 4.2221963e-08, -0.
 transform = Transform3D(-1.9167919e-08, -0.8402353, -0.5422215, 1.10327825e-07, -0.54222155, 0.8402354, -1, -2.9802317e-08, 1.0430813e-07, 0.26969814, -26.696056, -34.093468)
 
 [node name="Decal" type="Decal" parent="LevelLoader/OverWorld" unique_id=1359596358]
-transform = Transform3D(0.08301701, 0, -0.99654824, 0, 1, 0, 0.99654824, 0, 0.08301701, 3.495679, -29.158234, -23.00565)
-size = Vector3(2, 0.54787254, 2)
+transform = Transform3D(0.08301701, 0, -0.99654824, 0, 1, 0, 0.99654824, 0, 0.08301701, 3.495679, -29.342077, -23.00565)
+size = Vector3(2, 0.18018627, 2)
 texture_albedo = ExtResource("34_yr8t4")
 cull_mask = 1048573
 
@@ -914,15 +917,6 @@ transform = Transform3D(0.8834611, -0.3563617, -0.30414268, 0.37030748, 0.928823
 
 [node name="Rock_14" parent="Node3D" unique_id=1969105362 instance=ExtResource("52_ckrxx")]
 transform = Transform3D(0.5822327, -0.14570238, 0.79986036, 0.17435537, 0.9832981, 0.052200977, -0.7941068, 0.109066725, 0.59791195, 2.8123522, -1.9311275, -3.6296718)
-
-[node name="3DCursor" parent="." unique_id=130914620 instance=ExtResource("53_toxdh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.59882, -29.518824, -22.144756)
-metadata/cursor_id = 0
-metadata/size_scale = 1.0
-metadata/show_title_label = true
-metadata/show_number_label = true
-metadata/scale_affect_labels = true
-metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

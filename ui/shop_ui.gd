@@ -4,13 +4,15 @@ class_name ShopUI
 signal closed
 
 const STORE_ITEM_SCENE := preload("res://systems/shop/store_item.tscn")
-const UPGRADE_SCENE    := preload("res://ui/UpgradeItem.tscn")
+const UPGRADE_SCENE := preload("res://ui/UpgradeItem.tscn")
+const QUEST_LIST_CARD_SCENE: PackedScene = preload("res://ui/Quest/quest_list_card.tscn")
 
-@onready var _blur_rect: ColorRect          = $BlurRect
-@onready var _exit_button: Button           = %ExitButton
+@onready var _blur_rect: ColorRect = $BlurRect
+@onready var _exit_button: Button = %ExitButton
 @onready var _upgrade_parent: VBoxContainer = %UpgradeParent
-@onready var _store_grid: GridContainer     = $Panel/OuterVBox/ContentMargin/TabContainer/Buy/StoreItemGrid
-@onready var _add_coins_button: Button      = $Panel/OuterVBox/ContentMargin/TabContainer/Sell/Add100Coins
+@onready var _store_grid: GridContainer = $Panel/OuterVBox/ContentMargin/TabContainer/Buy/StoreItemGrid
+@onready var _add_coins_button: Button = $Panel/OuterVBox/ContentMargin/TabContainer/Sell/Add100Coins
+@onready var _quest_list_box: VBoxContainer = %QuestList
 
 var _upgrades: Array[UpgradeItem] = []
 var _store_items: Array[StoreItem] = []
@@ -27,6 +29,8 @@ func open(player: Player, current_tool: Tool, tool_manager: ToolManager,
 	_inventory = player.inventory.get_inventory()
 	_populate_store(items)
 	_populate_upgrades(upgrades, current_tool, tool_manager)
+	_populate_quest_list(QuestManager.active, QuestManager.available_quest())
+
 	_blur_rect.modulate.a = 0.0
 	show()
 	var t := create_tween()
@@ -55,6 +59,24 @@ func _populate_upgrades(upgrades: Array, current_tool: Tool, tool_manager: ToolM
 		_upgrade_parent.add_child(widget)
 		widget.set_tool(current_tool, tool_manager)
 		_upgrades.append(widget)
+
+
+func _populate_quest_list(active_quests: Array[QuestData], available_quests: Array[QuestData]):
+	for child in _quest_list_box.get_children():
+		child.queue_free()
+	for quest in active_quests:
+		if quest.is_complete():
+			continue ;
+		var quest_list_card: QuestListCard = QUEST_LIST_CARD_SCENE.instantiate()
+		quest_list_card.quest_data = quest
+		_quest_list_box.add_child(quest_list_card)
+	for quest in available_quests:
+		if quest.is_complete():
+			continue ;
+		var quest_list_card: QuestListCard = QUEST_LIST_CARD_SCENE.instantiate()
+		quest_list_card.quest_data = quest
+		_quest_list_box.add_child(quest_list_card)
+		
 
 func close() -> void:
 	hide()

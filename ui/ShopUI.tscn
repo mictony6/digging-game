@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://f477dpm26o55" path="res://ui/shop_ui.gd" id="4_shopui"]
 [ext_resource type="Resource" uid="uid://ucf3cfxpg7gj" path="res://data/items/TorchItem.tres" id="5_cl8rv"]
 [ext_resource type="Resource" uid="uid://uje2ye3gel36" path="res://data/items/BombItem.tres" id="6_ijwp2"]
+[ext_resource type="Texture2D" uid="uid://dfayrh7w71l84" path="res://assets/textures/ui/button_borders.svg" id="7_6knug"]
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="7_emsos"]
+[ext_resource type="PackedScene" uid="uid://borhjuliilna3" path="res://ui/Quest/quest_list_card.tscn" id="7_ijwp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("3_blur")
@@ -62,7 +65,46 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emsos"]
+texture = ExtResource("7_6knug")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(203, 269, 58, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3w5fi"]
+texture = ExtResource("7_6knug")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(134, 332, 64, 64)
+
+[sub_resource type="SystemFont" id="SystemFont_3w5fi"]
+font_names = PackedStringArray("Ebrima", "Bahnschrift")
+font_weight = 700
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_emsos"]
+font = SubResource("SystemFont_3w5fi")
+font_size = 24
+
+[sub_resource type="SystemFont" id="SystemFont_nj7tk"]
+font_names = PackedStringArray("Ebrima", "Arial")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgdsy"]
+line_spacing = 0.0
+paragraph_spacing = -5.0
+font = SubResource("SystemFont_nj7tk")
+
 [node name="ShopUI" type="Control" unique_id=303738837]
+editor_description = "The entries in each tab are repopulated based on the items ive added in the actual Shop.tscn scene. The ones in this scene that gets deleted at runtime are just for preview in editor. -Mic"
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,15 +135,11 @@ color = Color(0, 0, 0, 0.45)
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1855236051]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -420.0
-offset_top = -300.0
-offset_right = 420.0
-offset_bottom = 300.0
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.1
+anchor_right = 0.85
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
@@ -256,13 +294,101 @@ item = ExtResource("6_ijwp2")
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests" unique_id=1218702494]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests" unique_id=372152108]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/ScrollContainer" unique_id=427128693]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer" unique_id=1238192342]
 layout_mode = 2
+
+[node name="QuestScrollPanel" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1218702494]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestList" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel" unique_id=427128693]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=448869814]
+layout_mode = 2
+text = "Active Quests"
+
+[node name="QuestListCard" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1948552263 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestListCard2" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1266497965 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestListCard3" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestScrollPanel/QuestList" unique_id=1722575442 instance=ExtResource("7_ijwp2")]
+layout_mode = 2
+
+[node name="QuestDetailPanel" type="PanelContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer" unique_id=1256732348]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_emsos")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel" unique_id=558737781]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer" unique_id=1276805604]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+texture = ExtResource("7_emsos")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer" unique_id=1679750780]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_3w5fi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer" unique_id=1758972561]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuestTitle" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1584454534]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "Test in Title Case"
+label_settings = SubResource("LabelSettings_emsos")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1653735812]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="QuestDesc" type="Label" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=554190604]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia vel leo aliquam luctus. Proin accumsan tellus nisi, eu imperdiet felis fermentum at.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia vel leo aliquam luctus. Proin accumsan tellus nisi, eu imperdiet felis fermentum at."
+label_settings = SubResource("LabelSettings_jgdsy")
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2083639716]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1394712074]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=618877883]
+layout_mode = 2
+text = "Complete"

@@ -18,6 +18,11 @@ uniform vec2 movementDirection = vec2(0.1, 0.1);
 uniform float movementStrength = 0.5;
 group_uniforms Refraction;
 uniform float refractionStrength : hint_range(0.0, 0.1, 0.001) = 0.02;
+group_uniforms Reflection;
+// Reflections come from Godot's built-in SSR + a ReflectionProbe (see
+// ReflectionProbe child on this scene) via normal PBR IBL compositing --
+// no custom sampling needed, just plausible METALLIC/ROUGHNESS output.
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.05;
 group_uniforms Foam;
 uniform sampler2D foamTexture : filter_linear_mipmap_anisotropic;
 uniform vec4 foamColor : source_color = vec4(1.0);
@@ -140,7 +145,11 @@ void fragment() {
 
 	// Add foam on top
 	ALBEDO = mix(finalColor, foamColor.rgb, foam);
+	// Reflections (built-in SSR + ReflectionProbe) come in via the specular
+	// IBL pass, which reads ROUGHNESS/METALLIC/NORMAL_MAP -- lower roughness
+	// at grazing angles reads as a sharper, more mirror-like reflection near
+	// the horizon, same as the old fresnel-driven reflection blend did.
 	ROUGHNESS = mix(roughness * (1.0 - basic_fresnel), 1.0, foam);
 	NORMAL_MAP = blended * 0.5 + 0.5;
-	METALLIC = 0.0;
+	METALLIC = mix(metallic, 0.0, foam);
 }

@@ -4,6 +4,9 @@
 /addons/
 /effects/ElementalMagicFXFree/
 
+# runtime save data
+/save/
+
 # VS Code extensions
 .VSCodeCounter/
 

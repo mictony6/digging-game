@@ -1,11 +1,99 @@
 extends Node
 
-enum QuestState {
-	NOT_STARTED,
-	ACTIVE,
-	COMPLETED,
-	FAILED
-}
+signal quest_started(quest: QuestData)
+signal quest_updated(quest: QuestData)
+signal quest_completed(quest: QuestData)
+signal flags_changed
 
-func unlock_quest(quest: QuestData):
-	quest.state = QuestManager.QuestState.ACTIVE
+
+const DATABASE: QuestDatabase = preload("res://data/questing/quest_database/QUEST_DATABASE.tres")
+
+var active: Array[QuestData] = []
+var completed: Array[StringName] = []
+var flags: Dictionary = {} # current player flags "boss_killed" / "level_5_reached" -> true
+
+func _ready() -> void:
+	load_flags()
+
+func start(data: QuestData) -> void:
+	var quest_instance: QuestData = data.duplicate(true) # private copy — source stays clean
+	active.append(quest_instance)
+	quest_started.emit(quest_instance)
+
+func notify(action: QuestActions.Type, target: TargetIds.Id, amount := 1) -> void:
+	var quests_to_check: Array[QuestData] = active.duplicate() # a duplicate for iterations, changes are made on the active array
+
+	for quest in quests_to_check:
+		var touched := false
+
+		for obj in quest.objectives:
+			if not obj.is_complete() and obj.matches(action, target):
+				obj.record(amount)
+				touched = true
+
+		if touched:
+			quest_updated.emit(quest)
+			if quest.is_complete():
+				active.erase(quest)
+				_grant(quest)
+				quest_completed.emit(quest)
+
+func get_active(id: String) -> QuestData:
+	for q in active:
+		if q.id == id:
+			return q
+	return null
+
+
+# in QuestManager
+func _grant(quest: QuestData) -> void:
+	for reward in quest.rewards:
+		match reward.type:
+			QuestReward.RewardType.ITEM:
+				pass # TODO: Inventory.add(reward.item, reward.amount)
+			QuestReward.RewardType.COINS:
+				pass # TODO: Wallet.add_coins(reward.amount)
+			QuestReward.RewardType.DURABILITY:
+				pass # TODO: repair equipped tool by reward.amount
+			QuestReward.RewardType.UNLOCK_QUEST:
+				pass # TODO: QuestShop.unlock(reward.quest_id)
+
+
+func _is_available(quest: QuestData):
+	if quest.id in completed: return
+	if active.any(func(a): return a.id == quest.id): return false # if its already active then ignore
+	# check if it passes all flags
+	for required_flag in quest.required_flags:
+		if not flags.get(required_flag, false): return false
+	return true
+
+
+func set_flag(flag: StringName, value := true) -> void:
+	flags[flag] = value
+	flags_changed.emit()
+	
+
+func available_quest():
+	var result: Array[QuestData] = []
+	for quest in DATABASE.quests:
+		if _is_available(quest):
+			result.append(quest)
+	return result
+
+
+func load_flags(path := "res://save/slot01/progress.json") -> void:
+	if not FileAccess.file_exists(path):
+		push_warning("No file at " + path)
+		return
+
+	var file := FileAccess.open(path, FileAccess.READ)
+	var text := file.get_as_text()
+	file.close()
+
+	var data = JSON.parse_string(text)
+	if data == null:
+		push_warning("Bad JSON in " + path) # usually a trailing comma or stray quote
+		return
+
+	flags = data.get("flags", {})
+	print("Loaded flags: ", QuestManager.flags)

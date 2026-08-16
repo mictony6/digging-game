@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://borhjuliilna3"]
+
+[ext_resource type="Texture2D" uid="uid://c34t7axusqfjo" path="res://icon.svg" id="1_hl344"]
+[ext_resource type="Texture2D" uid="uid://dfayrh7w71l84" path="res://assets/textures/ui/button_borders.svg" id="2_x2xcb"]
+[ext_resource type="Texture2D" uid="uid://c7xfg5xl8bpdi" path="res://assets/textures/ui/stick.svg" id="3_jgdsy"]
+[ext_resource type="ButtonGroup" uid="uid://dwhb70fbd2q37" path="res://ui/Quest/quest_list_card_group.tres" id="3_nj7tk"]
+[ext_resource type="Script" uid="uid://b1iwiryw2fgj1" path="res://ui/Quest/quest_list_card.gd" id="4_x2xcb"]
+
+[sub_resource type="SystemFont" id="SystemFont_420xn"]
+font_names = PackedStringArray("Ebrima", "Arial")
+font_weight = 700
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_420xn"]
+texture = ExtResource("2_x2xcb")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(5, 269, 58, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jgdsy"]
+texture = ExtResource("2_x2xcb")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(68, 266, 64, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nj7tk"]
+texture = ExtResource("2_x2xcb")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(203, 269, 58, 58)
+
+[node name="QuestListCard" type="Button" unique_id=1948552263]
+custom_minimum_size = Vector2(0, 64)
+custom_maximum_size = Vector2(-1, 64)
+theme_override_constants/h_separation = 8
+theme_override_fonts/font = SubResource("SystemFont_420xn")
+theme_override_font_sizes/font_size = 20
+theme_override_icons/icon = ExtResource("1_hl344")
+theme_override_styles/normal = SubResource("StyleBoxTexture_420xn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jgdsy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nj7tk")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_420xn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jgdsy")
+toggle_mode = true
+button_group = ExtResource("3_nj7tk")
+text = "Test in Title Case"
+icon = ExtResource("3_jgdsy")
+alignment = 0
+expand_icon = true
+script = ExtResource("4_x2xcb")
