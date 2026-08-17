@@ -16,6 +16,14 @@ func _ready() -> void:
 	_water_mat = load("res://shaders/materials/water.material") as ShaderMaterial
 	_base_ripple_amplitude = _water_mat.get_shader_parameter("ripple_amplitude")
 
+	# Trail slots default to age 0 (unset), which the shader reads as "just
+	# spawned" -- push them past ripple_trail_lifetime so they contribute
+	# nothing until a real trail wake system populates them.
+	var idle_ages := PackedFloat32Array()
+	idle_ages.resize(12)
+	idle_ages.fill(999.0)
+	_water_mat.set_shader_parameter("ripple_trail_age", idle_ages)
+
 	feet_area.area_entered.connect(_on_water_entered)
 	feet_area.area_exited.connect(_on_water_exited)
 

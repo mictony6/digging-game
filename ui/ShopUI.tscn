@@ -459,15 +459,19 @@ size_flags_vertical = 3
 label_settings = SubResource("LabelSettings_jgdsy")
 autowrap_mode = 3
 
-[node name="QuestButtons" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2083639716]
+[node name="ObjectivesList" type="VBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1929091745]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="QuestStartButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/QuestButtons" unique_id=1394712074]
+[node name="Bottom" type="HBoxContainer" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2083639716]
+layout_mode = 2
+
+[node name="QuestStartButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/Bottom" unique_id=1394712074]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
-[node name="QuestCompleteButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/QuestButtons" unique_id=618877883]
+[node name="QuestCompleteButton" type="Button" parent="Panel/OuterVBox/ContentMargin/TabContainer/Quests/MarginContainer/HBoxContainer/QuestDetailPanel/VBoxContainer/PanelContainer/VBoxContainer/Bottom" unique_id=618877883]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Complete"

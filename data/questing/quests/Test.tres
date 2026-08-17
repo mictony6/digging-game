@@ -4,9 +4,17 @@
 [ext_resource type="Script" uid="uid://cp2re62jdt75v" path="res://data/questing/questreward.gd" id="2_s0ppp"]
 [ext_resource type="Script" uid="uid://cgbwkn18h07dv" path="res://data/questing/quest_data.gd" id="3_d11oo"]
 
-[sub_resource type="Resource" id="Resource_oieyt"]
+[sub_resource type="Resource" id="Resource_gyyue"]
 script = ExtResource("1_gyyue")
 action = 4
+amount = 3
+metadata/_custom_type_script = "uid://byvqofaga6wkp"
+
+[sub_resource type="Resource" id="Resource_s0ppp"]
+script = ExtResource("1_gyyue")
+action = 4
+target = 2
+amount = 3
 metadata/_custom_type_script = "uid://byvqofaga6wkp"
 
 [sub_resource type="Resource" id="Resource_7wr3j"]
@@ -19,7 +27,7 @@ script = ExtResource("3_d11oo")
 id = "011"
 title = "Test"
 description = "asdasdasd"
-objectives = Array[ExtResource("1_gyyue")]([SubResource("Resource_oieyt")])
+objectives = Array[ExtResource("1_gyyue")]([SubResource("Resource_gyyue"), SubResource("Resource_s0ppp")])
 rewards = Array[ExtResource("2_s0ppp")]([SubResource("Resource_7wr3j")])
 required_flags = Array[StringName]([&"first_step"])
 metadata/_custom_type_script = "uid://cgbwkn18h07dv"

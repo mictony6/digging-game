@@ -35,12 +35,6 @@ func notify(action: QuestActions.Type, target: TargetIds.Id, amount := 1) -> voi
 
 		if touched:
 			quest_updated.emit(quest)
-			# if quest.is_complete():
-			# 	active.erase(quest)
-			# 	_grant(quest)
-			# 	quest_turned_in.emit(quest)
-			# 	if quest.id == _monitored_quest_id:
-			# 		set_monitored(null)
 
 func get_active(id: String) -> QuestData:
 	for q in active:

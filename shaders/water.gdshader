@@ -37,6 +37,10 @@ group_uniforms Ripples;
 uniform vec2 ripple_origin = vec2(99999.0, 99999.0);
 uniform float ripple_origin_scale : hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform vec2 ripple_trail_pos[12];
+// Ages are initialized to sit past ripple_trail_lifetime by WaterEffects at
+// _ready() so unpopulated slots fade to zero contribution instead of reading
+// as an always-fresh ripple at (0,0) -- Godot doesn't support default values
+// on uniform arrays.
 uniform float ripple_trail_age[12];
 uniform float ripple_trail_lifetime : hint_range(0.5, 5.0, 0.1) = 2.5;
 uniform float ripple_speed : hint_range(0.5, 12.0, 0.1) = 4.0;
@@ -70,6 +74,9 @@ float ripple_height(vec2 pos) {
 	float dist0 = length(pos - ripple_origin);
 	float falloff0 = exp(-dist0 * ripple_falloff);
 	float live = sin(dist0 * ripple_frequency - TIME * ripple_speed) * ripple_amplitude * falloff0 * ripple_origin_scale;
+	// Higher-frequency ripple on top breaks the single rounded sine into
+	// sharper chop instead of one smooth bulging wave.
+	live += sin(dist0 * ripple_frequency * 2.7 - TIME * ripple_speed * 1.6) * ripple_amplitude * 0.35 * falloff0 * ripple_origin_scale;
 
 	// Trail wake — each point expands from where it was born, fades over lifetime
 	float trail = 0.0;

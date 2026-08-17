@@ -5,5 +5,15 @@ enum Id {
 	ROCK_HARD,
 	ROCK_PRISTINE,
 	ROCK_EPIC,
-	
 }
+
+const NAMES := [
+	"Stone",
+	"Iron",
+	"Gold",
+	"Diamond",
+	"Meteorite",
+]
+
+static func stringify(id: TargetIds.Id) -> String:
+	return NAMES[id]
