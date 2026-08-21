@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cifltgjkh0p2q" path="res://systems/mineable/is_mineable.gd" id="11_ismin"]
 [ext_resource type="Script" uid="uid://dds4o604ms3ex" path="res://systems/mineable/has_drops.gd" id="12_hsdro"]
 [ext_resource type="Script" uid="uid://b3usssf8jsfah" path="res://systems/health/has_health.gd" id="12_rsken"]
+[ext_resource type="Script" path="res://systems/quest/is_quest_target.gd" id="13_qtgt"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rsken"]
 points = PackedVector3Array(0.22625804, 0.62730515, 0.3305452, -0.21449454, -0.6529107, -0.34077844, -0.088937744, -0.65602624, -0.34245867, 0.43905243, -0.48760897, 0.5441328, 0.54124075, 0.10314505, -0.5083591, -0.5943739, 0.1457413, -0.23653573, -0.29560426, 0.24794824, 0.5780936, -0.004053182, 0.14327332, -0.58373237, 0.5405628, -0.52558196, -0.17233664, 0.4761409, 0.24890475, 0.4754907, -0.23390159, 0.540958, -0.1298467, -0.046508685, -0.46410137, -0.5933114, -0.20944989, -0.3301709, 0.2831615, 0.45692536, 0.45966217, -0.2563965, -0.066991135, 0.604952, 0.58089113, 0.61856765, 0.18518925, -0.046072893, 0.20654713, 0.20911556, 0.6913234, -0.4422688, 0.019210303, -0.50515485, -0.5457172, -0.1890453, -0.19205202, 0.605907, -0.40168962, 0.31066623, -0.31873363, 0.5222533, 0.37232453, -0.024419637, -0.0425016, 0.652745, 0.35214728, 0.54347295, 0.4354397, 0.09964434, 0.37222984, -0.46148705, -0.08558173, -0.5938089, 0.09774654, 0.20462601, -0.08514047, -0.65219957, -0.3177406, -0.52403164, -0.46439812, 0.37531653, -0.5717018, 0.39600086, -0.3793346, 0.37347442, 0.49541578, 0.60630673, 0.08244646, -0.40511495, -0.25652874, -0.06467515, -0.61408097, -0.04561237, 0.6615414, 0.32683605)
@@ -32,7 +33,6 @@ collision_layer = 2
 script = ExtResource("1_l1ubf")
 rock_data = ExtResource("2_80551")
 mesh = NodePath("rock2")
-target_id = 1
 metadata/_custom_type_script = "uid://q53tm1dyumsd"
 
 [node name="rock2" type="MeshInstance3D" parent="." unique_id=708967263]
@@ -58,3 +58,8 @@ required_tool_tier = 2
 [node name="HasHealth" type="Node" parent="." unique_id=261671169]
 script = ExtResource("12_rsken")
 metadata/_custom_type_script = "uid://b3usssf8jsfah"
+
+[node name="IsQuestTarget" type="Node" parent="."]
+script = ExtResource("13_qtgt")
+action = 4
+target = 1

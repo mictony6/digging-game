@@ -3,8 +3,8 @@ class_name Rock
 
 @export var rock_data: RockData
 @export var mesh: MeshInstance3D
-@export var target_id: TargetIds.Id
 @onready var health: HasHealth = $HasHealth
+@onready var quest_target: IsQuestTarget = $IsQuestTarget
 
 func _ready():
 	health.max_health = rock_data.max_health
@@ -32,4 +32,4 @@ func get_drops() -> Array[DropData]:
 
 func _on_rock_death():
 	QuotaManager.add_to_quota(rock_data.value)
-	QuestManager.notify(QuestActions.Type.MINE, target_id, 1)
+	quest_target.notify_quest()

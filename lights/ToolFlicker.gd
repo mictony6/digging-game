@@ -7,6 +7,9 @@ class_name ToolFlicker
 
 var _tween: Tween
 
+func _ready() -> void:
+	top_level = true
+
 func flash() -> void:
 	# if _tween:
 	# 	_tween.kill()

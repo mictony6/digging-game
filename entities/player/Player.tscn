@@ -980,7 +980,6 @@ shape = SubResource("SphereShape3D_u45fp")
 
 [node name="ToolFlicker" type="OmniLight3D" parent="Head/ToolManager" unique_id=1094896208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-top_level = true
 light_color = Color(0.98539025, 0.65069556, 0.5930914, 1)
 light_energy = 0.05
 light_volumetric_fog_energy = 0.0

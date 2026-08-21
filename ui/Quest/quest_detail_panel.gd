@@ -49,8 +49,7 @@ func _on_complete_press():
 	_complete_quest_button.hide()
 
 func _parse_objective(obj: QuestObjective):
-	var action: String = QuestActions.Type.find_key(obj.action)
-	action = action[0].to_upper() + action.substr(1).to_lower()
+	var action: String = QuestActions.stringify(obj.action)
 
 	var completion_amount: int = obj.amount
 	var current_amount: int = obj.current

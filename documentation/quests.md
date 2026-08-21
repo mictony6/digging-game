@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart TD
-    A([Start]) --> B["1. Pick action + target\nQuestActions.Type / TargetIds.Id\n(add enum entry if missing)"]
+    A([Start]) --> B["1. Pick action + target\nQuestActions.Type / TargetIds.Id\n(add via the IDs dock if missing)"]
     B --> C["2. Create QuestData .tres\nid, title, description,\nobjectives[], rewards[]"]
     C --> D{"Needs to be\nhidden at first?"}
     D -- yes --> D1["Set required_flags\non the quest"]
@@ -18,11 +18,12 @@ flowchart TD
     H --> Z([Done])
 ```
 
-1. **Pick action/target.** Check `data/questing/objectives/quest_actions.gd`
-   (`QuestActions.Type`) and `data/questing/objectives/target_ids.gd`
-   (`TargetIds.Id`) for what you need. Add a new enum entry if it's missing
-   — only append, never reorder/delete (values are saved as raw ints in
-   `.tres` files).
+1. **Pick action/target.** Open the "IDs" dock (Quest Editor addon) in the
+   Godot editor to browse existing `QuestActions.Type` / `TargetIds.Id`
+   entries, or add a new one there — it regenerates
+   `data/questing/objectives/quest_actions.gd` / `target_ids.gd` for you.
+   Only append, never reorder/delete existing entries (values are saved as
+   raw ints in `.tres` files, so shifting them silently breaks saved quests).
 
 2. **Create the quest resource.** In `data/questing/quests/`, new
    `QuestData` resource. Fill in `id`, `title`, `description`, one or more
@@ -34,11 +35,14 @@ flowchart TD
    `data/questing/quest_database/QUEST_DATABASE.tres`. Not in this array =
    never shows up, regardless of flags.
 
-4. **Fire the event.** Make sure the gameplay code for that action calls
-   `QuestManager.notify(QuestActions.Type.X, TargetIds.Id.Y, amount)`. Skip
-   if it already does (e.g. all rock mining already calls this from
-   `entities/rocks/rock.gd:_on_rock_death()`). This only records progress —
-   it does not auto-complete or auto-grant.
+4. **Fire the event.** Add an `IsQuestTarget` child node
+   (`systems/quest/is_quest_target.gd`) to the relevant scene, set its
+   `action`/`target`/`amount` exports, and connect whatever signal means
+   "this happened" (e.g. `HasHealth.death`, `IsSelectable.selected`, an
+   `Area3D.body_entered`) to its `notify_quest` method — no code needed per
+   entity. Skip if it's already wired (e.g. every rock has one, connected
+   from `entities/rocks/rock.gd:_on_rock_death()`). This only records
+   progress — it does not auto-complete or auto-grant.
 
 5. **(Optional) Gate with a flag.** If you used `required_flags`, call
    `QuestManager.set_flag(&"your_flag")` wherever that prerequisite event

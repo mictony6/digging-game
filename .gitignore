@@ -7,6 +7,9 @@
 # runtime save data
 /save/
 
+# build output
+/dist/
+
 # VS Code extensions
 .VSCodeCounter/
 
