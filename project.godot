@@ -121,6 +121,7 @@ pickup={
 3d_physics/layer_6="Props"
 3d_physics/layer_7="Turrets"
 3d_physics/layer_8="Interactables"
+3d_physics/layer_9="Platforms"
 
 [physics]
 
