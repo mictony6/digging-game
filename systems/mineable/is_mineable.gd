@@ -13,6 +13,7 @@ var _drops: HasDrops
 var _last_hit_position: Vector3
 
 func _ready() -> void:
+	get_parent().add_to_group("IsMineable")
 	_health = get_parent().get_node_or_null("HasHealth")
 	_drops = get_parent().get_node_or_null("HasDrops")
 	if _health:

@@ -8,13 +8,14 @@ uniform float roughness : hint_range(0.0, 1.0, 0.1)  = 0.2;
 group_uniforms NormalMaps;
 uniform sampler2D normalMapA : hint_normal, filter_linear_mipmap_anisotropic ;
 uniform sampler2D normalMapB : hint_normal, filter_linear_mipmap_anisotropic;
-uniform sampler2D heightMap;
 uniform float normalMapAStrength = 0.5;
 uniform float normalMapBStrength = 0.5;
 group_uniforms Movement;
 uniform float heightScale = 0.1;
 uniform float uvScale = 1.0;
 uniform vec2 movementDirection = vec2(0.1, 0.1);
+uniform vec2 movementDirectionA = vec2(0.1, 0.1);
+uniform vec2 movementDirectionB = vec2(-0.1, 0.1);
 uniform float movementStrength = 0.5;
 group_uniforms Refraction;
 uniform float refractionStrength : hint_range(0.0, 0.1, 0.001) = 0.02;
@@ -50,6 +51,8 @@ uniform float ripple_trail_scale : hint_range(0.0, 1.0, 0.01) = 0.4;
 uniform float ripple_falloff : hint_range(0.1, 5.0, 0.05) = 1.2;
 
 varying vec2 uvMovement;
+varying vec2 uvMovementA;
+varying vec2 uvMovementB;
 varying vec2 world_xz_pos;
 
 uniform sampler2D depthTexture : hint_depth_texture, repeat_disable, filter_linear_mipmap_anisotropic;
@@ -93,8 +96,16 @@ float ripple_height(vec2 pos) {
 
 void vertex() {
 	uvMovement = movementDirection * TIME * movementStrength;
+	uvMovementA = movementDirectionA * TIME * movementStrength;
+	uvMovementB = movementDirectionB * TIME * movementStrength;
 	vec2 uv = UV * uvScale;
- 	float height = texture(heightMap, uv + uvMovement).x;
+	// Height derived straight from the two normal maps' tilt (no separate
+	// height texture) -- the X-tilt channel is signed, so it bobs up where a
+	// normal leans one way and down where it leans the other, roughly
+	// tracking each map's local peaks/troughs.
+	vec3 heightNormalA = texture(normalMapA, uv + uvMovementA).rgb * 2.0 - 1.0;
+	vec3 heightNormalB = texture(normalMapB, uv + uvMovementB).rgb * 2.0 - 1.0;
+	float height = heightNormalA.x * normalMapAStrength + heightNormalB.x * normalMapBStrength;
  	VERTEX.y += height * heightScale;
 
 	world_xz_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
@@ -103,8 +114,8 @@ void vertex() {
 void fragment() {
 	vec2 uv = UV * uvScale;
 	float basic_fresnel = fresnel(3.0, NORMAL, VIEW);
-	vec3 normalA = texture(normalMapA, uv + uvMovement).rgb * 2.0 - 1.0;
-	vec3 normalB = texture(normalMapB, uv - uvMovement).rgb * 2.0 - 1.0;
+	vec3 normalA = texture(normalMapA, uv + uvMovementA).rgb * 2.0 - 1.0;
+	vec3 normalB = texture(normalMapB, uv + uvMovementB).rgb * 2.0 - 1.0;
 
 	normalA.xy *= normalMapAStrength ;
     normalB.xy *= normalMapBStrength;

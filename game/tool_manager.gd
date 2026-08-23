@@ -128,7 +128,8 @@ func travel_arm(state_name: String) -> void:
 	_arm_playback.travel(state_name)
 
 func _on_body_entered(body: Node) -> void:
-	if body.get_node_or_null("IsMineable") != null and body not in _bodies_in_aoe:
+	var is_interactable := body.is_in_group("IsMineable") or body.is_in_group("IsLaserInteractable")
+	if is_interactable and body not in _bodies_in_aoe:
 		_bodies_in_aoe.append(body)
 
 func _on_body_exited(body: Node) -> void:
@@ -144,13 +145,14 @@ func get_total_tier():
 
 func deal_damage_on_affected_bodies(bodies: Array[Node3D], damage: float, tier: int, main_body: Node):
 	for body in bodies:
-		var mineable: IsMineable = body.get_node_or_null("IsMineable")
-		if mineable:
+		if body.is_in_group("IsMineable"):
+			var mineable: IsMineable = body.get_node_or_null("IsMineable")
 			shake_target(body)
 			if body == main_body:
 				mineable.mine(damage, tool_raycast.get_collision_point(), tier)
 			else:
 				mineable.mine(damage / 4.0, Vector3.ZERO, tier)
+
 
 func play_particles(collision_point: Vector3):
 	var p := _particle_pool[_particle_index]
