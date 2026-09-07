@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cb8jyi2m020up"]
+
+[ext_resource type="Script" uid="uid://g8y88vl4knrw" path="res://entities/spike_roller/spike_roller.gd" id="1_yb7q2"]
+[ext_resource type="ArrayMesh" uid="uid://bngbkw4kknrbk" path="res://assets/meshes/spike_roller/spike_roller_Circle.res" id="2_078fa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gphw0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tnall"]
+height = 0.38678086
+radius = 0.925
+
+[node name="SpikeRoller" type="RigidBody3D" unique_id=1011568834]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+collision_layer = 512
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+physics_material_override = SubResource("PhysicsMaterial_gphw0")
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_yb7q2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1268461691]
+mesh = ExtResource("2_078fa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2069714525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09835875, 0)
+shape = SubResource("CylinderShape3D_tnall")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

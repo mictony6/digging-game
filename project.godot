@@ -137,6 +137,7 @@ equip_scanner={
 3d_physics/layer_7="Turrets"
 3d_physics/layer_8="Interactables"
 3d_physics/layer_9="Platforms"
+3d_physics/layer_10="HurtsPlayer"
 
 [physics]
 

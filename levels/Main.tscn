@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://4qw1jjikrdet" path="res://ui/Start Menu.tscn" id="48_ckrxx"]
 [ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="50_3al37"]
 [ext_resource type="PackedScene" uid="uid://cd8eju1cig105" path="res://entities/rocks/RockWall.tscn" id="50_tdx0c"]
+[ext_resource type="PackedScene" uid="uid://wfa88ssrs5j2" path="res://levels/sliding_puzzle.tscn" id="51_3al37"]
 [ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_qwv1t"]
 [ext_resource type="PackedScene" uid="uid://brlxtksdnsnue" path="res://environment/Rock_08/rock_08.tscn" id="52_ckrxx"]
 
@@ -706,6 +707,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8607206, -24.950922, 6.1646
 script = ExtResource("47_mcjdd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelLoader/OverWorld/StaticBody3D3" unique_id=495315696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1828613, 3.6854835)
 mesh = SubResource("BoxMesh_kl5js")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelLoader/OverWorld/StaticBody3D3" unique_id=182568236]
@@ -894,6 +896,9 @@ metadata/show_title_label = true
 metadata/show_number_label = true
 metadata/scale_affect_labels = true
 metadata/_edit_lock_ = true
+
+[node name="SlidingPuzzle" parent="." unique_id=371157870 instance=ExtResource("51_3al37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1158752, -24.097311, 11.192978)
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

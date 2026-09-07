@@ -11,7 +11,6 @@ extends Control
 @onready var day_label: Label = %DayLabel
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var oxygen_bar: ProgressBar = %OxygenBar
-@onready var health_pct_label: Label = %HealthPctLabel
 @onready var quota_pct_label: Label = %QuotaPctLabel
 @onready var quota_value_label: Label = %QuotaValueLabel
 @onready var info_group: VBoxContainer = %InfoGroup
