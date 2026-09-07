@@ -5,9 +5,8 @@
 
 [resource]
 script = ExtResource("1_tlcfd")
-name = "Pickaxe"
+name = "Mining Tool"
 tier = 5
-max_durability = 250.0
 scene = ExtResource("1_r3wa3")
 rotation = Vector3(0, 180, 0)
 metadata/_custom_type_script = "uid://l3ckd63l0kfx"

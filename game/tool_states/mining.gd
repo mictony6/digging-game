@@ -7,15 +7,21 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
+	if tool.current_attachment != ToolManager.Attachment.MINING:
+		finished.emit(IDLE)
+		return
 	if not tick_cooldown(delta):
 		return
 	if tool.pressed:
 		tool.tool_raycast.force_raycast_update()
 	if tool.pressed and tool.current_durability <= 0:
-		tool.beam.hide()
 		finished.emit(IDLE)
 		return
 	if tool.can_hit():
 		tool.perform_hit()
 	else:
 		finished.emit(IDLE)
+
+func exit():
+	tool.beam.hide()
+	tool.flicker.hide()

@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://duxxlaxmbq2hl" path="res://GreyboxTextures/greybox_light_grid.png" id="23_5l3b2"]
 [ext_resource type="Texture2D" uid="uid://kcgxc04wwpoy" path="res://assets/textures/rock_face/rock_face_03_diff_2k.png" id="24_uoqly"]
 [ext_resource type="Texture2D" uid="uid://bg42783a62meg" path="res://assets/textures/rock_face/rock_face_03_nor_gl_2k.png" id="25_nb4ii"]
-[ext_resource type="PackedScene" uid="uid://bgfpvly4i58fe" path="res://environment/pillar/cave_pillar.tscn" id="26_vbpnr"]
 [ext_resource type="PackedScene" uid="uid://bhtsgd8ntpafc" path="res://environment/lightpost/light_post.tscn" id="27_siryo"]
 [ext_resource type="PackedScene" uid="uid://dbf4ij4d18ruw" path="res://environment/mound/mound.tscn" id="28_kpuk4"]
 [ext_resource type="PackedScene" uid="uid://nx4nj5ft54fa" path="res://game/RockSpawner.tscn" id="29_xbagk"]
@@ -47,9 +46,8 @@
 [ext_resource type="Script" uid="uid://nc530jhrkgdl" path="res://game/rest_point.gd" id="47_mcjdd"]
 [ext_resource type="PackedScene" uid="uid://56rt610we0mn" path="res://systems/interaction/is_selectable.tscn" id="48_1x8ku"]
 [ext_resource type="PackedScene" uid="uid://4qw1jjikrdet" path="res://ui/Start Menu.tscn" id="48_ckrxx"]
-[ext_resource type="Shader" uid="uid://dlixatvj40nn8" path="res://shaders/DarknessEffect.gdshader" id="50_3al37"]
+[ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="50_3al37"]
 [ext_resource type="PackedScene" uid="uid://cd8eju1cig105" path="res://entities/rocks/RockWall.tscn" id="50_tdx0c"]
-[ext_resource type="Script" uid="uid://335lniljc8nv" path="res://systems/Darkness.gd" id="51_ckrxx"]
 [ext_resource type="PackedScene" uid="uid://bbrqv8t6ts2r7" path="res://entities/crawler/crawler.tscn" id="51_qwv1t"]
 [ext_resource type="PackedScene" uid="uid://brlxtksdnsnue" path="res://environment/Rock_08/rock_08.tscn" id="52_ckrxx"]
 
@@ -156,17 +154,6 @@ font = SubResource("SystemFont_1w0m8")
 font_size = 45
 font_color = Color(0.46192288, 0.5847424, 0.62693316, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5onfr"]
-shader = ExtResource("50_3al37")
-shader_parameter/darkness = 0.999999977648
-shader_parameter/dark_threshold = 0.05
-shader_parameter/bright_threshold = 0.499999988824
-shader_parameter/peripheral_strength = 0.499999988824
-shader_parameter/blur_amount = 0.5000000074506
-shader_parameter/camera_basis = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
-shader_parameter/fov_tan = 0.577
-shader_parameter/aspect_ratio = 1.777
-
 [node name="Main" type="Node3D" unique_id=217525979]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1023374231]
@@ -251,7 +238,7 @@ transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.965
 transform = Transform3D(0.40664238, 0.03561388, 0.91289294, -0.0435638, 0.99885917, -0.01956229, -0.9125482, -0.03181427, 0.40772992, -1, -24.838406, 8.5)
 
 [node name="WaterArea2" parent="LevelLoader/OverWorld" unique_id=2035181480 instance=ExtResource("15_mwqh4")]
-transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518158, -29.518824, -12.479779)
+transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, -5.518, -29.519, -12.48)
 
 [node name="WaterArea3" parent="LevelLoader/OverWorld" unique_id=836876503 instance=ExtResource("15_mwqh4")]
 transform = Transform3D(5.85, 0, 0, 0, 5.85, 0, 0, 0, 5.85, 23.707, -29.519, -12.48)
@@ -416,7 +403,7 @@ metadata/_edit_lock_ = true
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="LevelLoader/OverWorld" unique_id=570165904]
 material_override = SubResource("StandardMaterial3D_6k6bt")
 use_collision = true
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="LevelLoader/OverWorld/CSGCombiner3D2" unique_id=1354894370]
@@ -569,10 +556,6 @@ size = Vector3(4, 3.5161438, 3)
 transform = Transform3D(-0.9926986, 0, 0.12062198, 0, 1, 0, -0.12062198, 0, -0.9926986, -2.6083732, -32.148422, -110.09522)
 material_override = SubResource("StandardMaterial3D_6k6bt")
 size = Vector3(4, 3.6147766, 3)
-
-[node name="cave_pillar" parent="LevelLoader/OverWorld" unique_id=1697288309 instance=ExtResource("26_vbpnr")]
-transform = Transform3D(0.4625126, 0.36234668, -1.2707428, -0.12392986, 1.3522964, 0.34049445, 1.3155698, 0, 0.47882828, -0.30000007, -30.1, -36.5)
-visible = false
 
 [node name="LightPost" parent="LevelLoader/OverWorld" unique_id=795842710 instance=ExtResource("27_siryo")]
 transform = Transform3D(0.087155685, 0, -0.99619484, 0, 1, 0, 0.99619484, 0, 0.087155685, 4.6835537, -29.97977, -41.055946)
@@ -867,24 +850,10 @@ inventory_ui = NodePath("../../CanvasLayer/InventoryUI")
 shop_ui = NodePath("../ShopUI")
 start_menu = NodePath("../../CanvasLayer/StartMenu")
 
-[node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1219701611]
-layer = 2
-
-[node name="ColorRect" type="ColorRect" parent="PostProcessing" unique_id=1787420846]
-visible = false
-material = SubResource("ShaderMaterial_5onfr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("51_ckrxx")
-
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1761730934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9449587, -27.542706, -53.187737)
+transform = Transform3D(0.9940508, 0, -0.108917676, 0, 1, 0, 0.108917676, 0, 0.9940508, 4.819121, -27.542706, -53.08058)
 subdiv = 2
-size = Vector3(22.86131, 13.559534, 48.64995)
+size = Vector3(20.51007, 13.559534, 49.11351)
 data = ExtResource("46_lwooh")
 
 [node name="Torch" parent="." unique_id=623213117 instance=ExtResource("33_7677j")]
@@ -916,6 +885,15 @@ transform = Transform3D(0.8834611, -0.3563617, -0.30414268, 0.37030748, 0.928823
 
 [node name="Rock_14" parent="Node3D" unique_id=1969105362 instance=ExtResource("52_ckrxx")]
 transform = Transform3D(0.5822327, -0.14570238, 0.79986036, 0.17435537, 0.9832981, 0.052200977, -0.7941068, 0.109066725, 0.59791195, 2.8123522, -1.9311275, -3.6296718)
+
+[node name="3DCursor" parent="." unique_id=1948088902 instance=ExtResource("50_3al37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2289577, -29.935116, -51.45391)
+metadata/cursor_id = 0
+metadata/size_scale = 1.0
+metadata/show_title_label = true
+metadata/show_number_label = true
+metadata/scale_affect_labels = true
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelLoader/OverWorld/LowOxygenArea" to="LevelLoader/OverWorld/LowOxygenArea" method="_on_body_exited"]

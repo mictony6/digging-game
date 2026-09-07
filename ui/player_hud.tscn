@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://q1r20nyd6yw7" path="res://game/playuer_hud_manager.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://ui/item_toast/ItemToast.tscn" id="2_4o6vf"]
+[ext_resource type="Texture2D" uid="uid://dbr615cv6eru7" path="res://assets/textures/ui/health-normal.svg" id="3_7pawb"]
 [ext_resource type="Texture2D" uid="uid://bq6b77brwfoqc" path="res://assets/textures/ui/two-coins.svg" id="3_n0n2g"]
+[ext_resource type="Texture2D" uid="uid://dlv8wgaallrly" path="res://assets/textures/ui/convergence-target.svg" id="3_sjha8"]
+[ext_resource type="Texture2D" uid="uid://bwdxkr7ovib4v" path="res://assets/textures/ui/lungs.svg" id="4_sjha8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
 bg_color = Color(1, 1, 1, 0.12)
@@ -43,25 +46,25 @@ mouse_filter = 2
 script = ExtResource("1_script")
 toast_scene = ExtResource("2_4o6vf")
 
-[node name="Crosshair" type="Label" parent="." unique_id=556655416]
+[node name="Crosshair" type="TextureRect" parent="." unique_id=92974317]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2784314)
+custom_maximum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
+offset_left = -12.0
 offset_top = -12.0
-offset_right = 8.0
+offset_right = 12.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.5)
-theme_override_font_sizes/font_size = 28
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("3_sjha8")
+metadata/_edit_use_anchors_ = true
 
 [node name="DayLabel" type="Label" parent="." unique_id=910304340]
 unique_name_in_owner = true
@@ -94,16 +97,16 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="HealthIcon" type="Label" parent="VitalsGroup/HealthRow" unique_id=-1694967294]
+[node name="HealthIcon" type="TextureRect" parent="VitalsGroup/HealthRow" unique_id=1658251611]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.22, 0.14, 1)
-theme_override_font_sizes/font_size = 14
-text = "♥"
-vertical_alignment = 1
+texture = ExtResource("3_7pawb")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="HealthBar" type="ProgressBar" parent="VitalsGroup/HealthRow" unique_id=-1694967293]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -113,30 +116,22 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
 value = 100.0
 show_percentage = false
 
-[node name="HealthPctLabel" type="Label" parent="VitalsGroup/HealthRow" unique_id=917443443]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.85, 0.75, 0.85)
-theme_override_font_sizes/font_size = 12
-text = "100%"
-vertical_alignment = 1
-
 [node name="OxygenRow" type="HBoxContainer" parent="VitalsGroup" unique_id=-1694967292]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="OxygenIcon" type="Label" parent="VitalsGroup/OxygenRow" unique_id=-1694967291]
+[node name="OxygenIcon" type="TextureRect" parent="VitalsGroup/OxygenRow" unique_id=1650211805]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.22, 0.68, 0.88, 1)
-theme_override_font_sizes/font_size = 14
-text = "~"
-vertical_alignment = 1
+texture = ExtResource("4_sjha8")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="OxygenBar" type="ProgressBar" parent="VitalsGroup/OxygenRow" unique_id=-1694967290]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -154,10 +149,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -190.0
-offset_right = -20.0
-offset_bottom = -20.0
+offset_left = -320.0
+offset_top = -172.0
+offset_right = -40.0
+offset_bottom = -39.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -179,9 +174,11 @@ text = "0"
 horizontal_alignment = 2
 
 [node name="CoinIcon" type="TextureRect" parent="InfoGroup/CoinRow" unique_id=1273179904]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 texture = ExtResource("3_n0n2g")
 expand_mode = 2
+stretch_mode = 4
 
 [node name="ToolNameLabel" type="Label" parent="InfoGroup" unique_id=1209162166]
 unique_name_in_owner = true
@@ -213,7 +210,7 @@ horizontal_alignment = 2
 
 [node name="DurabilityBar" type="ProgressBar" parent="InfoGroup" unique_id=1148648921]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")

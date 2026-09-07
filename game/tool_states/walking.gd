@@ -8,10 +8,7 @@ func physics_update(delta: float) -> void:
 		return
 	if tool.pressed:
 		tool.tool_raycast.force_raycast_update()
-	if tool.pressed and tool.current_durability <= 0:
-		tool.beam.hide()
-		return
-	if tool.can_hit():
+	if tool.current_attachment == ToolManager.Attachment.MINING and tool.can_hit():
 		finished.emit(MINING)
 		return
 	if not tool.is_player_moving():

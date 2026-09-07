@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScannerToolData" format=3 uid="uid://cj0l6eeklrma2"]
+
+[ext_resource type="Script" uid="uid://bvxrua0awvtg6" path="res://data/tools/ScannerToolData.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://entities/scanner_tool/ScannerTool.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Scanner"
+battery_cost = 0.0
+scene = ExtResource("2_scene")

@@ -5,7 +5,11 @@ class_name ToolData
 @export var name: String = "New Tool"
 @export var tier: int = 1
 @export var strength: float = 1.0
-@export var max_durability: float = 100.0
+
+## How much shared battery this attachment drains per use (mining hit, shot
+## fired, etc). Lets using the "wrong" tool for a job cost more than the
+## dedicated one, once cross-attachment usage exists.
+@export var battery_cost: float = 1.0
 
 @export_category("Upgrades")
 @export var tier_upgrade: int = 0

@@ -21,7 +21,7 @@ extends Control
 @onready var tool_status_label: Label = %ToolStatusLabel
 @onready var durability_bar: ProgressBar = %DurabilityBar
 @onready var durability_pct_label: Label = %DurabilityPctLabel
-@onready var crosshair: Label = %Crosshair
+@onready var crosshair: TextureRect = %Crosshair
 @onready var item_toasts: VBoxContainer = %ItemToasts
 @onready var _stats_panel: Control = %PickaxeStatsPanel
 @onready var _stat_tier: Label = %StatTier
@@ -94,6 +94,7 @@ func _ready() -> void:
 
 	_tool_manager = player.get_node_or_null("Head/ToolManager") as ToolManager
 	if _tool_manager:
+		_tool_manager.attachment_changed.connect(_on_attachment_changed)
 		_tool_manager.durability_changed.connect(_on_durability_changed)
 		var max_dur: float = _tool_manager._get_max_durability()
 		durability_bar.max_value = max_dur
@@ -109,13 +110,10 @@ func _ready() -> void:
 	eod_screen.hide()
 	self.hide()
 	start_menu.show()
-	PauseStateManager.set_paused(true, self )
+	PauseStateManager.set_paused(true, self)
 
 
 func _process(delta: float) -> void:
-	if _stats_panel.visible:
-		_refresh_stats()
-
 	# Lerp coin display toward target
 	if absf(_coin_display - float(_coin_target)) > 0.5:
 		_coin_display = lerpf(_coin_display, float(_coin_target), delta * 8.0)
@@ -196,7 +194,7 @@ func _refresh_stats() -> void:
 	var td := _tool_manager.current_tool.tool_data
 	_stat_tier.text = str(td.tier + td.tier_upgrade)
 	_stat_power.text = "%.2f" % (td.strength + td.strength_upgrade)
-	_stat_maxdur.text = str(int(td.max_durability))
+	_stat_maxdur.text = str(int(_tool_manager.max_durability))
 
 
 func _on_oxygen_changed(current: float, max_value: float) -> void:
@@ -205,7 +203,6 @@ func _on_oxygen_changed(current: float, max_value: float) -> void:
 
 func _on_health_changed(current: float, max_value: float) -> void:
 	health_bar.value = current / max_value * 100.0
-	health_pct_label.text = "%d%%" % int(current / max_value * 100)
 	_health_is_low = (current / max_value) <= 0.25
 	if _health_is_low:
 		_start_health_flash()
@@ -276,6 +273,8 @@ func _on_durability_changed(current: float, max_val: float) -> void:
 	else:
 		_stop_dur_flash()
 		_show_info_group()
+	if _stats_panel.visible:
+		_refresh_stats()
 
 
 func _start_dur_flash() -> void:
@@ -338,8 +337,14 @@ func _fmt(value: int) -> String:
 func _on_start_pressed() -> void:
 	start_menu.hide()
 	show()
-	PauseStateManager.set_paused(false, self )
+	PauseStateManager.set_paused(false, self)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_attachment_changed(_attachment: ToolManager.Attachment, _data: ToolData):
+	tool_name_label.text = _data.name.to_upper()
+	_show_info_group()
+	if _stats_panel.visible:
+		_refresh_stats()

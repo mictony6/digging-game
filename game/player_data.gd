@@ -13,7 +13,6 @@ var current_health: float = 100
 
 signal coins_changed(val: int)
 
-
 func add_coins(value: int):
 	coins += value
 	coins_earned_today += value

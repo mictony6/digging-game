@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wand"]
+top_radius = 0.03
+bottom_radius = 0.04
+height = 0.24
+
+[sub_resource type="SphereMesh" id="SphereMesh_lens"]
+radius = 0.035
+height = 0.07
+
+[node name="ScannerTool" type="Node3D"]
+
+[node name="Wand" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_wand")
+
+[node name="Lens" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("SphereMesh_lens")

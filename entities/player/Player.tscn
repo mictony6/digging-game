@@ -50,6 +50,11 @@
 [ext_resource type="Script" uid="uid://b50upnsd4qmo0" path="res://game/tool_states/idle.gd" id="100_toolidle"]
 [ext_resource type="Script" uid="uid://bmcjhtqdcckj0" path="res://game/tool_states/mining.gd" id="100_toolmining"]
 [ext_resource type="Script" uid="uid://qosnjawbcyr6" path="res://game/tool_states/walking.gd" id="100_toolwalking"]
+[ext_resource type="Script" uid="uid://b7i1ajhn83xev" path="res://game/tool_states/scanning.gd" id="101_toolscanning"]
+[ext_resource type="Script" uid="uid://cl7dae3gwr04u" path="res://game/tool_states/shooting.gd" id="101_toolshooting"]
+[ext_resource type="Resource" uid="uid://cmcmmofhy52j6" path="res://data/tools/MiningToolData.tres" id="102_miningdata"]
+[ext_resource type="Resource" uid="uid://dtykkoh0np174" path="res://data/tools/LaserPistolToolData.tres" id="103_shootingdata"]
+[ext_resource type="Resource" uid="uid://cj0l6eeklrma2" path="res://data/tools/ScannerToolData.tres" id="104_scannerdata"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lkjt4"]
 radius = 0.25
@@ -962,17 +967,21 @@ tool_raycast = NodePath("RayCast3D")
 tool_area3d = NodePath("ToolAreaCollision")
 hit_particles = ExtResource("4_q57vx")
 break_particles = ExtResource("5_ak4un")
+mining_tool_data = ExtResource("102_miningdata")
+shooting_tool_data = ExtResource("103_shootingdata")
+scanner_tool_data = ExtResource("104_scannerdata")
 arm_animations = NodePath("../Arms/AnimationTree")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/ToolManager" unique_id=1059309043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42729235)
 enabled = false
 target_position = Vector3(0, 0, -2)
-collision_mask = 34
+collision_mask = 38
 
 [node name="ToolAreaCollision" type="Area3D" parent="Head/ToolManager" unique_id=1666621720]
 collision_layer = 0
 collision_mask = 34
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/ToolManager/ToolAreaCollision" unique_id=90150752]
 visible = false
@@ -983,7 +992,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 light_color = Color(0.98539025, 0.65069556, 0.5930914, 1)
 light_energy = 0.05
 light_volumetric_fog_energy = 0.0
-omni_range = 0.45
+omni_range = 1.0
 omni_attenuation = 2.0
 script = ExtResource("11_ax5yc")
 
@@ -999,6 +1008,12 @@ script = ExtResource("100_toolmining")
 
 [node name="Walking" type="Node" parent="Head/ToolManager/StateMachine" unique_id=1344941946]
 script = ExtResource("100_toolwalking")
+
+[node name="Shooting" type="Node" parent="Head/ToolManager/StateMachine" unique_id=1344941947]
+script = ExtResource("101_toolshooting")
+
+[node name="Scanning" type="Node" parent="Head/ToolManager/StateMachine" unique_id=1344941948]
+script = ExtResource("101_toolscanning")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Head" unique_id=77155747]
 doppler_tracking = 2

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShootingToolData" format=3 uid="uid://dtykkoh0np174"]
+
+[ext_resource type="Script" uid="uid://haigh6v8q1k5" path="res://data/tools/ShootingToolData.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://entities/laser_pistol_tool/LaserPistolTool.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Laser Pistol"
+strength = 20.0
+battery_cost = 2.0
+scene = ExtResource("2_scene")

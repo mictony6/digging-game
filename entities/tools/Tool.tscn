@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wf6ij42xq2w2"]
 
 [ext_resource type="Script" uid="uid://c6fgwgulxpbym" path="res://entities/tools/tool.gd" id="1_ubxhq"]
-[ext_resource type="Resource" uid="uid://cmcmmofhy52j6" path="res://data/tools/PickaxeToolData.tres" id="2_7klon"]
+[ext_resource type="Resource" uid="uid://cmcmmofhy52j6" path="res://data/tools/MiningToolData.tres" id="2_7klon"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubxhq"]
 

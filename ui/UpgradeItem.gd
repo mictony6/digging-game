@@ -9,9 +9,9 @@ enum UpgradeType {
 }
 
 const UPGRADE_NAMES := {
-	UpgradeType.TIER:       "PICKAXE TIER",
+	UpgradeType.TIER:       "MINING TIER",
 	UpgradeType.STRENGTH:   "MINING STRENGTH",
-	UpgradeType.DURABILITY: "TOOL DURABILITY",
+	UpgradeType.DURABILITY: "MINING DURABILITY",
 }
 
 @onready var action_button: Button    = $Margin/HBoxContainer/ActionButton

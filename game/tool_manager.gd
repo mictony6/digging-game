@@ -1,6 +1,8 @@
 extends Node3D
 class_name ToolManager
 
+enum Attachment {MINING, SHOOTING, SCANNER}
+
 @export var current_tool: Tool
 @export var tool_raycast: RayCast3D
 @export var tool_area3d: Area3D
@@ -9,6 +11,17 @@ class_name ToolManager
 @onready var beam: LaserBeam = current_tool.get_node("Beam")
 @onready var flicker: ToolFlicker = $ToolFlicker
 @onready var player: Player = owner as Player
+
+@export var mining_tool_data: ToolData
+@export var shooting_tool_data: ToolData
+@export var scanner_tool_data: ToolData
+
+## Shared battery capacity, same no matter which attachment is equipped —
+## a TotK-style single meter, not a per-tool durability pool.
+@export var max_durability: float = 250.0
+
+var current_attachment: Attachment = Attachment.MINING
+signal attachment_changed(attachment: Attachment, tool_data: ToolData)
 
 const PARTICLE_POOL_SIZE = 5
 var _particle_pool: Array[GPUParticles3D] = []
@@ -44,6 +57,8 @@ func _ready() -> void:
 
 	_particle_pool = _populate_hit_particles(hit_particles, PARTICLE_POOL_SIZE, self)
 
+	beam.hide()
+	flicker.hide()
 func _process(_delta: float) -> void:
 	pressed = Input.is_action_pressed("action") \
 		and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
@@ -51,6 +66,34 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if beam.visible and tool_raycast.is_colliding():
 		beam.aim(tool_raycast.get_collision_point(), tool_raycast.get_collision_normal())
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("equip_mining"):
+		equip_attachment(Attachment.MINING)
+	elif event.is_action_pressed("equip_shooting"):
+		equip_attachment(Attachment.SHOOTING)
+	elif event.is_action_pressed("equip_scanner"):
+		equip_attachment(Attachment.SCANNER)
+
+
+## Swaps the held mesh to the given attachment's visual and resets the tool
+## state machine to Idle so a stale leaf state (e.g. mid-swing) can't keep
+## running with the wrong attachment's data.
+func equip_attachment(attachment: Attachment) -> void:
+	if attachment == current_attachment:
+		return
+	current_attachment = attachment
+	var data := _tool_data_for(attachment)
+
+	current_tool.load_tool(data)
+
+	attachment_changed.emit(attachment, data)
+
+func _tool_data_for(attachment: Attachment) -> ToolData:
+	match attachment:
+		Attachment.SHOOTING: return shooting_tool_data
+		Attachment.SCANNER: return scanner_tool_data
+		_: return mining_tool_data
 
 
 # helper functions
@@ -66,7 +109,7 @@ func _populate_hit_particles(particle_scene: PackedScene, pool_size: int, parent
 	return pool
 		
 func _get_max_durability() -> float:
-	return current_tool.tool_data.max_durability if current_tool and current_tool.tool_data else 100.0
+	return max_durability
 
 func repair() -> void:
 	current_durability = _get_max_durability()
@@ -78,17 +121,25 @@ func get_upgrade_count(type: UpgradeItem.UpgradeType) -> int:
 func record_upgrade(type: UpgradeItem.UpgradeType) -> void:
 	upgrade_counts[type] = get_upgrade_count(type) + 1
 
+## upgrade_tier()/upgrade_strength() always target the mining tool
+## specifically, not whichever attachment happens to be equipped — the shop
+## UI's labels ("MINING TIER", "MINING STRENGTH") are Mining-only, and
+## current_tool.tool_data is swappable now that attachments exist.
+## upgrade_max_durability() is different: the battery is shared across every
+## attachment (see max_durability above), so it always applies regardless of
+## what's equipped.
 func upgrade_max_durability(amount: float) -> void:
-	current_tool.tool_data.max_durability += amount
+	max_durability += amount
 	current_durability += amount
 	durability_changed.emit(current_durability, _get_max_durability())
 
 func upgrade_tier() -> void:
-	current_tool.tool_data.tier_upgrade += 1
+	mining_tool_data.tier_upgrade += 1
+	attachment_changed.emit(current_attachment, mining_tool_data)
 
 func upgrade_strength() -> void:
-	var td := current_tool.tool_data
-	td.strength_upgrade += (td.tier + td.tier_upgrade) * 0.05
+	mining_tool_data.strength_upgrade += (mining_tool_data.tier + mining_tool_data.tier_upgrade) * 0.05
+	attachment_changed.emit(current_attachment, mining_tool_data)
 
 
 ## True when the player has movement input held down.
@@ -112,17 +163,12 @@ func perform_hit() -> void:
 	deal_damage_on_affected_bodies(_bodies_in_aoe, get_total_damage(), get_total_tier(), tool_raycast.get_collider())
 	play_particles(collision_point)
 
-	flicker.global_position = collision_point
+	flicker.global_position = collision_point + tool_raycast.get_collision_normal() * 0.1
 	flicker.flash()
 	tool_current_cooldown = tool_max_cooldown
 
-	current_durability = max(current_durability - 1.0, 0.0)
+	current_durability = max(current_durability - current_tool.tool_data.battery_cost, 0.0)
 	durability_changed.emit(current_durability, _get_max_durability())
-
-func stop_tool() -> void:
-	beam.hide()
-	travel_arm("HoldTool_IDLE")
-	flicker.hide()
 
 func travel_arm(state_name: String) -> void:
 	_arm_playback.travel(state_name)
